@@ -1,0 +1,16 @@
+{
+  "name": "AI Studio GHRAB · Akademie",
+  "short_name": "GHRAB Akademie",
+  "description": "Modulární interaktivní školení pro bezpečné a praktické používání školních AI aplikací.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#020713",
+  "theme_color": "#030915",
+  "lang": "cs",
+  "orientation": "any",
+  "icons": [
+    { "src": "./assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./assets/brand/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

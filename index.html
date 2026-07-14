@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="cs" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="AI Studio GHRAB Akademie — modulární interaktivní školení pro bezpečné a praktické používání školních AI aplikací.">
+  <meta name="theme-color" content="#030915">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>AI Studio GHRAB · Akademie</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./assets/brand/icon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="./assets/brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+  <canvas id="starfield" class="starfield" aria-hidden="true"></canvas>
+  <a class="skip-link" href="#app">Přejít na obsah</a>
+  <div id="app" aria-live="polite"></div>
+  <noscript>
+    <main class="noscript-card">
+      <h1>AI Studio GHRAB · Akademie</h1>
+      <p>Pro spuštění interaktivního školení je potřeba povolit JavaScript.</p>
+    </main>
+  </noscript>
+  <script type="module" src="./assets/js/app.js"></script>
+</body>
+</html>
