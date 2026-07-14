@@ -1,25 +1,15 @@
-# Nahrání AI Studio GHRAB · Akademie na GitHub
+# Nahrání AI Akademie GHRAB na GitHub
 
-Tato verze používá nejjednodušší způsob publikování: **GitHub Pages přímo z větve `main`**. Není potřeba skrytá složka `.github`, GitHub Actions ani příkazová řádka.
+## 1. Nahrajte aktualizované soubory
 
-## 1. Založte nový repozitář
+Do kořene repozitáře `AI-Akademie-GHRAB` nahrajte **obsah rozbalené složky**, ne nadřazenou složku.
 
-1. Přihlaste se na GitHub.
-2. Klikněte na **New repository**.
-3. Název: `AI-Akademie-GHRAB`.
-4. Viditelnost: **Public**.
-5. README na GitHubu nepřidávejte — je už součástí balíku.
-6. Klikněte na **Create repository**.
-
-## 2. Nahrajte obsah balíku
-
-Rozbalte ZIP v počítači. Do nového repozitáře přetáhněte **obsah rozbalené složky**, nikoli samotný ZIP a nikoli nadřazenou složku.
-
-V kořeni repozitáře musí být přímo vidět například:
+V kořeni mají být přímo vidět:
 
 ```text
 assets/
 courses/
+exports/
 scripts/
 index.html
 manifest.webmanifest
@@ -28,58 +18,58 @@ README.md
 sw.js
 ```
 
-Potom dole klikněte na **Commit changes**.
+Složka `.github` není potřeba.
 
-## 3. Aktivujte GitHub Pages
+## 2. Nastavte GitHub Pages
 
-1. Otevřete **Settings** repozitáře.
-2. V levém menu zvolte **Pages**.
-3. V části **Build and deployment** nastavte:
-   - **Source:** `Deploy from a branch`
-   - **Branch:** `main`
-   - **Folder:** `/ (root)`
-4. Klikněte na **Save**.
+V repozitáři otevřete:
 
-GitHub začne web publikovat. První nasazení může několik minut trvat.
+```text
+Settings → Pages
+```
 
-Výsledná adresa bude pravděpodobně:
+Nastavte:
+
+```text
+Source: Deploy from a branch
+Branch: main
+Folder: / (root)
+```
+
+Potvrďte tlačítkem **Save**. Výsledný odkaz bude přibližně:
 
 ```text
 https://daniel22-dev.github.io/AI-Akademie-GHRAB/
 ```
 
-## 4. Jak poznat, že je nasazení hotové
+## 3. Co po aktualizaci ověřit
 
-1. Vraťte se do **Settings → Pages**.
-2. Nahoře se zobrazí adresa zveřejněného webu.
-3. Otevřete ji v nové kartě.
-4. Pokud stránka ještě není dostupná, chvíli počkejte a obnovte ji pomocí `Ctrl + F5`.
+- zobrazí se nová ikona AI Akademie;
+- nadpis na úvodní stránce má dostatečný odstup od horního modrého štítku;
+- rozcestník se označuje jako pracovní prostor školitele, nikoli samostudium kolegů;
+- lze otevřít všech deset prezentací;
+- tlačítko **Poznámky řečníka** zobrazí interní metodické poznámky;
+- tlačítko **Stáhnout HTML** stáhne pouze konkrétní prezentaci;
+- stažený HTML soubor funguje po otevření bez internetu;
+- export neobsahuje poznámky řečníka ani celý katalog Akademie.
 
-## 5. První kontrola po nasazení
+## 4. Při změně obsahu prezentace
 
-- otevřete hlavní rozcestník;
-- otevřete alespoň tři různé kurzy;
-- vyzkoušejte přechod mezi lekcemi;
-- označte jednu lekci jako dokončenou a obnovte stránku;
-- spusťte prezentační režim a celou obrazovku;
-- vyzkoušejte kvíz a checklist;
-- na telefonu ověřte menu a kartu kurzu;
-- PWA instalujte až po ověření aktuální verze.
+Po úpravě souboru v `courses/` spusťte lokálně:
 
-## 6. Jak se přidává nové školení
+```bash
+npm run build:exports
+npm test
+```
 
-1. Zkopírujte nejbližší obsahový soubor ve složce `courses/`.
-2. Změňte `id`, `code`, název, metadata a lekce.
-3. Přidejte import a položku do `courses/index.js`.
-4. Zvedněte verzi v `package.json` a řetězec cache v `sw.js`.
-5. Přidejte nový soubor do seznamu `FILES` v `sw.js`.
-6. Nahrajte změny na GitHub.
-7. GitHub Pages změnu automaticky znovu publikuje.
+Tím se znovu vytvoří soubory ve složce `exports/`. Na GitHub pak nahrajte upravený modul i odpovídající export.
 
-## 7. Co nikdy nenahrávat
+## 5. Obnovení nainstalované PWA
 
-- API klíče;
-- soukromý podpisový klíč;
-- osobní přístupové soubory;
-- reálné studentské texty, e-maily nebo seznamy;
-- jakékoli jiné heslo či citlivý údaj.
+Po nahrání nové verze může prohlížeč krátce používat starou cache. Obvykle stačí:
+
+1. stránku zavřít;
+2. znovu ji otevřít;
+3. případně provést tvrdé obnovení `Ctrl + F5`.
+
+Pokud byla Akademie nainstalována jako aplikace a stále ukazuje starou ikonu, odinstalujte starou PWA a nainstalujte ji znovu.

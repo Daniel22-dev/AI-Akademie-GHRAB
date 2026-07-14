@@ -39,6 +39,15 @@ for (const course of courses) {
     try { await fs.access(path.join(root, localIcon)); }
     catch { errors.push(`Kurz ${course.id} odkazuje na chybějící ikonu ${course.icon}`); }
   }
+
+  const exportPath = path.join(root, 'exports', `${course.id}.html`);
+  try {
+    const exported = await fs.readFile(exportPath, 'utf8');
+    if (!exported.includes('Interaktivní materiál pro účastníky')) errors.push(`Export ${course.id}.html nemá označení pro účastníky.`);
+    if (exported.includes('Poznámka řečníka') || exported.includes('trainerNote')) errors.push(`Export ${course.id}.html obsahuje interní poznámky řečníka.`);
+  } catch {
+    errors.push(`Chybí samostatný export prezentace: exports/${course.id}.html`);
+  }
 }
 
 const sw = await fs.readFile(path.join(root, 'sw.js'), 'utf8');
@@ -48,6 +57,7 @@ if (!sw.includes(`ghrab-academy-v${pkg.version}`)) errors.push('Verze cache v sw
 const index = await fs.readFile(path.join(root, 'index.html'), 'utf8');
 if (!index.includes('assets/js/app.js')) errors.push('index.html nenačítá hlavní modul aplikace.');
 if (!index.includes('Content-Security-Policy')) errors.push('index.html neobsahuje Content-Security-Policy.');
+if (!index.includes('AI Akademie GHRAB')) errors.push('index.html neobsahuje nový název AI Akademie GHRAB.');
 
 if (errors.length) {
   console.error('\nKontrola selhala:');

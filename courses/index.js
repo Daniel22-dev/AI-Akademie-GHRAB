@@ -1,3 +1,4 @@
+import aiLiteracy from './00-ai-literacy.js';
 import start from './00-start.js';
 import differentiator from './01-differentiator.js';
 import github from './02-github.js';
@@ -9,6 +10,7 @@ import workflow from './07-workflow.js';
 import administrator from './08-administrator.js';
 
 export const courses = [
+  aiLiteracy,
   start,
   differentiator,
   github,

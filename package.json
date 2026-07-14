@@ -1,12 +1,13 @@
 {
   "name": "ai-akademie-ghrab",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
-  "description": "Modulární interaktivní vzdělávací portál AI Studio GHRAB",
+  "description": "Soukromý prezentační rozcestník AI Akademie GHRAB",
   "scripts": {
+    "build:exports": "node scripts/build-exports.mjs",
     "check": "node scripts/check.mjs",
-    "test": "node scripts/check.mjs"
+    "test": "node scripts/build-exports.mjs && node scripts/check.mjs"
   },
   "engines": {
     "node": ">=18"

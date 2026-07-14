@@ -27,7 +27,8 @@ const icons = {
   copy: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h11v11H9zM4 4h11v11H4z"/></svg>',
   reset: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>',
   search: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
-  clock: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'
+  clock: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  download: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>'
 };
 
 function escapeHtml(value = '') {
@@ -85,22 +86,18 @@ function prerequisiteStatus(course) {
 }
 
 function shell(content, currentPage = 'home') {
-  const progress = overallProgress();
   return `
     <header class="site-header ${presenterMode ? 'is-presenting' : ''}">
-      <a class="brand" href="#/" aria-label="AI Studio GHRAB Akademie — domů">
-        <span class="brand-mark"><img src="./assets/brand/brand-mark.svg" alt="" width="46" height="46"></span>
-        <span class="brand-copy"><strong>AI Studio <em>GHRAB</em></strong><small>Akademie · interaktivní školení</small></span>
+      <a class="brand" href="#/" aria-label="AI Akademie GHRAB — rozcestník prezentací">
+        <span class="brand-mark"><img src="./assets/brand/icon-192.png" alt="" width="48" height="48"></span>
+        <span class="brand-copy"><strong>AI Akademie <em>GHRAB</em></strong><small>Prezentace a podklady školitele</small></span>
       </a>
       <nav class="top-nav" aria-label="Hlavní navigace">
-        <a href="#/" class="${currentPage === 'home' ? 'active' : ''}">${icons.home}<span>Přehled</span></a>
-        <button type="button" data-action="toggle-trainer" class="${state.trainerMode ? 'active' : ''}" aria-pressed="${state.trainerMode}">${icons.notes}<span>Poznámky školitele</span></button>
+        <a href="#/" class="${currentPage === 'home' ? 'active' : ''}">${icons.home}<span>Rozcestník</span></a>
+        <button type="button" data-action="toggle-trainer" class="${state.trainerMode ? 'active' : ''}" aria-pressed="${state.trainerMode}">${icons.notes}<span>Poznámky řečníka</span></button>
         <button type="button" data-action="fullscreen">${icons.expand}<span>Celá obrazovka</span></button>
       </nav>
-      <div class="header-progress" title="Celkový průběh">
-        <span>${progress.percent}%</span>
-        <div class="mini-progress"><i style="width:${progress.percent}%"></i></div>
-      </div>
+      <div class="header-role"><span>REŽIM ŠKOLITELE</span><small>Soukromý pracovní prostor</small></div>
       <button class="mobile-menu" type="button" data-action="toggle-menu" aria-expanded="false" aria-label="Otevřít navigaci">☰</button>
     </header>
     <main class="main ${presenterMode ? 'presenter-main' : ''}">${content}</main>
@@ -114,11 +111,10 @@ function footer() {
     <footer class="site-footer">
       <div>
         <img src="./assets/brand/school-logo.png" alt="Logo Gymnázia Ostrava-Hrabůvka">
-        <span><strong>AI Studio GHRAB · Akademie</strong><small>Modulární vzdělávací portál · verze 1.0.1</small></span>
+        <span><strong>AI Akademie GHRAB</strong><small>Soukromý rozcestník interaktivních prezentací · verze 1.1.0</small></span>
       </div>
       <div class="footer-actions">
-        <button type="button" data-action="install" class="text-button" ${deferredInstallPrompt ? '' : 'hidden'}>Nainstalovat aplikaci</button>
-        <button type="button" data-action="reset-progress" class="text-button danger-text">Smazat můj postup</button>
+        <button type="button" data-action="install" class="text-button" ${deferredInstallPrompt ? '' : 'hidden'}>Nainstalovat rozcestník</button>
       </div>
     </footer>
   `;
@@ -137,62 +133,59 @@ function renderHome() {
     const matchesCategory = activeCategory === 'Vše' || course.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
-  const overall = overallProgress();
-  const completeCourses = courses.filter(course => courseProgress(course).percent === 100).length;
+  const totalSections = courses.reduce((sum, course) => sum + course.lessons.length, 0);
+  const totalMinutes = courses.reduce((sum, course) => sum + course.duration, 0);
 
   const content = `
-    <section class="academy-hero shell-wide">
+    <section class="academy-hero shell-wide presenter-hero">
       <div class="hero-copy">
-        <p class="eyebrow">UČITELÉ · PRAXE · BEZPEČNOST · NÁVAZNOST</p>
-        <h1>Školení, která tvoří <span>jeden systém.</span></h1>
-        <p class="hero-lead">Od prvního bezpečného přihlášení přes Diferenciátor až po interaktivní testy, výukové hry, komunikaci, hodnocení a správu projektu. Každý modul má vlastní cíl, praktický výstup a jasnou návaznost.</p>
+        <p class="eyebrow">PREZENTAČNÍ CENTRUM · ŠKOLENÍ · PODKLADY</p>
+        <h1>Všechna školení.<span>Jedno místo.</span></h1>
+        <p class="hero-lead">Soukromý rozcestník pro přípravu a vedení školení kolegů. Otevřete konkrétní prezentaci, zapněte poznámky řečníka, spusťte režim celé obrazovky nebo stáhněte samostatné interaktivní HTML pro účastníky.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#/course/start/orientation">Začít společným základem ${icons.arrowRight}</a>
-          <a class="button secondary" href="#courses">Prohlédnout všechna školení</a>
+          <a class="button primary" href="#/course/ai-literacy/why-now">Spustit úvodní osvětu ${icons.arrowRight}</a>
+          <a class="button secondary" href="#courses">Otevřít katalog prezentací</a>
         </div>
         <div class="hero-metrics">
-          <div><strong>${courses.length}</strong><span>modulárních školení</span></div>
-          <div><strong>${courses.reduce((sum, course) => sum + course.lessons.length, 0)}</strong><span>interaktivních lekcí</span></div>
-          <div><strong>${Math.round(courses.reduce((sum, course) => sum + course.duration, 0) / 60)} h</strong><span>kompletní vzdělávací cesty</span></div>
+          <div><strong>${courses.length}</strong><span>samostatných prezentací</span></div>
+          <div><strong>${totalSections}</strong><span>prezentačních částí</span></div>
+          <div><strong>${Math.round(totalMinutes / 60)} h</strong><span>připraveného obsahu</span></div>
         </div>
       </div>
-      <div class="academy-portal" aria-hidden="true">
+      <div class="academy-portal academy-identity" aria-hidden="true">
         <div class="portal-glow"></div>
         <div class="portal-ring ring-one"></div>
         <div class="portal-ring ring-two"></div>
         <div class="portal-ring ring-three"></div>
-        <img src="./assets/brand/portal-gateway.png" alt="">
-        <div class="portal-core"><span>${overall.percent}%</span><small>celkový postup</small></div>
-        <div class="orbit-label orbit-label-a">START</div>
-        <div class="orbit-label orbit-label-b">PRAXE</div>
-        <div class="orbit-label orbit-label-c">APLIKACE</div>
+        <img class="academy-app-icon" src="./assets/brand/icon-512.png" alt="">
+        <div class="portal-core"><span>${courses.length}</span><small>prezentací</small></div>
+        <div class="orbit-label orbit-label-a">PŘÍPRAVA</div>
+        <div class="orbit-label orbit-label-b">ŠKOLENÍ</div>
+        <div class="orbit-label orbit-label-c">EXPORT</div>
       </div>
     </section>
 
-    <section class="dashboard-strip shell-wide" aria-label="Můj postup">
-      <article class="progress-summary panel-glass">
-        <div class="progress-ring" style="--progress:${overall.percent * 3.6}deg"><span>${overall.percent}%</span></div>
-        <div><p class="eyebrow">MOJE CESTA</p><h2>${overall.completed} z ${overall.total} lekcí dokončeno</h2><p>Postup se ukládá pouze v tomto prohlížeči. Můžete se kdykoliv vrátit přesně tam, kde jste skončili.</p></div>
-      </article>
-      <article class="dashboard-number panel-glass"><strong>${completeCourses}</strong><span>dokončených školení</span></article>
-      <article class="dashboard-number panel-glass"><strong>${courses.filter(course => course.required).length}</strong><span>společné základní moduly</span></article>
+    <section class="presenter-dashboard shell-wide" aria-label="Možnosti rozcestníku">
+      <article class="presenter-feature panel-glass"><span>${icons.present}</span><div><p class="eyebrow">PREZENTOVAT</p><h2>Spusťte školení přímo z rozcestníku</h2><p>Každá část funguje jako samostatná obrazovka. Šipky mění části, klávesa F zapíná celou obrazovku a P prezentační režim.</p></div></article>
+      <article class="presenter-feature panel-glass"><span>${icons.notes}</span><div><p class="eyebrow">PŘIPRAVIT SE</p><h2>Poznámky řečníka zůstávají jen vám</h2><p>V rozcestníku můžete zobrazit metodické poznámky, doporučené ukázky a upozornění. Export pro účastníky je neobsahuje.</p></div></article>
+      <article class="presenter-feature panel-glass"><span>${icons.download}</span><div><p class="eyebrow">SDÍLET</p><h2>Stáhněte jediný interaktivní HTML soubor</h2><p>Každou prezentaci lze stáhnout samostatně a poslat účastníkům. Soubor funguje offline a neobsahuje celý rozcestník.</p></div></article>
     </section>
 
     ${renderLearningMap()}
 
     <section id="courses" class="courses-section shell-wide">
       <div class="section-heading">
-        <div><p class="eyebrow">KATALOG ŠKOLENÍ</p><h2>Vyberte si další praktický krok.</h2></div>
-        <p>Ne každý musí absolvovat všechno. Povinný je společný základ; další větve se vybírají podle předmětu, role a skutečné potřeby.</p>
+        <div><p class="eyebrow">KATALOG PREZENTACÍ</p><h2>Vyberte školení, které právě vedete.</h2></div>
+        <p>Rozcestník je určen pro školitele. Účastníkům sdílejte pouze export konkrétní prezentace, nikoli celou Akademii.</p>
       </div>
       <div class="course-tools panel-glass">
-        <label class="search-box">${icons.search}<input id="course-search" type="search" placeholder="Hledat školení, aplikaci nebo kód…" value="${escapeHtml(searchTerm)}"></label>
+        <label class="search-box">${icons.search}<input id="course-search" type="search" placeholder="Hledat prezentaci, aplikaci nebo téma…" value="${escapeHtml(searchTerm)}"></label>
         <div class="filter-chips" role="group" aria-label="Filtr kategorií">
           ${categories.map(category => `<button type="button" data-category="${escapeHtml(category)}" class="${activeCategory === category ? 'active' : ''}">${escapeHtml(category)}</button>`).join('')}
         </div>
       </div>
       <div class="course-grid">
-        ${filtered.length ? filtered.map(renderCourseCard).join('') : '<div class="empty-state"><h3>Žádné školení neodpovídá filtru.</h3><p>Zkuste jiný výraz nebo zrušte filtr kategorií.</p></div>'}
+        ${filtered.length ? filtered.map(renderCourseCard).join('') : '<div class="empty-state"><h3>Žádná prezentace neodpovídá filtru.</h3><p>Zkuste jiný výraz nebo zrušte filtr kategorií.</p></div>'}
       </div>
     </section>
   `;
@@ -201,56 +194,57 @@ function renderHome() {
 }
 
 function renderLearningMap() {
-  const status = id => courseProgress(courseMap.get(id)).percent;
   return `
     <section class="learning-map shell-wide">
       <div class="section-heading compact">
-        <div><p class="eyebrow">LOGICKÁ NÁVAZNOST</p><h2>Jedno společné jádro, několik cílených větví.</h2></div>
+        <div><p class="eyebrow">DOPORUČENÁ DRAMATURGIE</p><h2>Od osvěty a bezpečného základu k jednotlivým aplikacím.</h2></div>
+        <p>Mapa určuje logickou návaznost školení, nikoli povinný postup účastníků.</p>
       </div>
-      <div class="map-stage panel-glass">
+      <div class="map-stage panel-glass presenter-map">
         <div class="map-core">
-          ${mapNode('start', '1', 'Bezpečný start', status('start'), 'core')}
+          ${mapNode('ai-literacy', '0', 'AI gramotnost', 'core')}
           <span class="map-arrow">→</span>
-          ${mapNode('differentiator', '2', 'Diferenciátor', status('differentiator'), 'core')}
+          ${mapNode('start', '1', 'Bezpečný start', 'core')}
+          <span class="map-arrow">→</span>
+          ${mapNode('differentiator', '2', 'Diferenciátor', 'core')}
         </div>
         <div class="map-branches">
           <article class="map-branch interactive">
             <header><span>VĚTEV A</span><strong>Interaktivní materiály</strong></header>
-            <div>${mapNode('github', '3A', 'GitHub', status('github'))}<span>→</span>${mapNode('generator', '4A', 'Generátor', status('generator'))}<span>nebo</span>${mapNode('ludus', '4B', 'LUDUS', status('ludus'))}</div>
+            <div>${mapNode('github', '3A', 'GitHub')}<span>→</span>${mapNode('generator', '4A', 'Generátor')}<span>nebo</span>${mapNode('ludus', '4B', 'LUDUS')}</div>
           </article>
           <article class="map-branch communication">
             <header><span>VĚTEV B</span><strong>Komunikace</strong></header>
-            <div>${mapNode('correspondence', '3B', 'Korespondence', status('correspondence'))}</div>
+            <div>${mapNode('correspondence', '3B', 'Korespondence')}</div>
           </article>
           <article class="map-branch evaluation">
             <header><span>VĚTEV C</span><strong>Hodnocení</strong></header>
-            <div>${mapNode('evaluator', '3C', 'Hodnotitel', status('evaluator'))}</div>
+            <div>${mapNode('evaluator', '3C', 'Hodnotitel')}</div>
           </article>
         </div>
         <div class="map-advanced">
-          ${mapNode('workflow', '5', 'Propojený workflow', status('workflow'), 'advanced')}
+          ${mapNode('workflow', '5', 'Propojený workflow', 'advanced')}
           <span class="map-arrow">→</span>
-          ${mapNode('administrator', '6', 'Mentor a správce', status('administrator'), 'advanced')}
+          ${mapNode('administrator', '6', 'Mentor a správce', 'advanced')}
         </div>
       </div>
     </section>
   `;
 }
 
-function mapNode(id, number, label, progress, className = '') {
-  return `<a class="map-node ${className}" href="#/course/${id}"><small>${number}</small><strong>${escapeHtml(label)}</strong><i><b style="width:${progress}%"></b></i><span>${progress}%</span></a>`;
+function mapNode(id, number, label, className = '') {
+  return `<a class="map-node ${className}" href="#/course/${id}"><small>${number}</small><strong>${escapeHtml(label)}</strong><span>Otevřít</span></a>`;
 }
 
 function renderCourseCard(course) {
-  const progress = courseProgress(course);
-  const prerequisites = prerequisiteStatus(course);
-  const lessonWord = course.lessons.length === 1 ? 'lekce' : course.lessons.length < 5 ? 'lekce' : 'lekcí';
+  const lessonWord = course.lessons.length === 1 ? 'část' : course.lessons.length < 5 ? 'části' : 'částí';
+  const prerequisites = (course.prerequisites || []).map(id => courseMap.get(id)?.shortTitle || id);
   return `
-    <article class="course-card" style="--course-accent:${course.accent}">
+    <article class="course-card presenter-card" style="--course-accent:${course.accent}">
       <div class="course-card-top">
         <div class="course-icon"><img src="${course.icon}" alt=""></div>
         <div class="course-badges">
-          ${course.required ? '<span class="badge required">Společný základ</span>' : '<span class="badge optional">Volitelné</span>'}
+          <span class="badge ready">${escapeHtml(course.status || 'Připraveno')}</span>
           <span class="badge">${escapeHtml(course.code)}</span>
         </div>
       </div>
@@ -260,12 +254,13 @@ function renderCourseCard(course) {
       <div class="course-meta">
         <span>${icons.clock}${course.duration} min</span>
         <span>${course.lessons.length} ${lessonWord}</span>
-        <span>${escapeHtml(course.level)}</span>
+        <span>${escapeHtml(course.audience)}</span>
       </div>
-      <div class="course-progress-row"><span>${progress.percent ? `${progress.percent}% dokončeno` : 'Nezahájeno'}</span><strong>${progress.completed}/${progress.total}</strong></div>
-      <div class="course-progress"><i style="width:${progress.percent}%"></i></div>
-      ${prerequisites.ready ? '' : `<p class="prerequisite-note">Doporučený předpoklad: ${prerequisites.missing.map(id => escapeHtml(courseMap.get(id)?.shortTitle || id)).join(', ')}</p>`}
-      <a class="course-open" href="#/course/${course.id}/${course.lessons[0].id}">${progress.percent ? 'Pokračovat' : 'Otevřít školení'} ${icons.arrowRight}</a>
+      ${prerequisites.length ? `<p class="prerequisite-note">Doporučená návaznost: ${escapeHtml(prerequisites.join(', '))}</p>` : ''}
+      <div class="course-card-actions">
+        <a class="course-open" href="#/course/${course.id}/${course.lessons[0].id}">Spustit prezentaci ${icons.arrowRight}</a>
+        <a class="course-download" href="./exports/${course.id}.html" download>${icons.download} Stáhnout HTML</a>
+      </div>
     </article>
   `;
 }
@@ -280,8 +275,6 @@ function renderCourse(courseId, lessonId) {
   let lessonIndex = Math.max(0, course.lessons.findIndex(lesson => lesson.id === lessonId));
   if (lessonIndex < 0) lessonIndex = 0;
   const lesson = course.lessons[lessonIndex];
-  const progress = courseProgress(course);
-  const prerequisite = prerequisiteStatus(course);
   state.lastCourse = course.id;
   state.lastLesson = lesson.id;
   saveState(state);
@@ -290,43 +283,50 @@ function renderCourse(courseId, lessonId) {
   const content = `
     <section class="course-hero shell-wide" style="--course-accent:${course.accent}">
       <a class="back-link" href="#/">${icons.arrowLeft} Zpět na rozcestník</a>
-      <div class="course-hero-grid">
+      <div class="course-hero-grid presenter-course-hero">
         <div class="course-hero-icon"><img src="${course.icon}" alt=""></div>
         <div>
-          <div class="course-title-row"><span>${escapeHtml(course.code)}</span><span>${course.required ? 'společný základ' : 'volitelný modul'}</span><span>${escapeHtml(course.level)}</span></div>
+          <div class="course-title-row"><span>${escapeHtml(course.code)}</span><span>${escapeHtml(course.category)}</span><span>${escapeHtml(course.level)}</span></div>
           <h1>${escapeHtml(course.title)}</h1>
           <p>${escapeHtml(course.subtitle)}</p>
         </div>
-        <div class="course-hero-progress"><strong>${progress.percent}%</strong><span>${progress.completed} z ${progress.total} lekcí</span><div><i style="width:${progress.percent}%"></i></div></div>
+        <div class="course-hero-actions">
+          <a class="button secondary download-presentation" href="./exports/${course.id}.html" download>${icons.download} HTML pro účastníky</a>
+          <button type="button" class="button primary" data-action="toggle-presenter">${icons.present} Spustit prezentaci</button>
+        </div>
       </div>
-      ${prerequisite.ready ? '' : `<div class="course-warning">Doporučené předpoklady zatím nejsou dokončené: ${prerequisite.missing.map(id => `<a href="#/course/${id}">${escapeHtml(courseMap.get(id)?.title || id)}</a>`).join(', ')}. Modul lze přesto otevřít.</div>`}
     </section>
 
     <section class="course-workspace shell-wide">
       <aside class="course-sidebar">
         <div class="sidebar-panel panel-glass">
-          <p class="eyebrow">OBSAH ŠKOLENÍ</p>
-          <nav class="lesson-nav" aria-label="Lekce školení">
+          <p class="eyebrow">OSNOVA PREZENTACE</p>
+          <nav class="lesson-nav" aria-label="Části prezentace">
             ${course.lessons.map((item, index) => {
-              const done = completedLesson(course.id, item.id);
               const active = index === lessonIndex;
-              return `<a href="#/course/${course.id}/${item.id}" class="${active ? 'active' : ''} ${done ? 'done' : ''}"><span>${done ? icons.check : String(index + 1).padStart(2, '0')}</span><span><strong>${escapeHtml(item.title)}</strong><small>${item.duration} min</small></span></a>`;
+              return `<a href="#/course/${course.id}/${item.id}" class="${active ? 'active' : ''}"><span>${String(index + 1).padStart(2, '0')}</span><span><strong>${escapeHtml(item.title)}</strong><small>${item.duration} min</small></span></a>`;
             }).join('')}
           </nav>
         </div>
         <div class="sidebar-panel outcomes panel-glass">
-          <p class="eyebrow">VÝSTUPY MODULU</p>
+          <p class="eyebrow">CÍLE ŠKOLENÍ</p>
           <ul>${course.outcomes.map(outcome => `<li>${icons.check}${escapeHtml(outcome)}</li>`).join('')}</ul>
+        </div>
+        <div class="sidebar-panel share-panel panel-glass">
+          <p class="eyebrow">PRO ÚČASTNÍKY</p>
+          <p>Samostatný HTML export neobsahuje poznámky řečníka ani ostatní prezentace.</p>
+          <a href="./exports/${course.id}.html" download>${icons.download} Stáhnout prezentaci</a>
         </div>
       </aside>
 
       <article class="lesson-stage panel-glass" data-course="${course.id}" data-lesson="${lesson.id}">
         <div class="lesson-toolbar">
-          <div><span>Lekce ${lessonIndex + 1} / ${course.lessons.length}</span><strong>${escapeHtml(lesson.duration)} min</strong></div>
+          <div><span>Část ${lessonIndex + 1} / ${course.lessons.length}</span><strong>${escapeHtml(lesson.duration)} min</strong></div>
           <div>
-            <button type="button" class="icon-control ${state.trainerMode ? 'active' : ''}" data-action="toggle-trainer" title="Poznámky školitele">${icons.notes}</button>
+            <button type="button" class="icon-control ${state.trainerMode ? 'active' : ''}" data-action="toggle-trainer" title="Poznámky řečníka">${icons.notes}</button>
+            <a class="icon-control" href="./exports/${course.id}.html" download title="Stáhnout HTML pro účastníky">${icons.download}</a>
             <button type="button" class="icon-control ${presenterMode ? 'active' : ''}" data-action="toggle-presenter" title="Prezentační režim">${icons.present}</button>
-            <button type="button" class="icon-control" data-action="copy-link" title="Kopírovat odkaz na lekci">${icons.copy}</button>
+            <button type="button" class="icon-control" data-action="copy-link" title="Kopírovat odkaz na tuto část">${icons.copy}</button>
             <button type="button" class="icon-control" data-action="fullscreen" title="Celá obrazovka">${icons.expand}</button>
           </div>
         </div>
@@ -335,17 +335,13 @@ function renderCourse(courseId, lessonId) {
           <h2>${escapeHtml(lesson.title)}</h2>
           <p>${escapeHtml(lesson.summary)}</p>
         </header>
-        ${state.trainerMode && lesson.trainerNote ? `<aside class="trainer-note"><span>${icons.notes}</span><div><strong>Poznámka školitele</strong><p>${escapeHtml(lesson.trainerNote)}</p></div></aside>` : ''}
+        ${state.trainerMode && lesson.trainerNote ? `<aside class="trainer-note"><span>${icons.notes}</span><div><strong>Poznámka řečníka</strong><p>${escapeHtml(lesson.trainerNote)}</p></div></aside>` : ''}
         <div class="lesson-content">
           ${lesson.blocks.map((block, index) => renderBlock(block, course, lesson, index)).join('')}
         </div>
-        <div class="lesson-completion ${completedLesson(course.id, lesson.id) ? 'done' : ''}">
-          <div><span>${completedLesson(course.id, lesson.id) ? icons.check : String(lessonIndex + 1).padStart(2, '0')}</span><div><strong>${completedLesson(course.id, lesson.id) ? 'Lekce je dokončena' : 'Dokončili jste tuto lekci?'}</strong><p>Označení se uloží pouze v tomto prohlížeči.</p></div></div>
-          <button type="button" class="button ${completedLesson(course.id, lesson.id) ? 'secondary' : 'primary'}" data-action="mark-complete">${completedLesson(course.id, lesson.id) ? 'Označit jako nedokončenou' : 'Dokončit lekci'}</button>
-        </div>
-        <nav class="lesson-controls" aria-label="Navigace mezi lekcemi">
-          <button type="button" data-action="previous-lesson" ${lessonIndex === 0 ? 'disabled' : ''}>${icons.arrowLeft}<span><small>Předchozí</small><strong>${lessonIndex > 0 ? escapeHtml(course.lessons[lessonIndex - 1].title) : 'Začátek modulu'}</strong></span></button>
-          <button type="button" data-action="next-lesson" ${lessonIndex === course.lessons.length - 1 ? 'disabled' : ''}><span><small>Další</small><strong>${lessonIndex < course.lessons.length - 1 ? escapeHtml(course.lessons[lessonIndex + 1].title) : 'Konec modulu'}</strong></span>${icons.arrowRight}</button>
+        <nav class="lesson-controls" aria-label="Navigace mezi částmi">
+          <button type="button" data-action="previous-lesson" ${lessonIndex === 0 ? 'disabled' : ''}>${icons.arrowLeft}<span><small>Předchozí část</small><strong>${lessonIndex > 0 ? escapeHtml(course.lessons[lessonIndex - 1].title) : 'Začátek prezentace'}</strong></span></button>
+          <button type="button" data-action="next-lesson" ${lessonIndex === course.lessons.length - 1 ? 'disabled' : ''}><span><small>Další část</small><strong>${lessonIndex < course.lessons.length - 1 ? escapeHtml(course.lessons[lessonIndex + 1].title) : 'Konec prezentace'}</strong></span>${icons.arrowRight}</button>
         </nav>
       </article>
     </section>
@@ -628,7 +624,7 @@ addEventListener('beforeinstallprompt', event => {
 });
 addEventListener('appinstalled', () => {
   deferredInstallPrompt = null;
-  toast('Akademie byla nainstalována.');
+  toast('Rozcestník byl nainstalován.');
 });
 
 startStarfield(document.querySelector('#starfield'));
