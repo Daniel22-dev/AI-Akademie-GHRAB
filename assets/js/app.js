@@ -114,7 +114,7 @@ function footer() {
     <footer class="site-footer">
       <div>
         <img src="./assets/brand/school-logo.png" alt="Logo Gymnázia Ostrava-Hrabůvka">
-        <span><strong>AI Studio GHRAB · Akademie</strong><small>Modulární vzdělávací portál · verze 1.0.0</small></span>
+        <span><strong>AI Studio GHRAB · Akademie</strong><small>Modulární vzdělávací portál · verze 1.0.1</small></span>
       </div>
       <div class="footer-actions">
         <button type="button" data-action="install" class="text-button" ${deferredInstallPrompt ? '' : 'hidden'}>Nainstalovat aplikaci</button>

@@ -15,7 +15,7 @@ Prémiový modulární vzdělávací portál pro školení učitelů k ekosysté
 - přímé odkazy na konkrétní lekce;
 - full-screen režim a ovládání klávesnicí;
 - instalaci jako PWA a offline použití po prvním načtení;
-- automatickou kontrolu struktury a nasazení na GitHub Pages.
+- automatickou kontrolu struktury a jednoduché nasazení na GitHub Pages z větve `main`.
 
 ## Aktuální vzdělávací mapa
 
@@ -39,12 +39,12 @@ Výsledná adresa bude ve tvaru:
 
 ## Nasazení
 
-Repozitář obsahuje vlastní GitHub Actions workflow. Po nahrání souborů:
+Aplikace je čistě statická, proto není potřeba GitHub Actions ani skrytá složka `.github`. Po nahrání souborů:
 
 1. otevřete **Settings → Pages**;
-2. v části **Build and deployment** zvolte **Source: GitHub Actions**;
-3. otevřete záložku **Actions** a vyčkejte na zelené dokončení workflow;
-4. odkaz se zobrazí v Settings → Pages i v dokončeném deploymentu.
+2. v části **Build and deployment** zvolte **Source: Deploy from a branch**;
+3. nastavte větev **main** a složku **/ (root)**;
+4. uložte nastavení a otevřete zveřejněný odkaz.
 
 Podrobný postup je v souboru `NAHRANI-NA-GITHUB.md`.
 

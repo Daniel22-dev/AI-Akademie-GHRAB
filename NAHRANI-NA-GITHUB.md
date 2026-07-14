@@ -1,5 +1,7 @@
 # Nahrání AI Studio GHRAB · Akademie na GitHub
 
+Tato verze používá nejjednodušší způsob publikování: **GitHub Pages přímo z větve `main`**. Není potřeba skrytá složka `.github`, GitHub Actions ani příkazová řádka.
+
 ## 1. Založte nový repozitář
 
 1. Přihlaste se na GitHub.
@@ -11,12 +13,11 @@
 
 ## 2. Nahrajte obsah balíku
 
-Do kořene repozitáře nahrajte **obsah složky**, nikoli nadřazenou složku jako jednu položku.
+Rozbalte ZIP v počítači. Do nového repozitáře přetáhněte **obsah rozbalené složky**, nikoli samotný ZIP a nikoli nadřazenou složku.
 
-V kořeni GitHub repozitáře musí být přímo vidět například:
+V kořeni repozitáře musí být přímo vidět například:
 
 ```text
-.github/
 assets/
 courses/
 scripts/
@@ -27,27 +28,32 @@ README.md
 sw.js
 ```
 
-Důležité: nevynechejte skrytou složku `.github`, která obsahuje automatické nasazení.
+Potom dole klikněte na **Commit changes**.
 
 ## 3. Aktivujte GitHub Pages
 
 1. Otevřete **Settings** repozitáře.
 2. V levém menu zvolte **Pages**.
-3. V části **Build and deployment** nastavte **Source: GitHub Actions**.
-4. Nastavení se uloží automaticky.
+3. V části **Build and deployment** nastavte:
+   - **Source:** `Deploy from a branch`
+   - **Branch:** `main`
+   - **Folder:** `/ (root)`
+4. Klikněte na **Save**.
 
-## 4. Zkontrolujte automatické nasazení
-
-1. Otevřete záložku **Actions**.
-2. Vyberte běh **Kontrola a nasazení Akademie**.
-3. Nejprve musí zeleně projít kontrola obsahu.
-4. Potom musí zeleně projít deployment.
+GitHub začne web publikovat. První nasazení může několik minut trvat.
 
 Výsledná adresa bude pravděpodobně:
 
 ```text
 https://daniel22-dev.github.io/AI-Akademie-GHRAB/
 ```
+
+## 4. Jak poznat, že je nasazení hotové
+
+1. Vraťte se do **Settings → Pages**.
+2. Nahoře se zobrazí adresa zveřejněného webu.
+3. Otevřete ji v nové kartě.
+4. Pokud stránka ještě není dostupná, chvíli počkejte a obnovte ji pomocí `Ctrl + F5`.
 
 ## 5. První kontrola po nasazení
 
@@ -58,7 +64,7 @@ https://daniel22-dev.github.io/AI-Akademie-GHRAB/
 - spusťte prezentační režim a celou obrazovku;
 - vyzkoušejte kvíz a checklist;
 - na telefonu ověřte menu a kartu kurzu;
-- nainstalujte PWA pouze po ověření aktuální verze.
+- PWA instalujte až po ověření aktuální verze.
 
 ## 6. Jak se přidává nové školení
 
@@ -68,7 +74,7 @@ https://daniel22-dev.github.io/AI-Akademie-GHRAB/
 4. Zvedněte verzi v `package.json` a řetězec cache v `sw.js`.
 5. Přidejte nový soubor do seznamu `FILES` v `sw.js`.
 6. Nahrajte změny na GitHub.
-7. Zkontrolujte zelené Actions a živý web.
+7. GitHub Pages změnu automaticky znovu publikuje.
 
 ## 7. Co nikdy nenahrávat
 
