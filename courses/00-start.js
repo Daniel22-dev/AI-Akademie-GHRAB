@@ -8,11 +8,12 @@ export default {
   category: 'Společný základ',
   audience: 'Všichni učitelé',
   duration: 55,
+  reserve: 5,
   level: 'Začátečník',
   required: true,
   accent: '#50e8ff',
-  icon: './assets/brand/brand-mark.svg',
-  prerequisites: [],
+  icon: './assets/course-icons/start.png',
+  prerequisites: ['ai-literacy'],
   outcomes: [
     'Rozlišíte odkaz na Studio, školní oprávnění a API klíč.',
     'Aktivujete osobní přístup vydaný správcem.',
@@ -28,6 +29,7 @@ export default {
       summary: 'Studio je řízený rozcestník samostatných školních aplikací. Odkaz do Studia sám o sobě žádnou aplikaci neodemkne.',
       trainerNote: 'Začněte praktickým příkladem: ukažte kolegům kartu zamčené aplikace. Tím hned odstraníte očekávání, že samotný odkaz znamená přístup ke všemu.',
       blocks: [
+        { type: 'showcase', label: 'MODEL SYSTÉMU', title: 'Jeden odkaz nestačí — fungují tři oddělené vrstvy', text: 'Kolega musí rozlišit vstup do portálu, oprávnění ke konkrétní aplikaci a osobní API klíč.', before: { label: 'NEJČASTĚJŠÍ OMYL', title: '„Mám odkaz, takže mám přístup ke všemu.“', items: ['portál se otevře', 'aplikace zůstane zamčená', 'uživatel neví, co chybí'] }, after: { label: 'SPRÁVNÝ MODEL', title: 'Odkaz + oprávnění + API klíč', items: ['jasný vstup do Studia', 'odemčené jen proškolené aplikace', 'osobní klíč pro generování'] }, caption: 'Tento model používejte při každé diagnostice problému.' },
         { type: 'lead', text: 'AI Studio GHRAB není jedna univerzální aplikace. Je to bezpečný vstupní portál, který propojuje samostatné nástroje a kontroluje, ke kterým z nich má konkrétní učitel oprávnění.' },
         { type: 'cards', columns: 3, items: [
           { icon: '⌁', title: 'Jeden vstup', text: 'Kolega si uloží jediný odkaz na AI Studio a odtud otevírá dostupné aplikace.' },
@@ -87,10 +89,10 @@ export default {
           { title: 'Otevřete Dashboard a API Keys', text: 'Novému uživateli může být výchozí projekt a klíč vytvořen automaticky. V takovém případě stačí existující klíč zkopírovat.' },
           { title: 'Když klíč nevidíte, vytvořte jej', text: 'Zvolte Create API key. U existujícího Google Cloud účtu může být nejprve potřeba importovat projekt nebo vytvořit nový projekt.' },
           { title: 'Zkopírujte celý klíč', text: 'Nevynechejte žádný znak a nepřidávejte mezery.' },
-          { title: 'Vložte klíč pouze do aplikace', text: 'Aplikace jej uloží lokálně do vašeho prohlížeče. Klíč nevkládejte do e-mailu, Teams, sdíleného dokumentu ani repozitáře.' }
+          { title: 'Vložte klíč pouze do aplikace', text: 'Aplikace jej uloží lokálně do vašeho prohlížeče. Používejte pouze důvěryhodné vlastní nebo pracovní zařízení; klíč nevkládejte do e-mailu, Teams, sdíleného dokumentu ani repozitáře.' }
         ]},
         { type: 'callout', tone: 'warning', title: 'Bezplatná úroveň není univerzální slib', text: 'Google nabízí bezplatnou úroveň pro vybrané modely, ale dostupnost modelů a limity se mohou měnit. Aktuální limity je potřeba kontrolovat přímo v AI Studiu.' },
-        { type: 'callout', tone: 'info', title: 'Používejte aktuální klíč vytvořený v AI Studiu', text: 'Google v roce 2026 přechází na bezpečnější autorizační klíče. Nové klíče se v AI Studiu vytvářejí v aktuálním formátu; u staršího klíče postupujte podle případné výzvy k migraci.' },
+        { type: 'callout', tone: 'info', title: 'Používejte aktuální klíč vytvořený v AI Studiu', text: 'Google přechází na novější autorizační klíče pro Gemini API. Nový klíč vytvářejte přímo v AI Studiu; u staršího klíče postupujte podle zobrazené výzvy k převodu a nepoužívejte jej po skončení podpory starého formátu.' },
         { type: 'callout', tone: 'danger', title: 'Klíč chraňte jako heslo', text: 'Při podezření na únik klíč deaktivujte nebo smažte a vytvořte nový. Nikdy jej neukládejte do veřejného GitHub repozitáře.' }
       ]
     },
@@ -108,7 +110,7 @@ export default {
           { icon: '2', title: 'Zkontrolovat', text: 'Ověřit správnost, přiměřenost, jazyk i splnění zadání.' },
           { icon: '3', title: 'Rozhodnout', text: 'Za konečný materiál, hodnocení nebo odpověď odpovídá učitel.' }
         ]},
-        { type: 'quiz', question: 'Který vstup je pro běžnou práci nejbezpečnější?', options: ['„Petr Novák z 2.B má dyslexii a potřebuje jednodušší text.“', '„Žák 2.B se specifickou poruchou učení potřebuje přehlednější verzi textu.“', 'Fotografie Bakalářů se seznamem třídy.', 'Přeposlaný e-mail rodiče včetně podpisu a telefonu.'], answer: 1, explanation: 'Pedagogický kontext zůstává zachován, ale identita konkrétního žáka není uvedena.' }
+        { type: 'quiz', question: 'Který vstup je pro běžnou práci nejbezpečnější?', options: ['„Petr Novák z 2.B má dyslexii a potřebuje jednodušší text.“', '„Připrav přehlednější variantu textu pro žáka, který potřebuje kratší věty, více členění a zvýraznění klíčových informací.“', 'Fotografie Bakalářů se seznamem třídy.', 'Přeposlaný e-mail rodiče včetně podpisu a telefonu.'], answer: 1, explanation: 'Zadání popisuje potřebnou úpravu bez jména, třídy, diagnózy nebo jiné kombinace údajů, podle níž by šlo žáka poznat.' }
       ]
     },
     {
@@ -122,7 +124,7 @@ export default {
         { type: 'table', headers: ['Co vidím', 'Pravděpodobná příčina', 'Co udělám'], rows: [
           ['Aplikace je zamčená', 'Chybí nebo neobsahuje oprávnění', 'Otevřu Můj přístup a zkontroluji povolené aplikace.'],
           ['API key not valid', 'Neúplný, chybný nebo zrušený klíč', 'Zkopíruji celý klíč znovu nebo vytvořím nový.'],
-          ['Quota / rate limit', 'Vyčerpaný nebo dočasně omezený limit', 'Zkontroluji aktuální limity v AI Studiu a zkusím požadavek později.'],
+          ['Limit požadavků (quota / rate limit)', 'Vyčerpaný nebo dočasně omezený limit', 'Zkontroluji aktuální limity v AI Studiu a zkusím požadavek později.'],
           ['Nic se neuloží', 'Soukromé okno nebo blokované úložiště', 'Použiji běžné okno a povolím lokální úložiště webu.'],
           ['Jiný počítač je znovu zamčený', 'Přístup se ukládá lokálně', 'Načtu přístupový soubor také v daném prohlížeči.']
         ]},

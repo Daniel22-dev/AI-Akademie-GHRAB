@@ -8,10 +8,11 @@ export default {
   category: 'Společná aplikace',
   audience: 'Učitelé všech předmětů',
   duration: 70,
+  reserve: 7,
   level: 'Základní',
   required: true,
   accent: '#59e0a5',
-  icon: './assets/apps/differentiator.png',
+  icon: './assets/course-icons/differentiator.png',
   prerequisites: ['start'],
   outcomes: [
     'Připravíte kvalitní vstupní podklad a pedagogický kontext.',
@@ -28,6 +29,7 @@ export default {
       summary: 'Diferenciace není mechanické zkrácení textu. Mění cestu k cíli, ne nutně samotný vzdělávací cíl.',
       trainerNote: 'Ukažte dvě krátké verze téhož úkolu: jednu pouze zkrácenou a druhou skutečně podpořenou. Nechte kolegy popsat rozdíl.',
       blocks: [
+        { type: 'showcase', label: 'WOW UKÁZKA', title: 'Jeden zdrojový materiál, tři použitelné cesty k témuž cíli', text: 'Nejde o zjednodušení pro všechny, ale o cílenou úpravu podpory, jazyka a náročnosti.', before: { label: 'PŮVODNÍ STAV', title: 'Jeden pracovní list pro celou třídu', items: ['část žáků nestíhá instrukce', 'část úkol dokončí příliš rychle', 'učitel improvizuje až během hodiny'] }, after: { label: 'VÝSLEDEK', title: 'Tři úrovně se stejným výukovým cílem', items: ['větší opora pro slabší žáky', 'standardní varianta pro většinu', 'rozšiřující výzva pro silnější'] }, caption: 'Na školení ukažte nejprve výsledek a teprve potom nastavení aplikace.' },
         { type: 'lead', text: 'Diferenciátor pomáhá učiteli proměnit jeden výchozí materiál do několika variant, které respektují různé potřeby žáků, ale stále míří ke společnému cíli.' },
         { type: 'comparison', left: { title: 'Pouhá úleva', items: ['méně úloh bez rozmyslu', 'nižší očekávání', 'vynechání podstatné dovednosti', 'jiný cíl bez zdůvodnění'] }, right: { title: 'Smysluplná diferenciace', items: ['jasnější instrukce', 'opora, příklad nebo slovníček', 'jiná míra samostatnosti', 'rozšíření pro rychlejší žáky'] } },
         { type: 'quote', text: 'Nejdříve určím, co musí zvládnout všichni. Teprve potom měním míru podpory, rozsah nebo náročnost zpracování.' }
@@ -116,6 +118,7 @@ export default {
       summary: 'Po Diferenciátoru se vzdělávací cesta větví podle toho, jaké nástroje chce učitel využívat.',
       trainerNote: 'Nechte účastníky zvolit si další větev. Není nutné, aby všichni absolvovali všechna školení.',
       blocks: [
+        { type: 'mission', label: 'DO PŘÍŠTÍHO TÝDNE', title: 'Připravte jednu skutečnou diferenciovanou sadu', brief: 'Vyberte materiál, který budete opravdu používat, vytvořte dvě až tři varianty a před hodinou je projděte podle kontrolního seznamu.', time: '15 MIN', output: 'Jedna ověřená sada připravená pro konkrétní třídu.' },
         { type: 'cards', columns: 3, items: [
           { icon: '▤', title: 'Interaktivní materiály', text: 'GitHub → Generátor testů nebo LUDUS.' },
           { icon: '✉', title: 'Komunikace', text: 'Korespondenční asistent bez nutnosti GitHubu.' },

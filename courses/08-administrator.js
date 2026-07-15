@@ -8,11 +8,12 @@ export default {
   category: 'Správa projektu',
   audience: 'Správce AI Studia a školitelé',
   duration: 100,
+  reserve: 0,
   level: 'Administrátorské',
   required: false,
   accent: '#ff8f9a',
-  icon: './assets/brand/school-logo.png',
-  prerequisites: ['start', 'differentiator'],
+  icon: './assets/course-icons/administrator.png',
+  prerequisites: ['start'],
   outcomes: [
     'Naplánujete logickou vzdělávací cestu pro různé skupiny učitelů.',
     'Vydáte podepsané oprávnění pouze pro absolvované aplikace.',
@@ -28,6 +29,7 @@ export default {
       summary: 'Školitel vysvětluje pedagogické použití a ověřuje základní kompetenci. Správce vydává oprávnění, vede evidenci a řeší provozní stav.',
       trainerNote: 'V malé pilotní fázi může obě role zastávat jedna osoba. Procesy je přesto vhodné pojmenovat odděleně.',
       blocks: [
+        { type: 'showcase', label: 'ROLE SPRÁVCE', title: 'Správce neovládá kolegy — vytváří předvídatelný a bezpečný provoz', text: 'Tato cesta je samostatná a není povinným pokračováním běžného učitelského školení.', before: { label: 'CHAOTICKÝ PROVOZ', title: 'Přístupy a podpora bez evidence', items: ['není jasné, kdo má jaké oprávnění', 'chyby se řeší nahodile', 'aktualizace se předávají ústně'] }, after: { label: 'ŘÍZENÝ PROVOZ', title: 'Evidence, školení, podpora a audit', items: ['dohledatelné vydání přístupů', 'jasná cesta řešení problému', 'kontrolované nasazování verzí'] }, caption: 'Cílem je jednoduchost pro učitele a dostatek informací pro správce.' },
         { type: 'comparison', left: { title: 'Školitel', items: ['vede praktické školení', 'ověří zvládnutí bezpečnostních zásad', 'doporučí další vzdělávací větev', 'sbírá pedagogickou zpětnou vazbu'] }, right: { title: 'Správce', items: ['vydává a eviduje oprávnění', 'udržuje politiku přístupů', 'řeší revokace a technické chyby', 'koordinuje verze a nasazení'] } },
         { type: 'callout', tone: 'info', title: 'Přístup není odměna za účast', text: 'Oprávnění potvrzuje, že uživatel zná základní pracovní a bezpečnostní postup konkrétní aplikace.' }
       ]

@@ -8,15 +8,16 @@ export default {
   category: 'Specializovaná aplikace',
   audience: 'Vyučující anglického jazyka',
   duration: 100,
+  reserve: 5,
   level: 'Pokročilé',
   required: false,
   accent: '#d7a04b',
-  icon: './assets/apps/essay-evaluator-v2.png',
+  icon: './assets/course-icons/evaluator.png',
   prerequisites: ['start'],
   outcomes: [
     'Připravíte anonymizovaný jednotlivý nebo dávkový vstup.',
     'Rozlišíte AI jazykovou analýzu a deterministický výpočet bodů.',
-    'Zkontrolujete důkazy, FAIL podmínky a konečnou známku.',
+    'Zkontrolujete důkazy, podmínky automatického neúspěchu (FAIL) a konečnou známku.',
     'Schválíte a bezpečně vyexportujete zpětnou vazbu.'
   ],
   lessons: [
@@ -25,14 +26,15 @@ export default {
       title: 'Jak aplikace hodnotí',
       kicker: 'ARCHITEKTURA DŮVĚRY · 10 MIN',
       duration: 10,
-      summary: 'AI analyzuje text a dokládá zjištění. Body, FAIL pravidla a známku počítá deterministická logika podle verzované rubriky.',
+      summary: 'AI analyzuje text a dokládá zjištění. Body, podmínky automatického neúspěchu (FAIL) a známku počítá pevná logika podle verzované rubriky.',
       trainerNote: 'Tento rozdíl je klíčový. Neříkejte „AI dává známku“; přesněji: AI připravuje jazykovou analýzu a aplikace podle pravidel počítá výsledek.',
       blocks: [
+        { type: 'showcase', label: 'DŮKAZ MÍSTO DOJMU', title: 'Hodnocení musí být dohledatelné až ke konkrétním místům v textu', text: 'AI navrhuje analýzu. Pevná rubrika počítá body a učitel schvaluje konečný výsledek.', before: { label: 'RIZIKOVÝ PŘÍSTUP', title: '„Text působí asi na dvojku.“', items: ['nejasná vazba na kritéria', 'obtížná obhajoba výsledku', 'riziko přehlédnutí fail podmínky'] }, after: { label: 'KONTROLOVANÝ PŘÍSTUP', title: 'Kritérium → důkaz → body → schválení', items: ['každý závěr má oporu v textu', 'výpočet odpovídá rubrice', 'učitel může každé zjištění upravit'] }, caption: 'Citlivé práce před vložením anonymizujte; jména studentů ani identifikující detaily do nástroje nepatří.' },
         { type: 'flow', items: [
           { number: '01', title: 'Vstup', text: 'Text práce, zadání, parametry a pseudonymní identifikátor.' },
           { number: '02', title: 'AI analýza', text: 'Nalezení důkazů, chyb, splnění zadání a úrovně výkonu.' },
           { number: '03', title: 'Validace', text: 'Kontrola úplnosti, důkazů a případný jeden opravný pokus.' },
-          { number: '04', title: 'Výpočet', text: 'Body, FAIL podmínky a známka podle pevné rubriky.' },
+          { number: '04', title: 'Výpočet', text: 'Body, podmínky automatického neúspěchu (FAIL) a známka podle pevné rubriky.' },
           { number: '05', title: 'Učitel', text: 'Kontrola, případná úprava a výslovné schválení.' }
         ]},
         { type: 'callout', tone: 'warning', title: 'AI výstup není konečné hodnocení', text: 'Žádná zpětná vazba se nemá distribuovat bez učitelské kontroly a schválení.' }
@@ -44,7 +46,7 @@ export default {
       kicker: 'VOLBA WORKFLOW · 12 MIN',
       duration: 12,
       summary: 'Aplikace podporuje jednu vloženou práci, skupinu v ZIPu, fotografie nebo PDF a import studentů z informačního systému.',
-      trainerNote: 'Pro první školení začněte jedním čistým textem. Dávkové workflow ukažte až po zvládnutí individuálního hodnocení.',
+      trainerNote: 'Pro první školení začněte jedním čistým textem. Dávkový pracovní postup ukažte až po zvládnutí individuálního hodnocení.',
       blocks: [
         { type: 'cards', columns: 4, items: [
           { icon: '1', title: 'Vložený text', text: 'Nejrychlejší cesta pro jednu práci.' },
@@ -52,7 +54,7 @@ export default {
           { icon: 'PDF', title: 'Sken nebo fotografie', text: 'Nejprve přepis a potvrzení učitelem.' },
           { icon: 'IS', title: 'Import seznamu', text: 'Lokální párování pro distribuci; do AI odchází pseudonym.' }
         ]},
-        { type: 'callout', tone: 'info', title: 'Začněte malým případem', text: 'Individuální workflow umožní pochopit rubriku, důkazní kontrolu i schválení bez složitosti dávky.' }
+        { type: 'callout', tone: 'info', title: 'Začněte malým případem', text: 'Individuální pracovní postup umožní pochopit rubriku, důkazní kontrolu i schválení bez složitosti dávky.' }
       ]
     },
     {
@@ -70,7 +72,7 @@ export default {
     },
     {
       id: 'rubric',
-      title: 'Rubrika, důkazy a FAIL pravidla',
+      title: 'Rubrika, důkazy a podmínky neúspěchu',
       kicker: 'ODBORNÁ KONTROLA · 18 MIN',
       duration: 18,
       summary: 'Každé kritérium se hodnotí podle pevné rubriky. Závěr musí být opřen o konkrétní důkazy z práce a respektovat podmínky neúspěchu.',
@@ -79,13 +81,13 @@ export default {
         { type: 'cards', columns: 3, items: [
           { icon: '8', title: 'Pevná kritéria', text: 'Aplikace nevymýšlí nové hodnoticí oblasti mimo zadanou rubriku.' },
           { icon: '“”', title: 'Důkazy v textu', text: 'Každé zásadní hodnocení má být doložitelné konkrétní částí práce.' },
-          { icon: '!', title: 'FAIL podmínky', text: 'Rozsah, téma, formát a další pevné podmínky se kontrolují odděleně.' }
+          { icon: '!', title: 'Podmínky neúspěchu (FAIL)', text: 'Rozsah, téma, formát a další pevné podmínky se kontrolují odděleně.' }
         ]},
         { type: 'steps', items: [
           { title: 'Ověřte základní podmínky', text: 'Téma, útvar, délku, počet částí a další pevná pravidla.' },
           { title: 'Projděte jednotlivá kritéria', text: 'U každého zkontrolujte bodové zdůvodnění.' },
           { title: 'Najděte důkaz v práci', text: 'Důkaz musí odpovídat tvrzení a nesmí být vytržený z kontextu.' },
-          { title: 'Zkontrolujte návaznost bodů a známky', text: 'Výpočet musí odpovídat rubrice a případným FAIL podmínkám.' }
+          { title: 'Zkontrolujte návaznost bodů a známky', text: 'Výpočet musí odpovídat rubrice a případným podmínkám automatického neúspěchu.' }
         ]},
         { type: 'quiz', question: 'Co je nejlepší reakce, když je bodové hodnocení rozumné, ale uvedený důkaz v textu neodpovídá?', options: ['Hodnocení automaticky schválit.', 'Důkaz ignorovat, protože body vypadají správně.', 'Vrátit výstup k opravě nebo ho ručně upravit před schválením.', 'Zvýšit známku o jeden stupeň.'], answer: 2, explanation: 'Důkazní stopa je součástí spolehlivosti hodnocení a musí odpovídat textu.' }
       ]
@@ -98,7 +100,7 @@ export default {
       summary: 'Učitel kontroluje slovní hodnocení, chyby, doporučení, tón i konečný výsledek. Teprve potom označí práci jako schválenou.',
       trainerNote: 'Nechte účastníky najít alespoň jednu větu, kterou by z pedagogických důvodů přeformulovali.',
       blocks: [
-        { type: 'checklist', title: 'Před schválením', items: ['Výsledek odpovídá konkrétní práci.', 'Všechny zásadní závěry mají důkaz.', 'Počet slov je správný.', 'FAIL podmínky jsou správně vyhodnocené.', 'Zpětná vazba je věcná a srozumitelná.', 'Doporučení je konkrétní a proveditelné.', 'V reportu nejsou cizí nebo smyšlené informace.'] },
+        { type: 'checklist', title: 'Před schválením', items: ['Výsledek odpovídá konkrétní práci.', 'Všechny zásadní závěry mají důkaz.', 'Počet slov je správný.', 'Podmínky neúspěchu (FAIL) jsou správně vyhodnocené.', 'Zpětná vazba je věcná a srozumitelná.', 'Doporučení je konkrétní a proveditelné.', 'V reportu nejsou cizí nebo smyšlené informace.'] },
         { type: 'comparison', left: { title: 'Nevhodná zpětná vazba', items: ['obecné pochvaly bez důkazu', 'tvrdé soudy o schopnostech', 'dlouhý seznam bez priorit', 'jazyk, kterému student nerozumí'] }, right: { title: 'Užitečná zpětná vazba', items: ['konkrétní silná stránka', 'jedna až tři priority', 'příklad opravy', 'jasný další krok'] } }
       ]
     },
@@ -113,7 +115,7 @@ export default {
         { type: 'steps', items: [
           { title: 'Zkontrolujte roster a soubory', text: 'Každá práce musí patřit správnému pseudonymu.' },
           { title: 'Potvrďte přepisy obrazových prací', text: 'Nesprávný přepis vede k nesprávnému hodnocení.' },
-          { title: 'Spusťte řízenou frontu nebo podporovaný batch režim', text: 'Sledujte stav, chyby a orientační využití.' },
+          { title: 'Spusťte řízenou frontu nebo podporovaný dávkový režim', text: 'Sledujte stav, chyby a orientační využití.' },
           { title: 'Řešte validační chyby jednotlivě', text: 'Neztrácejte přehled o konkrétní práci.' },
           { title: 'Schvalujte až po kontrole', text: 'Dávka nezrušila odpovědnost učitele.' }
         ]},

@@ -7,7 +7,7 @@ const defaultState = {
   trainerMode: false,
   lastCourse: null,
   lastLesson: null,
-  installedVersion: '1.0.1'
+  installedVersion: '1.3.0'
 };
 
 export function loadState() {
@@ -26,11 +26,15 @@ export function loadState() {
 }
 
 export function saveState(state) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch {
+    // Akademie zůstává použitelná i v režimu, který blokuje místní úložiště.
+  }
 }
 
 export function resetState() {
-  localStorage.removeItem(STORAGE_KEY);
+  try { localStorage.removeItem(STORAGE_KEY); } catch {}
   return structuredClone(defaultState);
 }
 

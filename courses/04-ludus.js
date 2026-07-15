@@ -8,11 +8,12 @@ export default {
   category: 'Aplikace',
   audience: 'Učitelé všech předmětů',
   duration: 90,
+  reserve: 0,
   level: 'Základní',
   required: false,
   accent: '#a877ff',
-  icon: './assets/apps/ludus.png',
-  prerequisites: ['start', 'github'],
+  icon: './assets/course-icons/ludus.png',
+  prerequisites: ['start'],
   outcomes: [
     'Zvolíte vhodnou herní mechaniku podle cíle hodiny.',
     'Připravíte nebo importujete strukturovaný obsah.',
@@ -28,6 +29,7 @@ export default {
       summary: 'LUDUS používá herní světy a mechaniky jako prostředek k procvičení učiva. Nejdříve se volí vzdělávací cíl, až potom estetika hry.',
       trainerNote: 'Položte otázku: Co má žák po skončení umět lépe? Pokud odpověď zní jen „bavit se“, je potřeba cíl zpřesnit.',
       blocks: [
+        { type: 'showcase', label: '30 SEKUND, KTERÉ PRODÁVAJÍ MYŠLENKU', title: 'Stejný obsah, ale úplně jiný zážitek žáka', text: 'Na začátku spusťte krátkou hotovou hru. Nechte kolegy nejprve zažít mechaniku a až potom ji pojmenujte.', before: { label: 'BĚŽNÁ FORMA', title: 'Sada otázek bez příběhu', items: ['žák plní úkoly po pořadě', 'malá motivace pokračovat', 'výsledek je jen počet bodů'] }, after: { label: 'LUDUS', title: 'Obsah zasazený do herní mise', items: ['jasný cíl a postup', 'okamžitá odezva a atmosféra', 'učitel stále kontroluje obsah'] }, caption: 'Hra není cíl. Je to forma, která má podpořit konkrétní učení.' },
         { type: 'flow', items: [
           { number: '01', title: 'Cíl', text: 'Dovednost nebo znalost, kterou má aktivita rozvíjet.' },
           { number: '02', title: 'Mechanika', text: 'Způsob rozhodování, spolupráce, soutěže nebo postupu.' },
@@ -47,7 +49,7 @@ export default {
       blocks: [
         { type: 'cards', columns: 4, items: [
           { icon: '✦', title: 'Vlastní učivo', text: 'Vložíte otázky a úkoly přímo v dílně.' },
-          { icon: '↔', title: 'Import ze Studia', text: 'Převezmete krátkodobý anonymní handoff nebo soubor ghrab-material.' },
+          { icon: '↔', title: 'Import ze Studia', text: 'Převezmete krátkodobé anonymní předání nebo soubor ghrab-material.' },
           { icon: '⚑', title: 'Třídní soutěž', text: 'Připravíte společnou aktivitu na projektor.' },
           { icon: '▤', title: 'Lesson pack', text: 'Spojíte hru s plánem hodiny a doprovodnými materiály.' }
         ]},
@@ -131,6 +133,7 @@ export default {
       summary: 'Účastník připraví krátkou hru nebo třídní soutěž pro jednu konkrétní část hodiny.',
       trainerNote: 'Cílem je 10–15 minut hratelné výuky, nikoli celá vyučovací hodina založená jen na hře.',
       blocks: [
+        { type: 'mission', label: 'ŽIVÁ MISE', title: 'Navrhněte jednu krátkou herní sekvenci', brief: 'Zvolte jeden výukový cíl, tři až pět úkolů a mechaniku, která dává smysl právě pro tento obsah.', time: '13 MIN', output: 'Minihra, kterou lze otestovat s kolegou.' },
         { type: 'activity', title: 'Vytvořte mini-hru', brief: 'Připravte hratelnou aktivitu na 10–15 minut.', steps: ['Zapište vzdělávací cíl.', 'Vyberte mechaniku a ověřený engine.', 'Vložte 8–12 úloh.', 'Vyzkoušejte učitelský režim.', 'Odehrajte alespoň tři stanice.', 'Exportujte a otestujte veřejný odkaz.'], output: 'Krátká, funkční a pedagogicky zdůvodněná výuková hra.' }
       ]
     }

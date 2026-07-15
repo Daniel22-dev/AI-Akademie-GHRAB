@@ -8,10 +8,11 @@ export default {
   category: 'Technický most',
   audience: 'Uživatelé Generátoru a LUDUS',
   duration: 65,
+  reserve: 5,
   level: 'Základní',
   required: false,
   accent: '#8db7ff',
-  icon: './assets/brand/icon-192.png',
+  icon: './assets/course-icons/github.png',
   prerequisites: ['start'],
   outcomes: [
     'Založíte přehledný repozitář pro výukové materiály.',
@@ -28,6 +29,7 @@ export default {
       summary: 'GitHub uchovává soubory a GitHub Pages z nich vytvoří veřejně dostupnou statickou webovou stránku.',
       trainerNote: 'Nevysvětlujte Git ani práci v příkazové řádce. Pro základní školení je cílem pouze bezpečně zveřejnit hotový HTML soubor.',
       blocks: [
+        { type: 'showcase', label: 'OD SOUBORU K ODKAZU', title: 'Publikování není programování', text: 'Učitel pouze nahraje hotový export, zapne Pages a získá sdílitelnou adresu.', before: { label: 'NA POČÍTAČI', title: 'Samostatný HTML soubor', items: ['funguje lokálně', 'žák jej nemá kde otevřít', 'novou verzi je obtížné rozesílat'] }, after: { label: 'NA WEBU', title: 'Stálý odkaz přes GitHub Pages', items: ['otevře se v prohlížeči', 'stejná adresa po aktualizaci', 'snadné sdílení v LMS nebo QR kódem'] }, caption: 'GitHub je volitelná publikační cesta; dlouhodobý školní provoz patří na spravované řešení.' },
         { type: 'lead', text: 'Generátor testů a LUDUS mohou vytvořit samostatný interaktivní HTML soubor. GitHub Pages jej umí publikovat tak, aby žák otevřel odkaz přímo v prohlížeči bez instalace.' },
         { type: 'cards', columns: 3, items: [
           { icon: '▣', title: 'Repozitář', text: 'Online složka se soubory a historií změn.' },
@@ -79,14 +81,14 @@ export default {
       title: 'Nahrání prvního HTML souboru',
       kicker: 'PRAKTICKÝ POSTUP · 12 MIN',
       duration: 12,
-      summary: 'Hotový export nahrajete přes webové rozhraní a změnu uložíte jako commit.',
+      summary: 'Hotový export nahrajete přes webové rozhraní a změnu uložíte jako pojmenovanou revizi (commit).',
       trainerNote: 'Připravte každému účastníkovi malý testovací HTML soubor, aby školení nezáviselo na předchozí práci v aplikaci.',
       blocks: [
         { type: 'steps', items: [
           { title: 'Otevřete správný repozitář', text: 'Před nahráním zkontrolujte název a vlastníka.' },
           { title: 'Zvolte Add file → Upload files', text: 'Soubor lze přetáhnout do označené oblasti nebo vybrat z disku.' },
           { title: 'Použijte bezpečný název souboru', text: 'Například fractions-practice-1.html. Vyhněte se diakritice a mezerám.' },
-          { title: 'Napište srozumitelný commit message', text: 'Například Přidán test zlomky – základní verze.' },
+          { title: 'Pojmenujte uloženou změnu (commit)', text: 'Například Přidán test zlomky – základní verze.' },
           { title: 'Potvrďte Commit changes', text: 'Po uložení vyčkejte na nové nasazení GitHub Pages.' }
         ]},
         { type: 'callout', tone: 'warning', title: 'Limity webového nahrávání', text: 'GitHub omezuje velikost jednotlivých souborů a počet souborů nahrávaných najednou. Běžný samostatný HTML materiál je však zpravidla výrazně menší.' }
@@ -117,7 +119,7 @@ export default {
         { type: 'steps', items: [
           { title: 'Exportujte opravenou verzi se stejným názvem', text: 'Název musí přesně odpovídat původnímu souboru.' },
           { title: 'Nahrajte ji do stejného místa repozitáře', text: 'GitHub změnu rozpozná jako aktualizaci existujícího souboru.' },
-          { title: 'Popište opravu v commit message', text: 'Například Opraven klíč u otázky 6.' },
+          { title: 'Popište opravu v názvu uložené změny', text: 'Například Opraven klíč u otázky 6.' },
           { title: 'Počkejte na dokončení nasazení', text: 'Odkaz se nemění. Po nasazení zkontrolujte novou verzi.' }
         ]},
         { type: 'activity', title: 'Zkušební aktualizace', brief: 'Proveďte drobnou změnu v testovacím souboru a publikujte ji pod stejným názvem.', steps: ['Upravte nadpis nebo jednu větu.', 'Nahrajte soubor znovu.', 'Sledujte stav nasazení.', 'Otevřete původní odkaz a ověřte změnu.'], output: 'Aktualizovaný materiál dostupný na stejném odkazu.' },

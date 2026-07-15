@@ -8,11 +8,12 @@ export default {
   category: 'AI gramotnost',
   audience: 'Všichni učitelé bez ohledu na předmět',
   duration: 75,
+  reserve: 0,
   level: 'Úvodní až mírně pokročilý',
   required: true,
   status: 'Připraveno',
   accent: '#a877ff',
-  icon: './assets/apps/ai-literacy.png',
+  icon: './assets/course-icons/ai-literacy.png',
   prerequisites: [],
   outcomes: [
     'Vysvětlíte, co generativní AI umí a kde jsou její zásadní limity.',
@@ -30,6 +31,7 @@ export default {
       summary: 'Generativní AI už není okrajová technologie. Stává se běžnou součástí práce, vyhledávání, komunikace i učení — a škola musí reagovat vědomě, ne zákazem ani nekritickým nadšením.',
       trainerNote: 'Začněte krátkou anketou: Kdo AI používá alespoň jednou týdně? K čemu? Nehodnoťte odpovědi. Cílem je ukázat šíři zkušeností ve sboru.',
       blocks: [
+        { type: 'statement', label: 'HLAVNÍ MYŠLENKA', text: 'AI nemá nahradit učitele. Má odstranit práci, při které učitel nemusí rozhodovat.', detail: 'Hodnotu vytváří až jasný cíl, kvalitní podklad, kontrola a odborný úsudek člověka.' },
         { type: 'lead', text: 'Nejdůležitější otázka už nezní „zda AI používat“, ale „kdy, proč, s jakými daty a jak ověřit výsledek“. Učitel zůstává autorem rozhodnutí, AI může být spolupracovníkem.' },
         { type: 'cards', columns: 4, items: [
           { icon: '1', title: 'Příprava', text: 'Nápady, struktury hodin, varianty aktivit, pracovní listy a otázky.' },
@@ -77,7 +79,7 @@ export default {
       kicker: 'WORKFLOW UČITELE · 12 MIN',
       duration: 12,
       summary: 'Nejbezpečnější postup nezačíná generováním od nuly. Začíná kvalitním podkladem, jasným cílem a několika kontrolními průchody.',
-      trainerNote: 'Ukažte jeden reálný anonymizovaný materiál a projděte workflow živě. Zdůrazněte, že jeden dlouhý prompt není vždy lepší než postupná práce.',
+      trainerNote: 'Ukažte jeden reálný anonymizovaný materiál a projděte pracovní postup živě. Zdůrazněte, že jeden dlouhý prompt není vždy lepší než postupná práce.',
       blocks: [
         { type: 'steps', items: [
           { title: 'Vyberte důvěryhodný podklad', text: 'Vlastní text, učebnici, oficiální zdroj, rubriku nebo ověřená data. AI nemusí informace domýšlet.' },

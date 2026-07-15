@@ -7,12 +7,13 @@ export default {
   subtitle: 'Od vlastního podkladu k procvičování nebo bezpečnému testu',
   category: 'Aplikace',
   audience: 'AJ, ŠJ, NJ a ČJ',
-  duration: 90,
+  duration: 100,
+  reserve: 5,
   level: 'Základní',
   required: false,
   accent: '#50e8ff',
-  icon: './assets/apps/generator.png',
-  prerequisites: ['start', 'github'],
+  icon: './assets/course-icons/generator.png',
+  prerequisites: ['start'],
   outcomes: [
     'Rozlišíte procvičování, běžný test a bezpečný offline test.',
     'Vytvoříte test z vlastního textu nebo tématu.',
@@ -28,6 +29,7 @@ export default {
       summary: 'Generátor umí rychlé procvičování, běžný známkovaný test i bezpečný offline balík. Každý režim řeší jinou situaci.',
       trainerNote: 'Nezačínejte ukázkou všech možností. Nejprve nechte účastníky rozhodnout, který režim odpovídá jejich konkrétní hodině.',
       blocks: [
+        { type: 'showcase', label: 'UKÁZKA VÝSLEDKU', title: 'Z tématu k hotovému interaktivnímu testu', text: 'Nejdříve ukažte hotový test na mobilu, okamžitou kontrolu odpovědí a export. Tvorbu vysvětlujte až potom.', before: { label: 'VSTUP', title: 'Téma, úroveň a výukový cíl', items: ['např. minulý čas v angličtině', '2. ročník, úroveň B1', '10 minut procvičování'] }, after: { label: 'VÝSTUP', title: 'Ověřený interaktivní test', items: ['různé typy úloh', 'správný klíč a zpětná vazba', 'HTML připravené pro žáky'] }, caption: 'Wow efekt vzniká při okamžitém přechodu od zadání k fungujícímu výsledku.' },
         { type: 'cards', columns: 3, items: [
           { icon: '▶', title: 'Rychlé procvičování', text: 'Okamžitá zpětná vazba, opakování a práce v hodině nebo doma.' },
           { icon: '✓', title: 'Běžný test', text: 'Bodování, výsledek a kontrolovaný známkovaný výstup.' },
@@ -97,7 +99,7 @@ export default {
     },
     {
       id: 'review',
-      title: 'Náhled, opravy a Test Lab',
+      title: 'Náhled, opravy a kontrolní režim Test Lab',
       kicker: 'KONTROLA · 15 MIN',
       duration: 15,
       summary: 'Před exportem je potřeba projít test jako žák, ověřit klíč, bodování, navigaci a chování na různých zařízeních.',
@@ -138,6 +140,7 @@ export default {
       summary: 'Účastník dokončí jeden krátký materiál, který odpovídá jeho předmětu a reálné výuce.',
       trainerNote: 'Trvejte na krátkém dokončeném výsledku místo rozsáhlého rozpracovaného testu.',
       blocks: [
+        { type: 'mission', label: 'ŽIVÁ MISE', title: 'Vytvořte test, který lze ještě dnes poslat žákům', brief: 'Pracujte s vlastním tématem. Než exportujete, zkontrolujte každou úlohu, řešení a zpětnou vazbu.', time: '13 MIN', output: 'Funkční HTML test po vlastní kontrole.' },
         { type: 'activity', title: 'Vytvořte svůj první test', brief: 'Připravte 8–12 úloh pro jednu konkrétní výukovou situaci.', steps: ['Zvolte režim a cíl.', 'Vložte anonymizovaný zdroj.', 'Použijte nejvýše čtyři typy úloh.', 'Zkontrolujte klíč a bodování.', 'Otestujte výstup jako žák.', 'Exportujte a podle potřeby zveřejněte.'], output: 'Funkční a ověřený interaktivní test nebo procvičování.' }
       ]
     }

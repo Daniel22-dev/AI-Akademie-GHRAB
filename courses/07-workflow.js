@@ -2,20 +2,21 @@ export default {
   id: 'workflow',
   order: 8,
   code: 'FLOW-01',
-  title: 'Propojený workflow aplikací',
-  shortTitle: 'Workflow',
+  title: 'Propojený pracovní postup aplikací',
+  shortTitle: 'Pracovní postup',
   subtitle: 'Jeden kvalitní zdroj, několik výukových výstupů bez opakovaného přepisování',
   category: 'Pokročilá praxe',
   audience: 'Pravidelní uživatelé více aplikací',
   duration: 80,
+  reserve: 0,
   level: 'Pokročilé',
   required: false,
   accent: '#7ee7ff',
-  icon: './assets/brand/portal-gateway.png',
-  prerequisites: ['differentiator', 'generator', 'ludus'],
+  icon: './assets/course-icons/workflow.png',
+  prerequisites: ['start'],
   outcomes: [
     'Připravíte znovupoužitelný anonymní zdrojový materiál.',
-    'Předáte obsah mezi aplikacemi pomocí Studio Bridge nebo souboru.',
+    'Předáte obsah mezi aplikacemi pomocí lokálního propojení Studio Bridge nebo souboru.',
     'Rozhodnete, kdy diferencovat, testovat nebo gamifikovat.',
     'Udržíte konzistenci cíle, obsahu a verzí napříč výstupy.'
   ],
@@ -28,6 +29,7 @@ export default {
       summary: 'Základním aktivem není hotový test ani hra, ale kvalitně připravený zdroj s cílem, obsahem a strukturovanými úlohami.',
       trainerNote: 'Použijte jeden krátký tematický celek a během školení z něj vytvořte tři různé podoby. Nezačínejte třemi nesouvisejícími materiály.',
       blocks: [
+        { type: 'showcase', label: 'JEDEN ZDROJ, VÍCE VÝSTUPŮ', title: 'Obsah se nemá znovu přepisovat v každé aplikaci', text: 'Kvalitní zdrojový balíček lze předat do dalších nástrojů a vytvořit z něj několik navazujících materiálů.', before: { label: 'ROZTŘÍŠTĚNÁ PRÁCE', title: 'Každá aplikace začíná od nuly', items: ['opakované kopírování zadání', 'rozdílné verze stejného obsahu', 'vyšší riziko nekonzistence'] }, after: { label: 'PROPOJENÝ POSTUP', title: 'Jeden ověřený zdrojový balíček', items: ['Diferenciátor upraví obtížnost', 'Generátor vytvoří kontrolu', 'LUDUS použije stejný obsah ve hře'] }, caption: 'Pro pokročilou práci stačí zvládnout alespoň dvě aplikace; není nutné absolvovat všechny větve.' },
         { type: 'flow', items: [
           { number: '01', title: 'Zdroj', text: 'Text, cíle, kontext a ověřené úlohy.' },
           { number: '02', title: 'Diferenciace', text: 'Podpůrná, standardní a rozšiřující cesta.' },
@@ -56,11 +58,11 @@ export default {
     },
     {
       id: 'handoff',
-      title: 'Studio Bridge a souborová předávka',
+      title: 'Předání mezi aplikacemi: Studio Bridge a soubor',
       kicker: 'PŘENOS MEZI APLIKACEMI · 15 MIN',
       duration: 15,
-      summary: 'Aplikace mohou ve stejném prohlížeči převzít krátkodobý anonymní handoff. Záložní cestou je export a import strukturovaného souboru.',
-      trainerNote: 'Ukažte obě cesty. Přímý handoff je pohodlnější, soubor je průhlednější a vhodný pro archivaci či předání kolegovi.',
+      summary: 'Aplikace mohou ve stejném prohlížeči převzít krátkodobé anonymní předání. Záložní cestou je export a import strukturovaného souboru.',
+      trainerNote: 'Ukažte obě cesty. Přímé předání je pohodlnější, soubor je průhlednější a vhodný pro archivaci či předání kolegovi.',
       blocks: [
         { type: 'comparison', left: { title: 'Přímý Studio Bridge', items: ['stejný prohlížeč', 'krátkodobá lokální předávka', 'po převzetí se smaže', 'rychlý přechod mezi aplikacemi'] }, right: { title: 'Souborový export', items: ['vědomě uložený soubor', 'lze archivovat a sdílet', 'vyžaduje správnou verzi formátu', 'před importem lze obsah zkontrolovat'] } },
         { type: 'steps', items: [
@@ -84,7 +86,7 @@ export default {
           ['Samostatné procvičování', 'Generátor', 'GitHub Pages pro sdílení'],
           ['Týmová aktivizace', 'LUDUS', 'Import ověřených úloh ze zdroje'],
           ['Profesionální e-mail', 'Korespondenční asistent', 'Bez návaznosti na výukový řetězec'],
-          ['Maturitní sloh', 'Hodnotitel', 'Samostatný specializovaný workflow']
+          ['Maturitní sloh', 'Hodnotitel', 'Samostatný specializovaný pracovní postup']
         ]},
         { type: 'quiz', question: 'Žáci mají stejný cíl, ale část skupiny potřebuje vodítka a část rozšíření. Který nástroj je nejlogičtější první krok?', options: ['LUDUS', 'Korespondenční asistent', 'Diferenciátor', 'GitHub'], answer: 2, explanation: 'Nejdříve se řeší pedagogicky smysluplné varianty; teprve poté lze zvolit formu ověření nebo hry.' }
       ]

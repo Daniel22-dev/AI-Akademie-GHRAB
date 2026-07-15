@@ -7,11 +7,12 @@ export default {
   subtitle: 'Profesionální školní komunikace s povinnou anonymizací',
   category: 'Aplikace',
   audience: 'Všichni zaměstnanci školy',
-  duration: 70,
+  duration: 80,
+  reserve: 5,
   level: 'Základní',
   required: false,
   accent: '#f0aa4b',
-  icon: './assets/apps/correspondence.png',
+  icon: './assets/course-icons/correspondence.png',
   prerequisites: ['start'],
   outcomes: [
     'Bezpečně anonymizujete příchozí školní zprávu.',
@@ -28,6 +29,7 @@ export default {
       summary: 'Asistent pomáhá s rozborem a formulací, ale některé situace vyžadují osobní řešení, vedení školy nebo odbornou konzultaci.',
       trainerNote: 'Zdůrazněte, že aplikace není automatický odesílač a nerozhoduje za učitele.',
       blocks: [
+        { type: 'showcase', label: 'PŘED A PO', title: 'Od dlouhého konceptu k odpovědi, která je stručná, přesná a citlivá', text: 'Asistent nemá rozhodnout za učitele. Má navrhnout varianty tónu a pomoci zkontrolovat, zda nic důležitého nechybí.', before: { label: 'PŮVODNÍ KONCEPT', title: 'Emotivní nebo příliš dlouhá odpověď', items: ['směšuje fakta a hodnocení', 'obsahuje zbytečné osobní údaje', 'není jasné, co má příjemce udělat'] }, after: { label: 'FINÁLNÍ VERZE', title: 'Tři kontrolované varianty tónu', items: ['stručná, standardní a diplomatická', 'jasná fakta a další krok', 'odeslání až po kontrole učitelem'] }, caption: 'Na živé ukázce vždy používejte fiktivní nebo důsledně anonymizovaný e-mail.' },
         { type: 'cards', columns: 4, items: [
           { icon: '↙', title: 'Příchozí zpráva', text: 'Rozbor toho, co odesílatel skutečně potřebuje a na co odpovědět.' },
           { icon: '✎', title: 'Vlastní e-mail', text: 'Koncept z několika bodů, cíle a požadovaného tónu.' },

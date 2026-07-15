@@ -1,26 +1,37 @@
-# Nahrání AI Akademie GHRAB na GitHub
+# Nahrání AI Akademie GHRAB 1.3.0 na GitHub Pages
 
-## 1. Nahrajte aktualizované soubory
+## 1. Před nahráním
 
-Do kořene repozitáře `AI-Akademie-GHRAB` nahrajte **obsah rozbalené složky**, ne nadřazenou složku.
+V kořeni projektu spusťte:
 
-V kořeni mají být přímo vidět:
+```bash
+npm test
+```
+
+Správný výsledek potvrzuje deset školení, 68 částí, vytvoření deseti exportů a verzi 1.3.0.
+
+## 2. Nahrajte obsah rozbalené složky
+
+Do kořene repozitáře nahrajte přímo tyto položky, nikoli nadřazenou složku:
 
 ```text
 assets/
 courses/
 exports/
 scripts/
+404.html
 index.html
 manifest.webmanifest
 package.json
 README.md
+NAHRANI-NA-GITHUB.md
+AUDIT-IMPLEMENTACE-v1.3.0.md
 sw.js
 ```
 
-Složka `.github` není potřeba.
+Složka `.github` ani GitHub Actions nejsou pro toto statické nasazení potřeba.
 
-## 2. Nastavte GitHub Pages
+## 3. Nastavte GitHub Pages
 
 V repozitáři otevřete:
 
@@ -36,40 +47,44 @@ Branch: main
 Folder: / (root)
 ```
 
-Potvrďte tlačítkem **Save**. Výsledný odkaz bude přibližně:
+Potvrďte **Save**.
 
-```text
-https://daniel22-dev.github.io/AI-Akademie-GHRAB/
-```
+## 4. Kontrola po nasazení
 
-## 3. Co po aktualizaci ověřit
+Ověřte alespoň toto:
 
-- zobrazí se nová ikona AI Akademie;
-- nadpis na úvodní stránce má dostatečný odstup od horního modrého štítku;
-- rozcestník se označuje jako pracovní prostor školitele, nikoli samostudium kolegů;
-- lze otevřít všech deset prezentací;
-- tlačítko **Poznámky řečníka** zobrazí interní metodické poznámky;
-- tlačítko **Stáhnout HTML** stáhne pouze konkrétní prezentaci;
-- stažený HTML soubor funguje po otevření bez internetu;
+- zobrazí se rozcestník a všech deset jednotných ikon;
+- mapa správně odděluje společný základ, tři učitelské větve a správce;
+- u každého kurzu je vidět celkový čas, základní cesta a rozšíření;
+- tlačítko **Spustit od úvodu** otevře čistou titulní obrazovku;
+- projektorový režim na 1366 × 768 nevyžaduje rolování a navigace zůstává viditelná;
+- Konzole školitele se synchronizuje pouze s právě otevřenou relací;
+- postup, kvízy a checklisty se po obnovení stránky zachovají;
+- každý soubor ve složce `exports/` funguje samostatně a offline;
+- příkaz Tisk/PDF v exportu připraví všechny obrazovky, ne pouze aktuální;
 - export neobsahuje poznámky řečníka ani celý katalog Akademie.
 
-## 4. Při změně obsahu prezentace
+## 5. Při změně kurzu
 
-Po úpravě souboru v `courses/` spusťte lokálně:
+Po úpravě souboru v `courses/` spusťte:
 
 ```bash
 npm run build:exports
 npm test
 ```
 
-Tím se znovu vytvoří soubory ve složce `exports/`. Na GitHub pak nahrajte upravený modul i odpovídající export.
+Potom nahrajte upravený zdrojový modul i nově vytvořený soubor v `exports/`.
 
-## 5. Obnovení nainstalované PWA
+Scénáře řečníka jsou v `courses/speaker-notes.js`. Příkaz `npm run build:notes` je znovu vygeneruje a může přepsat ruční úpravy.
 
-Po nahrání nové verze může prohlížeč krátce používat starou cache. Obvykle stačí:
+## 6. Obnovení nainstalované PWA
 
-1. stránku zavřít;
-2. znovu ji otevřít;
-3. případně provést tvrdé obnovení `Ctrl + F5`.
+Service worker používá cache verze 1.3.0. Po nasazení obvykle stačí aplikaci zavřít a znovu otevřít. Při přetrvávající staré verzi:
 
-Pokud byla Akademie nainstalována jako aplikace a stále ukazuje starou ikonu, odinstalujte starou PWA a nainstalujte ji znovu.
+1. proveďte tvrdé obnovení `Ctrl + F5`;
+2. zavřete všechny karty Akademie;
+3. případně odinstalujte starou PWA a nainstalujte ji znovu.
+
+## 7. Bezpečnost před zveřejněním
+
+Před každým nahráním zkontrolujte, že repozitář neobsahuje API klíče, podpisové klíče, hesla, přístupové soubory ani neanonymizované údaje studentů, rodičů či zaměstnanců.
