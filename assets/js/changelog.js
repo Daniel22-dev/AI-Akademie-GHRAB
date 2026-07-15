@@ -1,8 +1,26 @@
-export const APP_VERSION = '1.3.2';
+export const APP_VERSION = '1.4.1';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.4.1',
+    date: '15. 7. 2026',
+    title: 'Poznámky přepsané skutečně lidským hlasem',
+    detail: 'Mluvená opora všech 68 částí byla ručně přepracována. Zmizely univerzální věty, povinné shrnování každého slidu i šablonové přechody; každá lekce má vlastní civilní formulace a konkrétní otázku do praxe.'
+  },
+  {
+    version: '1.4.0',
+    date: '15. 7. 2026',
+    title: 'Poznámky řečníka mají jasné pořadí',
+    detail: 'Hlavní scénář je nově vedený v pěti očíslovaných krocích shora dolů: otevření, hlavní pointa, ukázka, zapojení skupiny a přechod. Metodické rady jsou oddělené jako nepovinná rychlá opora.'
+  },
+  {
+    version: '1.4.0',
+    date: '15. 7. 2026',
+    title: 'Přirozenější formulace a plán při časové tísni',
+    detail: 'Opakující se strojové věty byly nahrazeny pestřejšími formulacemi podle typu slidu. Každá část navíc obsahuje stručnou radu, co zachovat, když školitel nestíhá.'
+  },
   {
     version: '1.3.2',
     date: '15. 7. 2026',

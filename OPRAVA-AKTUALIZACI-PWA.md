@@ -4,7 +4,7 @@ Tato varianta opravuje situaci, kdy se po nasazení nové verze z GitHub Pages n
 
 ## Provedené změny
 
-- nová cache `ghrab-academy-v1.3.2-cache-hotfix-1`,
+- nová cache `ghrab-academy-v1.4.1-cache-1`,
 - při instalaci service workeru se klíčové soubory stahují bez použití staré HTTP cache,
 - HTML, JavaScript, CSS a manifest používají při online provozu strategii `network first`,
 - po aktivaci nového service workeru se otevřené okno aplikace samo jednou obnoví,

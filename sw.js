@@ -1,4 +1,4 @@
-const CACHE = 'ghrab-academy-v1.3.2-cache-hotfix-1';
+const CACHE = 'ghrab-academy-v1.4.1-cache-1';
 const FILES = [
   './',
   './index.html',

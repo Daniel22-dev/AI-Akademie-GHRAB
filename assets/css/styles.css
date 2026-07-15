@@ -1480,3 +1480,198 @@ body.modal-open { overflow: hidden; }
   .presentation-end-actions .button { width: 100%; }
   .presentation-end h1 { font-size: clamp(2.6rem, 15vw, 4.4rem); }
 }
+
+/* ===== v1.4.1: ručně psané a přirozené poznámky řečníka ===== */
+.speaker-guide > header {
+  align-items: flex-start;
+}
+.speaker-guide-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
+}
+.speaker-guide-badges > span {
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  border: 1px solid rgba(89,224,165,.28);
+  border-radius: 999px;
+  color: #afffda;
+  background: rgba(89,224,165,.07);
+  font-size: .61rem;
+  font-weight: 900;
+  letter-spacing: .055em;
+  white-space: nowrap;
+}
+.speaker-guide-badges .speaker-order-badge {
+  border-color: rgba(80,232,255,.32);
+  color: var(--cyan);
+  background: rgba(80,232,255,.07);
+}
+.speaker-guide-intro {
+  margin: 0;
+  padding: 13px 19px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  background: rgba(80,232,255,.025);
+  font-size: .75rem;
+  line-height: 1.5;
+}
+.speaker-guide-intro strong { color: var(--cyan); }
+.speaker-guide-flow {
+  display: grid;
+  gap: 0;
+  padding: 17px 17px 5px;
+}
+.speaker-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 42px minmax(0,1fr);
+  gap: 14px;
+  padding-bottom: 13px;
+}
+.speaker-step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 39px;
+  bottom: -2px;
+  left: 20px;
+  width: 2px;
+  background: linear-gradient(rgba(80,232,255,.32),rgba(168,119,255,.13));
+}
+.speaker-step-marker {
+  position: relative;
+  z-index: 1;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(80,232,255,.35);
+  border-radius: 50%;
+  color: #03111d;
+  background: linear-gradient(135deg,var(--cyan),#a9bfff);
+  box-shadow: 0 0 24px rgba(80,232,255,.12);
+}
+.speaker-step-marker span {
+  font-size: .78rem;
+  font-weight: 950;
+}
+.speaker-step-body {
+  min-width: 0;
+  padding: 15px 17px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255,255,255,.025);
+}
+.speaker-step-body > header {
+  margin-bottom: 9px;
+}
+.speaker-step-body > header small {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--muted);
+  font-size: .59rem;
+  font-weight: 950;
+  letter-spacing: .13em;
+}
+.speaker-step-body > header h4 {
+  margin: 0;
+  font-size: .88rem;
+}
+.speaker-step-body ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding-left: 18px;
+}
+.speaker-step-body li,
+.speaker-step-body p {
+  color: var(--soft);
+  font-size: .78rem;
+  line-height: 1.48;
+}
+.speaker-step.say .speaker-step-body {
+  border-color: rgba(80,232,255,.26);
+  background: linear-gradient(145deg,rgba(80,232,255,.065),rgba(80,232,255,.025));
+}
+.speaker-step.say h4 { color: var(--cyan); }
+.speaker-step.explain h4 { color: #d5c3ff; }
+.speaker-step.demo h4 { color: #a9ffda; }
+.speaker-step.ask h4 { color: #ffd393; }
+.speaker-step.transition h4 { color: #b9d1ff; }
+.speaker-lines {
+  display: grid;
+  gap: 8px;
+}
+.speaker-lines p {
+  position: relative;
+  margin: 0;
+  padding: 8px 11px 8px 14px;
+  border-left: 2px solid rgba(80,232,255,.48);
+  border-radius: 0 10px 10px 0;
+  color: #effcff;
+  background: rgba(80,232,255,.035);
+  font-size: .87rem;
+  font-weight: 690;
+  line-height: 1.45;
+}
+.speaker-subnote {
+  margin-top: 12px;
+  padding: 11px 12px 3px;
+  border: 1px solid rgba(240,170,75,.18);
+  border-radius: 12px;
+  background: rgba(240,170,75,.035);
+}
+.speaker-subnote > b {
+  margin-bottom: 6px;
+  color: var(--gold);
+  font-size: .62rem;
+}
+.speaker-support-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 3px 17px 0;
+  padding: 14px 2px 8px;
+  border-top: 1px solid var(--line);
+}
+.speaker-support-heading span {
+  color: var(--purple);
+  font-size: .63rem;
+  font-weight: 950;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+.speaker-support-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .69rem;
+}
+.speaker-guide-support {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 10px;
+  padding: 0 17px 17px;
+}
+.speaker-guide-support .speaker-card {
+  border-radius: 0 14px 14px 0;
+  background: rgba(255,255,255,.023);
+}
+.speaker-card.shortcut {
+  border-left-color: var(--gold);
+  background: rgba(240,170,75,.035);
+}
+.speaker-card.shortcut > strong { color: #ffd393; }
+.speaker-guide-support .speaker-card.timing {
+  grid-column: 1 / -1;
+}
+@media (max-width: 760px) {
+  .speaker-guide-badges { justify-content: flex-start; }
+  .speaker-step { grid-template-columns: 36px minmax(0,1fr); gap: 10px; }
+  .speaker-step-marker { width: 36px; height: 36px; }
+  .speaker-step:not(:last-child)::before { top: 34px; left: 17px; }
+  .speaker-guide-support { grid-template-columns: 1fr; }
+  .speaker-guide-support .speaker-card.timing { grid-column: auto; }
+  .speaker-support-heading { align-items: flex-start; flex-direction: column; gap: 4px; }
+}

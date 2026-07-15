@@ -27,6 +27,8 @@ const ids = new Set();
 const codes = new Set();
 let lessonCount = 0;
 let visualBlockCount = 0;
+const spokenOpenings = new Map();
+const noteText = [];
 for (const course of courses) {
   if (!course.id || ids.has(course.id)) errors.push(`Neplatné nebo duplicitní ID kurzu: ${course.id}`);
   ids.add(course.id);
@@ -55,6 +57,11 @@ for (const course of courses) {
     const notes = lesson.speakerNotes || {};
     for (const field of ['say', 'explain', 'ask', 'expected', 'demo', 'facilitation', 'caution', 'transition', 'fallback']) {
       if (!Array.isArray(notes[field]) || notes[field].length === 0) errors.push(`Lekce ${course.id}/${lesson.id} nemá připravenou část poznámek: ${field}.`);
+      for (const line of notes[field] || []) noteText.push({ key: `${course.id}/${lesson.id}`, field, line: String(line) });
+    }
+    for (const line of notes.say || []) {
+      const opening = String(line).toLocaleLowerCase('cs').replace(/[^\p{L}\p{N}\s]/gu, '').split(/\s+/).filter(Boolean).slice(0, 4).join(' ');
+      if (opening) spokenOpenings.set(opening, [...(spokenOpenings.get(opening) || []), `${course.id}/${lesson.id}`]);
     }
     if (!notes.timing) errors.push(`Lekce ${course.id}/${lesson.id} nemá časovací scénář.`);
 
@@ -106,6 +113,25 @@ for (const course of courses) {
     errors.push(`Chybí samostatný export prezentace: exports/${course.id}.html`);
   }
 }
+
+const bannedSpeakerPhrases = [
+  'Teď se podíváme',
+  'Na konci této části by mělo být jasné',
+  'Za mě je hlavní pointa',
+  'Kdyby vám z této části měla zůstat',
+  'Nechci, abychom si odnesli deset detailů',
+  'To podstatné bych shrnul takto'
+];
+for (const phrase of bannedSpeakerPhrases) {
+  const hits = noteText.filter(item => item.line.includes(phrase));
+  if (hits.length) errors.push(`Do poznámek se vrátila šablonová věta „${phrase}“ (${hits.map(item => item.key).join(', ')}).`);
+}
+for (const [opening, lessons] of spokenOpenings) {
+  if (lessons.length > 1) errors.push(`Mluvené formulace opakují stejný začátek „${opening}“ v: ${lessons.join(', ')}.`);
+}
+const formalDirective = /\b(?:Nechte|Ukažte|Použijte|Projděte|Zdůrazněte|Nehodnoťte|Přepracujte|Porovnejte|Ověřte|Připravte|Vysvětlete|Požádejte|Zvolte|Vyberte|Nastavte)\b/;
+const formalHits = noteText.filter(item => ['say', 'ask', 'expected', 'demo', 'facilitation', 'fallback'].includes(item.field) && formalDirective.test(item.line));
+if (formalHits.length) errors.push(`Interní poznámky míchají formální množné oslovení s osobní oporou: ${formalHits.map(item => `${item.key}/${item.field}`).join(', ')}.`);
 
 if (visualBlockCount < courses.length) errors.push('Akademie nemá dostatek výrazných vizuálních bloků napříč kurzy.');
 

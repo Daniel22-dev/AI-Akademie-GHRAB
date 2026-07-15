@@ -1,11 +1,10 @@
-// Automaticky připravený, ale ručně upravitelný scénář pro všech 68 částí.
-// Znovu vytvořit: npm run build:notes
+// Ručně psaná mluvená opora pro všech 68 částí.
+// Není určená k doslovnému čtení. Znovu vytvořit: npm run build:notes
 export default {
   "ai-literacy/why-now": {
     "say": [
-      "„Teď se podíváme na téma: Proč se o AI bavit právě teď.“",
-      "„Na konci této části by mělo být jasné toto: Generativní AI už není okrajová technologie. Stává se běžnou součástí práce, vyhledávání, komunikace i učení — a škola musí reagovat vědomě, ne zákazem ani nekritickým nadšením.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Začal bych úplně obyčejně: kdo z vás už během týdne AI aspoň jednou otevře? A k čemu?",
+      "Nechci z toho dělat ani zázrak, ani strašáka. Je to nástroj, který už ve škole máme kolem sebe, a potřebujeme se naučit poznat, kdy nám pomáhá a kdy už rozhodnutí musí zůstat na nás."
     ],
     "explain": [
       "AI nemá nahradit učitele. Má odstranit práci, při které učitel nemusí rozhodovat.",
@@ -13,66 +12,70 @@ export default {
       "Příprava: Nápady, struktury hodin, varianty aktivit, pracovní listy a otázky."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Proč se o AI bavit právě teď“?"
+      "Kde vám už dnes AI reálně šetří čas — a kde jí naopak zatím nevěříte?"
     ],
     "expected": [
-      "„AI všechno vyřeší“ i „AI do školy nepatří“ obcházejí skutečný úkol: naučit se technologii používat účelně, bezpečně a kriticky."
+      "Ať z odpovědí nakonec vyplyne toto: „AI všechno vyřeší“ i „AI do školy nepatří“ obcházejí skutečný úkol: naučit se technologii používat účelně, bezpečně a kriticky."
     ],
     "demo": [
-      "Použijte jeden krátký modelový příklad bez osobních údajů a ukažte konkrétní dopad postupu."
+      "Použij jeden krátký modelový příklad bez osobních údajů. Ukaž na něm konkrétní dopad, ne celou aplikaci."
     ],
     "facilitation": [
-      "Začněte krátkou anketou: Kdo AI používá alespoň jednou týdně? K čemu? Nehodnoťte odpovědi. Cílem je ukázat šíři zkušeností ve sboru."
+      "Začni krátkou anketou: Kdo AI používá alespoň jednou týdně? K čemu? Nehodnoť odpovědi. Cílem je ukázat šíři zkušeností ve sboru."
     ],
     "caution": [
       "Dvě stejně nebezpečné krajnosti: „AI všechno vyřeší“ i „AI do školy nepatří“ obcházejí skutečný úkol: naučit se technologii používat účelně, bezpečně a kriticky."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Co generativní AI je — a co není.“"
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Co generativní AI je — a co není“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "1 min uvedení · 5 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "1 min rozjezd · 5 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "ai-literacy/what-it-is": {
     "say": [
-      "„Teď se podíváme na téma: Co generativní AI je — a co není.“",
-      "„Na konci této části by mělo být jasné toto: Model nevlastní pravdu ani lidské porozumění. Vytváří pravděpodobnou odpověď podle zadání, kontextu a naučených vzorců.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Jedna věc je na AI zrádná: dokáže znít velmi jistě, i když si právě něco vymýšlí.",
+      "Proto ji beru jako rychlého spolupracovníka na návrhy a zpracování textu, ne jako někoho, kdo má automaticky pravdu."
     ],
     "explain": [
       "Co AI umí dobře: rychle navrhnout více variant, pracovat se strukturou a stylem.",
       "Co z odpovědi neplyne: že jsou fakta správná, že citovaný zdroj skutečně existuje."
     ],
     "ask": [
-      "Které tvrzení vystihuje nejbezpečnější přístup?"
+      "Která vlastnost AI podle vás nejčastěji mate začínající uživatele?"
     ],
     "expected": [
-      "Generativní model je nástroj pro návrh a zpracování, nikoli automatická autorita."
+      "Po hlasování stručně vysvětli logiku správné volby: Generativní model je nástroj pro návrh a zpracování, nikoli automatická autorita."
     ],
     "demo": [
-      "Dejte skupině deset sekund na tiché porovnání obou sloupců a potom zvýrazněte jediný rozhodující rozdíl."
+      "Dej kolegům deset vteřin na tiché porovnání. Potom ukaž jeden rozdíl, který má v praxi největší dopad."
     ],
     "facilitation": [
-      "Použijte jednoduchý kontrast: velmi přesvědčivý jazyk není důkaz správnosti. Nezabíhejte do technických detailů neuronových sítí."
+      "Použij jednoduchý kontrast: velmi přesvědčivý jazyk není důkaz správnosti. Nezabíhejte do technických detailů neuronových sítí."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Drž se jedné myšlenky a jednoho příkladu. Další detaily nech na dotazy."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Jak zadávat práci, aby výstup dával smysl.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Jak zadávat práci, aby výstup dával smysl“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „porovnání“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 4 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Nech rychle hlasovat a vysvětli jen rozhodující důvod."
+    ],
+    "timing": "1 min rozjezd · 5 min vysvětlení nebo ukázka · 3 min zapojení a uzavření"
   },
   "ai-literacy/good-task": {
     "say": [
-      "„Teď se podíváme na téma: Jak zadávat práci, aby výstup dával smysl.“",
-      "„Na konci této části by mělo být jasné toto: Kvalitní výsledek nevzniká kouzelnou formulí. Vzniká z jasného cíle, dostatečného kontextu, požadovaného formátu a kritérií kontroly.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Když AI zadám jen „udělej mi pracovní list“, nemůžu se potom divit, že dostanu něco obecného.",
+      "Čím lépe řeknu, pro koho materiál je, co má žák zvládnout a jak má výsledek vypadat, tím méně času potom strávím opravováním."
     ],
     "explain": [
       "Co potřebuji: Jedna jasná věta: co má výstup umožnit učiteli nebo žákovi.",
@@ -80,33 +83,35 @@ export default {
       "Jak má vypadat: Struktura, rozsah, jazyk, počet variant nebo konkrétní formát."
     ],
     "ask": [
-      "Kde byste výstup „Jedno zadání, které lze rovnou vložit do AI nástroje.“ využili ve své vlastní praxi?"
+      "Co byste museli doplnit do věty „udělej mi pracovní list“, aby byl výsledek použitelný právě pro vaši třídu?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: kvalitní výsledek nevzniká kouzelnou formulí. Vzniká z jasného cíle, dostatečného kontextu, požadovaného formátu a kritérií kontroly."
+      "Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „Jedno zadání, které lze rovnou vložit do AI nástroje“."
     ],
     "demo": [
-      "Přepracujte zadání „Vytvoř mi aktivitu o klimatu“ tak, aby kolega podle výsledku mohl skutečně učit. Na konci musí být vidět tento výstup: Jedno zadání, které lze rovnou vložit do AI nástroje."
+      "Přepracuj zadání „Vytvoř mi aktivitu o klimatu“ tak, aby kolega podle výsledku mohl skutečně učit. Na konci ukaž konkrétní výstup: Jedno zadání, které lze rovnou vložit do AI nástroje."
     ],
     "facilitation": [
-      "Nechte kolegy přepracovat vágní zadání „udělej pracovní list“. Poté společně porovnejte, co přineslo doplnění cíle a omezení."
+      "Nech kolegy přepracovat vágní zadání „udělej pracovní list“. Poté společně porovnej, co přineslo doplnění cíle a omezení."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Jak zpracovávat materiály s AI.“"
+      "Nech poslední bod chvíli doznít a otevři „Jak zpracovávat materiály s AI“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „pracovní postup“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „schéma postupu“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 4 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "2 min rozjezd · 4 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "ai-literacy/material-workflow": {
     "say": [
-      "„Teď se podíváme na téma: Jak zpracovávat materiály s AI.“",
-      "„Na konci této části by mělo být jasné toto: Nejbezpečnější postup nezačíná generováním od nuly. Začíná kvalitním podkladem, jasným cílem a několika kontrolními průchody.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Já osobně se snažím nezačínat prázdným oknem. Vezmu vlastní podklad, očistím ho a teprve potom nechám AI pracovat.",
+      "Nejlepší výsledky mi stejně nevznikají na první pokus. Vzniknou až ve chvíli, kdy modelu přesně řeknu, co je špatně a co naopak nesmí změnit."
     ],
     "explain": [
       "Vyberte důvěryhodný podklad: Vlastní text, učebnici, oficiální zdroj, rubriku nebo ověřená data. AI nemusí informace domýšlet.",
@@ -114,33 +119,35 @@ export default {
       "Nechte AI nejprve porozumět zadání: Požádejte o stručné shrnutí cíle, omezení a možných rizik. Opravte nedorozumění dřív, než vznikne celý materiál."
     ],
     "ask": [
-      "Který rozdíl mezi „Slabý postup“ a „Profesionální postup“ je pro vás nejdůležitější?"
+      "Ve kterém kroku nejčastěji podle vás vznikne chyba: podklad, zadání, nebo kontrola?"
     ],
     "expected": [
-      "Kvalita obvykle vzniká v cyklu: návrh → kontrola → cílená oprava → závěrečné ověření. Ne v jednom kliknutí."
+      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: Kvalita obvykle vzniká v cyklu: návrh → kontrola → cílená oprava → závěrečné ověření. Ne v jednom kliknutí."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Vyberte důvěryhodný podklad → Očistěte data."
+      "Na obrazovce projdi jen první dva kroky: Vyber důvěryhodný podklad → Očistěte data. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
-      "Ukažte jeden reálný anonymizovaný materiál a projděte pracovní postup živě. Zdůrazněte, že jeden dlouhý prompt není vždy lepší než postupná práce."
+      "Ukaž jeden reálný anonymizovaný materiál a projdi pracovní postup živě. Zdůrazni, že jeden dlouhý prompt není vždy lepší než postupná práce."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Kritické myšlení a ověřování výstupů.“"
+      "Přejdi bez shrnování celé části na „Kritické myšlení a ověřování výstupů“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 7 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 3 min zapojení a uzavření"
   },
   "ai-literacy/verification": {
     "say": [
-      "„Teď se podíváme na téma: Kritické myšlení a ověřování výstupů.“",
-      "„Na konci této části by mělo být jasné toto: Ověřování není závěrečná formalita. Je to nedílná součást práce s AI a zároveň model toho, co potřebujeme učit žáky.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Tady je dobré si přiznat jednu nepříjemnou věc: hezky napsaná odpověď se kontroluje hůř, protože jí člověk snáz uvěří.",
+      "U faktů, citací, řešení úloh a hodnocení proto potřebuji druhý zdroj nebo vlastní odbornou kontrolu. Kontrola stejnou AI není nezávislá kontrola."
     ],
     "explain": [
       "Fakta: Lze tvrzení potvrdit v nezávislém důvěryhodném zdroji?",
@@ -148,33 +155,35 @@ export default {
       "Logika: Navazuje závěr na důkazy, nebo pouze zní přesvědčivě?"
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Kritické myšlení a ověřování výstupů“?"
+      "Co z výstupu byste nikdy nepřevzali bez ověření v jiném zdroji?"
     ],
     "expected": [
-      "Model může zopakovat vlastní chybu nebo vytvořit přesvědčivé vysvětlení nesprávného tvrzení. Nezávislý zdroj a odborný úsudek nelze obejít."
+      "Ať z odpovědí nakonec vyplyne toto: Model může zopakovat vlastní chybu nebo vytvořit přesvědčivé vysvětlení nesprávného tvrzení. Nezávislý zdroj a odborný úsudek nelze obejít."
     ],
     "demo": [
-      "Použijte jeden krátký modelový příklad bez osobních údajů a ukažte konkrétní dopad postupu."
+      "Použij jeden krátký modelový příklad bez osobních údajů. Ukaž na něm konkrétní dopad, ne celou aplikaci."
     ],
     "facilitation": [
-      "Přineste dvě krátké odpovědi: jednu správnou a jednu s nenápadnou smyšlenou citací. Nechte kolegy hledat signály, ne hádat podle stylu."
+      "Přines dvě krátké odpovědi: jednu správnou a jednu s nenápadnou smyšlenou citací. Nech kolegy hledat signály, ne hádat podle stylu."
     ],
     "caution": [
       "Požádat AI o kontrolu nestačí: Model může zopakovat vlastní chybu nebo vytvořit přesvědčivé vysvětlení nesprávného tvrzení. Nezávislý zdroj a odborný úsudek nelze obejít."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: AI, žáci a proměna zadávání úkolů.“"
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „AI, žáci a proměna zadávání úkolů“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "2 min uvedení · 4 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Řekni jednu myšlenku, ukaž jeden příklad a polož jednu otázku."
+    ],
+    "timing": "2 min rozjezd · 4 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "ai-literacy/students": {
     "say": [
-      "„Teď se podíváme na téma: AI, žáci a proměna zadávání úkolů.“",
-      "„Na konci této části by mělo být jasné toto: Smyslem není soutěžit s žáky v odhalování AI. Potřebujeme navrhovat úkoly, ve kterých je vidět proces, porozumění, rozhodování a osobní odpovědnost.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Nemyslím si, že vyhrajeme závod v tom, kdo lépe pozná text z AI. To je slepá ulička.",
+      "Mnohem větší smysl má změnit úkol tak, aby žák musel ukázat postup, zdroje, vlastní rozhodnutí a schopnost výsledek obhájit."
     ],
     "explain": [
       "Úkol snadno nahraditelný AI: obecný referát bez práce se zdroji, shrnutí známého tématu.",
@@ -182,33 +191,35 @@ export default {
       "Stanovte pravidla použití: Co je dovoleno, co se má přiznat a co už je nahrazení vlastní práce."
     ],
     "ask": [
-      "Který rozdíl mezi „Úkol snadno nahraditelný AI“ a „Úkol podporující skutečné učení“ je pro vás nejdůležitější?"
+      "Který běžný domácí úkol dnes AI zvládne, aniž by se žák cokoli naučil?"
     ],
     "expected": [
-      "Automatické detektory mohou chybovat a nesmí být jediným podkladem pro obvinění žáka. Důležitější je dobře navržený proces práce a ověřitelné podklady."
+      "Po dvou reakcích vrať diskusi k tomuto bodu: Automatické detektory mohou chybovat a nesmí být jediným podkladem pro obvinění žáka. Důležitější je dobře navržený proces práce a ověřitelné podklady."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Stanovte pravidla použití → Hodnoťte proces."
+      "Na obrazovce projdi jen první dva kroky: Stanovte pravidla použití → Hodnoťte proces. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
-      "Zeptejte se: Který běžný domácí úkol dnes AI zvládne bez učení? Poté společně úkol přepracujte."
+      "Zeptej se: Který běžný domácí úkol dnes AI zvládne bez učení? Poté společně úkol přepracuj."
     ],
     "caution": [
       "Detektor AI není důkaz: Automatické detektory mohou chybovat a nesmí být jediným podkladem pro obvinění žáka. Důležitější je dobře navržený proces práce a ověřitelné podklady."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Bezpečnost, autorská odpovědnost a transparentnost.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Bezpečnost, autorská odpovědnost a transparentnost“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „porovnání“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "2 min rozjezd · 6 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "ai-literacy/responsibility": {
     "say": [
-      "„Teď se podíváme na téma: Bezpečnost, autorská odpovědnost a transparentnost.“",
-      "„Na konci této části by mělo být jasné toto: Učitel musí vědět, jaká data používá, odkud pochází podklad, kdo odpovídá za finální výstup a kdy je vhodné použití AI přiznat.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Tuhle část nechci měnit v právnickou přednášku. Stačí si hlídat několik praktických věcí.",
+      "Co do nástroje posílám, odkud mám podklady, co jsem ověřil a jestli bych se pod finální výstup bez obav podepsal."
     ],
     "explain": [
       "Data: Používám jen nezbytná a anonymizovaná data. Citlivé údaje do nástroje nevkládám.",
@@ -216,33 +227,35 @@ export default {
       "Transparentnost: Tam, kde je to významné, dokážu popsat, jakou roli AI v přípravě nebo úkolu hrála."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Bezpečnost, autorská odpovědnost a transparentnost“?"
+      "U kterého typu práce byste považovali za fér otevřeně říct, že pomáhala AI?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: učitel musí vědět, jaká data používá, odkud pochází podklad, kdo odpovídá za finální výstup a kdy je vhodné použití AI přiznat."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Učitel musí vědět, jaká data používá, odkud pochází podklad, kdo odpovídá za finální výstup a kdy je vhodné použití AI přiznat."
     ],
     "demo": [
-      "Vyberte z tabulky jeden běžný případ a projděte jej zleva doprava: Situace → Rozumný postup."
+      "Vyber jeden běžný řádek a projdi ho zleva doprava: Situace → Rozumný postup. Zbytek nech jako přehled."
     ],
     "facilitation": [
-      "Nevytvářejte právní přednášku. Držte se praktických rozhodnutí: data, zdroje, kontrola, transparentnost a odpovědnost."
+      "Nedělej právní přednášku. Drž se praktických rozhodnutí: data, zdroje, kontrola, transparentnost a odpovědnost."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nečti tabulku po řádcích. Jeden dobře vysvětlený případ je užitečnější než rychlé projetí všeho."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Pět pravidel pro každodenní práci.“"
+      "Nech poslední bod chvíli doznít a otevři „Pět pravidel pro každodenní práci“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „tabulka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „tabulku“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "1 min uvedení · 5 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi jediný nejběžnější řádek a ostatní označ jako přehled pro pozdější použití."
+    ],
+    "timing": "1 min rozjezd · 5 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "ai-literacy/takeaway": {
     "say": [
-      "„Teď se podíváme na téma: Pět pravidel pro každodenní práci.“",
-      "„Na konci této části by mělo být jasné toto: Kolegové odcházejí s jednoduchým pracovním rámcem, který lze použít u libovolného AI nástroje nebo školní aplikace.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Na závěr bych z toho nedělal dalších dvacet pravidel. Bohatě stačí pět návyků, které se dají použít u jakéhokoli nástroje.",
+      "Když mám jasný cíl, bezpečný podklad, konkrétní zadání, kontrolu a vlastní odpovědnost, jsem na dobré cestě."
     ],
     "explain": [
       "Mám cíl: Vím, proč AI používám a co má výsledkem vzniknout.",
@@ -250,67 +263,71 @@ export default {
       "Chráním data: Nevkládám zbytečné osobní ani citlivé údaje."
     ],
     "ask": [
-      "Kde byste výstup „Jedna bezpečná a realistická situace k vyzkoušení během příštího týdne.“ využili ve své vlastní praxi?"
+      "Které z pěti pravidel potřebujete ve své práci hlídat nejvíc?"
     ],
     "expected": [
-      "Pro méně zkušené: více živých ukázek a jeden společný úkol. Pro pokročilé: srovnání modelů, práce s delším podkladem, redesign hodnocení a společná tvorba pravidel předmětové komise."
+      "Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „Jedna bezpečná a realistická situace k vyzkoušení během příštího týdne“."
     ],
     "demo": [
-      "Vyberte jednu opakující se činnost, u které může AI ušetřit čas, aniž by převzala vaše rozhodování. Na konci musí být vidět tento výstup: Jedna bezpečná a realistická situace k vyzkoušení během příštího týdne."
+      "Vyber jednu opakující se činnost, u které může AI ušetřit čas, aniž by převzala vaše rozhodování. Na konci ukaž konkrétní výstup: Jedna bezpečná a realistická situace k vyzkoušení během příštího týdne."
     ],
     "facilitation": [
-      "Závěr nechte praktický. Každý účastník si vybere jeden reálný úkol, na kterém v příštím týdnu bezpečný postup vyzkouší."
+      "Závěr nech praktický. Každý účastník si vybere jeden reálný úkol, na kterém v příštím týdnu bezpečný postup vyzkouší."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "„Než skončíme, vyberte si jeden konkrétní krok, který skutečně použijete v praxi.“"
+      "Na závěr nech každého vybrat jeden konkrétní krok, který opravdu použije. Pak školení ukonči bez dalšího dlouhého shrnutí."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „pracovní postup“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „schéma postupu“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "1 min uvedení · 4 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "1 min rozjezd · 4 min vysvětlení nebo ukázka · 3 min zapojení a uzavření"
   },
   "start/orientation": {
     "say": [
-      "„Teď se podíváme na téma: Co je AI Studio GHRAB.“",
-      "„Na konci této části by mělo být jasné toto: Studio je řízený rozcestník samostatných školních aplikací. Odkaz do Studia sám o sobě žádnou aplikaci neodemkne.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Studio není jedna obří aplikace. Je to spíš vstupní hala, ze které se dostáváme do jednotlivých nástrojů.",
+      "A důležitý detail: samotný odkaz nikoho nikam nepustí. Přístup se ověřuje zvlášť."
     ],
     "explain": [
-      "„Mám odkaz, takže mám přístup ke všemu.“ se mění na Odkaz + oprávnění + API klíč.",
+      "„Mám odkaz, takže mám přístup ke všemu.“ → Odkaz + oprávnění + API klíč.",
       "AI Studio GHRAB není jedna univerzální aplikace. Je to bezpečný vstupní portál, který propojuje samostatné nástroje a kontroluje, ke kterým z nich má konkrétní učitel oprávnění.",
       "Jeden vstup: Kolega si uloží jediný odkaz na AI Studio a odtud otevírá dostupné aplikace."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Co je AI Studio GHRAB“?"
+      "Co byste čekali od Studia: jednu aplikaci, nebo rozcestník více nástrojů?"
     ],
     "expected": [
-      "Odkaz na AI Studio otevře portál. Aplikaci ale zpřístupní až platné osobní oprávnění vydané správcem."
+      "Po dvou reakcích vrať diskusi k tomuto bodu: Odkaz na AI Studio otevře portál. Aplikaci ale zpřístupní až platné osobní oprávnění vydané správcem."
     ],
     "demo": [
-      "Nechte nejprve vyniknout rozdíl mezi „„Mám odkaz, takže mám přístup ke všemu.““ a „Odkaz + oprávnění + API klíč“. Až potom vysvětlete, co změnu způsobilo."
+      "Nech nejdřív vyniknout rozdíl „„Mám odkaz, takže mám přístup ke všemu.““ → „Odkaz + oprávnění + API klíč“. Až potom pojmenuj, co změnu způsobilo."
     ],
     "facilitation": [
-      "Začněte praktickým příkladem: ukažte kolegům kartu zamčené aplikace. Tím hned odstraníte očekávání, že samotný odkaz znamená přístup ke všemu."
+      "Začni praktickým příkladem: ukaž kolegům kartu zamčené aplikace. Tím hned odstraníte očekávání, že samotný odkaz znamená přístup ke všemu."
     ],
     "caution": [
       "Nejdůležitější věta prvního školení: Odkaz na AI Studio otevře portál. Aplikaci ale zpřístupní až platné osobní oprávnění vydané správcem."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Tři podmínky spuštění.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Tři podmínky spuštění“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „modelová ukázka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "1 min uvedení · 3 min vysvětlení nebo ukázka · 1 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "1 min rozjezd · 3 min vysvětlení nebo ukázka · 1 min zapojení a uzavření"
   },
   "start/three-keys": {
     "say": [
-      "„Teď se podíváme na téma: Tři podmínky spuštění.“",
-      "„Na konci této části by mělo být jasné toto: Pro spuštění aplikace musí být splněny tři oddělené podmínky. Když jedna chybí, systém nefunguje správně.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Když se něco nespustí, většinou není potřeba panikařit. Hledáme problém ve třech věcech: přístup, klíč a prohlížeč.",
+      "Stačí postupovat po jedné. Když začneme měnit všechno najednou, jen si ztížíme hledání chyby."
     ],
     "explain": [
       "Odkaz na Studio: Řekne prohlížeči, kam má jít. Je stejný pro všechny.",
@@ -318,33 +335,35 @@ export default {
       "API klíč: Umožní konkrétní aplikaci využít model Gemini pro generování."
     ],
     "ask": [
-      "Kolega otevře AI Studio, ale Diferenciátor je zamčený. Co je nejpravděpodobnější příčina?"
+      "Když se aplikace nespustí, kterou z těch tří oblastí byste kontrolovali jako první?"
     ],
     "expected": [
-      "Přístup do portálu a oprávnění ke konkrétní aplikaci jsou dvě různé věci."
+      "Po hlasování stručně vysvětli logiku správné volby: Přístup do portálu a oprávnění ke konkrétní aplikaci jsou dvě různé věci."
     ],
     "demo": [
-      "Dejte skupině deset sekund na tiché porovnání obou sloupců a potom zvýrazněte jediný rozhodující rozdíl."
+      "Projeď tok zleva doprava na jednom konkrétním příkladu. U každého kroku řekni, co se pokazí, když ho přeskočíme."
     ],
     "facilitation": [
-      "Použijte přirovnání k budově: adresa školy, vstupní karta a energie pro konkrétní zařízení."
+      "Použij přirovnání k budově: adresa školy, vstupní karta a energie pro konkrétní zařízení."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Drž se jedné myšlenky a jednoho příkladu. Další detaily nech na dotazy."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Aktivace osobního přístupu.“"
+      "Nech poslední bod chvíli doznít a otevři „Aktivace osobního přístupu“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „pracovní postup“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „schéma postupu“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "1 min uvedení · 3 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Nech rychle hlasovat a vysvětli jen rozhodující důvod."
+    ],
+    "timing": "1 min rozjezd · 3 min vysvětlení nebo ukázka · 3 min zapojení a uzavření"
   },
   "start/access": {
     "say": [
-      "„Teď se podíváme na téma: Aktivace osobního přístupu.“",
-      "„Na konci této části by mělo být jasné toto: Po školení obdrží kolega podepsaný soubor nebo textový kód. Studio jej ověří přímo v prohlížeči.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Osobní přístup funguje podobně jako vstupenka. Dostanete soubor nebo kód a Studio si ověří, pro koho a pro které aplikace platí.",
+      "Není potřeba nic instalovat na server ani posílat heslo někomu dalšímu."
     ],
     "explain": [
       "Otevřete AI Studio GHRAB: V horní navigaci zvolte Můj přístup.",
@@ -352,33 +371,35 @@ export default {
       "Klikněte na Ověřit a aktivovat: Studio ověří digitální podpis, dobu platnosti a seznam povolených aplikací."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Aktivace osobního přístupu“?"
+      "Co je na osobním přístupu praktičtější než společné heslo pro celý sbor?"
     ],
     "expected": [
-      "Ověření probíhá lokálně v prohlížeči. Soubor ani jeho obsah se při aktivaci neposílají na server."
+      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: Ověření probíhá lokálně v prohlížeči. Soubor ani jeho obsah se při aktivaci neposílají na server."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Otevřete AI Studio GHRAB → Vyberte způsob aktivace."
+      "Na obrazovce projdi jen první dva kroky: Otevřete AI Studio GHRAB → Vyber způsob aktivace. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
       "Přístupové soubory rozdejte až ve chvíli, kdy mají všichni otevřenou stránku Můj přístup. Nevysvětlujte kryptografii do hloubky; stačí princip ověření podpisu."
     ],
     "caution": [
-      "Pracujte pouze s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
+      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Gemini API klíč krok za krokem.“"
+      "Přejdi bez shrnování celé části na „Gemini API klíč krok za krokem“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi první krok, hlavní kontrolní bod a výsledek. Zbytek nech viditelný na slidu."
+    ],
+    "timing": "2 min rozjezd · 6 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "start/api-key": {
     "say": [
-      "„Teď se podíváme na téma: Gemini API klíč krok za krokem.“",
-      "„Na konci této části by mělo být jasné toto: API klíč je osobní přístupový údaj pro Gemini API. Novému uživateli může Google AI Studio po přijetí podmínek vytvořit výchozí projekt a klíč automaticky.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "API klíč zní technicky, ale prakticky je to jen osobní klíč, kterým aplikace otevře přístup ke Gemini.",
+      "Ukážu celý postup pomalu. Hlavně si pohlídáme, kam se klíč vkládá a kam se naopak nikdy kopírovat nemá."
     ],
     "explain": [
       "Aplikace AI Studia GHRAB používají modely Gemini. Aby Google věděl, ke kterému účtu se požadavky vztahují, každý učitel používá svůj vlastní API klíč.",
@@ -386,33 +407,35 @@ export default {
       "Otevřete Dashboard a API Keys: Novému uživateli může být výchozí projekt a klíč vytvořen automaticky. V takovém případě stačí existující klíč zkopírovat."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Gemini API klíč krok za krokem“?"
+      "Které místo v práci s API klíčem vám připadá nejrizikovější?"
     ],
     "expected": [
-      "Google nabízí bezplatnou úroveň pro vybrané modely, ale dostupnost modelů a limity se mohou měnit. Aktuální limity je potřeba kontrolovat přímo v AI Studiu."
+      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: Google nabízí bezplatnou úroveň pro vybrané modely, ale dostupnost modelů a limity se mohou měnit. Aktuální limity je potřeba kontrolovat přímo v AI Studiu."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Přihlaste se na aistudio.google.com → Otevřete Dashboard a API Keys."
+      "Na obrazovce projdi jen první dva kroky: Přihlaste se na aistudio.google.com → Otevřete Dashboard a API Keys. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
-      "Rozhraní Google AI Studio se může měnit. Vždy zdůrazněte cíl postupu: Dashboard → API Keys. Pevná čísla limitů neuvádějte; mění se podle modelu a účtu."
+      "Rozhraní Google AI Studio se může měnit. Vždy zdůrazni cíl postupu: Dashboard → API Keys. Pevná čísla limitů neuvádějte; mění se podle modelu a účtu."
     ],
     "caution": [
       "Bezplatná úroveň není univerzální slib: Google nabízí bezplatnou úroveň pro vybrané modely, ale dostupnost modelů a limity se mohou měnit. Aktuální limity je potřeba kontrolovat přímo v AI Studiu."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Bezpečnostní minimum.“"
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Bezpečnostní minimum“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 8 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi první krok, hlavní kontrolní bod a výsledek. Zbytek nech viditelný na slidu."
+    ],
+    "timing": "2 min rozjezd · 8 min vysvětlení nebo ukázka · 3 min zapojení a uzavření"
   },
   "start/safety": {
     "say": [
-      "„Teď se podíváme na téma: Bezpečnostní minimum.“",
-      "„Na konci této části by mělo být jasné toto: AI pomáhá učiteli, ale nenahrazuje jeho odborný úsudek. Osobní údaje žáků je potřeba před použitím odstranit.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Nejdůležitější bezpečnostní pravidlo je vlastně docela prosté: neposílat do AI něco, co tam vůbec být nemusí.",
+      "Jména, e-maily a další údaje žáků předem odstraním. A výsledek pořád kontroluji jako učitel, ne jako divák."
     ],
     "explain": [
       "Do aplikace lze běžně vložit: anonymizovaný učební text, obecné zadání aktivity.",
@@ -420,99 +443,105 @@ export default {
       "Anonymizovat: Odstranit identifikátory a detaily, podle nichž by šlo člověka poznat."
     ],
     "ask": [
-      "Který vstup je pro běžnou práci nejbezpečnější?"
+      "Jaký údaj se dá přehlédnout i po odstranění jména žáka?"
     ],
     "expected": [
-      "Zadání popisuje potřebnou úpravu bez jména, třídy, diagnózy nebo jiné kombinace údajů, podle níž by šlo žáka poznat."
+      "Po hlasování stručně vysvětli logiku správné volby: Zadání popisuje potřebnou úpravu bez jména, třídy, diagnózy nebo jiné kombinace údajů, podle níž by šlo žáka poznat."
     ],
     "demo": [
-      "Dejte skupině deset sekund na tiché porovnání obou sloupců a potom zvýrazněte jediný rozhodující rozdíl."
+      "Dej kolegům deset vteřin na tiché porovnání. Potom ukaž jeden rozdíl, který má v praxi největší dopad."
     ],
     "facilitation": [
-      "U citlivých příkladů pracujte výhradně s fiktivními daty. Nechte kolegy sami pojmenovat rizikové údaje."
+      "U citlivých příkladů pracuj výhradně s fiktivními daty. Nech kolegy sami pojmenovat rizikové údaje."
     ],
     "caution": [
-      "Pracujte pouze s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
+      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: První kontrola a řešení problémů.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „První kontrola a řešení problémů“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „porovnání“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "1 min uvedení · 4 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Nech rychle hlasovat a vysvětli jen rozhodující důvod."
+    ],
+    "timing": "1 min rozjezd · 4 min vysvětlení nebo ukázka · 3 min zapojení a uzavření"
   },
   "start/troubleshooting": {
     "say": [
-      "„Teď se podíváme na téma: První kontrola a řešení problémů.“",
-      "„Na konci této části by mělo být jasné toto: Většinu potíží lze při prvním spuštění zařadit do jedné ze tří oblastí: přístup, API klíč nebo prohlížeč.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Teď si ukážeme jednoduchou diagnostiku. Ne náhodné klikání, ale krátký postup, který opravdu šetří čas.",
+      "Nejprve zjistím, jestli Studio vidí přístup, potom klíč a nakonec prohlížeč. Ve většině případů tím problém najdeme."
     ],
     "explain": [
       "Další krok: Po zvládnutí společného základu pokračujte školením Diferenciátor: první materiál. Je použitelné napříč předměty a přináší rychlý praktický výsledek."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „První kontrola a řešení problémů“?"
+      "Podle čeho poznáte, že problém není v přístupu, ale v API klíči?"
     ],
     "expected": [
-      "Po zvládnutí společného základu pokračujte školením Diferenciátor: první materiál. Je použitelné napříč předměty a přináší rychlý praktický výsledek."
+      "Ať z odpovědí nakonec vyplyne toto: Po zvládnutí společného základu pokračujte školením Diferenciátor: první materiál. Je použitelné napříč předměty a přináší rychlý praktický výsledek."
     ],
     "demo": [
-      "Vyberte z tabulky jeden běžný případ a projděte jej zleva doprava: Co vidím → Pravděpodobná příčina → Co udělám."
+      "Vyber jeden běžný řádek a projdi ho zleva doprava: Co vidím → Pravděpodobná příčina → Co udělám. Zbytek nech jako přehled."
     ],
     "facilitation": [
       "Tuto část nevynechávejte. Kolegům dává pocit, že případná chyba není selhání uživatele a že existuje jasný postup."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nečti tabulku po řádcích. Jeden dobře vysvětlený případ je užitečnější než rychlé projetí všeho."
     ],
     "transition": [
-      "„Než skončíme, vyberte si jeden konkrétní krok, který skutečně použijete v praxi.“"
+      "Na závěr nech každého vybrat jeden konkrétní krok, který opravdu použije. Pak školení ukonči bez dalšího dlouhého shrnutí."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „tabulka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „tabulku“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "1 min uvedení · 3 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi jediný nejběžnější řádek a ostatní označ jako přehled pro pozdější použití."
+    ],
+    "timing": "1 min rozjezd · 3 min vysvětlení nebo ukázka · 3 min zapojení a uzavření"
   },
   "differentiator/purpose": {
     "say": [
-      "„Teď se podíváme na téma: Co diferenciace je a není.“",
-      "„Na konci této části by mělo být jasné toto: Diferenciace není mechanické zkrácení textu. Mění cestu k cíli, ne nutně samotný vzdělávací cíl.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Diferenciace není to, že slabším žákům smažu polovinu textu a silnějším přidám dvě otázky navíc.",
+      "Cíl může zůstat stejný. Mění se množství opory, cesta k výsledku nebo náročnost přemýšlení."
     ],
     "explain": [
-      "Jeden pracovní list pro celou třídu se mění na Tři úrovně se stejným výukovým cílem.",
+      "Jeden pracovní list pro celou třídu → Tři úrovně se stejným výukovým cílem.",
       "Diferenciátor pomáhá učiteli proměnit jeden výchozí materiál do několika variant, které respektují různé potřeby žáků, ale stále míří ke společnému cíli.",
       "Pouhá úleva: méně úloh bez rozmyslu, nižší očekávání."
     ],
     "ask": [
-      "Který rozdíl mezi „Pouhá úleva“ a „Smysluplná diferenciace“ je pro vás nejdůležitější?"
+      "Jak by se mohla lišit cesta dvou žáků ke stejnému cíli?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: diferenciace není mechanické zkrácení textu. Mění cestu k cíli, ne nutně samotný vzdělávací cíl."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Diferenciace není mechanické zkrácení textu. Mění cestu k cíli, ne nutně samotný vzdělávací cíl."
     ],
     "demo": [
-      "Nechte nejprve vyniknout rozdíl mezi „Jeden pracovní list pro celou třídu“ a „Tři úrovně se stejným výukovým cílem“. Až potom vysvětlete, co změnu způsobilo."
+      "Nech nejdřív vyniknout rozdíl „Jeden pracovní list pro celou třídu“ → „Tři úrovně se stejným výukovým cílem“. Až potom pojmenuj, co změnu způsobilo."
     ],
     "facilitation": [
-      "Ukažte dvě krátké verze téhož úkolu: jednu pouze zkrácenou a druhou skutečně podpořenou. Nechte kolegy popsat rozdíl."
+      "Ukaž dvě krátké verze téhož úkolu: jednu pouze zkrácenou a druhou skutečně podpořenou. Nech kolegy popsat rozdíl."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Příprava vstupního podkladu.“"
+      "Nech poslední bod chvíli doznít a otevři „Příprava vstupního podkladu“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „modelová ukázka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "1 min uvedení · 5 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "1 min rozjezd · 5 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "differentiator/source": {
     "say": [
-      "„Teď se podíváme na téma: Příprava vstupního podkladu.“",
-      "„Na konci této části by mělo být jasné toto: Výstup bude tak kvalitní, jak přesný je vstup. Aplikace potřebuje vědět nejen co upravuje, ale také pro koho a proč.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Než něco vygenerujeme, potřebujeme si ujasnit vstup. Aplikace nepozná sama, co je v materiálu nedotknutelné a co může upravit.",
+      "Proto jí řeknu, pro koho materiál je, co má zůstat stejné a kde přesně chci rozdíly."
     ],
     "explain": [
       "Podklad: Text, pracovní list, zadání nebo sada úloh.",
@@ -520,33 +549,35 @@ export default {
       "Cíl: Co má žák na konci prokázat nebo vytvořit."
     ],
     "ask": [
-      "Kde byste výstup „Hotový vstup, který lze vložit do Diferenciátoru.“ využili ve své vlastní praxi?"
+      "Co musí aplikace vědět o vaší skupině, aby nevytvořila jen obecný materiál?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: výstup bude tak kvalitní, jak přesný je vstup. Aplikace potřebuje vědět nejen co upravuje, ale také pro koho a proč."
+      "Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „Hotový vstup, který lze vložit do Diferenciátoru“."
     ],
     "demo": [
-      "Vyberte materiál, který reálně použijete během nejbližších dvou týdnů. Na konci musí být vidět tento výstup: Hotový vstup, který lze vložit do Diferenciátoru."
+      "Vyber materiál, který reálně použijete během nejbližších dvou týdnů. Na konci ukaž konkrétní výstup: Hotový vstup, který lze vložit do Diferenciátoru."
     ],
     "facilitation": [
-      "Nechte účastníky pracovat s vlastním krátkým materiálem. Doporučte rozsah, který lze během školení rychle zkontrolovat."
+      "Nech účastníky pracovat s vlastním krátkým materiálem. Doporuč rozsah, který lze během školení rychle zkontrolovat."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Nastavení tří variant.“"
+      "Přejdi bez shrnování celé části na „Nastavení tří variant“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "2 min uvedení · 4 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "2 min rozjezd · 4 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "differentiator/settings": {
     "say": [
-      "„Teď se podíváme na téma: Nastavení tří variant.“",
-      "„Na konci této části by mělo být jasné toto: Nejčastější model pracuje s podpůrnou, standardní a rozšiřující variantou. Každá má jasný účel.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Tři varianty neznamenají tři úplně jiné pracovní listy. Pořád držíme společný cíl a stejné jádro učiva.",
+      "Podpůrná verze přidává oporu, standardní drží běžný nárok a rozšiřující jde víc do hloubky — ne jen do většího množství práce."
     ],
     "explain": [
       "Podpůrná varianta: Stejný cíl, více opory, kratší kroky, přehlednější instrukce a případně vzor.",
@@ -554,13 +585,13 @@ export default {
       "Rozšiřující varianta: Vyšší míra samostatnosti, přenos, argumentace, tvorba nebo hlubší propojení."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Nastavení tří variant“?"
+      "Jaký je podle vás rozdíl mezi rozšiřující variantou a pouhým přidáním další práce?"
     ],
     "expected": [
-      "Podpůrná varianta nesmí automaticky znamenat, že žák procvičuje jinou a méně důležitou dovednost."
+      "Po dvou reakcích vrať diskusi k tomuto bodu: Podpůrná varianta nesmí automaticky znamenat, že žák procvičuje jinou a méně důležitou dovednost."
     ],
     "demo": [
-      "Vyberte z tabulky jeden běžný případ a projděte jej zleva doprava: Prvek → Podpůrná → Standardní → Rozšiřující."
+      "Projeď tok zleva doprava na jednom konkrétním příkladu. U každého kroku řekni, co se pokazí, když ho přeskočíme."
     ],
     "facilitation": [
       "Při ukázce nepřeskakujte pole s pedagogickým kontextem. Právě jeho kvalita odlišuje odborný výstup od generického zjednodušení."
@@ -569,18 +600,20 @@ export default {
       "Pozor na skryté snížení cíle: Podpůrná varianta nesmí automaticky znamenat, že žák procvičuje jinou a méně důležitou dovednost."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Generování a první kontrola.“"
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Generování a první kontrola“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „pracovní postup“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „schéma postupu“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 9 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi první krok, hlavní kontrolní bod a výsledek. Zbytek nech viditelný na slidu."
+    ],
+    "timing": "2 min rozjezd · 9 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "differentiator/generation": {
     "say": [
-      "„Teď se podíváme na téma: Generování a první kontrola.“",
-      "„Na konci této části by mělo být jasné toto: AI výstup není hotový materiál. První kontrola se zaměřuje na cíl, instrukce, faktickou správnost a reálnou použitelnost.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Po kliknutí na generování práce nekončí. V tu chvíli teprve začíná učitelská kontrola.",
+      "Já se nejdřív dívám na cíl a instrukce. Až potom řeším vzhled. Krásný pracovní list s chybným zadáním je pořád špatný pracovní list."
     ],
     "explain": [
       "Přečtěte všechny tři varianty: Nekontrolujte pouze podpůrnou verzi. Chyba může být i ve standardní nebo rozšiřující variantě.",
@@ -588,33 +621,35 @@ export default {
       "Ověřte odbornou správnost: Zkontrolujte fakta, terminologii, řešení a případné odpovědi."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Generování a první kontrola“?"
+      "Co kontrolujete jako první, když vám AI vytvoří pracovní list?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: aI výstup není hotový materiál. První kontrola se zaměřuje na cíl, instrukce, faktickou správnost a reálnou použitelnost."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: AI výstup není hotový materiál. První kontrola se zaměřuje na cíl, instrukce, faktickou správnost a reálnou použitelnost."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Přečtěte všechny tři varianty → Porovnejte vzdělávací cíl."
+      "Na obrazovce projdi jen první dva kroky: Přečtěte všechny tři varianty → Porovnej vzdělávací cíl. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
-      "Po vygenerování dejte dvě minuty ticha na individuální kontrolu. Teprve potom sbírejte společné připomínky."
+      "Po vygenerování dej dvě minuty ticha na individuální kontrolu. Teprve potom sbírejte společné připomínky."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nečti všechny kroky ze slidu. U každého stačí říct, proč tam je a co po něm zůstane hotové."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Export a použití ve výuce.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Export a použití ve výuce“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 7 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi první krok, hlavní kontrolní bod a výsledek. Zbytek nech viditelný na slidu."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 6 min zapojení a uzavření"
   },
   "differentiator/export": {
     "say": [
-      "„Teď se podíváme na téma: Export a použití ve výuce.“",
-      "„Na konci této části by mělo být jasné toto: Výsledný materiál musí být přehledný, rozpoznatelný a připravený pro tisk nebo digitální distribuci.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Výstup musí být použitelný i ve chvíli, kdy u něj nejsem a nic nevysvětluji.",
+      "Proto kontroluji názvy variant, rozložení, tisk a hlavně to, jestli žák hned pozná, co má dělat."
     ],
     "explain": [
       "Neutrální označení: Varianta A, B, C nebo barvy bez hodnotícího významu.",
@@ -622,33 +657,35 @@ export default {
       "Učitelský klíč: Řešení uchovávejte odděleně od žákovské verze."
     ],
     "ask": [
-      "Který popis rozšiřující varianty je pedagogicky nejvhodnější?"
+      "Co by měl žák pochopit během prvních deseti sekund po otevření materiálu?"
     ],
     "expected": [
-      "Rozšíření má přidat hloubku, samostatnost nebo přenos, nikoli jen mechanické množství."
+      "Po hlasování stručně vysvětli logiku správné volby: Rozšíření má přidat hloubku, samostatnost nebo přenos, nikoli jen mechanické množství."
     ],
     "demo": [
-      "Dokončete jeden materiál, který lze skutečně použít. Na konci musí být vidět tento výstup: Tři kontrolované varianty materiálu a učitelský klíč."
+      "Dokončete jeden materiál, který lze skutečně použít. Na konci ukaž konkrétní výstup: Tři kontrolované varianty materiálu a učitelský klíč."
     ],
     "facilitation": [
-      "Ukažte, jak varianty označit neutrálně. Nedoporučujte názvy typu slabší, normální a chytří."
+      "Ukaž, jak varianty označit neutrálně. Nedoporučujte názvy typu slabší, normální a chytří."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Kam pokračovat.“"
+      "Nech poslední bod chvíli doznít a otevři „Kam pokračovat“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "2 min uvedení · 4 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "2 min rozjezd · 4 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "differentiator/next": {
     "say": [
-      "„Teď se podíváme na téma: Kam pokračovat.“",
-      "„Na konci této části by mělo být jasné toto: Po Diferenciátoru se vzdělávací cesta větví podle toho, jaké nástroje chce učitel využívat.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Tady už každý nemusí pokračovat stejným směrem. Někdo bude chtít testy, jiný hry a někdo jen kvalitnější pracovní materiály.",
+      "Důležité je vybrat další aplikaci podle vlastní potřeby, ne podle toho, která vypadá nejefektněji."
     ],
     "explain": [
       "Interaktivní materiály: GitHub → Generátor testů nebo LUDUS.",
@@ -656,47 +693,49 @@ export default {
       "Hodnocení: Hodnotitel maturitních slohů pro vyučující angličtiny."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Kam pokračovat“?"
+      "Který další typ výstupu by se vám po diferenciaci hodil nejvíc?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: po Diferenciátoru se vzdělávací cesta větví podle toho, jaké nástroje chce učitel využívat."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Po Diferenciátoru se vzdělávací cesta větví podle toho, jaké nástroje chce učitel využívat."
     ],
     "demo": [
-      "Použijte jeden krátký modelový příklad bez osobních údajů a ukažte konkrétní dopad postupu."
+      "Použij jeden krátký modelový příklad bez osobních údajů. Ukaž na něm konkrétní dopad, ne celou aplikaci."
     ],
     "facilitation": [
-      "Nechte účastníky zvolit si další větev. Není nutné, aby všichni absolvovali všechna školení."
+      "Nech účastníky zvolit si další větev. Není nutné, aby všichni absolvovali všechna školení."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "„Než skončíme, vyberte si jeden konkrétní krok, který skutečně použijete v praxi.“"
+      "Na závěr nech každého vybrat jeden konkrétní krok, který opravdu použije. Pak školení ukonči bez dalšího dlouhého shrnutí."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "1 min uvedení · 2 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "1 min rozjezd · 2 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "github/why": {
     "say": [
-      "„Teď se podíváme na téma: Proč GitHub používáme.“",
-      "„Na konci této části by mělo být jasné toto: GitHub uchovává soubory a GitHub Pages z nich vytvoří veřejně dostupnou statickou webovou stránku.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "GitHub může na první pohled působit jako něco pro programátory. My z něj ale potřebujeme jen velmi malou a praktickou část.",
+      "Nahrajeme hotový HTML soubor a GitHub Pages z něj udělá odkaz, který otevřou žáci v prohlížeči."
     ],
     "explain": [
-      "Samostatný HTML soubor se mění na Stálý odkaz přes GitHub Pages.",
+      "Samostatný HTML soubor → Stálý odkaz přes GitHub Pages.",
       "Generátor testů a LUDUS mohou vytvořit samostatný interaktivní HTML soubor. GitHub Pages jej umí publikovat tak, aby žák otevřel odkaz přímo v prohlížeči bez instalace.",
       "Repozitář: Online složka se soubory a historií změn."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Proč GitHub používáme“?"
+      "Kde dnes ukládáte interaktivní materiály, které chcete poslat žákům?"
     ],
     "expected": [
-      "Do veřejného ani soukromého repozitáře nevkládejte API klíče, hesla, osobní údaje žáků ani přístupové soubory AI Studia."
+      "Po dvou reakcích vrať diskusi k tomuto bodu: Do veřejného ani soukromého repozitáře nevkládejte API klíče, hesla, osobní údaje žáků ani přístupové soubory AI Studia."
     ],
     "demo": [
-      "Nechte nejprve vyniknout rozdíl mezi „Samostatný HTML soubor“ a „Stálý odkaz přes GitHub Pages“. Až potom vysvětlete, co změnu způsobilo."
+      "Nech nejdřív vyniknout rozdíl „Samostatný HTML soubor“ → „Stálý odkaz přes GitHub Pages“. Až potom pojmenuj, co změnu způsobilo."
     ],
     "facilitation": [
       "Nevysvětlujte Git ani práci v příkazové řádce. Pro základní školení je cílem pouze bezpečně zveřejnit hotový HTML soubor."
@@ -705,18 +744,20 @@ export default {
       "Nikdy na GitHub nedávejte tajné údaje: Do veřejného ani soukromého repozitáře nevkládejte API klíče, hesla, osobní údaje žáků ani přístupové soubory AI Studia."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Účet a nový repozitář.“"
+      "Přejdi bez shrnování celé části na „Účet a nový repozitář“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „modelová ukázka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "1 min uvedení · 4 min vysvětlení nebo ukázka · 1 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "1 min rozjezd · 4 min vysvětlení nebo ukázka · 1 min zapojení a uzavření"
   },
   "github/account": {
     "say": [
-      "„Teď se podíváme na téma: Účet a nový repozitář.“",
-      "„Na konci této části by mělo být jasné toto: Účet a repozitář se zakládají jednou. Název účtu i repozitáře se stanou součástí budoucích odkazů.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Účet a repozitář zakládáme jednou. Pak už jen přidáváme nebo měníme jednotlivé soubory.",
+      "Vyplatí se zvolit normální profesionální název, protože se objeví i v odkazu, který budeme posílat dál."
     ],
     "explain": [
       "Založte nebo otevřete účet na github.com: Použijte profesionální uživatelské jméno bez diakritiky. Dokončete ověření e-mailu.",
@@ -724,33 +765,35 @@ export default {
       "Použijte název bez diakritiky a mezer: Pro oddělení slov používejte pomlčky."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Účet a nový repozitář“?"
+      "Jaký název účtu nebo repozitáře by působil profesionálně i za dva roky?"
     ],
     "expected": [
-      "GitHub Pages je vhodný pro hotové anonymní výukové materiály. Není vhodný pro seznamy žáků, výsledky testů ani interní dokumenty."
+      "Po dvou reakcích vrať diskusi k tomuto bodu: GitHub Pages je vhodný pro hotové anonymní výukové materiály. Není vhodný pro seznamy žáků, výsledky testů ani interní dokumenty."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Založte nebo otevřete účet na github.com → Zvolte New repository."
+      "Na obrazovce projdi jen první dva kroky: Založte nebo otevřete účet na github.com → Zvol New repository. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
-      "Doporučte profesionální uživatelské jméno bez diakritiky. Upozorněte, že materiály na GitHub Pages jsou veřejně dostupné."
+      "Doporuč profesionální uživatelské jméno bez diakritiky. Upozorněte, že materiály na GitHub Pages jsou veřejně dostupné."
     ],
     "caution": [
       "Veřejné neznamená doporučené ke sdílení všeho: GitHub Pages je vhodný pro hotové anonymní výukové materiály. Není vhodný pro seznamy žáků, výsledky testů ani interní dokumenty."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Aktivace GitHub Pages.“"
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Aktivace GitHub Pages“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi první krok, hlavní kontrolní bod a výsledek. Zbytek nech viditelný na slidu."
+    ],
+    "timing": "2 min rozjezd · 5 min vysvětlení nebo ukázka · 5 min zapojení a uzavření"
   },
   "github/pages": {
     "say": [
-      "„Teď se podíváme na téma: Aktivace GitHub Pages.“",
-      "„Na konci této části by mělo být jasné toto: GitHub Pages lze publikovat z vybrané větve a složky. Pro tento projekt používáme větev main a kořen repozitáře.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Tady jsou v podstatě dvě důležité volby: větev main a kořen repozitáře.",
+      "Jakmile je uložíme, GitHub začne vytvářet web. První spuštění může chvíli trvat, takže mu dáme čas a nebudeme nastavení hned překopávat."
     ],
     "explain": [
       "Otevřete Settings repozitáře: Pokud záložku nevidíte, může být v rozbalovací nabídce.",
@@ -758,33 +801,35 @@ export default {
       "Nastavte Source: Deploy from a branch: Pro jednoduchý statický web není potřeba vlastní build."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Aktivace GitHub Pages“?"
+      "Které dvě volby musíme nastavit, aby se z repozitáře stal web?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: gitHub Pages lze publikovat z vybrané větve a složky. Pro tento projekt používáme větev main a kořen repozitáře."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: GitHub Pages lze publikovat z vybrané větve a složky. Pro tento projekt používáme větev main a kořen repozitáře."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Otevřete Settings repozitáře → V levém menu zvolte Pages."
+      "Na obrazovce projdi jen první dva kroky: Otevřete Settings repozitáře → V levém menu zvol Pages. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
-      "Rozhraní může skrýt Settings do rozbalovací nabídky na menší obrazovce. Ukažte i tuto variantu."
+      "Rozhraní může skrýt Settings do rozbalovací nabídky na menší obrazovce. Ukaž i tuto variantu."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nečti všechny kroky ze slidu. U každého stačí říct, proč tam je a co po něm zůstane hotové."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Nahrání prvního HTML souboru.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Nahrání prvního HTML souboru“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi první krok, hlavní kontrolní bod a výsledek. Zbytek nech viditelný na slidu."
+    ],
+    "timing": "2 min rozjezd · 6 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "github/upload": {
     "say": [
-      "„Teď se podíváme na téma: Nahrání prvního HTML souboru.“",
-      "„Na konci této části by mělo být jasné toto: Hotový export nahrajete přes webové rozhraní a změnu uložíte jako pojmenovanou revizi (commit).“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Samotné nahrání souboru je podobné jako přiložení přílohy do e-mailu.",
+      "Rozdíl je v tom, že změnu ještě pojmenujeme a potvrdíme. Ten krátký popis se později hodí, když hledáme, co jsme vlastně opravovali."
     ],
     "explain": [
       "Otevřete správný repozitář: Před nahráním zkontrolujte název a vlastníka.",
@@ -792,65 +837,69 @@ export default {
       "Použijte bezpečný název souboru: Například fractions-practice-1.html. Vyhněte se diakritice a mezerám."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Nahrání prvního HTML souboru“?"
+      "Proč se vyplatí každou uloženou změnu krátce pojmenovat?"
     ],
     "expected": [
-      "GitHub omezuje velikost jednotlivých souborů a počet souborů nahrávaných najednou. Běžný samostatný HTML materiál je však zpravidla výrazně menší."
+      "Ať z odpovědí nakonec vyplyne toto: GitHub omezuje velikost jednotlivých souborů a počet souborů nahrávaných najednou. Běžný samostatný HTML materiál je však zpravidla výrazně menší."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Otevřete správný repozitář → Zvolte Add file → Upload files."
+      "Na obrazovce projdi jen první dva kroky: Otevřete správný repozitář → Zvol Add file → Upload files. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
-      "Připravte každému účastníkovi malý testovací HTML soubor, aby školení nezáviselo na předchozí práci v aplikaci."
+      "Připrav každému účastníkovi malý testovací HTML soubor, aby školení nezáviselo na předchozí práci v aplikaci."
     ],
     "caution": [
       "Limity webového nahrávání: GitHub omezuje velikost jednotlivých souborů a počet souborů nahrávaných najednou. Běžný samostatný HTML materiál je však zpravidla výrazně menší."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Odkaz pro žáky.“"
+      "Nech poslední bod chvíli doznít a otevři „Odkaz pro žáky“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 7 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi první krok, hlavní kontrolní bod a výsledek. Zbytek nech viditelný na slidu."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 3 min zapojení a uzavření"
   },
   "github/link": {
     "say": [
-      "„Teď se podíváme na téma: Odkaz pro žáky.“",
-      "„Na konci této části by mělo být jasné toto: Projektový odkaz má stálou strukturu. Pro každý materiál se mění pouze název souboru.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Odkaz má pořád stejnou logiku: účet, repozitář a název souboru.",
+      "Nejlepší kontrola je otevřít ho v anonymním okně. Tím hned poznám, jestli funguje i člověku, který není přihlášený do mého účtu."
     ],
     "explain": [
       "Projektový odkaz má stálou strukturu. Pro každý materiál se mění pouze název souboru."
     ],
     "ask": [
-      "Který odkaz typicky spustí stránku přes GitHub Pages?"
+      "Jak byste ověřili, že odkaz funguje i žákovi bez vašeho přihlášení?"
     ],
     "expected": [
-      "Adresa GitHub Pages používá doménu uzivatel.github.io."
+      "Po hlasování stručně vysvětli logiku správné volby: Adresa GitHub Pages používá doménu uzivatel.github.io."
     ],
     "demo": [
-      "Zobrazte blok „Vzorec projektového odkazu“ a zvýrazněte pouze místa, která má učitel skutečně upravit."
+      "Zobraz blok „Vzorec projektového odkazu“ a zvýrazni jen místa, která má učitel skutečně upravovat."
     ],
     "facilitation": [
-      "Nechte kolegy adresu sami sestavit a otevřít v anonymním okně. Tím ověří, že není závislá na jejich přihlášení."
+      "Nech kolegy adresu sami sestavit a otevřít v anonymním okně. Tím ověří, že není závislá na jejich přihlášení."
     ],
     "caution": [
-      "Pracujte pouze s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
+      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Aktualizace bez změny odkazu.“"
+      "Přejdi bez shrnování celé části na „Aktualizace bez změny odkazu“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "2 min uvedení · 4 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Nech rychle hlasovat a vysvětli jen rozhodující důvod."
+    ],
+    "timing": "2 min rozjezd · 4 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "github/update": {
     "say": [
-      "„Teď se podíváme na téma: Aktualizace bez změny odkazu.“",
-      "„Na konci této části by mělo být jasné toto: Když nová verze zachová stejný název a umístění souboru, odkaz pro žáky zůstane stejný.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Tady je příjemná věc: když opravím soubor pod stejným názvem, nemusím žákům posílat nový odkaz.",
+      "Jen počítám s tím, že nasazení a cache mohou mít krátké zpoždění. Proto výsledek vždy otevřu znovu a ověřím."
     ],
     "explain": [
       "Exportujte opravenou verzi se stejným názvem: Název musí přesně odpovídat původnímu souboru.",
@@ -858,67 +907,71 @@ export default {
       "Popište opravu v názvu uložené změny: Například Opraven klíč u otázky 6."
     ],
     "ask": [
-      "Kde byste výstup „Aktualizovaný materiál dostupný na stejném odkazu.“ využili ve své vlastní praxi?"
+      "Co musíme zachovat, aby po opravě zůstal stejný odkaz?"
     ],
     "expected": [
-      "Po zvládnutí tohoto modulu můžete pokračovat Generátorem interaktivních testů nebo LUDUSem."
+      "Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „Aktualizovaný materiál dostupný na stejném odkazu“."
     ],
     "demo": [
-      "Proveďte drobnou změnu v testovacím souboru a publikujte ji pod stejným názvem. Na konci musí být vidět tento výstup: Aktualizovaný materiál dostupný na stejném odkazu."
+      "Proveďte drobnou změnu v testovacím souboru a publikujte ji pod stejným názvem. Na konci ukaž konkrétní výstup: Aktualizovaný materiál dostupný na stejném odkazu."
     ],
     "facilitation": [
-      "Zdůrazněte, že po nasazení může prohlížeč krátce zobrazovat starší verzi. Pomůže tvrdé obnovení nebo otevření v anonymním okně."
+      "Zdůrazni, že po nasazení může prohlížeč krátce zobrazovat starší verzi. Pomůže tvrdé obnovení nebo otevření v anonymním okně."
     ],
     "caution": [
-      "Pracujte pouze s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
+      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "„Než skončíme, vyberte si jeden konkrétní krok, který skutečně použijete v praxi.“"
+      "Na závěr nech každého vybrat jeden konkrétní krok, který opravdu použije. Pak školení ukonči bez dalšího dlouhého shrnutí."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 4 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "2 min rozjezd · 4 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "generator/modes": {
     "say": [
-      "„Teď se podíváme na téma: Vyberte správný režim.“",
-      "„Na konci této části by mělo být jasné toto: Generátor umí rychlé procvičování, běžný známkovaný test i bezpečný offline balík. Každý režim řeší jinou situaci.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Než začneme něco nastavovat, potřebujeme vědět, k čemu test slouží. Procvičování a klasifikovaný test nejsou totéž.",
+      "Když zvolím špatný režim, můžu mít technicky hezký výstup, který ale neodpovídá situaci ve třídě."
     ],
     "explain": [
-      "Téma, úroveň a výukový cíl se mění na Ověřený interaktivní test.",
+      "Téma, úroveň a výukový cíl → Ověřený interaktivní test.",
       "Rychlé procvičování: Okamžitá zpětná vazba, opakování a práce v hodině nebo doma.",
       "Běžný test: Bodování, výsledek a kontrolovaný známkovaný výstup."
     ],
     "ask": [
-      "Který režim je nejvhodnější pro domácí opakování slovní zásoby?"
+      "Kdy byste zvolili procvičování a kdy už klasifikovaný test?"
     ],
     "expected": [
-      "Pro učení je vhodná okamžitá zpětná vazba a možnost opakování."
+      "Po hlasování stručně vysvětli logiku správné volby: Pro učení je vhodná okamžitá zpětná vazba a možnost opakování."
     ],
     "demo": [
-      "Nechte nejprve vyniknout rozdíl mezi „Téma, úroveň a výukový cíl“ a „Ověřený interaktivní test“. Až potom vysvětlete, co změnu způsobilo."
+      "Nech nejdřív vyniknout rozdíl „Téma, úroveň a výukový cíl“ → „Ověřený interaktivní test“. Až potom pojmenuj, co změnu způsobilo."
     ],
     "facilitation": [
-      "Nezačínejte ukázkou všech možností. Nejprve nechte účastníky rozhodnout, který režim odpovídá jejich konkrétní hodině."
+      "Nezačínejte ukázkou všech možností. Nejprve nech účastníky rozhodnout, který režim odpovídá jejich konkrétní hodině."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Drž se jedné myšlenky a jednoho příkladu. Další detaily nech na dotazy."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Zdroj a parametry testu.“"
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Zdroj a parametry testu“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „modelová ukázka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 4 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Nech rychle hlasovat a vysvětli jen rozhodující důvod."
+    ],
+    "timing": "2 min rozjezd · 4 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "generator/input": {
     "say": [
-      "„Teď se podíváme na téma: Zdroj a parametry testu.“",
-      "„Na konci této části by mělo být jasné toto: Test může vycházet z vlastního textu, tématu nebo strukturovaného materiálu. Vstup musí odpovídat cíli a úrovni skupiny.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "U prvního testu bych byl schválně střídmý: krátký zdroj, jeden cíl a rozumný počet úloh.",
+      "Čím větší balík zadám, tím víc času potom potřebuji na kontrolu a tím snáz přehlédnu chybu."
     ],
     "explain": [
       "Zvolte jazykový modul: Vyberte cizí jazyk nebo český jazyk podle účelu materiálu.",
@@ -926,33 +979,35 @@ export default {
       "Vložte vlastní zdroj: Text, slovní zásobu, jev nebo jiné učivo předem anonymizujte."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Zdroj a parametry testu“?"
+      "Jak malý může být první test, aby měl pořád smysl?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: test může vycházet z vlastního textu, tématu nebo strukturovaného materiálu. Vstup musí odpovídat cíli a úrovni skupiny."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Test může vycházet z vlastního textu, tématu nebo strukturovaného materiálu. Vstup musí odpovídat cíli a úrovni skupiny."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Zvolte jazykový modul → Určete režim a úroveň."
+      "Na obrazovce projdi jen první dva kroky: Zvol jazykový modul → Určete režim a úroveň. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
-      "Pro první školení doporučte krátký text nebo jedno gramatické téma. Velký rozsah zvyšuje čas kontroly a počet možných chyb."
+      "Pro první školení doporuč krátký text nebo jedno gramatické téma. Velký rozsah zvyšuje čas kontroly a počet možných chyb."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nečti všechny kroky ze slidu. U každého stačí říct, proč tam je a co po něm zůstane hotové."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Typy úloh a didaktická skladba.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Typy úloh a didaktická skladba“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 7 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi první krok, hlavní kontrolní bod a výsledek. Zbytek nech viditelný na slidu."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 6 min zapojení a uzavření"
   },
   "generator/tasks": {
     "say": [
-      "„Teď se podíváme na téma: Typy úloh a didaktická skladba.“",
-      "„Na konci této části by mělo být jasné toto: Aplikace nabízí mnoho typů interaktivních úloh. Kvalitu ale neurčuje jejich počet, nýbrž vhodná kombinace a návaznost.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Generátor nabízí hodně typů úloh, ale není potřeba je nacpat do jednoho testu všechny.",
+      "Typ úlohy vybírám podle toho, co chci ověřit. Jinak se test snadno změní v přehlídku efektů bez jasného didaktického smyslu."
     ],
     "explain": [
       "Začněte jistotou: První úloha má ověřit orientaci a snížit zbytečný stres.",
@@ -960,33 +1015,35 @@ export default {
       "Končete smysluplně: Poslední část má přinést důkaz zvládnutí, ne pouze únavu."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Typy úloh a didaktická skladba“?"
+      "Který typ úlohy nejlépe odpovídá tomu, co ve svém předmětu skutečně chcete ověřit?"
     ],
     "expected": [
-      "U otevřených odpovědí může být potřeba přijmout více správných variant nebo provést učitelskou kontrolu."
+      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: U otevřených odpovědí může být potřeba přijmout více správných variant nebo provést učitelskou kontrolu."
     ],
     "demo": [
-      "Vyberte z tabulky jeden běžný případ a projděte jej zleva doprava: Cíl → Vhodné typy úloh → Riziko."
+      "Vyber jeden běžný řádek a projdi ho zleva doprava: Cíl → Vhodné typy úloh → Riziko. Zbytek nech jako přehled."
     ],
     "facilitation": [
-      "Vyberte maximálně čtyři typy úloh pro první ukázku. Příliš mnoho mechanik odvádí pozornost od kvality obsahu."
+      "Vyber maximálně čtyři typy úloh pro první ukázku. Příliš mnoho mechanik odvádí pozornost od kvality obsahu."
     ],
     "caution": [
       "Automatické bodování má hranice: U otevřených odpovědí může být potřeba přijmout více správných variant nebo provést učitelskou kontrolu."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Varianty a diferenciace.“"
+      "Nech poslední bod chvíli doznít a otevři „Varianty a diferenciace“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „tabulka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „tabulku“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 9 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi jediný nejběžnější řádek a ostatní označ jako přehled pro pozdější použití."
+    ],
+    "timing": "2 min rozjezd · 9 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "generator/differentiation": {
     "say": [
-      "„Teď se podíváme na téma: Varianty a diferenciace.“",
-      "„Na konci této části by mělo být jasné toto: Generátor umí rozdělit test do variant a přiřazovat je pomocí jednorázových kódů. Kódy jsou bezpečnější než běžná jména.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Varianty mají smysl tehdy, když jsou srovnatelné a pořád ověřují stejný cíl.",
+      "Jednorázové kódy jsou praktické právě proto, že nemusíme do systému vkládat jména žáků a přitom dokážeme rozdělit různé verze."
     ],
     "explain": [
       "Doporučeno: náhodné jednorázové kódy, skupiny A/B/C bez jmen.",
@@ -994,65 +1051,69 @@ export default {
       "Určete, co má zůstat stejné: Cíl, celkové body a klíčové dovednosti."
     ],
     "ask": [
-      "Který rozdíl mezi „Doporučeno“ a „Nedoporučeno“ je pro vás nejdůležitější?"
+      "Jak zajistit, aby dvě varianty byly rozdílné, ale pořád spravedlivě srovnatelné?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: generátor umí rozdělit test do variant a přiřazovat je pomocí jednorázových kódů. Kódy jsou bezpečnější než běžná jména."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Generátor umí rozdělit test do variant a přiřazovat je pomocí jednorázových kódů. Kódy jsou bezpečnější než běžná jména."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Určete, co má zůstat stejné → Zvolte, co se může lišit."
+      "Na obrazovce projdi jen první dva kroky: Určete, co má zůstat stejné → Zvol, co se může lišit. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
-      "Pracujte s fiktivními kódy. Vysvětlete, že skutečná jména se nemají objevovat v promptu ani veřejném HTML."
+      "Pracuj s fiktivními kódy. Vysvětli, že skutečná jména se nemají objevovat v promptu ani veřejném HTML."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Náhled, opravy a kontrolní režim Test Lab.“"
+      "Přejdi bez shrnování celé části na „Náhled, opravy a kontrolní režim Test Lab“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „porovnání“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 9 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "2 min rozjezd · 9 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "generator/review": {
     "say": [
-      "„Teď se podíváme na téma: Náhled, opravy a kontrolní režim Test Lab.“",
-      "„Na konci této části by mělo být jasné toto: Před exportem je potřeba projít test jako žák, ověřit klíč, bodování, navigaci a chování na různých zařízeních.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Před exportem si test opravdu projdu jako žák. Nestačí se podívat, že otázky na obrazovce vypadají hezky.",
+      "Kliknu každou cestu, zkontroluji klíč, body, zpětnou vazbu a zkusím i telefon. Test Lab je přesně na tohle."
     ],
     "explain": [
       "Před exportem je potřeba projít test jako žák, ověřit klíč, bodování, navigaci a chování na různých zařízeních."
     ],
     "ask": [
-      "Kde byste výstup „Ověřený test připravený k exportu.“ využili ve své vlastní praxi?"
+      "Kterou chybu byste při pouhém pohledu na náhled nemuseli vůbec odhalit?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: před exportem je potřeba projít test jako žák, ověřit klíč, bodování, navigaci a chování na různých zařízeních."
+      "Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „Ověřený test připravený k exportu“."
     ],
     "demo": [
-      "Otevřete si navzájem náhled testu. Na konci musí být vidět tento výstup: Ověřený test připravený k exportu."
+      "Otevřete si navzájem náhled testu. Na konci ukaž konkrétní výstup: Ověřený test připravený k exportu."
     ],
     "facilitation": [
-      "Nechte každého vyměnit test s kolegou. Autor často nevidí nejasnosti, které jsou pro druhého uživatele okamžitě zřejmé."
+      "Nech každého vyměnit test s kolegou. Autor často nevidí nejasnosti, které jsou pro druhého uživatele okamžitě zřejmé."
     ],
     "caution": [
-      "Pracujte pouze s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
+      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Export a zveřejnění.“"
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Export a zveřejnění“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "3 min uvedení · 7 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 6 min zapojení a uzavření"
   },
   "generator/export": {
     "say": [
-      "„Teď se podíváme na téma: Export a zveřejnění.“",
-      "„Na konci této části by mělo být jasné toto: Výstupem je samostatný HTML soubor nebo bezpečný offline balík. Způsob distribuce musí odpovídat zvolenému režimu.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Export není jen poslední tlačítko. Způsob distribuce musí odpovídat tomu, jestli jde o procvičování, běžný test nebo bezpečný offline režim.",
+      "Ať zvolím cokoli, finální soubor ještě jednou otevřu mimo editor a ověřím, že skutečně funguje."
     ],
     "explain": [
       "Procvičování: HTML lze zveřejnit přes GitHub Pages a sdílet odkaz.",
@@ -1060,99 +1121,105 @@ export default {
       "Bezpečný offline balík: Student_test.html jde žákům; teacher_verifier.html zůstává pouze učiteli."
     ],
     "ask": [
-      "Který soubor bezpečného offline balíku má zůstat pouze učiteli?"
+      "Jaký způsob distribuce byste zvolili pro domácí procvičování a jaký pro známkovaný test?"
     ],
     "expected": [
-      "Učitelský ověřovač slouží ke kontrole odevzdaných odpovědí a nemá být distribuován žákům."
+      "Po hlasování stručně vysvětli logiku správné volby: Učitelský ověřovač slouží ke kontrole odevzdaných odpovědí a nemá být distribuován žákům."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Exportujte správný režim → Otevřete export mimo generátor."
+      "Na obrazovce projdi jen první dva kroky: Exportujte správný režim → Otevřete export mimo generátor. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
       "U bezpečného offline režimu důsledně rozlišujte studentský soubor a teacher_verifier.html. Nezveřejňujte učitelský ověřovač společně se studentským testem."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Drž se jedné myšlenky a jednoho příkladu. Další detaily nech na dotazy."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Výstup ze školení.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Výstup ze školení“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Nech rychle hlasovat a vysvětli jen rozhodující důvod."
+    ],
+    "timing": "2 min rozjezd · 5 min vysvětlení nebo ukázka · 5 min zapojení a uzavření"
   },
   "generator/practice": {
     "say": [
-      "„Teď se podíváme na téma: Výstup ze školení.“",
-      "„Na konci této části by mělo být jasné toto: Účastník dokončí jeden krátký materiál, který odpovídá jeho předmětu a reálné výuce.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Na konci nechci, aby každý odcházel jen s pocitem, že aplikaci viděl.",
+      "Cílem je jeden krátký a použitelný test pro vlastní předmět. Nemusí být velký; musí být zkontrolovaný a reálně použitelný."
     ],
     "explain": [
       "Účastník dokončí jeden krátký materiál, který odpovídá jeho předmětu a reálné výuce."
     ],
     "ask": [
-      "Kde byste výstup „Funkční a ověřený interaktivní test nebo procvičování.“ využili ve své vlastní praxi?"
+      "Jaký krátký test byste mohli opravdu použít v některé z příštích hodin?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: účastník dokončí jeden krátký materiál, který odpovídá jeho předmětu a reálné výuce."
+      "Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „Funkční a ověřený interaktivní test nebo procvičování“."
     ],
     "demo": [
-      "Připravte 8–12 úloh pro jednu konkrétní výukovou situaci. Na konci musí být vidět tento výstup: Funkční a ověřený interaktivní test nebo procvičování."
+      "Připrav 8–12 úloh pro jednu konkrétní výukovou situaci. Na konci ukaž konkrétní výstup: Funkční a ověřený interaktivní test nebo procvičování."
     ],
     "facilitation": [
       "Trvejte na krátkém dokončeném výsledku místo rozsáhlého rozpracovaného testu."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "„Než skončíme, vyberte si jeden konkrétní krok, který skutečně použijete v praxi.“"
+      "Na závěr nech každého vybrat jeden konkrétní krok, který opravdu použije. Pak školení ukonči bez dalšího dlouhého shrnutí."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "2 min rozjezd · 6 min vysvětlení nebo ukázka · 5 min zapojení a uzavření"
   },
   "ludus/purpose": {
     "say": [
-      "„Teď se podíváme na téma: Hra není cíl sama o sobě.“",
-      "„Na konci této části by mělo být jasné toto: LUDUS používá herní světy a mechaniky jako prostředek k procvičení učiva. Nejdříve se volí vzdělávací cíl, až potom estetika hry.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "U LUDUSu je snadné nechat se unést grafikou a příběhem. Já bych ale vždycky začal otázkou: co se mají žáci během hry naučit nebo procvičit?",
+      "Herní svět je obal. Vzdělávací cíl, obsah a zpětná vazba jsou pořád to hlavní."
     ],
     "explain": [
-      "Sada otázek bez příběhu se mění na Obsah zasazený do herní mise.",
+      "Sada otázek bez příběhu → Obsah zasazený do herní mise.",
       "Cíl: Dovednost nebo znalost, kterou má aktivita rozvíjet.",
       "Mechanika: Způsob rozhodování, spolupráce, soutěže nebo postupu."
     ],
     "ask": [
-      "Který rozdíl mezi „Efektní, ale slabé“ a „Pedagogicky funkční“ je pro vás nejdůležitější?"
+      "Kde ve vaší hodině by hra měla skutečný didaktický smysl a nebyla jen odměnou navíc?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: lUDUS používá herní světy a mechaniky jako prostředek k procvičení učiva. Nejdříve se volí vzdělávací cíl, až potom estetika hry."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: LUDUS používá herní světy a mechaniky jako prostředek k procvičení učiva. Nejdříve se volí vzdělávací cíl, až potom estetika hry."
     ],
     "demo": [
-      "Nechte nejprve vyniknout rozdíl mezi „Sada otázek bez příběhu“ a „Obsah zasazený do herní mise“. Až potom vysvětlete, co změnu způsobilo."
+      "Nech nejdřív vyniknout rozdíl „Sada otázek bez příběhu“ → „Obsah zasazený do herní mise“. Až potom pojmenuj, co změnu způsobilo."
     ],
     "facilitation": [
       "Položte otázku: Co má žák po skončení umět lépe? Pokud odpověď zní jen „bavit se“, je potřeba cíl zpřesnit."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Vyberte pracovní cestu.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Vyberte pracovní cestu“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „modelová ukázka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "2 min rozjezd · 6 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "ludus/route": {
     "say": [
-      "„Teď se podíváme na téma: Vyberte pracovní cestu.“",
-      "„Na konci této části by mělo být jasné toto: LUDUS nabízí několik cest: hra z vlastního učiva, import z AI Studia, třídní soutěž a lesson pack.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "LUDUS nabízí několik cest a není potřeba znát všechny najednou.",
+      "Vybereme tu, která odpovídá konkrétní hodině: samostatná hra, třídní soutěž, import hotových úloh nebo celý lesson pack."
     ],
     "explain": [
       "Vlastní učivo: Vložíte otázky a úkoly přímo v dílně.",
@@ -1160,65 +1227,69 @@ export default {
       "Třídní soutěž: Připravíte společnou aktivitu na projektor."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Vyberte pracovní cestu“?"
+      "Která pracovní cesta nejlépe odpovídá aktivitě, kterou máte právě v hlavě?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: lUDUS nabízí několik cest: hra z vlastního učiva, import z AI Studia, třídní soutěž a lesson pack."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: LUDUS nabízí několik cest: hra z vlastního učiva, import z AI Studia, třídní soutěž a lesson pack."
     ],
     "demo": [
-      "Použijte jeden krátký modelový příklad bez osobních údajů a ukažte konkrétní dopad postupu."
+      "Použij jeden krátký modelový příklad bez osobních údajů. Ukaž na něm konkrétní dopad, ne celou aplikaci."
     ],
     "facilitation": [
-      "Pro první školení použijte jednu cestu. Doporučená je hra z vlastního krátkého učiva nebo import již připraveného materiálu."
+      "Pro první školení použij jednu cestu. Doporučená je hra z vlastního krátkého učiva nebo import již připraveného materiálu."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Neprocházej všechny karty stejně podrobně. Vyber dvě, které mají pro tuto skupinu největší význam."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Mechanika a herní svět.“"
+      "Nech poslední bod chvíli doznít a otevři „Mechanika a herní svět“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "2 min rozjezd · 6 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "ludus/mechanics": {
     "say": [
-      "„Teď se podíváme na téma: Mechanika a herní svět.“",
-      "„Na konci této části by mělo být jasné toto: Ne každý herní svět je připraven k exportu. LUDUS pravdivě rozlišuje produkčně ověřené enginy, náhledy a plánované koncepty.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Tady je důležité rozlišit, co už je skutečně připravené k exportu a co je zatím jen náhled nebo koncept.",
+      "Raději použiji jednodušší ověřený engine než působivou mechaniku, která se uprostřed hodiny rozsype."
     ],
     "explain": [
       "Vizuální svět není zárukou funkčního exportu: Používejte pouze enginy, u kterých LUDUS výslovně uvádí, že jsou kompatibilní s dílnou a připravené k exportu."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Mechanika a herní svět“?"
+      "Dali byste přednost efektnějšímu náhledu, nebo jednoduššímu ověřenému enginu? Proč?"
     ],
     "expected": [
-      "Používejte pouze enginy, u kterých LUDUS výslovně uvádí, že jsou kompatibilní s dílnou a připravené k exportu."
+      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: Používejte pouze enginy, u kterých LUDUS výslovně uvádí, že jsou kompatibilní s dílnou a připravené k exportu."
     ],
     "demo": [
-      "Vyberte z tabulky jeden běžný případ a projděte jej zleva doprava: Stav → Co znamená → Co smím udělat."
+      "Vyber jeden běžný řádek a projdi ho zleva doprava: Stav → Co znamená → Co smím udělat. Zbytek nech jako přehled."
     ],
     "facilitation": [
-      "Ukažte štítky stavu a vysvětlete pole builderCompatible lidsky: „Tento svět umí vytvořit skutečně hratelný export.“."
+      "Ukaž štítky stavu a vysvětli pole builderCompatible lidsky: „Tento svět umí vytvořit skutečně hratelný export.“."
     ],
     "caution": [
       "Vizuální svět není zárukou funkčního exportu: Používejte pouze enginy, u kterých LUDUS výslovně uvádí, že jsou kompatibilní s dílnou a připravené k exportu."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Obsah hry.“"
+      "Přejdi bez shrnování celé části na „Obsah hry“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „tabulka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „tabulku“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 7 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi jediný nejběžnější řádek a ostatní označ jako přehled pro pozdější použití."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 6 min zapojení a uzavření"
   },
   "ludus/content": {
     "say": [
-      "„Teď se podíváme na téma: Obsah hry.“",
-      "„Na konci této části by mělo být jasné toto: Obsah se převádí do strukturovaných úloh nebo stanic. Každá musí mít jasné zadání, správnou odpověď a vhodnou zpětnou vazbu.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Hra sama špatnou otázku nezachrání. Každá stanice nebo úkol potřebuje jasné zadání, správnou odpověď a smysluplnou reakci na chybu.",
+      "Nejdřív tedy kontroluji obsah. Teprve potom řeším tempo, body a herní atmosféru."
     ],
     "explain": [
       "Vložte nebo importujte obsah: Použijte anonymizovaný podklad a ověřené otázky.",
@@ -1226,33 +1297,35 @@ export default {
       "Zkontrolujte typy odpovědí: Engine musí daný typ úlohy skutečně podporovat."
     ],
     "ask": [
-      "Kde byste výstup „Strukturovaný obsah připravený pro zvolený engine.“ využili ve své vlastní praxi?"
+      "Co musí mít každá herní stanice, aby nebyla jen klikací překážkou?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: obsah se převádí do strukturovaných úloh nebo stanic. Každá musí mít jasné zadání, správnou odpověď a vhodnou zpětnou vazbu."
+      "Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „Strukturovaný obsah připravený pro zvolený engine“."
     ],
     "demo": [
-      "Použijte jeden krátký tematický celek. Na konci musí být vidět tento výstup: Strukturovaný obsah připravený pro zvolený engine."
+      "Použij jeden krátký tematický celek. Na konci ukaž konkrétní výstup: Strukturovaný obsah připravený pro zvolený engine."
     ],
     "facilitation": [
-      "Doporučte 8–12 kvalitních úloh. První hra nemá být rozsáhlá kampaň."
+      "Doporuč 8–12 kvalitních úloh. První hra nemá být rozsáhlá kampaň."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Učitelský režim a řízení hodiny.“"
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Učitelský režim a řízení hodiny“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 7 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 6 min zapojení a uzavření"
   },
   "ludus/teacher-mode": {
     "say": [
-      "„Teď se podíváme na téma: Učitelský režim a řízení hodiny.“",
-      "„Na konci této části by mělo být jasné toto: Hotové enginy mají sjednocený učitelský vstup a záchranný dock. Učitel má mít možnost hru řídit, uložit stav nebo získat report.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Učitel musí mít nad hrou pořád kontrolu. Potřebuji vědět, jak ji pozastavit, uložit stav nebo pomoci skupině, která se zasekla.",
+      "Učitelský režim není doplněk navíc. Je to pojistka, že hra zůstane součástí hodiny a nepřevezme hodinu za mě."
     ],
     "explain": [
       "Vstup učitele: Tři ťuknutí do loga během krátké doby nebo parametr ?teacher=1.",
@@ -1260,33 +1333,35 @@ export default {
       "Report: Základní přehled průběhu lze kopírovat nebo exportovat."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Učitelský režim a řízení hodiny“?"
+      "Kterou možnost řízení hry byste jako učitel potřebovali nejčastěji?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: hotové enginy mají sjednocený učitelský vstup a záchranný dock. Učitel má mít možnost hru řídit, uložit stav nebo získat report."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Hotové enginy mají sjednocený učitelský vstup a záchranný dock. Učitel má mít možnost hru řídit, uložit stav nebo získat report."
     ],
     "demo": [
-      "Použijte jeden krátký modelový příklad bez osobních údajů a ukažte konkrétní dopad postupu."
+      "Použij jeden krátký modelový příklad bez osobních údajů. Ukaž na něm konkrétní dopad, ne celou aplikaci."
     ],
     "facilitation": [
-      "Prakticky ukažte vstup do učitelského režimu. Tři rychlá ťuknutí do loga jsou užitečná hlavně na dotykovém zařízení."
+      "Prakticky ukaž vstup do učitelského režimu. Tři rychlá ťuknutí do loga jsou užitečná hlavně na dotykovém zařízení."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Drž se jedné myšlenky a jednoho příkladu. Další detaily nech na dotazy."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Testování a export.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Testování a export“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Řekni jednu myšlenku, ukaž jeden příklad a polož jednu otázku."
+    ],
+    "timing": "2 min rozjezd · 5 min vysvětlení nebo ukázka · 5 min zapojení a uzavření"
   },
   "ludus/test-export": {
     "say": [
-      "„Teď se podíváme na téma: Testování a export.“",
-      "„Na konci této části by mělo být jasné toto: Hru je potřeba vyzkoušet jako žák i učitel. Ověřte kompatibilitu enginu, obsah, ukládání postupu a mobilní zobrazení.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Hru testuji dvakrát: jednou očima žáka a podruhé očima učitele.",
+      "Zajímá mě obsah, ovládání, ukládání i telefon. Co funguje na mém notebooku, nemusí automaticky fungovat celé třídě."
     ],
     "explain": [
       "Vytvořte hratelný export: Použijte pouze podporovaný engine.",
@@ -1294,99 +1369,105 @@ export default {
       "Nahrajte soubor na GitHub Pages: Použijte bezpečný název bez diakritiky."
     ],
     "ask": [
-      "Co uděláte, když je svět označen jako „pouze náhled“?"
+      "Co byste při testování hry kontrolovali jinak jako žák a jinak jako učitel?"
     ],
     "expected": [
-      "Stav a exportní způsobilost je potřeba respektovat; náhled nemusí vytvořit funkční hru."
+      "Po hlasování stručně vysvětli logiku správné volby: Stav a exportní způsobilost je potřeba respektovat; náhled nemusí vytvořit funkční hru."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Vytvořte hratelný export → Otevřete HTML mimo LUDUS."
+      "Na obrazovce projdi jen první dva kroky: Vytvořte hratelný export → Otevřete HTML mimo LUDUS. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
-      "Nechte účastníky hru skutečně rozehrát. Pouhé otevření úvodní obrazovky není test."
+      "Nech účastníky hru skutečně rozehrát. Pouhé otevření úvodní obrazovky není test."
     ],
     "caution": [
-      "Pracujte pouze s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
+      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Výstup ze školení.“"
+      "Nech poslední bod chvíli doznít a otevři „Výstup ze školení“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 7 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Nech rychle hlasovat a vysvětli jen rozhodující důvod."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 6 min zapojení a uzavření"
   },
   "ludus/lesson": {
     "say": [
-      "„Teď se podíváme na téma: Výstup ze školení.“",
-      "„Na konci této části by mělo být jasné toto: Účastník připraví krátkou hru nebo třídní soutěž pro jednu konkrétní část hodiny.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Na závěr stačí malý kus hodiny. Nemusíme stavět hodinové dobrodružství.",
+      "Připravíme krátkou hru nebo soutěž s jedním cílem a jasným místem v hodině — třeba pětiminutové opakování nebo závěrečnou kontrolu."
     ],
     "explain": [
       "Účastník připraví krátkou hru nebo třídní soutěž pro jednu konkrétní část hodiny."
     ],
     "ask": [
-      "Kde byste výstup „Krátká, funkční a pedagogicky zdůvodněná výuková hra.“ využili ve své vlastní praxi?"
+      "Kterou pětiminutovou část své hodiny byste dokázali převést do hry?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: účastník připraví krátkou hru nebo třídní soutěž pro jednu konkrétní část hodiny."
+      "Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „Krátká, funkční a pedagogicky zdůvodněná výuková hra“."
     ],
     "demo": [
-      "Připravte hratelnou aktivitu na 10–15 minut. Na konci musí být vidět tento výstup: Krátká, funkční a pedagogicky zdůvodněná výuková hra."
+      "Připrav hratelnou aktivitu na 10–15 minut. Na konci ukaž konkrétní výstup: Krátká, funkční a pedagogicky zdůvodněná výuková hra."
     ],
     "facilitation": [
       "Cílem je 10–15 minut hratelné výuky, nikoli celá vyučovací hodina založená jen na hře."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "„Než skončíme, vyberte si jeden konkrétní krok, který skutečně použijete v praxi.“"
+      "Na závěr nech každého vybrat jeden konkrétní krok, který opravdu použije. Pak školení ukonči bez dalšího dlouhého shrnutí."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "2 min rozjezd · 6 min vysvětlení nebo ukázka · 5 min zapojení a uzavření"
   },
   "correspondence/scope": {
     "say": [
-      "„Teď se podíváme na téma: Kdy asistenta použít.“",
-      "„Na konci této části by mělo být jasné toto: Asistent pomáhá s rozborem a formulací, ale některé situace vyžadují osobní řešení, vedení školy nebo odbornou konzultaci.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Asistent je výborný na formulaci a srovnání myšlenek. Není ale náhradou osobního rozhovoru ani rozhodnutí vedení školy.",
+      "U citlivé situace si nejdřív položím otázku, jestli vůbec patří do e-mailu. Někdy je nejlepší odpovědí domluvená schůzka."
     ],
     "explain": [
-      "Emotivní nebo příliš dlouhá odpověď se mění na Tři kontrolované varianty tónu.",
+      "Emotivní nebo příliš dlouhá odpověď → Tři kontrolované varianty tónu.",
       "Příchozí zpráva: Rozbor toho, co odesílatel skutečně potřebuje a na co odpovědět.",
       "Vlastní e-mail: Koncept z několika bodů, cíle a požadovaného tónu."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Kdy asistenta použít“?"
+      "Kterou situaci byste raději řešili osobně než pomocí e-mailu?"
     ],
     "expected": [
-      "Bezprostřední ohrožení, závažná právní nebo kázeňská věc, velmi citlivé zdravotní údaje či situace vyžadující osobní kontakt se neřeší pouhým generováním e-mailu."
+      "Ať z odpovědí nakonec vyplyne toto: Bezprostřední ohrožení, závažná právní nebo kázeňská věc, velmi citlivé zdravotní údaje či situace vyžadující osobní kontakt se neřeší pouhým generováním e-mailu."
     ],
     "demo": [
-      "Nechte nejprve vyniknout rozdíl mezi „Emotivní nebo příliš dlouhá odpověď“ a „Tři kontrolované varianty tónu“. Až potom vysvětlete, co změnu způsobilo."
+      "Nech nejdřív vyniknout rozdíl „Emotivní nebo příliš dlouhá odpověď“ → „Tři kontrolované varianty tónu“. Až potom pojmenuj, co změnu způsobilo."
     ],
     "facilitation": [
-      "Zdůrazněte, že aplikace není automatický odesílač a nerozhoduje za učitele."
+      "Zdůrazni, že aplikace není automatický odesílač a nerozhoduje za učitele."
     ],
     "caution": [
       "Kdy raději bez AI: Bezprostřední ohrožení, závažná právní nebo kázeňská věc, velmi citlivé zdravotní údaje či situace vyžadující osobní kontakt se neřeší pouhým generováním e-mailu."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Povinná anonymizace.“"
+      "Nech poslední bod chvíli doznít a otevři „Povinná anonymizace“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „modelová ukázka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "1 min uvedení · 5 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "1 min rozjezd · 5 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "correspondence/anonymisation": {
     "say": [
-      "„Teď se podíváme na téma: Povinná anonymizace.“",
-      "„Na konci této části by mělo být jasné toto: Korespondenční asistent má anonymizační preflight. Každá změna původního textu zneplatní předchozí kontrolu a vyžaduje nové ověření.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Anonymizace není jednorázové odkliknutí. Jakmile text upravím nebo do něj něco doplním, musím ho zkontrolovat znovu.",
+      "Jméno je jen nejviditelnější údaj. Člověka může prozradit i třída, konkrétní událost, datum nebo kombinace několika detailů."
     ],
     "explain": [
       "Původní text: Jana Nováková z 1.A, telefon 777 123 456.",
@@ -1394,33 +1475,35 @@ export default {
       "Vložte příchozí text: Zpráva zůstává v pracovním prostoru aplikace."
     ],
     "ask": [
-      "Co se má stát po úpravě původního e-mailu?"
+      "Co může člověka prozradit, i když z textu odstraníme jeho jméno?"
     ],
     "expected": [
-      "Nový obsah může obsahovat nové identifikátory, proto stará kontrola nesmí zůstat platná."
+      "Po hlasování stručně vysvětli logiku správné volby: Nový obsah může obsahovat nové identifikátory, proto stará kontrola nesmí zůstat platná."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Vložte příchozí text → Spusťte anonymizační kontrolu."
+      "Na obrazovce projdi jen první dva kroky: Vložte příchozí text → Spusťte anonymizační kontrolu. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
-      "Použijte fiktivní e-mail a ukažte ruční označení jmen, tříd, telefonů a dalších identifikátorů."
+      "Použij fiktivní e-mail a ukaž ruční označení jmen, tříd, telefonů a dalších identifikátorů."
     ],
     "caution": [
-      "Pracujte pouze s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
+      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Rozbor příchozí zprávy.“"
+      "Přejdi bez shrnování celé části na „Rozbor příchozí zprávy“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „porovnání“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 7 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Nech rychle hlasovat a vysvětli jen rozhodující důvod."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 6 min zapojení a uzavření"
   },
   "correspondence/analysis": {
     "say": [
-      "„Teď se podíváme na téma: Rozbor příchozí zprávy.“",
-      "„Na konci této části by mělo být jasné toto: Než vznikne odpověď, aplikace pomůže oddělit fakta, požadavky, vztahovou rovinu a případná rizika.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Než nechám AI psát odpověď, potřebuji si ujasnit, co vlastně druhá strana chce.",
+      "Oddělím fakta, požadavek, emoce a případné riziko. Tím se vyhnu tomu, že odpovím hezky, ale na něco úplně jiného."
     ],
     "explain": [
       "Fakta: Co se stalo a co je doložitelné.",
@@ -1428,65 +1511,69 @@ export default {
       "Riziko: Co může být sporné, citlivé nebo nejasné."
     ],
     "ask": [
-      "Kde byste výstup „Krátký věcný rozbor, na jehož základě lze bezpečně formulovat odpověď.“ využili ve své vlastní praxi?"
+      "Co bývá v náročném e-mailu těžší rozlišit: fakta, požadavek, nebo emoce?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: než vznikne odpověď, aplikace pomůže oddělit fakta, požadavky, vztahovou rovinu a případná rizika."
+      "Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „Krátký věcný rozbor, na jehož základě lze bezpečně formulovat odpověď“."
     ],
     "demo": [
-      "Použijte fiktivní stížnost nebo organizační dotaz. Na konci musí být vidět tento výstup: Krátký věcný rozbor, na jehož základě lze bezpečně formulovat odpověď."
+      "Použij fiktivní stížnost nebo organizační dotaz. Na konci ukaž konkrétní výstup: Krátký věcný rozbor, na jehož základě lze bezpečně formulovat odpověď."
     ],
     "facilitation": [
-      "Vysvětlete, že kvalitní odpověď nezačíná stylem, ale správným pochopením situace."
+      "Vysvětli, že kvalitní odpověď nezačíná stylem, ale správným pochopením situace."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Tři varianty odpovědi.“"
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Tři varianty odpovědi“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "2 min uvedení · 4 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "2 min rozjezd · 4 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "correspondence/variants": {
     "say": [
-      "„Teď se podíváme na téma: Tři varianty odpovědi.“",
-      "„Na konci této části by mělo být jasné toto: Aplikace může vytvořit stručnou, standardní a diplomatickou verzi. Uživatel vybírá podle vztahu, situace a cíle.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Tři verze nejsou tři stupně slušnosti. Každá má jiný účel.",
+      "Stručná se hodí, když je věc jednoduchá. Standardní pokryje běžnou komunikaci. Diplomatická pomůže tam, kde záleží na vztahu a formulaci každé věty."
     ],
     "explain": [
       "Aplikace může vytvořit stručnou, standardní a diplomatickou verzi. Uživatel vybírá podle vztahu, situace a cíle."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Tři varianty odpovědi“?"
+      "Kdy by vám stručná odpověď pomohla a kdy by naopak mohla působit necitlivě?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: aplikace může vytvořit stručnou, standardní a diplomatickou verzi. Uživatel vybírá podle vztahu, situace a cíle."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Aplikace může vytvořit stručnou, standardní a diplomatickou verzi. Uživatel vybírá podle vztahu, situace a cíle."
     ],
     "demo": [
-      "Vyberte z tabulky jeden běžný případ a projděte jej zleva doprava: Varianta → Kdy ji volit → Na co dát pozor."
+      "Vyber jeden běžný řádek a projdi ho zleva doprava: Varianta → Kdy ji volit → Na co dát pozor. Zbytek nech jako přehled."
     ],
     "facilitation": [
       "Neříkejte, že diplomatická verze je vždy nejlepší. Někdy je vhodnější jasná a krátká odpověď."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nečti tabulku po řádcích. Jeden dobře vysvětlený případ je užitečnější než rychlé projetí všeho."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: E-mail z vlastních bodů.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „E-mail z vlastních bodů“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „tabulka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „tabulku“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 7 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi jediný nejběžnější řádek a ostatní označ jako přehled pro pozdější použití."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 6 min zapojení a uzavření"
   },
   "correspondence/own-email": {
     "say": [
-      "„Teď se podíváme na téma: E-mail z vlastních bodů.“",
-      "„Na konci této části by mělo být jasné toto: Místo kopírování celé historie lze zadat několik bodů, příjemce, cíl a požadovaný tón.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Často není potřeba kopírovat do aplikace celou historii. Bohatě stačí několik bodů: komu píšu, co potřebuji a jaký tón chci držet.",
+      "Výsledek bývá čistší a zároveň do nástroje neposílám zbytečné údaje."
     ],
     "explain": [
       "Určete adresáta a svou roli: Jiný tón má učitel vůči rodiči, kolegovi nebo externí instituci.",
@@ -1494,33 +1581,35 @@ export default {
       "Přidejte jen nezbytná fakta: Ideálně v odrážkách a bez osobních údajů."
     ],
     "ask": [
-      "Kde byste výstup „Vlastní kontrolovaný e-mail ve zvoleném tónu.“ využili ve své vlastní praxi?"
+      "Jaké čtyři informace stačí zadat, abyste nemuseli kopírovat celou historii komunikace?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: místo kopírování celé historie lze zadat několik bodů, příjemce, cíl a požadovaný tón."
+      "Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „Vlastní kontrolovaný e-mail ve zvoleném tónu“."
     ],
     "demo": [
-      "Připravte e-mail, který potřebujete během pracovního týdne. Na konci musí být vidět tento výstup: Vlastní kontrolovaný e-mail ve zvoleném tónu."
+      "Připrav e-mail, který potřebujete během pracovního týdne. Na konci ukaž konkrétní výstup: Vlastní kontrolovaný e-mail ve zvoleném tónu."
     ],
     "facilitation": [
-      "Ukažte, že strukturované body jsou často bezpečnější než vložení kompletního řetězce e-mailů."
+      "Ukaž, že strukturované body jsou často bezpečnější než vložení kompletního řetězce e-mailů."
     ],
     "caution": [
-      "Pracujte pouze s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
+      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Kontrola před odesláním.“"
+      "Nech poslední bod chvíli doznít a otevři „Kontrola před odesláním“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 4 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "2 min rozjezd · 4 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "correspondence/final-check": {
     "say": [
-      "„Teď se podíváme na téma: Kontrola před odesláním.“",
-      "„Na konci této části by mělo být jasné toto: Aplikace připraví koncept. Uživatel ověřuje fakta, adresáty, termíny, tón a vztahové důsledky.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Koncept může znít perfektně a přesto obsahovat špatné datum, příliš tvrdou větu nebo slib, který jsem dát nechtěl.",
+      "Před odesláním proto kontroluji fakta, adresáty, termíny a hlavně to, jak zpráva může působit na druhou stranu."
     ],
     "explain": [
       "Fakta: Je každé tvrzení pravdivé a ověřené?",
@@ -1528,79 +1617,83 @@ export default {
       "Krok: Je jasné, co se bude dít dál?"
     ],
     "ask": [
-      "Kdo odpovídá za konečný obsah odeslaného e-mailu?"
+      "Která chyba v e-mailu může mít největší vztahový dopad, i když jsou fakta správně?"
     ],
     "expected": [
-      "AI nástroj vytváří návrh; odpovědnost za fakta, tón a odeslání zůstává člověku."
+      "Po hlasování stručně vysvětli logiku správné volby: AI nástroj vytváří návrh; odpovědnost za fakta, tón a odeslání zůstává člověku."
     ],
     "demo": [
-      "Použijte jeden krátký modelový příklad bez osobních údajů a ukažte konkrétní dopad postupu."
+      "Projeď tok zleva doprava na jednom konkrétním příkladu. U každého kroku řekni, co se pokazí, když ho přeskočíme."
     ],
     "facilitation": [
-      "Dejte účastníkům jednoduchou pomůcku: FAKTA – TÓN – KROK – DATA – ADRESÁTI."
+      "Dej účastníkům jednoduchou pomůcku: FAKTA – TÓN – KROK – DATA – ADRESÁTI."
     ],
     "caution": [
       "Historie je volitelná: Korespondenční asistent má historii ve výchozím stavu vypnutou. Při vědomém zapnutí má uchovávat pouze omezené anonymizované výstupy lokálně v prohlížeči."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Výstup ze školení.“"
+      "Přejdi bez shrnování celé části na „Výstup ze školení“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „pracovní postup“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „schéma postupu“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Nech rychle hlasovat a vysvětli jen rozhodující důvod."
+    ],
+    "timing": "2 min rozjezd · 5 min vysvětlení nebo ukázka · 5 min zapojení a uzavření"
   },
   "correspondence/practice": {
     "say": [
-      "„Teď se podíváme na téma: Výstup ze školení.“",
-      "„Na konci této části by mělo být jasné toto: Účastník zpracuje jednu fiktivní nebo bezpečně anonymizovanou situaci a provede kompletní kontrolu.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Tady si projdeme celý postup na bezpečné modelové situaci.",
+      "Nejde jen o to vytvořit pěkný e-mail. Důležité je správně anonymizovat vstup, vybrat vhodnou variantu a udělat závěrečnou lidskou kontrolu."
     ],
     "explain": [
       "Účastník zpracuje jednu fiktivní nebo bezpečně anonymizovanou situaci a provede kompletní kontrolu."
     ],
     "ask": [
-      "Kde byste výstup „Hotový koncept, který lze po věcné kontrole použít.“ využili ve své vlastní praxi?"
+      "Podle čeho poznáte, že je koncept připravený k odeslání a není to jen hezky napsaný návrh?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: účastník zpracuje jednu fiktivní nebo bezpečně anonymizovanou situaci a provede kompletní kontrolu."
+      "Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „Hotový koncept, který lze po věcné kontrole použít“."
     ],
     "demo": [
-      "Zpracujte fiktivní školní dotaz nebo stížnost. Na konci musí být vidět tento výstup: Hotový koncept, který lze po věcné kontrole použít."
+      "Zpracujte fiktivní školní dotaz nebo stížnost. Na konci ukaž konkrétní výstup: Hotový koncept, který lze po věcné kontrole použít."
     ],
     "facilitation": [
       "Na prvním školení nepoužívejte skutečně konfliktní osobní komunikaci. Stačí modelová situace."
     ],
     "caution": [
-      "Pracujte pouze s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
+      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "„Než skončíme, vyberte si jeden konkrétní krok, který skutečně použijete v praxi.“"
+      "Na závěr nech každého vybrat jeden konkrétní krok, který opravdu použije. Pak školení ukonči bez dalšího dlouhého shrnutí."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "1 min uvedení · 2 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "1 min rozjezd · 2 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "evaluator/principle": {
     "say": [
-      "„Teď se podíváme na téma: Jak aplikace hodnotí.“",
-      "„Na konci této části by mělo být jasné toto: AI analyzuje text a dokládá zjištění. Body, podmínky automatického neúspěchu (FAIL) a známku počítá pevná logika podle verzované rubriky.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "U Hodnotitele je důležité oddělit dvě věci. AI hledá důkazy a připravuje rozbor, ale body a známku nemá volně vymýšlet.",
+      "Výsledek počítá pevná logika podle rubriky. Tím se držíme stejných kritérií u každé práce."
     ],
     "explain": [
-      "„Text působí asi na dvojku.“ se mění na Kritérium → důkaz → body → schválení.",
+      "„Text působí asi na dvojku.“ → Kritérium → důkaz → body → schválení.",
       "Vstup: Text práce, zadání, parametry a pseudonymní identifikátor.",
       "AI analýza: Nalezení důkazů, chyb, splnění zadání a úrovně výkonu."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Jak aplikace hodnotí“?"
+      "Proč je bezpečnější, když AI připraví důkazy, ale body počítá pevná logika?"
     ],
     "expected": [
-      "Žádná zpětná vazba se nemá distribuovat bez učitelské kontroly a schválení."
+      "Ať z odpovědí nakonec vyplyne toto: Žádná zpětná vazba se nemá distribuovat bez učitelské kontroly a schválení."
     ],
     "demo": [
-      "Nechte nejprve vyniknout rozdíl mezi „„Text působí asi na dvojku.““ a „Kritérium → důkaz → body → schválení“. Až potom vysvětlete, co změnu způsobilo."
+      "Nech nejdřív vyniknout rozdíl „„Text působí asi na dvojku.““ → „Kritérium → důkaz → body → schválení“. Až potom pojmenuj, co změnu způsobilo."
     ],
     "facilitation": [
       "Tento rozdíl je klíčový. Neříkejte „AI dává známku“; přesněji: AI připravuje jazykovou analýzu a aplikace podle pravidel počítá výsledek."
@@ -1609,18 +1702,20 @@ export default {
       "AI výstup není konečné hodnocení: Žádná zpětná vazba se nemá distribuovat bez učitelské kontroly a schválení."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Jedna práce nebo dávka.“"
+      "Přejdi bez shrnování celé části na „Jedna práce nebo dávka“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „modelová ukázka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "2 min rozjezd · 6 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "evaluator/input": {
     "say": [
-      "„Teď se podíváme na téma: Jedna práce nebo dávka.“",
-      "„Na konci této části by mělo být jasné toto: Aplikace podporuje jednu vloženou práci, skupinu v ZIPu, fotografie nebo PDF a import studentů z informačního systému.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Můžu vložit jednu práci nebo celou dávku, ale princip kontroly se nemění.",
+      "U fotografií a PDF si navíc hlídám, jestli byl text správně přečten. Chyba na vstupu se jinak promítne do celého hodnocení."
     ],
     "explain": [
       "Vložený text: Nejrychlejší cesta pro jednu práci.",
@@ -1628,33 +1723,35 @@ export default {
       "Sken nebo fotografie: Nejprve přepis a potvrzení učitelem."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Jedna práce nebo dávka“?"
+      "Co je potřeba navíc zkontrolovat u fotografie nebo naskenovaného PDF?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: aplikace podporuje jednu vloženou práci, skupinu v ZIPu, fotografie nebo PDF a import studentů z informačního systému."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Aplikace podporuje jednu vloženou práci, skupinu v ZIPu, fotografie nebo PDF a import studentů z informačního systému."
     ],
     "demo": [
-      "Použijte jeden krátký modelový příklad bez osobních údajů a ukažte konkrétní dopad postupu."
+      "Použij jeden krátký modelový příklad bez osobních údajů. Ukaž na něm konkrétní dopad, ne celou aplikaci."
     ],
     "facilitation": [
-      "Pro první školení začněte jedním čistým textem. Dávkový pracovní postup ukažte až po zvládnutí individuálního hodnocení."
+      "Pro první školení začni jedním čistým textem. Dávkový pracovní postup ukaž až po zvládnutí individuálního hodnocení."
     ],
     "caution": [
-      "Pracujte pouze s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
+      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Anonymizace a pseudonymizace.“"
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Anonymizace a pseudonymizace“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "2 min uvedení · 7 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 3 min zapojení a uzavření"
   },
   "evaluator/privacy": {
     "say": [
-      "„Teď se podíváme na téma: Anonymizace a pseudonymizace.“",
-      "„Na konci této části by mělo být jasné toto: Skutečná jména a e-maily slouží pouze k lokálnímu párování a distribuci. Do AI požadavku má odcházet pseudonymní kód a zkontrolovaný text.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Jméno studenta potřebuji lokálně kvůli párování a případnému odeslání. AI ho ale k hodnocení nepotřebuje.",
+      "Do požadavku proto posílám pseudonymní kód, text práce, zadání a rubriku — ne jméno ani e-mail."
     ],
     "explain": [
       "Lokálně v aplikaci: jméno pro párování, e-mail pro schválenou distribuci.",
@@ -1662,33 +1759,35 @@ export default {
       "Citlivé ukládání je výchozí vypnuté: Bez vědomého zapnutí se nemá uchovávat studentský text, výsledek, seznam, podpis ani vlastní komentářová banka."
     ],
     "ask": [
-      "Který rozdíl mezi „Lokálně v aplikaci“ a „Do AI požadavku“ je pro vás nejdůležitější?"
+      "Které údaje potřebujeme lokálně, ale model je k samotnému hodnocení vůbec nepotřebuje?"
     ],
     "expected": [
-      "Bez vědomého zapnutí se nemá uchovávat studentský text, výsledek, seznam, podpis ani vlastní komentářová banka."
+      "Ať z odpovědí nakonec vyplyne toto: Bez vědomého zapnutí se nemá uchovávat studentský text, výsledek, seznam, podpis ani vlastní komentářová banka."
     ],
     "demo": [
-      "Dejte skupině deset sekund na tiché porovnání obou sloupců a potom zvýrazněte jediný rozhodující rozdíl."
+      "Dej kolegům deset vteřin na tiché porovnání. Potom ukaž jeden rozdíl, který má v praxi největší dopad."
     ],
     "facilitation": [
-      "Vysvětlete rozdíl: anonymizace odstraňuje identitu; pseudonymizace ji nahrazuje kódem, který lze lokálně spárovat."
+      "Vysvětli rozdíl: anonymizace odstraňuje identitu; pseudonymizace ji nahrazuje kódem, který lze lokálně spárovat."
     ],
     "caution": [
       "Citlivé ukládání je výchozí vypnuté: Bez vědomého zapnutí se nemá uchovávat studentský text, výsledek, seznam, podpis ani vlastní komentářová banka."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Rubrika, důkazy a podmínky neúspěchu.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Rubrika, důkazy a podmínky neúspěchu“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „porovnání“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 7 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 6 min zapojení a uzavření"
   },
   "evaluator/rubric": {
     "say": [
-      "„Teď se podíváme na téma: Rubrika, důkazy a podmínky neúspěchu.“",
-      "„Na konci této části by mělo být jasné toto: Každé kritérium se hodnotí podle pevné rubriky. Závěr musí být opřen o konkrétní důkazy z práce a respektovat podmínky neúspěchu.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Tady se nesmí improvizovat. Každý bod musí vycházet z konkrétního kritéria a konkrétního místa v práci.",
+      "Stejně tak podmínky FAIL nejsou pocitové. Buď jsou splněné podle rubriky, nebo nejsou."
     ],
     "explain": [
       "Pevná kritéria: Aplikace nevymýšlí nové hodnoticí oblasti mimo zadanou rubriku.",
@@ -1696,66 +1795,70 @@ export default {
       "Podmínky neúspěchu (FAIL): Rozsah, téma, formát a další pevné podmínky se kontrolují odděleně."
     ],
     "ask": [
-      "Co je nejlepší reakce, když je bodové hodnocení rozumné, ale uvedený důkaz v textu neodpovídá?"
+      "Jak by měl vypadat důkaz, který opravdu opravňuje přidělit nebo odebrat bod?"
     ],
     "expected": [
-      "Důkazní stopa je součástí spolehlivosti hodnocení a musí odpovídat textu."
+      "Po hlasování stručně vysvětli logiku správné volby: Důkazní stopa je součástí spolehlivosti hodnocení a musí odpovídat textu."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Ověřte základní podmínky → Projděte jednotlivá kritéria."
+      "Na obrazovce projdi jen první dva kroky: Ověř základní podmínky → Projdi jednotlivá kritéria. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
-      "Použijte anonymní ukázku a nechte kolegy dohledat důkaz pro jeden bod. Tím zabráníte slepému přijímání čísel."
+      "Použij anonymní ukázku a nech kolegy dohledat důkaz pro jeden bod. Tím zabráníte slepému přijímání čísel."
     ],
     "caution": [
-      "Nenechte návrh AI zaměnit za konečné odborné rozhodnutí učitele; držte se přesně zadané rubriky."
+      "Nenech návrh AI zaměnit za konečné odborné rozhodnutí učitele. Drž se přesně zadané rubriky."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Učitelská revize.“"
+      "Nech poslední bod chvíli doznít a otevři „Učitelská revize“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 9 min vysvětlení nebo ukázka · 6 min zapojení a shrnutí"
+    "shortcut": [
+      "Nech rychle hlasovat a vysvětli jen rozhodující důvod."
+    ],
+    "timing": "3 min rozjezd · 8 min vysvětlení nebo ukázka · 7 min zapojení a uzavření"
   },
   "evaluator/teacher-review": {
     "say": [
-      "„Teď se podíváme na téma: Učitelská revize.“",
-      "„Na konci této části by mělo být jasné toto: Učitel kontroluje slovní hodnocení, chyby, doporučení, tón i konečný výsledek. Teprve potom označí práci jako schválenou.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Ani dobře nastavená aplikace nepřebírá odpovědnost za konečný verdikt.",
+      "Procházím důkazy, tón zpětné vazby, doporučení i výsledné body. Teprve potom práci schválím."
     ],
     "explain": [
       "Nevhodná zpětná vazba: obecné pochvaly bez důkazu, tvrdé soudy o schopnostech.",
       "Užitečná zpětná vazba: konkrétní silná stránka, jedna až tři priority."
     ],
     "ask": [
-      "Který rozdíl mezi „Nevhodná zpětná vazba“ a „Užitečná zpětná vazba“ je pro vás nejdůležitější?"
+      "Kterou část výsledku byste chtěli před schválením vidět vždy jako první?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: učitel kontroluje slovní hodnocení, chyby, doporučení, tón i konečný výsledek. Teprve potom označí práci jako schválenou."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Učitel kontroluje slovní hodnocení, chyby, doporučení, tón i konečný výsledek. Teprve potom označí práci jako schválenou."
     ],
     "demo": [
-      "Dejte skupině deset sekund na tiché porovnání obou sloupců a potom zvýrazněte jediný rozhodující rozdíl."
+      "Dej kolegům deset vteřin na tiché porovnání. Potom ukaž jeden rozdíl, který má v praxi největší dopad."
     ],
     "facilitation": [
-      "Nechte účastníky najít alespoň jednu větu, kterou by z pedagogických důvodů přeformulovali."
+      "Nech účastníky najít alespoň jednu větu, kterou by z pedagogických důvodů přeformulovali."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Dávkové hodnocení a fronta.“"
+      "Přejdi bez shrnování celé části na „Dávkové hodnocení a fronta“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „porovnání“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 7 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 6 min zapojení a uzavření"
   },
   "evaluator/batch": {
     "say": [
-      "„Teď se podíváme na téma: Dávkové hodnocení a fronta.“",
-      "„Na konci této části by mělo být jasné toto: Dávka umožňuje zpracovat více prací, ale každá stále vyžaduje správné přiřazení, kontrolu vstupu a učitelské schválení.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Dávka šetří klikání, ne odbornou kontrolu.",
+      "Každá práce musí být správně přiřazená, čitelná a nakonec schválená učitelem. U většího množství je o to důležitější pořádek ve frontě."
     ],
     "explain": [
       "Zkontrolujte roster a soubory: Každá práce musí patřit správnému pseudonymu.",
@@ -1763,33 +1866,35 @@ export default {
       "Spusťte řízenou frontu nebo podporovaný dávkový režim: Sledujte stav, chyby a orientační využití."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Dávkové hodnocení a fronta“?"
+      "Kde se při dávkovém zpracování nejčastěji může stát chyba v přiřazení?"
     ],
     "expected": [
-      "Obnovení nemusí uchovávat původní binární přílohy. Při návratu je potřeba ověřit, které podklady jsou stále dostupné."
+      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: Obnovení nemusí uchovávat původní binární přílohy. Při návratu je potřeba ověřit, které podklady jsou stále dostupné."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Zkontrolujte roster a soubory → Potvrďte přepisy obrazových prací."
+      "Na obrazovce projdi jen první dva kroky: Zkontrolujte roster a soubory → Potvrďte přepisy obrazových prací. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
-      "Ukažte, jak aplikace řeší přerušenou dávku a proč se nemá spoléhat na neomezené automatické zpracování bez dohledu."
+      "Ukaž, jak aplikace řeší přerušenou dávku a proč se nemá spoléhat na neomezené automatické zpracování bez dohledu."
     ],
     "caution": [
       "Obnova dávky má omezení: Obnovení nemusí uchovávat původní binární přílohy. Při návratu je potřeba ověřit, které podklady jsou stále dostupné."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Reporty a bezpečná distribuce.“"
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Reporty a bezpečná distribuce“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 7 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi první krok, hlavní kontrolní bod a výsledek. Zbytek nech viditelný na slidu."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 3 min zapojení a uzavření"
   },
   "evaluator/export": {
     "say": [
-      "„Teď se podíváme na téma: Reporty a bezpečná distribuce.“",
-      "„Na konci této části by mělo být jasné toto: Schválené hodnocení lze exportovat jako TXT, DOCX, CSV, XLSX, tisk/PDF nebo dávkový ZIP. Gmail integrace má vytvářet koncepty nebo odesílat až po výslovném pokynu.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Export volím podle toho, co budu s výsledkem dělat: něco pro studenta, něco pro vlastní evidenci a něco pro další zpracování.",
+      "U e-mailu chci nejdřív koncept. Automatické odeslání bez poslední kontroly by u hodnocení bylo zbytečné riziko."
     ],
     "explain": [
       "Individuální report: Profesionální zpětná vazba pro studenta.",
@@ -1797,67 +1902,71 @@ export default {
       "Dávkový export: Oddělené soubory po schválení."
     ],
     "ask": [
-      "Kde byste výstup „Zkontrolovaný schválený report bez distribuce reálnému studentovi.“ využili ve své vlastní praxi?"
+      "Který formát potřebujete pro studenta a který pro vlastní evidenci?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: schválené hodnocení lze exportovat jako TXT, DOCX, CSV, XLSX, tisk/PDF nebo dávkový ZIP. Gmail integrace má vytvářet koncepty nebo odesílat až po výslovném pokynu."
+      "Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „Zkontrolovaný schválený report bez distribuce reálnému studentovi“."
     ],
     "demo": [
-      "Zpracujte jednu anonymní modelovou práci. Na konci musí být vidět tento výstup: Zkontrolovaný schválený report bez distribuce reálnému studentovi."
+      "Zpracujte jednu anonymní modelovou práci. Na konci ukaž konkrétní výstup: Zkontrolovaný schválený report bez distribuce reálnému studentovi."
     ],
     "facilitation": [
-      "Pro první použití doporučte koncepty místo automatického odeslání. Uživatel tak ještě jednou zkontroluje adresáta i přílohu."
+      "Pro první použití doporuč koncepty místo automatického odeslání. Uživatel tak ještě jednou zkontroluje adresáta i přílohu."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "„Než skončíme, vyberte si jeden konkrétní krok, který skutečně použijete v praxi.“"
+      "Na závěr nech každého vybrat jeden konkrétní krok, který opravdu použije. Pak školení ukonči bez dalšího dlouhého shrnutí."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "2 min rozjezd · 6 min vysvětlení nebo ukázka · 5 min zapojení a uzavření"
   },
   "workflow/one-source": {
     "say": [
-      "„Teď se podíváme na téma: Jeden zdroj, více účelů.“",
-      "„Na konci této části by mělo být jasné toto: Základním aktivem není hotový test ani hra, ale kvalitně připravený zdroj s cílem, obsahem a strukturovanými úlohami.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Největší úspora nevznikne tím, že třikrát zadám stejné téma do tří aplikací.",
+      "Vznikne tím, že si připravím jeden kvalitní zdroj a z něj potom udělám varianty, test i hru."
     ],
     "explain": [
-      "Každá aplikace začíná od nuly se mění na Jeden ověřený zdrojový balíček.",
+      "Každá aplikace začíná od nuly → Jeden ověřený zdrojový balíček.",
       "Zdroj: Text, cíle, kontext a ověřené úlohy.",
       "Diferenciace: Podpůrná, standardní a rozšiřující cesta."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Jeden zdroj, více účelů“?"
+      "Který svůj materiál byste dokázali využít zároveň pro diferenciaci, test i hru?"
     ],
     "expected": [
-      "Učitel nevytváří každou podobu od nuly. Zachovává společný cíl a pracuje s ověřeným obsahem."
+      "Tohle je místo, kam je potřeba odpovědi dovést: Učitel nevytváří každou podobu od nuly. Zachovává společný cíl a pracuje s ověřeným obsahem."
     ],
     "demo": [
-      "Nechte nejprve vyniknout rozdíl mezi „Každá aplikace začíná od nuly“ a „Jeden ověřený zdrojový balíček“. Až potom vysvětlete, co změnu způsobilo."
+      "Nech nejdřív vyniknout rozdíl „Každá aplikace začíná od nuly“ → „Jeden ověřený zdrojový balíček“. Až potom pojmenuj, co změnu způsobilo."
     ],
     "facilitation": [
-      "Použijte jeden krátký tematický celek a během školení z něj vytvořte tři různé podoby. Nezačínejte třemi nesouvisejícími materiály."
+      "Použij jeden krátký tematický celek a během školení z něj vytvořte tři různé podoby. Nezačínejte třemi nesouvisejícími materiály."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Znovupoužitelný zdrojový materiál.“"
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Znovupoužitelný zdrojový materiál“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „modelová ukázka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "2 min rozjezd · 6 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "workflow/source-model": {
     "say": [
-      "„Teď se podíváme na téma: Znovupoužitelný zdrojový materiál.“",
-      "„Na konci této části by mělo být jasné toto: Zdroj musí být srozumitelný člověku i aplikacím. Obsahuje pedagogický kontext, cíle, úlohy a omezení.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Aby šel zdroj znovu použít, musí být srozumitelný nejen mně, ale i dalším aplikacím nebo kolegovi.",
+      "Potřebuji v něm kontext, cíl, ověřený obsah, úlohy a jasné omezení. Ne jen hromadu textu."
     ],
     "explain": [
       "Kontext: Předmět, ročník, úroveň, čas a skupina.",
@@ -1865,33 +1974,35 @@ export default {
       "Zdroj: Anonymizovaný text, fakta nebo obsah."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Znovupoužitelný zdrojový materiál“?"
+      "Co musí zdroj obsahovat, aby ho bez vysvětlování pochopil i kolega?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: zdroj musí být srozumitelný člověku i aplikacím. Obsahuje pedagogický kontext, cíle, úlohy a omezení."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Zdroj musí být srozumitelný člověku i aplikacím. Obsahuje pedagogický kontext, cíle, úlohy a omezení."
     ],
     "demo": [
-      "Použijte jeden krátký modelový příklad bez osobních údajů a ukažte konkrétní dopad postupu."
+      "Použij jeden krátký modelový příklad bez osobních údajů. Ukaž na něm konkrétní dopad, ne celou aplikaci."
     ],
     "facilitation": [
-      "Vysvětlete, že „strukturovaný“ neznamená technický. Jde o jasně označené části a konzistentní názvy."
+      "Vysvětli, že „strukturovaný“ neznamená technický. Jde o jasně označené části a konzistentní názvy."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Drž se jedné myšlenky a jednoho příkladu. Další detaily nech na dotazy."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Předání mezi aplikacemi: Studio Bridge a soubor.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Předání mezi aplikacemi: Studio Bridge a soubor“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Řekni jednu myšlenku, ukaž jeden příklad a polož jednu otázku."
+    ],
+    "timing": "2 min rozjezd · 5 min vysvětlení nebo ukázka · 5 min zapojení a uzavření"
   },
   "workflow/handoff": {
     "say": [
-      "„Teď se podíváme na téma: Předání mezi aplikacemi: Studio Bridge a soubor.“",
-      "„Na konci této části by mělo být jasné toto: Aplikace mohou ve stejném prohlížeči převzít krátkodobé anonymní předání. Záložní cestou je export a import strukturovaného souboru.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Předání mezi aplikacemi má dvě cesty. Rychlou lokální a klasický soubor, který můžu uložit nebo poslat dál.",
+      "V obou případech platí totéž: předávám jen to, co opravdu potřebuji, a po importu zkontroluji, jestli se nic neztratilo."
     ],
     "explain": [
       "Přímý Studio Bridge: stejný prohlížeč, krátkodobá lokální předávka.",
@@ -1899,77 +2010,81 @@ export default {
       "Dokončete a zkontrolujte zdroj: Předávka nesmí být způsob, jak obejít kontrolu."
     ],
     "ask": [
-      "Který rozdíl mezi „Přímý Studio Bridge“ a „Souborový export“ je pro vás nejdůležitější?"
+      "Kdy je praktičtější rychlé předání v prohlížeči a kdy raději uložený soubor?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: aplikace mohou ve stejném prohlížeči převzít krátkodobé anonymní předání. Záložní cestou je export a import strukturovaného souboru."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Aplikace mohou ve stejném prohlížeči převzít krátkodobé anonymní předání. Záložní cestou je export a import strukturovaného souboru."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Dokončete a zkontrolujte zdroj → Zvolte cílovou aplikaci."
+      "Na obrazovce projdi jen první dva kroky: Dokončete a zkontrolujte zdroj → Zvol cílovou aplikaci. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
-      "Ukažte obě cesty. Přímé předání je pohodlnější, soubor je průhlednější a vhodný pro archivaci či předání kolegovi."
+      "Ukaž obě cesty. Přímé předání je pohodlnější, soubor je průhlednější a vhodný pro archivaci či předání kolegovi."
     ],
     "caution": [
-      "Pracujte pouze s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
+      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Kterou aplikaci použít.“"
+      "Nech poslední bod chvíli doznít a otevři „Kterou aplikaci použít“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „porovnání“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 9 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "2 min rozjezd · 9 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "workflow/decision": {
     "say": [
-      "„Teď se podíváme na téma: Kterou aplikaci použít.“",
-      "„Na konci této části by mělo být jasné toto: Nástroj se volí podle cíle konkrétní části výuky, ne podle toho, která aplikace působí nejefektněji.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Nástroj vybírám podle výsledku, který právě potřebuji. Ne podle toho, která aplikace má největší wow efekt.",
+      "Když potřebuji oporu pro různé žáky, začnu Diferenciátorem. Když ověření, Generátorem. Když aktivizaci, LUDUSem."
     ],
     "explain": [
       "Nástroj se volí podle cíle konkrétní části výuky, ne podle toho, která aplikace působí nejefektněji."
     ],
     "ask": [
-      "Žáci mají stejný cíl, ale část skupiny potřebuje vodítka a část rozšíření. Který nástroj je nejlogičtější první krok?"
+      "Jaký výsledek právě potřebujete: podporu, ověření, nebo aktivizaci?"
     ],
     "expected": [
-      "Nejdříve se řeší pedagogicky smysluplné varianty; teprve poté lze zvolit formu ověření nebo hry."
+      "Po hlasování stručně vysvětli logiku správné volby: Nejdříve se řeší pedagogicky smysluplné varianty; teprve poté lze zvolit formu ověření nebo hry."
     ],
     "demo": [
-      "Vyberte z tabulky jeden běžný případ a projděte jej zleva doprava: Potřeba → Primární nástroj → Možná návaznost."
+      "Vyber jeden běžný řádek a projdi ho zleva doprava: Potřeba → Primární nástroj → Možná návaznost. Zbytek nech jako přehled."
     ],
     "facilitation": [
-      "Nechte účastníky řešit scénáře. Jedna hodina může využít více aplikací, ale ne nutně všechny."
+      "Nech účastníky řešit scénáře. Jedna hodina může využít více aplikací, ale ne nutně všechny."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Drž se jedné myšlenky a jednoho příkladu. Další detaily nech na dotazy."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Verze, názvy a archivace.“"
+      "Přejdi bez shrnování celé části na „Verze, názvy a archivace“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „tabulka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „tabulku“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Nech rychle hlasovat a vysvětli jen rozhodující důvod."
+    ],
+    "timing": "2 min rozjezd · 5 min vysvětlení nebo ukázka · 5 min zapojení a uzavření"
   },
   "workflow/versions": {
     "say": [
-      "„Teď se podíváme na téma: Verze, názvy a archivace.“",
-      "„Na konci této části by mělo být jasné toto: Při více výstupech je nutné vědět, ze kterého zdroje vznikly, co se změnilo a která verze je aktuální.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Jakmile mám více výstupů, názvy typu final, final2 a opravdu-final přestávají fungovat.",
+      "Jednoduchý systém názvů a verzí mi později řekne, z čeho materiál vznikl a která varianta je skutečně aktuální."
     ],
     "explain": [
       "Aktuální odkaz musí ukazovat na aktuální obsah: Při opravě veřejného HTML zachovejte stejný název, pokud chcete zachovat odkaz, a po nasazení vždy ověřte skutečnou Pages URL."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Verze, názvy a archivace“?"
+      "Jak dnes poznáte, který z několika podobných souborů je opravdu poslední verze?"
     ],
     "expected": [
-      "Při opravě veřejného HTML zachovejte stejný název, pokud chcete zachovat odkaz, a po nasazení vždy ověřte skutečnou Pages URL."
+      "Ať z odpovědí nakonec vyplyne toto: Při opravě veřejného HTML zachovejte stejný název, pokud chcete zachovat odkaz, a po nasazení vždy ověřte skutečnou Pages URL."
     ],
     "demo": [
-      "Zobrazte blok „Doporučený název zdroje“ a zvýrazněte pouze místa, která má učitel skutečně upravit."
+      "Zobraz blok „Doporučený název zdroje“ a zvýrazni jen místa, která má učitel skutečně upravovat."
     ],
     "facilitation": [
       "Nabídněte jednoduché pojmenování, nikoli komplikovaný dokumentační systém."
@@ -1978,18 +2093,20 @@ export default {
       "Aktuální odkaz musí ukazovat na aktuální obsah: Při opravě veřejného HTML zachovejte stejný název, pokud chcete zachovat odkaz, a po nasazení vždy ověřte skutečnou Pages URL."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Společná kontrolní brána.“"
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Společná kontrolní brána“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Řekni jednu myšlenku, ukaž jeden příklad a polož jednu otázku."
+    ],
+    "timing": "2 min rozjezd · 5 min vysvětlení nebo ukázka · 5 min zapojení a uzavření"
   },
   "workflow/quality-gate": {
     "say": [
-      "„Teď se podíváme na téma: Společná kontrolní brána.“",
-      "„Na konci této části by mělo být jasné toto: Každý výstup prochází stejnými pěti otázkami: cíl, správnost, bezpečnost, použitelnost a odpovědnost.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Ať výstup vznikl v kterékoli aplikaci, na konci si pokládám stejných pět otázek.",
+      "Plní cíl? Je správný? Je bezpečný? Funguje v praxi? A je jasné, kdo ho zkontroloval a schválil?"
     ],
     "explain": [
       "Cíl: Podporuje výstup skutečně zamýšlené učení?",
@@ -1997,33 +2114,35 @@ export default {
       "Bezpečnost: Neobsahuje výstup osobní údaje, klíče nebo citlivé informace?"
     ],
     "ask": [
-      "Kde byste výstup „Propojená sada materiálů se společným cílem a dohledatelným zdrojem.“ využili ve své vlastní praxi?"
+      "Která z pěti kontrolních otázek vám v praxi nejčastěji uteče?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: každý výstup prochází stejnými pěti otázkami: cíl, správnost, bezpečnost, použitelnost a odpovědnost."
+      "Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „Propojená sada materiálů se společným cílem a dohledatelným zdrojem“."
     ],
     "demo": [
-      "Zvolte existující anonymní materiál. Na konci musí být vidět tento výstup: Propojená sada materiálů se společným cílem a dohledatelným zdrojem."
+      "Zvol existující anonymní materiál. Na konci ukaž konkrétní výstup: Propojená sada materiálů se společným cílem a dohledatelným zdrojem."
     ],
     "facilitation": [
       "Tuto bránu lze vytisknout nebo používat jako závěrečný rituál každého školení."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Sdílení v předmětové komisi.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Sdílení v předmětové komisi“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „pracovní postup“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „schéma postupu“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "2 min rozjezd · 5 min vysvětlení nebo ukázka · 5 min zapojení a uzavření"
   },
   "workflow/team": {
     "say": [
-      "„Teď se podíváme na téma: Sdílení v předmětové komisi.“",
-      "„Na konci této části by mělo být jasné toto: Největší úspora vzniká, když se nesdílí pouze hotový odkaz, ale také kvalitní zdroj, cíl a poznámky k použití.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Když kolegovi pošlu jen hotový odkaz, ušetřím mu trochu času. Když přidám zdroj, cíl a zkušenost z hodiny, dávám mu něco mnohem cennějšího.",
+      "Právě tak může předmětová komise stavět společnou knihovnu, ne jen hromadu izolovaných souborů."
     ],
     "explain": [
       "Zdroj: Anonymní, upravitelný a verzovaný podklad.",
@@ -2031,67 +2150,71 @@ export default {
       "Metodická poznámka: Pro koho, jak dlouho, co fungovalo a na co si dát pozor."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Sdílení v předmětové komisi“?"
+      "Co byste potřebovali dostat spolu s hotovým materiálem, abyste ho mohli bezpečně převzít?"
     ],
     "expected": [
-      "Účastník umí používat ekosystém jako propojený pracovní postup, nikoli jako sbírku izolovaných aplikací."
+      "Tohle je místo, kam je potřeba odpovědi dovést: Účastník umí používat ekosystém jako propojený pracovní postup, nikoli jako sbírku izolovaných aplikací."
     ],
     "demo": [
-      "Použijte jeden krátký modelový příklad bez osobních údajů a ukažte konkrétní dopad postupu."
+      "Použij jeden krátký modelový příklad bez osobních údajů. Ukaž na něm konkrétní dopad, ne celou aplikaci."
     ],
     "facilitation": [
       "Navrhněte pilotní sdílenou sadu pro jednu komisi, ne centrální knihovnu všeho hned od začátku."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Neprocházej všechny karty stejně podrobně. Vyber dvě, které mají pro tuto skupinu největší význam."
     ],
     "transition": [
-      "„Než skončíme, vyberte si jeden konkrétní krok, který skutečně použijete v praxi.“"
+      "Na závěr nech každého vybrat jeden konkrétní krok, který opravdu použije. Pak školení ukonči bez dalšího dlouhého shrnutí."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "1 min uvedení · 4 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "1 min rozjezd · 4 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "administrator/role": {
     "say": [
-      "„Teď se podíváme na téma: Role školitele a správce.“",
-      "„Na konci této části by mělo být jasné toto: Školitel vysvětluje pedagogické použití a ověřuje základní kompetenci. Správce vydává oprávnění, vede evidenci a řeší provozní stav.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Školitel a správce nemusí být vždy dvě různé osoby, ale jsou to dvě různé role.",
+      "Jedna pomáhá kolegům aplikaci smysluplně používat. Druhá hlídá přístupy, evidenci a provoz."
     ],
     "explain": [
-      "Přístupy a podpora bez evidence se mění na Evidence, školení, podpora a audit.",
+      "Přístupy a podpora bez evidence → Evidence, školení, podpora a audit.",
       "Školitel: vede praktické školení, ověří zvládnutí bezpečnostních zásad.",
       "Správce: vydává a eviduje oprávnění, udržuje politiku přístupů."
     ],
     "ask": [
-      "Který rozdíl mezi „Školitel“ a „Správce“ je pro vás nejdůležitější?"
+      "Které činnosti patří školiteli a které už správci provozu?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: školitel vysvětluje pedagogické použití a ověřuje základní kompetenci. Správce vydává oprávnění, vede evidenci a řeší provozní stav."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Školitel vysvětluje pedagogické použití a ověřuje základní kompetenci. Správce vydává oprávnění, vede evidenci a řeší provozní stav."
     ],
     "demo": [
-      "Nechte nejprve vyniknout rozdíl mezi „Přístupy a podpora bez evidence“ a „Evidence, školení, podpora a audit“. Až potom vysvětlete, co změnu způsobilo."
+      "Nech nejdřív vyniknout rozdíl „Přístupy a podpora bez evidence“ → „Evidence, školení, podpora a audit“. Až potom pojmenuj, co změnu způsobilo."
     ],
     "facilitation": [
       "V malé pilotní fázi může obě role zastávat jedna osoba. Procesy je přesto vhodné pojmenovat odděleně."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Plán vzdělávací cesty.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Plán vzdělávací cesty“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „modelová ukázka“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 6 min vysvětlení nebo ukázka · 2 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "2 min rozjezd · 6 min vysvětlení nebo ukázka · 2 min zapojení a uzavření"
   },
   "administrator/learning-path": {
     "say": [
-      "„Teď se podíváme na téma: Plán vzdělávací cesty.“",
-      "„Na konci této části by mělo být jasné toto: Všichni absolvují společný základ. Další moduly se vybírají podle skutečné potřeby a předmětu.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Nemá smysl chtít po všech kolezích, aby prošli úplně všechno.",
+      "Společný základ potřebujeme všichni. Další moduly už vybíráme podle předmětu, práce a reálné potřeby."
     ],
     "explain": [
       "Společný základ: Přístup, API klíč, bezpečnost a řešení problémů.",
@@ -2099,33 +2222,35 @@ export default {
       "Volitelné větve: Interaktivní materiály, komunikace nebo hodnocení."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Plán vzdělávací cesty“?"
+      "Které moduly by podle vás měli absolvovat všichni a které jen vybrané skupiny?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: všichni absolvují společný základ. Další moduly se vybírají podle skutečné potřeby a předmětu."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Všichni absolvují společný základ. Další moduly se vybírají podle skutečné potřeby a předmětu."
     ],
     "demo": [
-      "Vyberte z tabulky jeden běžný případ a projděte jej zleva doprava: Profil kolegy → Doporučená cesta."
+      "Projeď tok zleva doprava na jednom konkrétním příkladu. U každého kroku řekni, co se pokazí, když ho přeskočíme."
     ],
     "facilitation": [
-      "Nevytvářejte povinný maraton všech aplikací. Krátká relevantní školení mají vyšší šanci na skutečné používání."
+      "Nedělej povinný maraton všech aplikací. Krátká relevantní školení mají vyšší šanci na skutečné používání."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nečti všechny kroky ze slidu. U každého stačí říct, proč tam je a co po něm zůstane hotové."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Vydání podepsaného přístupu.“"
+      "Nech poslední bod chvíli doznít a otevři „Vydání podepsaného přístupu“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „pracovní postup“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „schéma postupu“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "2 min uvedení · 7 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi první krok, hlavní kontrolní bod a výsledek. Zbytek nech viditelný na slidu."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 3 min zapojení a uzavření"
   },
   "administrator/issue-access": {
     "say": [
-      "„Teď se podíváme na téma: Vydání podepsaného přístupu.“",
-      "„Na konci této části by mělo být jasné toto: Správce načte soukromý podpisový klíč pouze na důvěryhodném zařízení, vybere uživatele, aplikace a dobu platnosti a vytvoří podepsaný soubor nebo kód.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Vydání přístupu je citlivá operace hlavně kvůli soukromému podpisovému klíči.",
+      "Ten načítám jen na důvěryhodném zařízení, vytvořím oprávnění a potom ho z prostředí zase odstraním. Samotnému kolegovi předávám jen podepsaný výsledek."
     ],
     "explain": [
       "Otevřete administrátorský nástroj Vydání přístupu: Nástroj pracuje lokálně v prohlížeči.",
@@ -2133,13 +2258,13 @@ export default {
       "Vyplňte konkrétního uživatele: Použijte jednoznačné jméno pro místní evidenci."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Vydání podepsaného přístupu“?"
+      "Který krok při vydání přístupu je nejcitlivější a proč?"
     ],
     "expected": [
-      "Nikdy jej neposílejte, nevkládejte do cloudu bez odpovídající ochrany a nepoužívejte na nedůvěryhodném zařízení."
+      "Tohle je místo, kam je potřeba odpovědi dovést: Nikdy jej neposílejte, nevkládejte do cloudu bez odpovídající ochrany a nepoužívejte na nedůvěryhodném zařízení."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Otevřete administrátorský nástroj Vydání přístupu → Načtěte soukromý podpisový klíč."
+      "Na obrazovce projdi jen první dva kroky: Otevřete administrátorský nástroj Vydání přístupu → Načtěte soukromý podpisový klíč. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
       "Tento postup provádějte bez sdílení obrazovky v části, kde je viditelný soukromý klíč. Používejte pouze vlastní důvěryhodné zařízení."
@@ -2148,18 +2273,20 @@ export default {
       "Soukromý klíč je nejcitlivější soubor systému: Nikdy jej neposílejte, nevkládejte do cloudu bez odpovídající ochrany a nepoužívejte na nedůvěryhodném zařízení."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Evidence a revokace.“"
+      "Přejdi bez shrnování celé části na „Evidence a revokace“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 11 min vysvětlení nebo ukázka · 4 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi první krok, hlavní kontrolní bod a výsledek. Zbytek nech viditelný na slidu."
+    ],
+    "timing": "3 min rozjezd · 11 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "administrator/registry": {
     "say": [
-      "„Teď se podíváme na téma: Evidence a revokace.“",
-      "„Na konci této části by mělo být jasné toto: Evidence uchovává jméno, oprávnění, platnost a identifikátor přístupu. Neuchovává soukromý klíč ani dlouhý přístupový kód.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Evidence má být užitečná, ale nemá se z ní stát druhý trezor plný citlivých údajů.",
+      "Stačí vědět, komu přístup patří, co dovoluje, dokdy platí a jak ho případně zneplatnit. Soukromý klíč ani celý dlouhý kód sem nepatří."
     ],
     "explain": [
       "Uživatel: Komu bylo oprávnění vydáno.",
@@ -2167,13 +2294,13 @@ export default {
       "Platnost: Od kdy do kdy je oprávnění použitelné."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Evidence a revokace“?"
+      "Jaké minimum potřebujete evidovat, abyste dokázali přístup později najít a zneplatnit?"
     ],
     "expected": [
-      "V serverless fázi je evidence místní. Je potřeba mít bezpečný provozní postup pro zálohu a práci na určeném zařízení."
+      "Tohle je místo, kam je potřeba odpovědi dovést: V serverless fázi je evidence místní. Je potřeba mít bezpečný provozní postup pro zálohu a práci na určeném zařízení."
     ],
     "demo": [
-      "Ukažte první dva kroky přímo na obrazovce a u každého pojmenujte výsledek: Označte ztracený nebo zneužitý přístup → Přidejte jej do revokačního seznamu."
+      "Na obrazovce projdi jen první dva kroky: Označte ztracený nebo zneužitý přístup → Přidejte jej do revokačního seznamu. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
       "Předveďte revokaci na testovacím oprávnění. Uživatel musí pochopit, že revokovaný přístup může být zneplatněn centrálním seznamem."
@@ -2182,18 +2309,20 @@ export default {
       "Evidence není centrální databáze: V serverless fázi je evidence místní. Je potřeba mít bezpečný provozní postup pro zálohu a práci na určeném zařízení."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Jak vést kvalitní školení.“"
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Jak vést kvalitní školení“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „kroky“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 9 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi první krok, hlavní kontrolní bod a výsledek. Zbytek nech viditelný na slidu."
+    ],
+    "timing": "2 min rozjezd · 9 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "administrator/delivery": {
     "say": [
-      "„Teď se podíváme na téma: Jak vést kvalitní školení.“",
-      "„Na konci této části by mělo být jasné toto: Úspěšné školení je praktická dílna s jedním dokončeným výstupem. Technické minimum se vysvětluje v okamžiku, kdy je potřeba.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Dobré školení není prohlídka všech tlačítek. Kolega si má něco skutečně vyzkoušet a odnést hotový výstup.",
+      "Technické věci vysvětluji až ve chvíli, kdy jsou potřeba. Jinak zbytečně zahltím i lidi, kteří by aplikaci zvládli bez problémů."
     ],
     "explain": [
       "Ukázka výsledku: Nejdříve ukažte, co si účastník odnese.",
@@ -2201,33 +2330,35 @@ export default {
       "Společný postup: Jedna ukázka krok za krokem."
     ],
     "ask": [
-      "Jaký konkrétní příklad z vlastní práce se vám vybaví u tématu „Jak vést kvalitní školení“?"
+      "Co si musí kolega ze školení skutečně odnést, aby mělo smysl?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: úspěšné školení je praktická dílna s jedním dokončeným výstupem. Technické minimum se vysvětluje v okamžiku, kdy je potřeba."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Úspěšné školení je praktická dílna s jedním dokončeným výstupem. Technické minimum se vysvětluje v okamžiku, kdy je potřeba."
     ],
     "demo": [
-      "Použijte jeden krátký modelový příklad bez osobních údajů a ukažte konkrétní dopad postupu."
+      "Projeď tok zleva doprava na jednom konkrétním příkladu. U každého kroku řekni, co se pokazí, když ho přeskočíme."
     ],
     "facilitation": [
       "Tato část je určena budoucím mentorům. U základního školitele ji lze využít jako interní checklist."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nečti všechny kroky ze slidu. U každého stačí říct, proč tam je a co po něm zůstane hotové."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Podpora po školení.“"
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Podpora po školení“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „pracovní postup“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „schéma postupu“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 7 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Projdi první krok, hlavní kontrolní bod a výsledek. Zbytek nech viditelný na slidu."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 6 min zapojení a uzavření"
   },
   "administrator/support": {
     "say": [
-      "„Teď se podíváme na téma: Podpora po školení.“",
-      "„Na konci této části by mělo být jasné toto: Jednorázové školení nestačí. Projekt potřebuje jednoduchý kanál podpory, pravidelnou zpětnou vazbu a jasné rozlišení pedagogické a technické chyby.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Po jednom školení se vždycky objeví otázky, které při ukázce nikoho nenapadly.",
+      "Proto potřebujeme jednoduchý kanál podpory a hlavně rozlišit, jestli řešíme technickou chybu, nejasný postup nebo pedagogický problém."
     ],
     "explain": [
       "Pedagogický dotaz: Jaký režim zvolit?, Je výstup přiměřený?",
@@ -2235,58 +2366,63 @@ export default {
       "Jedno místo: Odkaz na Akademii, návody, změny a kontaktní postup."
     ],
     "ask": [
-      "Který rozdíl mezi „Pedagogický dotaz“ a „Technický problém“ je pro vás nejdůležitější?"
+      "Jak nejrychleji rozlišíte technickou chybu od problému v zadání nebo metodice?"
     ],
     "expected": [
-      "Kolegové mají jasnou cestu od prvního školení k samostatnému používání a správce má přehled o oprávněních, chybách a skutečných potřebách."
+      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: Kolegové mají jasnou cestu od prvního školení k samostatnému používání a správce má přehled o oprávněních, chybách a skutečných potřebách."
     ],
     "demo": [
-      "Dejte skupině deset sekund na tiché porovnání obou sloupců a potom zvýrazněte jediný rozhodující rozdíl."
+      "Dej kolegům deset vteřin na tiché porovnání. Potom ukaž jeden rozdíl, který má v praxi největší dopad."
     ],
     "facilitation": [
-      "Neslibujte nepřetržitou individuální podporu. Nastavte konkrétní okno, formulář nebo společné konzultační termíny."
+      "Neslibujte nepřetržitou individuální podporu. Nastav konkrétní okno, formulář nebo společné konzultační termíny."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "„Tento základ teď využijeme v následující části: Provozní kontrola projektu.“"
+      "Nech poslední bod chvíli doznít a otevři „Provozní kontrola projektu“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, použijte přímo blok „porovnání“ na tomto slidu a nechte skupinu popsat správný postup vlastními slovy."
+      "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
     ],
-    "timing": "3 min uvedení · 9 min vysvětlení nebo ukázka · 3 min zapojení a shrnutí"
+    "shortcut": [
+      "Vyber dva nejdůležitější body a spoj je jedním konkrétním příkladem."
+    ],
+    "timing": "2 min rozjezd · 9 min vysvětlení nebo ukázka · 4 min zapojení a uzavření"
   },
   "administrator/audit": {
     "say": [
-      "„Teď se podíváme na téma: Provozní kontrola projektu.“",
-      "„Na konci této části by mělo být jasné toto: Správce pravidelně kontroluje dostupnost aplikací, verze, školení, přístupy, bezpečnostní pravidla a zpětnou vazbu uživatelů.“",
-      "„Sledujte především, jak se tato myšlenka projeví v konkrétní učitelské praxi.“"
+      "Provozní kontrola nemusí být žádná obří inspekce. Jde o pravidelnou krátkou údržbu.",
+      "Ověřím dostupnost aplikací, verze, platnost přístupů, bezpečnostní pravidla a zpětnou vazbu. Díky tomu se malé problémy nehromadí."
     ],
     "explain": [
       "Správce pravidelně kontroluje dostupnost aplikací, verze, školení, přístupy, bezpečnostní pravidla a zpětnou vazbu uživatelů."
     ],
     "ask": [
-      "Kde byste výstup „Realistický pilotní plán s jasnými rolemi a kontrolními body.“ využili ve své vlastní praxi?"
+      "Které tři věci by měly být součástí pravidelné provozní kontroly?"
     ],
     "expected": [
-      "Odpovědi propojte s cílem této části: správce pravidelně kontroluje dostupnost aplikací, verze, školení, přístupy, bezpečnostní pravidla a zpětnou vazbu uživatelů."
+      "Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „Realistický pilotní plán s jasnými rolemi a kontrolními body“."
     ],
     "demo": [
-      "Naplánujte prvních šest až osm týdnů projektu. Na konci musí být vidět tento výstup: Realistický pilotní plán s jasnými rolemi a kontrolními body."
+      "Naplánujte prvních šest až osm týdnů projektu. Na konci ukaž konkrétní výstup: Realistický pilotní plán s jasnými rolemi a kontrolními body."
     ],
     "facilitation": [
-      "Nastavte jednoduchý měsíční nebo čtvrtletní checklist. Audit nemá být byrokracie, ale prevence ztráty kontroly."
+      "Nastav jednoduchý měsíční nebo čtvrtletní checklist. Audit nemá být byrokracie, ale prevence ztráty kontroly."
     ],
     "caution": [
-      "Držte výklad u konkrétního cíle. Nezabíhejte do funkcí, které účastníci v této části ještě nepotřebují."
+      "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "„Než skončíme, vyberte si jeden konkrétní krok, který skutečně použijete v praxi.“"
+      "Na závěr nech každého vybrat jeden konkrétní krok, který opravdu použije. Pak školení ukonči bez dalšího dlouhého shrnutí."
     ],
     "fallback": [
-      "Když selže internet nebo aplikace, pokračujte s modelovým příkladem na slidu a nechte účastníky pojmenovat správný postup."
+      "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
     ],
-    "timing": "3 min uvedení · 7 min vysvětlení nebo ukázka · 5 min zapojení a shrnutí"
+    "shortcut": [
+      "Zkrať samostatnou práci na jednu minutu, vezmi dvě odpovědi a zbytek nech jako navazující úkol."
+    ],
+    "timing": "2 min rozjezd · 7 min vysvětlení nebo ukázka · 6 min zapojení a uzavření"
   }
 };

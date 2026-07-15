@@ -156,9 +156,9 @@ function buildSpeakerGuide(course, lesson, lessonIndex) {
   const points = uniqueList(explicit.explain || firstMeaningfulPoints(lesson));
   const spokenSummary = lowerFirst(lesson.summary).replace(/\.$/, '');
   const say = uniqueList(explicit.say || [
-    `„Teď se zaměříme na část ${lesson.title}.“`,
-    `„Nejdůležitější je, že ${spokenSummary}.“`,
-    points[0] ? `„Při této části sledujte hlavně toto: ${lowerFirst(points[0])}.“` : ''
+    `Tady bych se na chvíli zastavil u tématu „${lesson.title}“.`,
+    `Za mě je hlavní pointa jednoduchá: ${spokenSummary}.`,
+    points[0] ? `Během této části si všímejte hlavně toho, že ${lowerFirst(points[0])}.` : 'Zkuste si u toho rovnou vybavit jednu situaci z vlastní praxe.'
   ]);
   const ask = uniqueList(explicit.ask || [suggestedQuestion(lesson)]);
   const demo = uniqueList(explicit.demo || [suggestedDemo(lesson)]);
@@ -167,9 +167,10 @@ function buildSpeakerGuide(course, lesson, lessonIndex) {
   const expected = uniqueList(explicit.expected || [expectedAnswer(lesson)]);
   const nextLesson = course.lessons[lessonIndex + 1];
   const transition = uniqueList(explicit.transition || [nextLesson
-    ? `„Tím máme vyjasněný základ. Teď na něj navážeme částí ${nextLesson.title}.“`
-    : '„Na závěr si každý vyberte jeden konkrétní krok, který použijete ve své praxi.“']);
+    ? `Dobře, základ máme. Pojďme dál k části „${nextLesson.title}“.`
+    : 'Než skončíme, vyberte si jeden konkrétní krok, který použijete ve své praxi.']);
   const fallback = uniqueList(explicit.fallback || ['Když nefunguje internet nebo aplikace, použijte připravený statický příklad na slidu a nechte kolegy popsat správný postup vlastními slovy.']);
+  const shortcut = uniqueList(explicit.shortcut || ['Řekněte hlavní pointu, použijte jeden příklad, položte jednu otázku a přejděte dál.']);
   const timing = explicit.timing || timingPlan(lesson);
   const timingMeta = courseTiming(course);
   return {
@@ -182,6 +183,7 @@ function buildSpeakerGuide(course, lesson, lessonIndex) {
     caution,
     transition,
     fallback,
+    shortcut,
     timing,
     position: `Část ${lessonIndex + 1} z ${course.lessons.length} · ${lesson.duration} min tato část · ${timingMeta.total} min celé školení`
   };
@@ -191,23 +193,47 @@ function renderGuideList(items) {
   return `<ul>${uniqueList(items || []).map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
 }
 
+function cleanSpokenLine(item) {
+  return String(item || '').trim().replace(/^„/, '').replace(/“$/, '');
+}
+
+function renderSpeechLines(items) {
+  return `<div class="speaker-lines">${uniqueList(items || []).map(item => `<p>${escapeHtml(cleanSpokenLine(item))}</p>`).join('')}</div>`;
+}
+
+function renderSpeakerStep(number, label, title, className, body) {
+  return `
+    <section class="speaker-step ${className}">
+      <div class="speaker-step-marker" aria-hidden="true"><span>${number}</span></div>
+      <div class="speaker-step-body">
+        <header><small>${label}</small><h4>${title}</h4></header>
+        ${body}
+      </div>
+    </section>`;
+}
+
 function renderSpeakerGuide(course, lesson, lessonIndex) {
   const guide = buildSpeakerGuide(course, lesson, lessonIndex);
   return `
     <aside class="speaker-guide" aria-label="Interní poznámky řečníka">
       <header>
-        <div><p class="eyebrow">INTERNÍ POZNÁMKY ŘEČNÍKA</p><h3>Scénář pro vedení této části</h3></div>
-        <span>Na projekci skryto</span>
+        <div><p class="eyebrow">INTERNÍ POZNÁMKY ŘEČNÍKA</p><h3>Mluvní opora pro živé školení</h3></div>
+        <div class="speaker-guide-badges"><span class="speaker-order-badge">1 → 5 · JASNÝ POSTUP</span><span>Na projekci skryto</span></div>
       </header>
-      <div class="speaker-guide-grid">
-        <section class="speaker-card say"><strong>Řekni přímo</strong>${renderGuideList(guide.say)}</section>
-        <section class="speaker-card explain"><strong>Vysvětli a zdůrazni</strong>${renderGuideList(guide.explain)}</section>
-        <section class="speaker-card ask"><strong>Zeptej se kolegů</strong>${renderGuideList(guide.ask)}<div class="speaker-subnote"><b>Očekávaný směr:</b>${renderGuideList(guide.expected)}</div></section>
-        <section class="speaker-card demo"><strong>Ukaž nebo proveď</strong>${renderGuideList(guide.demo)}</section>
+      <p class="speaker-guide-intro"><strong>Nečti to slovo od slova.</strong> První karta nabízí přirozené formulace, které můžeš upravit po svém. Další kroky jen hlídají, aby část měla směr a nezabředla do detailů.</p>
+      <div class="speaker-guide-flow">
+        ${renderSpeakerStep('1', 'ROZJEZD', 'Začni jednou přirozenou větou', 'say', renderSpeechLines(guide.say))}
+        ${renderSpeakerStep('2', 'CO MUSÍ ZAZNÍT', 'Drž se dvou nebo tří bodů', 'explain', renderGuideList(guide.explain))}
+        ${renderSpeakerStep('3', 'PŘÍKLAD NEBO UKÁZKA', 'Ukaž konkrétní dopad', 'demo', renderGuideList(guide.demo))}
+        ${renderSpeakerStep('4', 'ZAPOJENÍ SKUPINY', 'Polož jednu otázku a nech chvíli ticho', 'ask', `${renderGuideList(guide.ask)}<div class="speaker-subnote"><b>Kam odpovědi vrátit</b>${renderGuideList(guide.expected)}</div>`)}
+        ${renderSpeakerStep('5', 'KAM DÁL', 'Uzavři, nebo rovnou přepni', 'transition', renderSpeechLines(guide.transition))}
+      </div>
+      <div class="speaker-support-heading"><span>RYCHLÁ OPORA</span><p>Tyto body nejsou další pořadí. Použij je jen podle situace.</p></div>
+      <div class="speaker-guide-support">
         <section class="speaker-card facilitation"><strong>Metodický tip</strong>${renderGuideList(guide.facilitation)}</section>
-        <section class="speaker-card caution"><strong>Pozor při výkladu</strong>${renderGuideList(guide.caution)}</section>
-        <section class="speaker-card transition"><strong>Přechod dál</strong>${renderGuideList(guide.transition)}</section>
-        <section class="speaker-card fallback"><strong>Záložní varianta</strong>${renderGuideList(guide.fallback)}</section>
+        <section class="speaker-card caution"><strong>Na co si dát pozor</strong>${renderGuideList(guide.caution)}</section>
+        <section class="speaker-card shortcut"><strong>Když nestíháš</strong>${renderGuideList(guide.shortcut)}</section>
+        <section class="speaker-card fallback"><strong>Když selže technika</strong>${renderGuideList(guide.fallback)}</section>
         <section class="speaker-card timing"><strong>Časování</strong><p>${escapeHtml(guide.timing)}</p><small>${escapeHtml(guide.position)}</small></section>
       </div>
     </aside>`;
@@ -229,15 +255,16 @@ function presenterPayload() {
       previous: null,
       next: { id: course.lessons[0].id, title: course.lessons[0].title },
       guide: {
-        say: [`„Vítejte na školení ${course.title}.“`, `„Během ${timing.total} minut si ukážeme praktický postup a na konci budete mít jasno, jak jej bezpečně použít.“`],
+        say: [`Dobrý den, jsem rád, že jste dorazili. Dnes se budeme věnovat tématu ${course.title}.`, `Nebudu vás provádět každým tlačítkem. Raději si během ${timing.total} minut ukážeme několik věcí, které se dají opravdu použít ve škole.`],
         explain: course.outcomes.slice(0, 4),
-        ask: ['S jakou zkušeností nebo očekáváním dnes přicházíte?'],
-        expected: ['Stačí dvě až tři krátké odpovědi. Neřešte je do hloubky; použijte je pro naladění skupiny.'],
-        demo: ['Na úvod pouze ukažte cíle a časový rámec. Do aplikace vstupte až v první obsahové části.'],
-        facilitation: ['Ověřte, že všichni dobře vidí projekci a vědí, zda budou potřebovat vlastní zařízení.'],
-        caution: ['Nezdržujte se podrobným vysvětlováním všech cílů. Úvod má vytvořit očekávání, ne nahradit samotné školení.'],
-        transition: [`„Začneme částí ${course.lessons[0].title}.“`],
-        fallback: ['Když je skupina opožděná, zkraťte úvod na přivítání, cíl a jednu otázku.'],
+        ask: ['Kdo už s tímto tématem nebo aplikací má aspoň malou zkušenost?'],
+        expected: ['Vezmi dvě nebo tři krátké odpovědi. Jen si zmapuj skupinu; podrobnosti nech až na konkrétní části.'],
+        demo: ['Na úvod ukaž pouze cíl a čas. Do aplikace nebo podrobné ukázky vstup až na prvním obsahovém slidu.'],
+        facilitation: ['Ověř, že všichni dobře vidí projekci a vědí, jestli budou potřebovat vlastní zařízení.'],
+        caution: ['Nevysvětluj všechny cíle jeden po druhém. Úvod má skupinu naladit, ne vyčerpat první část školení.'],
+        transition: [`Stačí krátce říct: „Tak pojďme na první věc.“ A otevři část ${course.lessons[0].title}.`],
+        shortcut: ['Přivítej skupinu, řekni jeden cíl a jdi rovnou na první část.'],
+        fallback: ['Když se začíná pozdě, nech jen přivítání, jednu otázku a první slide.'],
         timing: '1–2 min přivítání · 1 min očekávání skupiny · plynulý přechod k první části',
         position: `Úvodní obrazovka · ${timing.total} min celé školení`
       }
@@ -254,15 +281,16 @@ function presenterPayload() {
       previous: { id: course.lessons.at(-1).id, title: course.lessons.at(-1).title },
       next: null,
       guide: {
-        say: ['„Děkuji za pozornost.“', '„Než skončíme, vyberte si jeden konkrétní krok, který vyzkoušíte ve své praxi.“'],
+        say: ['To je ode mě všechno podstatné.', 'Než skončíme, zkuste si každý vybrat jednu malou věc, kterou opravdu uděláte — ne někdy, ale v některé z příštích hodin.'],
         explain: course.outcomes.slice(0, 4),
-        ask: ['Co z dnešního školení použijete jako první?'],
-        expected: ['Stačí několik konkrétních odpovědí. Podporujte malé a realistické kroky, nikoliv obecná předsevzetí.'],
-        demo: ['Ukažte účastníkům, kde najdou sdílenou prezentaci nebo navazující podporu.'],
-        facilitation: ['Nechte prostor pro poslední dotazy a domluvte případný další krok.'],
-        caution: ['Nekončete posledním obsahovým slidem bez slovního uzavření. Závěr má účastníkům jasně potvrdit, že je školení u konce.'],
-        transition: ['Po poděkování klikněte na „Ukončit prezentaci“ nebo se vraťte na rozcestník Akademie.'],
-        fallback: ['Při časové tísni poděkujte, ukažte kontakt nebo další materiál a prezentaci ukončete.'],
+        ask: ['Co z dnešního školení vyzkoušíte jako první?'],
+        expected: ['Vezmi několik konkrétních odpovědí. Když někdo zůstane obecný, zeptej se: „V jaké hodině nebo situaci přesně?“'],
+        demo: ['Ukaž, kde kolegové najdou prezentaci, aplikaci nebo navazující podporu. Nic dalšího už nepředváděj.'],
+        facilitation: ['Nech prostor pro poslední dotazy a případně domluv jeden konkrétní další krok.'],
+        caution: ['Neskonči posledním obsahovým slidem beze slova. Jedna jasná závěrečná věta stačí, aby všichni věděli, že je hotovo.'],
+        transition: ['Po posledním dotazu poděkuj a prezentaci ukonči. Není potřeba znovu shrnovat celé školení.'],
+        shortcut: ['Poděkuj, polož jednu závěrečnou otázku a ukaž, kde jsou materiály.'],
+        fallback: ['Když není čas, poděkuj, ukaž kontakt nebo materiály a prezentaci ukonči.'],
         timing: '2–5 min dotazy, shrnutí a uzavření školení',
         position: `Závěrečná obrazovka · ${timing.total} min celé školení`
       }
@@ -359,14 +387,14 @@ function presenterConsoleDocument() {
 <html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Konzole školitele · AI Akademie GHRAB</title>
 <style>
-:root{color-scheme:dark;--bg:#030815;--panel:#08182a;--text:#eef8ff;--muted:#8da8bb;--cyan:#50e8ff;--purple:#a877ff;--gold:#f0aa4b;--green:#59e0a5;--red:#ff8f9a;--line:rgba(126,203,255,.2);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;color:var(--text);background:radial-gradient(circle at 20% 0%,rgba(57,139,211,.2),transparent 34%),linear-gradient(180deg,#020714,#061321);line-height:1.45}.app{min-height:100vh;padding:18px}.top{position:sticky;top:0;z-index:4;margin:-18px -18px 16px;padding:15px 18px;border-bottom:1px solid var(--line);background:rgba(2,8,18,.94);backdrop-filter:blur(18px)}.topline{display:flex;justify-content:space-between;gap:12px;align-items:center}.eyebrow{margin:0;color:var(--cyan);font-size:.68rem;font-weight:950;letter-spacing:.14em}.screen-note{margin:9px 0 0;color:var(--muted);font-size:.72rem}.screen-note b{color:var(--gold)}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}.metric{padding:11px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.035)}.metric strong{display:block;font-size:1.08rem}.metric span{color:var(--muted);font-size:.64rem}.slide{padding:18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(8,27,46,.92),rgba(3,13,25,.88))}.slide small{color:var(--purple);font-weight:900;letter-spacing:.08em}.slide h1{margin:8px 0;font-size:clamp(1.7rem,5vw,2.7rem);line-height:1.02}.slide p{margin:0;color:#c8dce8}.guide{display:grid;gap:10px;margin-top:13px}.card{padding:15px;border:1px solid var(--line);border-left:4px solid;border-radius:0 14px 14px 0;background:rgba(255,255,255,.035)}.card strong{display:block;margin-bottom:8px}.card ul{display:grid;gap:7px;margin:0;padding-left:19px}.card li,.card p{color:#d4e5ef;font-size:.82rem}.card.say{border-left-color:var(--cyan);background:rgba(80,232,255,.065)}.card.say strong{color:var(--cyan)}.card.say li{font-size:.9rem;font-weight:720}.card.explain{border-left-color:var(--purple)}.card.explain strong{color:#d4c2ff}.card.ask{border-left-color:var(--gold)}.card.ask strong{color:#ffd18d}.card.demo{border-left-color:var(--green)}.card.demo strong{color:#a7ffd6}.card.caution{border-left-color:var(--red)}.card.caution strong{color:#ffbbc1}.card.timing{border-left-color:#8da8bb}.card small{color:var(--muted)}.timer{font-variant-numeric:tabular-nums}.controls{position:sticky;bottom:0;display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:16px -18px -18px;padding:13px 18px;border-top:1px solid var(--line);background:rgba(2,8,18,.94);backdrop-filter:blur(18px)}button{min-height:44px;border:1px solid var(--line);border-radius:12px;color:var(--text);background:rgba(255,255,255,.045);font:inherit;font-weight:850;cursor:pointer}button.primary{color:#03111d;border-color:transparent;background:linear-gradient(135deg,var(--cyan),#9abaff)}button:disabled{opacity:.35;cursor:default}.next-preview{margin-top:12px;color:var(--muted);font-size:.72rem}
+:root{color-scheme:dark;--bg:#030815;--panel:#08182a;--text:#eef8ff;--muted:#8da8bb;--cyan:#50e8ff;--purple:#a877ff;--gold:#f0aa4b;--green:#59e0a5;--red:#ff8f9a;--line:rgba(126,203,255,.2);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;color:var(--text);background:radial-gradient(circle at 20% 0%,rgba(57,139,211,.2),transparent 34%),linear-gradient(180deg,#020714,#061321);line-height:1.45}.app{min-height:100vh;padding:18px}.top{position:sticky;top:0;z-index:4;margin:-18px -18px 16px;padding:15px 18px;border-bottom:1px solid var(--line);background:rgba(2,8,18,.94);backdrop-filter:blur(18px)}.topline{display:flex;justify-content:space-between;gap:12px;align-items:center}.eyebrow{margin:0;color:var(--cyan);font-size:.68rem;font-weight:950;letter-spacing:.14em}.screen-note{margin:9px 0 0;color:var(--muted);font-size:.72rem}.screen-note b{color:var(--gold)}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}.metric{padding:11px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.035)}.metric strong{display:block;font-size:1.08rem}.metric span{color:var(--muted);font-size:.64rem}.slide{padding:18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(8,27,46,.92),rgba(3,13,25,.88))}.slide small{color:var(--purple);font-weight:900;letter-spacing:.08em}.slide h1{margin:8px 0;font-size:clamp(1.7rem,5vw,2.7rem);line-height:1.02}.slide p{margin:0;color:#c8dce8}.guide{display:grid;gap:12px;margin-top:13px}.guide-note{margin:0;padding:12px 14px;border:1px solid rgba(80,232,255,.2);border-radius:13px;color:var(--muted);background:rgba(80,232,255,.04);font-size:.76rem}.guide-note strong{color:var(--cyan)}.flow{display:grid;gap:0}.step{position:relative;display:grid;grid-template-columns:38px minmax(0,1fr);gap:12px;padding-bottom:12px}.step:not(:last-child)::before{content:'';position:absolute;top:34px;bottom:-2px;left:18px;width:2px;background:linear-gradient(var(--line),rgba(80,232,255,.08))}.stepno{position:relative;z-index:1;width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:#03111d;background:linear-gradient(135deg,var(--cyan),#9abaff);font-size:.76rem;font-weight:950}.stepbody{padding:14px 15px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.035)}.stepbody>small{display:block;margin-bottom:3px;color:var(--muted);font-size:.61rem;font-weight:950;letter-spacing:.1em}.stepbody>strong{display:block;margin-bottom:8px}.stepbody ul{display:grid;gap:7px;margin:0;padding-left:19px}.stepbody li,.stepbody p{color:#d4e5ef;font-size:.82rem}.step.say .stepbody{border-color:rgba(80,232,255,.28);background:rgba(80,232,255,.06)}.step.say .stepbody>strong{color:var(--cyan)}.speech{display:grid;gap:8px}.speech p{margin:0;padding-left:13px;border-left:2px solid rgba(80,232,255,.42);color:#effcff;font-size:.9rem;font-weight:680}.step.explain .stepbody>strong{color:#d4c2ff}.step.demo .stepbody>strong{color:#a7ffd6}.step.ask .stepbody>strong{color:#ffd18d}.step.transition .stepbody>strong{color:#b9d1ff}.expected{margin-top:10px;padding-top:9px;border-top:1px solid var(--line)}.expected>small{display:block;margin-bottom:5px;color:var(--gold);font-weight:900}.support-title{margin:3px 0 0;color:var(--muted);font-size:.68rem;font-weight:950;letter-spacing:.1em}.support{display:grid;gap:9px}.card{padding:13px 14px;border:1px solid var(--line);border-left:4px solid;border-radius:0 13px 13px 0;background:rgba(255,255,255,.03)}.card strong{display:block;margin-bottom:7px}.card ul{display:grid;gap:6px;margin:0;padding-left:18px}.card li,.card p{color:#d4e5ef;font-size:.78rem}.card.method{border-left-color:var(--green)}.card.method strong{color:#a7ffd6}.card.caution{border-left-color:var(--red)}.card.caution strong{color:#ffbbc1}.card.shortcut{border-left-color:var(--gold)}.card.shortcut strong{color:#ffd18d}.card.fallback{border-left-color:var(--purple)}.card.fallback strong{color:#d4c2ff}.card.timing{border-left-color:#8da8bb}.card small{color:var(--muted)}.timer{font-variant-numeric:tabular-nums}.controls{position:sticky;bottom:0;display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:16px -18px -18px;padding:13px 18px;border-top:1px solid var(--line);background:rgba(2,8,18,.94);backdrop-filter:blur(18px)}button{min-height:44px;border:1px solid var(--line);border-radius:12px;color:var(--text);background:rgba(255,255,255,.045);font:inherit;font-weight:850;cursor:pointer}button.primary{color:#03111d;border-color:transparent;background:linear-gradient(135deg,var(--cyan),#9abaff)}button:disabled{opacity:.35;cursor:default}.next-preview{margin-top:12px;color:var(--muted);font-size:.72rem}
 </style></head><body><div id="root" class="app"><p>Načítám poznámky…</p></div>
 <script>
 const channel='BroadcastChannel' in window?new BroadcastChannel('${presenterChannelName}'):null;let started=Date.now(),slideStarted=Date.now(),lastLesson='';
 const esc=v=>String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
-const list=items=>'<ul>'+((items||[]).map(x=>'<li>'+esc(x)+'</li>').join(''))+'</ul>';const fmt=ms=>{const sec=Math.floor(ms/1000),m=Math.floor(sec/60),s=sec%60;return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')};
+const list=items=>'<ul>'+((items||[]).map(x=>'<li>'+esc(x)+'</li>').join(''))+'</ul>';const spoken=items=>'<div class="speech">'+((items||[]).map(x=>'<p>'+esc(String(x||'').trim().replace(/^„/,'').replace(/“$/,''))+'</p>').join(''))+'</div>';const step=(n,label,title,kind,body)=>'<section class="step '+kind+'"><span class="stepno">'+n+'</span><div class="stepbody"><small>'+label+'</small><strong>'+title+'</strong>'+body+'</div></section>';const fmt=ms=>{const sec=Math.floor(ms/1000),m=Math.floor(sec/60),s=sec%60;return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')};
 function command(action,extra={}){try{if(opener&&typeof opener.__ghrabPresenterCommand==='function'){opener.__ghrabPresenterCommand({action,...extra});return}}catch{}channel?.postMessage({type:'command',action,...extra})}
-window.renderPresenterState=p=>{if(!p)return;if(lastLesson!==p.lesson.id){lastLesson=p.lesson.id;slideStarted=Date.now()}const g=p.guide;const position=p.isCover?' · ÚVODNÍ OBRAZOVKA':p.isEnd?' · ZÁVĚREČNÁ OBRAZOVKA':' · ČÁST '+(p.lessonIndex+1)+' / '+p.course.totalLessons;const nextText=p.isEnd?'Prezentace je u konce.':p.next?'Další část: '+esc(p.next.title):'Konec prezentace';const primary=p.isEnd?'<button class="primary" onclick="command(\'toggle-presenter\')">Ukončit projekci</button>':'<button class="primary" onclick="command(\'next\')" '+(!p.next?'disabled':'')+'>Další →</button>';document.querySelector('#root').innerHTML='<header class="top"><div class="topline"><div><p class="eyebrow">KONZOLE ŠKOLITELE · '+esc(p.course.code)+'</p><strong>'+esc(p.course.title)+'</strong></div><span>'+(p.presenterMode?'PREZENTACE BĚŽÍ':'PŘÍPRAVNÝ REŽIM')+'</span></div><p class="screen-note"><b>Důležité:</b> projektor nastavte ve Windows na „Rozšířit“, nikoli „Duplikovat“. Toto okno ponechte na displeji notebooku.</p></header><section class="metrics"><div class="metric"><strong>'+p.course.duration+' min</strong><span>celé školení</span></div><div class="metric"><strong>'+p.lesson.duration+' min</strong><span>tato část</span></div><div class="metric"><strong class="timer" id="timers">00:00</strong><span>čas části / celkem</span></div></section><section class="slide"><small>'+esc(p.lesson.kicker)+position+'</small><h1>'+esc(p.lesson.title)+'</h1><p>'+esc(p.lesson.summary)+'</p></section><div class="guide"><section class="card say"><strong>Řekni přímo</strong>'+list(g.say)+'</section><section class="card explain"><strong>Vysvětli a zdůrazni</strong>'+list(g.explain)+'</section><section class="card ask"><strong>Zeptej se kolegů</strong>'+list(g.ask)+'<small>Očekávaný směr</small>'+list(g.expected)+'</section><section class="card demo"><strong>Ukaž nebo proveď</strong>'+list(g.demo)+'</section><section class="card explain"><strong>Metodický tip</strong>'+list(g.facilitation)+'</section><section class="card caution"><strong>Pozor při výkladu</strong>'+list(g.caution)+'</section><section class="card demo"><strong>Přechod dál</strong>'+list(g.transition)+'</section><section class="card caution"><strong>Záložní varianta</strong>'+list(g.fallback)+'</section><section class="card timing"><strong>Časování</strong><p>'+esc(g.timing)+'</p><small>'+esc(g.position)+'</small></section></div><p class="next-preview">'+nextText+'</p><footer class="controls"><button onclick="command(\'previous\')" '+(!p.previous?'disabled':'')+'>← Předchozí</button>'+primary+'<button onclick="command(\'toggle-presenter\')">'+(p.presenterMode?'Ukončit projekci':'Spustit projekci')+'</button><button onclick="slideStarted=Date.now()">Vynulovat čas části</button></footer>'};
+window.renderPresenterState=p=>{if(!p)return;if(lastLesson!==p.lesson.id){lastLesson=p.lesson.id;slideStarted=Date.now()}const g=p.guide;const position=p.isCover?' · ÚVODNÍ OBRAZOVKA':p.isEnd?' · ZÁVĚREČNÁ OBRAZOVKA':' · ČÁST '+(p.lessonIndex+1)+' / '+p.course.totalLessons;const nextText=p.isEnd?'Prezentace je u konce.':p.next?'Další část: '+esc(p.next.title):'Konec prezentace';const primary=p.isEnd?'<button class="primary" onclick="command(\'toggle-presenter\')">Ukončit projekci</button>':'<button class="primary" onclick="command(\'next\')" '+(!p.next?'disabled':'')+'>Další →</button>';document.querySelector('#root').innerHTML='<header class="top"><div class="topline"><div><p class="eyebrow">KONZOLE ŠKOLITELE · '+esc(p.course.code)+'</p><strong>'+esc(p.course.title)+'</strong></div><span>'+(p.presenterMode?'PREZENTACE BĚŽÍ':'PŘÍPRAVNÝ REŽIM')+'</span></div><p class="screen-note"><b>Důležité:</b> projektor nastavte ve Windows na „Rozšířit“, nikoli „Duplikovat“. Toto okno ponechte na displeji notebooku.</p></header><section class="metrics"><div class="metric"><strong>'+p.course.duration+' min</strong><span>celé školení</span></div><div class="metric"><strong>'+p.lesson.duration+' min</strong><span>tato část</span></div><div class="metric"><strong class="timer" id="timers">00:00</strong><span>čas části / celkem</span></div></section><section class="slide"><small>'+esc(p.lesson.kicker)+position+'</small><h1>'+esc(p.lesson.title)+'</h1><p>'+esc(p.lesson.summary)+'</p></section><div class="guide"><p class="guide-note"><strong>Jdi shora dolů, ale nemluv podle papíru.</strong> První karta nabízí možné formulace; ostatní body jsou jen opěrné body pro živé vedení.</p><div class="flow">'+step('1','ROZJEZD','Začni jednou přirozenou větou','say',spoken(g.say))+step('2','CO MUSÍ ZAZNÍT','Drž se dvou nebo tří bodů','explain',list(g.explain))+step('3','PŘÍKLAD NEBO UKÁZKA','Ukaž konkrétní dopad','demo',list(g.demo))+step('4','ZAPOJENÍ SKUPINY','Polož jednu otázku a počkej','ask',list(g.ask)+'<div class="expected"><small>Kam odpovědi vrátit</small>'+list(g.expected)+'</div>')+step('5','KAM DÁL','Uzavři, nebo rovnou přepni','transition',spoken(g.transition))+'</div><p class="support-title">RYCHLÁ OPORA · POUŽIJ JEN PODLE SITUACE</p><div class="support"><section class="card method"><strong>Metodický tip</strong>'+list(g.facilitation)+'</section><section class="card caution"><strong>Na co si dát pozor</strong>'+list(g.caution)+'</section><section class="card shortcut"><strong>Když nestíháš</strong>'+list(g.shortcut)+'</section><section class="card fallback"><strong>Když selže technika</strong>'+list(g.fallback)+'</section><section class="card timing"><strong>Časování</strong><p>'+esc(g.timing)+'</p><small>'+esc(g.position)+'</small></section></div></div><p class="next-preview">'+nextText+'</p><footer class="controls"><button onclick="command(\'previous\')" '+(!p.previous?'disabled':'')+'>← Předchozí</button>'+primary+'<button onclick="command(\'toggle-presenter\')">'+(p.presenterMode?'Ukončit projekci':'Spustit projekci')+'</button><button onclick="slideStarted=Date.now()">Vynulovat čas části</button></footer>'};
 setInterval(()=>{const e=document.querySelector('#timers');if(e)e.textContent=fmt(Date.now()-slideStarted)+' / '+fmt(Date.now()-started)},1000);channel&&(channel.onmessage=e=>{if(e.data?.type==='state')window.renderPresenterState(e.data.payload)});channel?.postMessage({type:'command',action:'request-state'});try{opener?.__ghrabPresenterCommand?.({action:'request-state'})}catch{}
 <\/script></body></html>`;
 }

@@ -1,4 +1,4 @@
-# Nahrání AI Akademie GHRAB 1.3.2 na GitHub Pages
+# Nahrání AI Akademie GHRAB 1.4.1 na GitHub Pages
 
 ## 1. Před nahráním
 
@@ -8,7 +8,7 @@ V kořeni projektu spusťte:
 npm test
 ```
 
-Správný výsledek potvrdí deset školení, 68 částí, deset samostatných exportů a verzi 1.3.2.
+Správný výsledek potvrdí deset školení, 68 částí, deset samostatných exportů a verzi 1.4.1.
 
 ## 2. Nahrajte obsah rozbalené složky
 
@@ -51,6 +51,8 @@ Ověřte:
 - nikde se nezobrazuje osobní postup ani procento absolvování;
 - tlačítko **Změny** otevře changelog s deseti položkami;
 - v každém kurzu lze spustit prezentaci od úvodní obrazovky;
+- interní poznámky jsou seřazené v pěti očíslovaných krocích a nemají dva rovnocenné sloupce;
+- konzole školitele používá stejné pořadí a zobrazuje také variantu **Když nestíháš**;
 - v prezentačním režimu je vpravo nahoře tlačítko **Ukončit prezentaci**;
 - poslední obsahová část pokračuje na závěrečný slide **Děkuji za pozornost**;
 - ze závěrečného slidu funguje ukončení, nové spuštění i návrat na rozcestník;
@@ -69,7 +71,7 @@ npm test
 
 Potom nahrajte upravený zdrojový modul i nově vytvořený soubor v `exports/`.
 
-Scénáře řečníka jsou v `courses/speaker-notes.js`. Příkaz `npm run build:notes` je znovu vygeneruje a může přepsat ruční úpravy.
+Výsledné scénáře jsou v `courses/speaker-notes.js`. Trvalé změny mluvených formulací provádějte v mapách souboru `scripts/build-speaker-notes.mjs` a potom spusťte `npm run build:notes`.
 
 ## 6. Při přidání změny do changelogu
 
@@ -83,7 +85,7 @@ Novou položku vložte nahoru. V aplikaci se vždy ukazuje pouze deset nejnověj
 
 ## 7. Obnovení nainstalované PWA
 
-Service worker používá cache verze 1.3.2. Po nasazení aplikaci zavřete a znovu otevřete. Při přetrvávající staré verzi:
+Service worker používá cache verze 1.4.1. Po nasazení aplikaci zavřete a znovu otevřete. Při přetrvávající staré verzi:
 
 1. proveďte tvrdé obnovení `Ctrl + F5`;
 2. zavřete všechny karty Akademie;

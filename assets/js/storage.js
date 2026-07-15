@@ -7,7 +7,7 @@ const defaultState = {
   trainerMode: false,
   lastCourse: null,
   lastLesson: null,
-  installedVersion: '1.3.2'
+  installedVersion: '1.4.1'
 };
 
 export function loadState() {
@@ -20,7 +20,7 @@ export function loadState() {
       trainerMode: Boolean(parsed.trainerMode),
       lastCourse: parsed.lastCourse || null,
       lastLesson: parsed.lastLesson || null,
-      installedVersion: '1.3.2'
+      installedVersion: '1.4.1'
     };
   } catch {
     return structuredClone(defaultState);
@@ -35,7 +35,7 @@ export function saveState(state) {
       trainerMode: Boolean(state.trainerMode),
       lastCourse: state.lastCourse || null,
       lastLesson: state.lastLesson || null,
-      installedVersion: '1.3.2'
+      installedVersion: '1.4.1'
     }));
   } catch {
     // Akademie zůstává použitelná i v režimu, který blokuje místní úložiště.

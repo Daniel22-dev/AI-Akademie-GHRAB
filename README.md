@@ -1,20 +1,21 @@
-# AI Akademie GHRAB 1.3.2
+# AI Akademie GHRAB 1.4.1
 
 Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
 Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
 
-## Novinky ve verzi 1.3.2
+## Novinky ve verzi 1.4.1
 
-- odstraněn celý osobní postup účastníka včetně procent a označování dokončených částí;
-- přidán changelog posledních deseti změn, dostupný v horní navigaci a v patičce;
-- každé školení má skutečnou závěrečnou obrazovku;
-- z prezentačního režimu lze kdykoliv odejít tlačítkem **Ukončit prezentaci** vpravo nahoře nebo klávesou `X` či `Esc`;
-- poslední obsahový slide nově pokračuje na obrazovku **Děkuji za pozornost**;
-- závěrečná obrazovka umožňuje ukončit prezentaci, spustit ji znovu nebo se vrátit na rozcestník;
-- stejný závěrečný slide byl doplněn také do všech samostatných HTML prezentací.
+- mluvená část všech **68 lekcí byla přepsána ručně**, nikoli sestavena střídáním univerzálních šablon;
+- formulace používají přirozenější učitelský jazyk, různou délku vět, konkrétní příklady a běžné řečnické zkratky;
+- poznámky už nenutí školitele každou část uvádět, shrnovat a uzavírat stejným způsobem;
+- přechod mezi slidy je často jen praktický pokyn k přepnutí, protože v živém projevu není vždy potřeba další umělá mezivěta;
+- otázky pro kolegy jsou napsané zvlášť pro každou lekci a směřují ke konkrétní školní praxi;
+- interní metodické pokyny používají jednotně civilní oslovení v jednotném čísle;
+- konzole školitele jasně upozorňuje, že první karta nabízí možné formulace, nikoli text k recitování;
+- kontrolní skript hlídá návrat zakázaných šablonových vět a opakování stejných začátků.
 
-Verze 1.3.1 zároveň přinesla přehlednější mapu školení. Verze 1.3.0 opravila projektorový režim, scénáře řečníka, mobilní ovládání, tisk a vizuální systém.
+Verze 1.3.2 přinesla závěrečné obrazovky, bezpečný návrat z prezentace a changelog. Verze 1.3.1 upravila rozcestník a verze 1.3.0 projektorový režim, konzoli školitele, tisk a vizuální systém.
 
 ## Deset školení
 
@@ -84,10 +85,10 @@ Obsah kurzů je ve složce `courses/`. Doplňující prezentační vrstvy jsou o
 
 - `courses/presentation-enhancements.js` — základní cesty, vizuální bloky a kompozice;
 - `courses/speaker-notes.js` — upravitelný scénář všech 68 částí;
-- `scripts/build-speaker-notes.mjs` — volitelně znovu připraví výchozí scénáře;
+- `scripts/build-speaker-notes.mjs` — znovu sestaví ručně kurátorované mluvené opory a podpůrné body;
 - `assets/js/changelog.js` — deset nejnovějších změn aplikace.
 
-Po ruční úpravě `speaker-notes.js` nespouštějte `npm run build:notes`, pokud nechcete scénáře znovu vygenerovat.
+Trvalé změny mluvených formulací zapisujte do map v `scripts/build-speaker-notes.mjs` a potom spusťte `npm run build:notes`. Tím se změna bezpečně promítne do všech poznámek.
 
 ## Sestavení a kontrola
 
