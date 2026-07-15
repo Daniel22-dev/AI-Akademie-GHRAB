@@ -1,4 +1,4 @@
-const CACHE = 'ghrab-academy-v1.3.1';
+const CACHE = 'ghrab-academy-v1.3.2';
 const FILES = [
   './',
   './index.html',
@@ -6,6 +6,7 @@ const FILES = [
   './404.html',
   './assets/css/styles.css',
   './assets/js/app.js',
+  './assets/js/changelog.js',
   './assets/js/starfield.js',
   './assets/js/storage.js',
   './assets/brand/apple-touch-icon.png',

@@ -1,32 +1,20 @@
-# AI Akademie GHRAB 1.3.1
+# AI Akademie GHRAB 1.3.2
 
-Soukromý prezentační a školicí rozcestník projektu AI Studio GHRAB. Akademie je určena především školiteli: připraví výklad, zobrazí scénář řečníka, spustí čistou projekci a vytvoří samostatný interaktivní HTML materiál pro účastníky.
+Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
-## Co přináší verze 1.3.1
+Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
 
-### Oprava 1.3.1 — přehlednější vzdělávací mapa
+## Novinky ve verzi 1.3.2
 
-- větev tvorby materiálů už není namačkaná do jedné řady,
-- Diferenciátor je jasně označen jako výchozí krok,
-- Generátor testů a LUDUS jsou přehledně zobrazeny jako dvě alternativy,
-- komunikace a hodnocení mají vyvážené samostatné karty,
-- pokročilý workflow a role správce jsou oddělené navazující možnosti,
-- rozložení se přizpůsobuje notebooku, tabletu i mobilu.
+- odstraněn celý osobní postup účastníka včetně procent a označování dokončených částí;
+- přidán changelog posledních deseti změn, dostupný v horní navigaci a v patičce;
+- každé školení má skutečnou závěrečnou obrazovku;
+- z prezentačního režimu lze kdykoliv odejít tlačítkem **Ukončit prezentaci** vpravo nahoře nebo klávesou `X` či `Esc`;
+- poslední obsahový slide nově pokračuje na obrazovku **Děkuji za pozornost**;
+- závěrečná obrazovka umožňuje ukončit prezentaci, spustit ji znovu nebo se vrátit na rozcestník;
+- stejný závěrečný slide byl doplněn také do všech samostatných HTML prezentací.
 
-
-- čistý projektorový režim s vlastní úvodní obrazovkou každého kurzu;
-- automatické přizpůsobení všech slidů dostupné výšce bez rolování;
-- oddělená Konzole školitele pro druhý monitor;
-- 68 samostatných scénářů řečníka s přímou řečí, otázkou, očekávanou odpovědí, demonstrací, upozorněním, přechodem, záložní variantou a časováním;
-- přesné rozlišení výukového času a rezervy na diskusi;
-- skutečný místní postup kurzem, kvízy a checklisty;
-- základní a rozšiřující cesta v každém školení;
-- větvená vzdělávací mapa podle potřeb učitele;
-- jednotná sada deseti ikon kurzů;
-- nové vizuální formáty: hlavní myšlenka, modelová ukázka před/po, rozhodovací blok a praktická mise;
-- plnohodnotný tisk nebo uložení celé samostatné prezentace do PDF;
-- mobilní obsah, dotykové ovládání a trvalé uložení aktivit;
-- rozšířené automatické kontroly obsahu, časů, exportů a soukromí poznámek.
+Verze 1.3.1 zároveň přinesla přehlednější mapu školení. Verze 1.3.0 opravila projektorový režim, scénáře řečníka, mobilní ovládání, tisk a vizuální systém.
 
 ## Deset školení
 
@@ -41,60 +29,63 @@ Soukromý prezentační a školicí rozcestník projektu AI Studio GHRAB. Akadem
 9. **Propojený pracovní postup aplikací**.
 10. **Mentor a správce školení**.
 
-## Doporučená vzdělávací cesta
+## Logika rozcestníku
 
-Společný základ tvoří AI gramotnost a bezpečný vstup. Potom si účastník vybírá větev:
+Společný základ tvoří AI gramotnost a bezpečný vstup. Potom lze podle cíle školení otevřít některou z větví:
 
 - tvorba materiálů: Diferenciátor, Generátor a LUDUS;
 - komunikace: Korespondenční asistent;
 - hodnocení: Hodnotitel;
-- pokročilá práce: propojený pracovní postup po zvládnutí alespoň dvou aplikací;
+- pokročilá práce: propojený pracovní postup;
 - samostatná role: správce a lektor.
 
-Každý kurz uvádí **základní cestu** a **rozšíření**. Není nutné absolvovat všechny kurzy ani všechny rozšiřující části.
+Označení **základní cesta** a **rozšíření** pomáhá školiteli připravit kratší nebo podrobnější variantu prezentace. Nejde o evidenci absolvování účastníka.
 
 ## Bezpečná projekce s poznámkami
 
 1. Ve Windows stiskněte `Win + P` a vyberte **Rozšířit**. Na macOS nastavte rozšířenou plochu v nastavení monitorů.
 2. V Akademii otevřete **Konzoli školitele** a ponechte ji na displeji notebooku.
 3. Hlavní prezentaci přesuňte na projektor a spusťte prezentační nebo celoobrazovkový režim.
-4. Projektor zobrazuje pouze čistý slide. Poznámky, metodika a ovládání zůstávají v konzoli.
+4. Projektor zobrazuje čistý slide. Poznámky a metodika zůstávají v konzoli.
+5. Na konci prezentace použijte závěrečný slide. Z režimu lze kdykoliv odejít také tlačítkem vpravo nahoře nebo klávesou `X`.
 
 Při režimu **Duplikovat** nelze před účastníky skrýt obsah notebooku.
+
+## Changelog
+
+Changelog se otevírá:
+
+- tlačítkem **Změny** v horní navigaci;
+- tlačítkem **Changelog** v patičce.
+
+Zdroj záznamů je v souboru:
+
+```text
+assets/js/changelog.js
+```
+
+Novou změnu vložte na začátek pole `CHANGELOG`. Aplikace zobrazuje pouze deset nejnovějších položek pomocí `.slice(0, 10)`, takže jedenáctý záznam automaticky zmizí.
 
 ## Samostatné prezentace pro účastníky
 
 Ve složce `exports/` je pro každý kurz jeden samostatný HTML soubor. Obsahuje pouze dané školení a funguje bez připojení k internetu.
 
-```text
-exports/
-├── ai-literacy.html
-├── start.html
-├── differentiator.html
-├── github.html
-├── generator.html
-├── ludus.html
-├── correspondence.html
-├── evaluator.html
-├── workflow.html
-└── administrator.html
-```
-
 Samostatné prezentace:
 
 - neobsahují scénáře ani poznámky školitele;
 - ukládají kvízy a checklisty pouze v místním prohlížeči;
-- mají mobilní osnovu a ovládání o minimální dotykové výšce 44 px;
+- mají mobilní osnovu a dotykové ovládání;
 - lze vytisknout nebo uložit celé jako PDF;
-- používají stejnou základní a rozšiřující cestu jako hlavní Akademie.
+- obsahují závěrečnou obrazovku s ukončením celé obrazovky a novým spuštěním.
 
 ## Úprava obsahu
 
 Obsah kurzů je ve složce `courses/`. Doplňující prezentační vrstvy jsou oddělené:
 
-- `courses/presentation-enhancements.js` — základní cesty, rozhodovací bloky, kompozice a závěrečné mise;
+- `courses/presentation-enhancements.js` — základní cesty, vizuální bloky a kompozice;
 - `courses/speaker-notes.js` — upravitelný scénář všech 68 částí;
-- `scripts/build-speaker-notes.mjs` — volitelně znovu připraví výchozí scénáře z obsahu kurzů.
+- `scripts/build-speaker-notes.mjs` — volitelně znovu připraví výchozí scénáře;
+- `assets/js/changelog.js` — deset nejnovějších změn aplikace.
 
 Po ruční úpravě `speaker-notes.js` nespouštějte `npm run build:notes`, pokud nechcete scénáře znovu vygenerovat.
 
@@ -107,56 +98,40 @@ npm run build:exports
 npm test
 ```
 
-Volitelné příkazy:
-
-```bash
-npm run build:notes   # znovu vytvoří výchozí scénáře řečníka
-npm run check         # kontrola bez nového sestavení exportů
-```
-
 Kontrola ověřuje mimo jiné:
 
-- deset kurzů a jejich jedinečné identifikátory;
-- shodu celkového času se součtem částí a rezervy;
+- deset kurzů a 68 částí;
+- shodu časů s obsahem a rezervou;
+- scénáře ke všem částem;
 - platnost kvízů a vizuálních bloků;
-- existenci scénáře ke každé části;
-- základní a rozšiřující cestu;
-- závěrečný přenos do praxe;
-- kompletní tiskový režim exportů;
-- nepřítomnost interních poznámek v souborech pro účastníky;
-- oddělené relace Konzole školitele;
-- bezpečný fallback service workeru pouze pro navigaci.
+- závěrečnou obrazovku hlavní i samostatné prezentace;
+- přítomnost changelogu s deseti položkami;
+- nepřítomnost osobního postupu účastníka;
+- nepřítomnost interních poznámek v exportech;
+- bezpečné chování service workeru.
 
 ## Klávesové zkratky
 
 V hlavní Akademii:
 
-- `←` / `→`, `Page Up` / `Page Down` — předchozí nebo další část;
-- `Home` / `End` — úvodní nebo poslední obrazovka v prezentačním režimu;
-- `P` — prezentační režim;
+- `←` / `→`, `Page Up` / `Page Down`, mezerník — předchozí nebo další část;
+- `Home` — úvodní obrazovka prezentace;
+- `End` — závěrečná obrazovka prezentace;
+- `P` — zapnutí nebo ukončení prezentačního režimu;
+- `X` nebo `Esc` — okamžité ukončení prezentačního režimu;
 - `F` — celá obrazovka;
 - `N` — poznámky nebo Konzole školitele.
 
 V samostatném HTML:
 
 - `←` / `→`, `Page Up` / `Page Down` — změna obrazovky;
-- `Home` / `End` — první nebo poslední obrazovka;
-- `F` — celá obrazovka.
+- `Home` / `End` — úvodní nebo závěrečná obrazovka;
+- `F` — celá obrazovka;
+- `Esc` — ukončení celé obrazovky.
 
 ## Bezpečnost a anonymizace
 
-Do Akademie ani do veřejného repozitáře nevkládejte:
-
-- API klíče, podpisové klíče, hesla nebo přístupové soubory;
-- neanonymizované studentské práce, e-maily, seznamy či výsledky;
-- kombinace údajů, podle nichž lze konkrétního člověka nepřímo poznat;
-- interní dokumenty školy bez odpovídajícího oprávnění.
-
-Odstranění jména nemusí být anonymizace. Před použitím odstraňte také třídu, diagnózu, kontakt, podpis a jedinečné osobní okolnosti. Konečnou odpovědnost za materiál, komunikaci nebo hodnocení má vždy učitel.
-
-## Poznámka k modelovým ukázkám
-
-Vizuální bloky označené **Modelová ukázka** nebo **Ukázka výsledku** nejsou vydávány za screenshot skutečné aplikace. Zobrazují bezpečně a srozumitelně princip „před a po“. Reálné screenshoty lze později doplnit, až budou k dispozici aktuální obrazovky jednotlivých aplikací bez osobních údajů a tajných klíčů.
+Do Akademie ani do veřejného repozitáře nevkládejte API klíče, hesla, přístupové soubory ani neanonymizované údaje studentů, rodičů či zaměstnanců. Odstranění jména samo o sobě nemusí znamenat anonymizaci; odstraňte také třídu, diagnózu, kontakt, podpis a jedinečné osobní okolnosti.
 
 ## Nasazení
 

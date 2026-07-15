@@ -8,9 +8,9 @@ const errors = [];
 const warnings = [];
 const requiredFiles = [
   'index.html', 'manifest.webmanifest', 'sw.js', 'assets/css/styles.css',
-  'assets/js/app.js', 'assets/js/storage.js', 'assets/js/starfield.js', 'courses/index.js',
+  'assets/js/app.js', 'assets/js/storage.js', 'assets/js/changelog.js', 'assets/js/starfield.js', 'courses/index.js',
   'courses/speaker-notes.js', 'courses/presentation-enhancements.js',
-  'README.md', 'NAHRANI-NA-GITHUB.md', 'AUDIT-IMPLEMENTACE-v1.3.1.md'
+  'README.md', 'NAHRANI-NA-GITHUB.md', 'AUDIT-IMPLEMENTACE-v1.3.2.md'
 ];
 const allowedBlocks = new Set([
   'lead', 'cards', 'flow', 'comparison', 'steps', 'callout', 'checklist',
@@ -96,6 +96,8 @@ for (const course of courses) {
     if (!exported.includes('localStorage')) errors.push(`Export ${course.id}.html neukládá stav aktivit.`);
     if (!exported.includes('min-height:44px')) errors.push(`Export ${course.id}.html nemá minimální dotykovou výšku.`);
     if (!exported.includes('Základní cesta')) errors.push(`Export ${course.id}.html nerozlišuje základní a rozšiřující cestu.`);
+    if (!exported.includes('Konec prezentace') || !exported.includes('Děkuji za pozornost.')) errors.push(`Export ${course.id}.html nemá závěrečnou obrazovku.`);
+    if (!exported.includes('data-action=\"exit-fullscreen\"') || !exported.includes('data-action=\"restart\"')) errors.push(`Export ${course.id}.html nemá bezpečné ukončení a nové spuštění.`);
     if (exported.includes('Poznámka řečníka') || exported.includes('trainerNote') || exported.includes('speakerNotes') || exported.includes('Konzole školitele')) {
       errors.push(`Export ${course.id}.html obsahuje interní informace školitele.`);
     }
@@ -113,6 +115,7 @@ if (!sw.includes(`ghrab-academy-v${pkg.version}`)) errors.push('Verze cache v sw
 if (!sw.includes("event.request.mode === 'navigate'")) errors.push('Service worker nerozlišuje navigaci od chybějících assetů.');
 if (sw.includes("catch(() => caches.match('./index.html'))")) errors.push('Service worker stále maskuje chyby assetů hlavní stránkou.');
 for (const cachedFile of [
+  './assets/js/changelog.js',
   './courses/presentation-enhancements.js',
   './courses/speaker-notes.js',
   ...courses.map(course => course.icon)
@@ -130,10 +133,24 @@ if (!app.includes('fitPresenterSlide')) errors.push('Hlavní aplikace nemá auto
 if (!app.includes('presentationCover')) errors.push('Hlavní aplikace nemá úvodní prezentační obrazovky kurzů.');
 if (app.includes("new BroadcastChannel('ghrab-academy-presenter-v1')")) errors.push('Konzole školitele stále používá společný kanál bez identifikátoru relace.');
 if (!app.includes('presenterSessionId')) errors.push('Konzole školitele nemá oddělené relace.');
-if (!app.includes('renderLessonCompletion')) errors.push('Hlavní aplikace nezobrazuje skutečný postup lekcemi.');
+if (app.includes('renderLessonCompletion') || app.includes('completedLessons') || app.includes('overallProgress') || app.includes('courseProgress')) errors.push('Hlavní aplikace stále obsahuje osobní postup účastníka.');
+if (!app.includes('renderPresentationEnd')) errors.push('Hlavní aplikace nemá závěrečnou prezentační obrazovku.');
+if (!app.includes('exitPresenter')) errors.push('Hlavní aplikace nemá bezpečný návrat z prezentačního režimu.');
+if (!app.includes('open-changelog') || !app.includes('CHANGELOG')) errors.push('Hlavní aplikace nemá dostupný changelog.');
 if (!app.includes('course.minimumLessons')) errors.push('Hlavní aplikace nerozlišuje základní a rozšiřující cestu.');
+const storage = await fs.readFile(path.join(root, 'assets/js/storage.js'), 'utf8');
+if (storage.includes('completedLessons')) errors.push('Místní úložiště stále eviduje osobní postup lekcemi.');
+const changelogSource = await fs.readFile(path.join(root, 'assets/js/changelog.js'), 'utf8');
+const changelogModule = await import(new URL('../assets/js/changelog.js', import.meta.url));
+if (changelogModule.APP_VERSION !== pkg.version) errors.push('Verze changelogu neodpovídá package.json.');
+if (!Array.isArray(changelogModule.CHANGELOG) || changelogModule.CHANGELOG.length !== 10) errors.push('Changelog musí obsahovat přesně deset nejnovějších změn.');
+if (!changelogSource.includes('.slice(0, 10)')) warnings.push('Changelog není chráněn automatickým omezením na deset položek.');
 if (!app.includes('outline-close')) errors.push('Mobilní osnova nemá vlastní zavírací prvek.');
 if (app.includes('Žák 2.B se specifickou poruchou učení')) errors.push('V obsahu zůstal rizikový příklad pseudonymizace žáka.');
+if (!app.includes("event.key === 'Escape' && presenterMode")) errors.push('Prezentační režim nelze ukončit klávesou Escape.');
+const styles = await fs.readFile(path.join(root, 'assets/css/styles.css'), 'utf8');
+if (styles.includes('.presenter-mode .site-header { display: none !important; }')) errors.push('Prezentační režim znovu skrývá nouzové tlačítko pro ukončení.');
+if (!styles.includes('.presenter-mode .site-header .presenter-exit-button')) errors.push('Tlačítko pro ukončení prezentace nemá viditelný projektorový styl.');
 
 if (errors.length) {
   console.error('\nKontrola selhala:');

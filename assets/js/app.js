@@ -1,12 +1,6 @@
 import { courses, courseMap } from '../../courses/index.js';
-import {
-  loadState,
-  saveState,
-  resetState,
-  lessonKey,
-  checklistKey,
-  quizKey
-} from './storage.js';
+import { loadState, saveState, checklistKey, quizKey } from './storage.js';
+import { APP_VERSION, CHANGELOG } from './changelog.js';
 import { startStarfield } from './starfield.js';
 
 const app = document.querySelector('#app');
@@ -15,6 +9,7 @@ let searchTerm = '';
 let activeCategory = 'Vše';
 let presenterMode = false;
 let presentationCover = false;
+let presentationEnd = false;
 let deferredInstallPrompt = null;
 let presenterConsoleWindow = null;
 const presenterSessionId = sessionStorage.getItem('ghrab-presenter-session') || (crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`);
@@ -35,7 +30,10 @@ const icons = {
   search: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
   clock: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
   download: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>',
-  console: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9l2 2 3-3M14 12h3"/></svg>'
+  console: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9l2 2 3-3M14 12h3"/></svg>',
+  history: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/></svg>',
+  close: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  replay: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>'
 };
 
 function escapeHtml(value = '') {
@@ -226,6 +224,7 @@ function presenterPayload() {
       lesson: { id: 'cover', title: 'Úvodní obrazovka', summary: course.subtitle, duration: 0, kicker: `${course.code} · ZAČÁTEK` },
       lessonIndex: -1,
       isCover: true,
+      isEnd: false,
       presenterMode,
       previous: null,
       next: { id: course.lessons[0].id, title: course.lessons[0].title },
@@ -244,14 +243,40 @@ function presenterPayload() {
       }
     };
   }
+  if (presenterMode && presentationEnd) {
+    return {
+      course: { id: course.id, title: course.title, code: course.code, duration: timing.total, totalLessons: course.lessons.length },
+      lesson: { id: 'end', title: 'Konec prezentace', summary: `Školení ${course.title} bylo dokončeno.`, duration: 0, kicker: `${course.code} · ZÁVĚR` },
+      lessonIndex: course.lessons.length,
+      isCover: false,
+      isEnd: true,
+      presenterMode,
+      previous: { id: course.lessons.at(-1).id, title: course.lessons.at(-1).title },
+      next: null,
+      guide: {
+        say: ['„Děkuji za pozornost.“', '„Než skončíme, vyberte si jeden konkrétní krok, který vyzkoušíte ve své praxi.“'],
+        explain: course.outcomes.slice(0, 4),
+        ask: ['Co z dnešního školení použijete jako první?'],
+        expected: ['Stačí několik konkrétních odpovědí. Podporujte malé a realistické kroky, nikoliv obecná předsevzetí.'],
+        demo: ['Ukažte účastníkům, kde najdou sdílenou prezentaci nebo navazující podporu.'],
+        facilitation: ['Nechte prostor pro poslední dotazy a domluvte případný další krok.'],
+        caution: ['Nekončete posledním obsahovým slidem bez slovního uzavření. Závěr má účastníkům jasně potvrdit, že je školení u konce.'],
+        transition: ['Po poděkování klikněte na „Ukončit prezentaci“ nebo se vraťte na rozcestník Akademie.'],
+        fallback: ['Při časové tísni poděkujte, ukažte kontakt nebo další materiál a prezentaci ukončete.'],
+        timing: '2–5 min dotazy, shrnutí a uzavření školení',
+        position: `Závěrečná obrazovka · ${timing.total} min celé školení`
+      }
+    };
+  }
   return {
     course: { id: course.id, title: course.title, code: course.code, duration: timing.total, totalLessons: course.lessons.length },
     lesson: { id: lesson.id, title: lesson.title, summary: lesson.summary, duration: lesson.duration, kicker: lesson.kicker },
     lessonIndex,
     isCover: false,
+    isEnd: false,
     presenterMode,
     previous: lessonIndex > 0 ? { id: course.lessons[lessonIndex - 1].id, title: course.lessons[lessonIndex - 1].title } : presenterMode ? { id: 'cover', title: 'Úvodní obrazovka' } : null,
-    next: lessonIndex < course.lessons.length - 1 ? { id: course.lessons[lessonIndex + 1].id, title: course.lessons[lessonIndex + 1].title } : null,
+    next: lessonIndex < course.lessons.length - 1 ? { id: course.lessons[lessonIndex + 1].id, title: course.lessons[lessonIndex + 1].title } : presenterMode ? { id: 'end', title: 'Konec prezentace' } : null,
     guide: buildSpeakerGuide(course, lesson, lessonIndex)
   };
 }
@@ -273,8 +298,14 @@ function handlePresenterCommand(message = {}) {
   const { course, lessonIndex } = context;
   if (message.action === 'previous') {
     if (presenterMode && presentationCover) return;
+    if (presenterMode && presentationEnd) {
+      presentationEnd = false;
+      navigate(`/course/${course.id}/${course.lessons.at(-1).id}`);
+      return;
+    }
     if (presenterMode && lessonIndex === 0) {
       presentationCover = true;
+      presentationEnd = false;
       render();
       return;
     }
@@ -283,24 +314,42 @@ function handlePresenterCommand(message = {}) {
   if (message.action === 'next') {
     if (presenterMode && presentationCover) {
       presentationCover = false;
+      presentationEnd = false;
       render();
       return;
     }
-    if (lessonIndex < course.lessons.length - 1) navigate(`/course/${course.id}/${course.lessons[lessonIndex + 1].id}`);
+    if (presenterMode && presentationEnd) return;
+    if (lessonIndex < course.lessons.length - 1) {
+      navigate(`/course/${course.id}/${course.lessons[lessonIndex + 1].id}`);
+    } else if (presenterMode) {
+      presentationEnd = true;
+      presentationCover = false;
+      render();
+    }
   }
   if (message.action === 'goto' && message.lessonId) {
     if (message.lessonId === 'cover') {
       presentationCover = true;
+      presentationEnd = false;
+      render();
+    } else if (message.lessonId === 'end') {
+      presentationCover = false;
+      presentationEnd = true;
       render();
     } else if (course.lessons.some(item => item.id === message.lessonId)) {
       presentationCover = false;
+      presentationEnd = false;
       navigate(`/course/${course.id}/${message.lessonId}`);
     }
   }
   if (message.action === 'toggle-presenter') {
-    presenterMode = !presenterMode;
-    presentationCover = presenterMode;
-    render();
+    if (presenterMode) exitPresenter();
+    else {
+      presenterMode = true;
+      presentationCover = true;
+      presentationEnd = false;
+      render();
+    }
   }
   if (message.action === 'request-state') sendPresenterState();
 }
@@ -317,7 +366,7 @@ const channel='BroadcastChannel' in window?new BroadcastChannel('${presenterChan
 const esc=v=>String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
 const list=items=>'<ul>'+((items||[]).map(x=>'<li>'+esc(x)+'</li>').join(''))+'</ul>';const fmt=ms=>{const sec=Math.floor(ms/1000),m=Math.floor(sec/60),s=sec%60;return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')};
 function command(action,extra={}){try{if(opener&&typeof opener.__ghrabPresenterCommand==='function'){opener.__ghrabPresenterCommand({action,...extra});return}}catch{}channel?.postMessage({type:'command',action,...extra})}
-window.renderPresenterState=p=>{if(!p)return;if(lastLesson!==p.lesson.id){lastLesson=p.lesson.id;slideStarted=Date.now()}const g=p.guide;document.querySelector('#root').innerHTML='<header class="top"><div class="topline"><div><p class="eyebrow">KONZOLE ŠKOLITELE · '+esc(p.course.code)+'</p><strong>'+esc(p.course.title)+'</strong></div><span>'+(p.presenterMode?'PREZENTACE BĚŽÍ':'PŘÍPRAVNÝ REŽIM')+'</span></div><p class="screen-note"><b>Důležité:</b> projektor nastavte ve Windows na „Rozšířit“, nikoli „Duplikovat“. Toto okno ponechte na displeji notebooku.</p></header><section class="metrics"><div class="metric"><strong>'+p.course.duration+' min</strong><span>celé školení</span></div><div class="metric"><strong>'+p.lesson.duration+' min</strong><span>tato část</span></div><div class="metric"><strong class="timer" id="timers">00:00</strong><span>čas části / celkem</span></div></section><section class="slide"><small>'+esc(p.lesson.kicker)+(p.isCover?' · ÚVODNÍ OBRAZOVKA':' · ČÁST '+(p.lessonIndex+1)+' / '+p.course.totalLessons)+'</small><h1>'+esc(p.lesson.title)+'</h1><p>'+esc(p.lesson.summary)+'</p></section><div class="guide"><section class="card say"><strong>Řekni přímo</strong>'+list(g.say)+'</section><section class="card explain"><strong>Vysvětli a zdůrazni</strong>'+list(g.explain)+'</section><section class="card ask"><strong>Zeptej se kolegů</strong>'+list(g.ask)+'<small>Očekávaný směr</small>'+list(g.expected)+'</section><section class="card demo"><strong>Ukaž nebo proveď</strong>'+list(g.demo)+'</section><section class="card explain"><strong>Metodický tip</strong>'+list(g.facilitation)+'</section><section class="card caution"><strong>Pozor při výkladu</strong>'+list(g.caution)+'</section><section class="card demo"><strong>Přechod dál</strong>'+list(g.transition)+'</section><section class="card caution"><strong>Záložní varianta</strong>'+list(g.fallback)+'</section><section class="card timing"><strong>Časování</strong><p>'+esc(g.timing)+'</p><small>'+esc(g.position)+'</small></section></div><p class="next-preview">Další část: '+(p.next?esc(p.next.title):'konec prezentace')+'</p><footer class="controls"><button onclick="command(\'previous\')" '+(!p.previous?'disabled':'')+'>← Předchozí</button><button class="primary" onclick="command(\'next\')" '+(!p.next?'disabled':'')+'>Další →</button><button onclick="command(\'toggle-presenter\')">'+(p.presenterMode?'Ukončit projekci':'Spustit projekci')+'</button><button onclick="slideStarted=Date.now()">Vynulovat čas části</button></footer>'};
+window.renderPresenterState=p=>{if(!p)return;if(lastLesson!==p.lesson.id){lastLesson=p.lesson.id;slideStarted=Date.now()}const g=p.guide;const position=p.isCover?' · ÚVODNÍ OBRAZOVKA':p.isEnd?' · ZÁVĚREČNÁ OBRAZOVKA':' · ČÁST '+(p.lessonIndex+1)+' / '+p.course.totalLessons;const nextText=p.isEnd?'Prezentace je u konce.':p.next?'Další část: '+esc(p.next.title):'Konec prezentace';const primary=p.isEnd?'<button class="primary" onclick="command(\'toggle-presenter\')">Ukončit projekci</button>':'<button class="primary" onclick="command(\'next\')" '+(!p.next?'disabled':'')+'>Další →</button>';document.querySelector('#root').innerHTML='<header class="top"><div class="topline"><div><p class="eyebrow">KONZOLE ŠKOLITELE · '+esc(p.course.code)+'</p><strong>'+esc(p.course.title)+'</strong></div><span>'+(p.presenterMode?'PREZENTACE BĚŽÍ':'PŘÍPRAVNÝ REŽIM')+'</span></div><p class="screen-note"><b>Důležité:</b> projektor nastavte ve Windows na „Rozšířit“, nikoli „Duplikovat“. Toto okno ponechte na displeji notebooku.</p></header><section class="metrics"><div class="metric"><strong>'+p.course.duration+' min</strong><span>celé školení</span></div><div class="metric"><strong>'+p.lesson.duration+' min</strong><span>tato část</span></div><div class="metric"><strong class="timer" id="timers">00:00</strong><span>čas části / celkem</span></div></section><section class="slide"><small>'+esc(p.lesson.kicker)+position+'</small><h1>'+esc(p.lesson.title)+'</h1><p>'+esc(p.lesson.summary)+'</p></section><div class="guide"><section class="card say"><strong>Řekni přímo</strong>'+list(g.say)+'</section><section class="card explain"><strong>Vysvětli a zdůrazni</strong>'+list(g.explain)+'</section><section class="card ask"><strong>Zeptej se kolegů</strong>'+list(g.ask)+'<small>Očekávaný směr</small>'+list(g.expected)+'</section><section class="card demo"><strong>Ukaž nebo proveď</strong>'+list(g.demo)+'</section><section class="card explain"><strong>Metodický tip</strong>'+list(g.facilitation)+'</section><section class="card caution"><strong>Pozor při výkladu</strong>'+list(g.caution)+'</section><section class="card demo"><strong>Přechod dál</strong>'+list(g.transition)+'</section><section class="card caution"><strong>Záložní varianta</strong>'+list(g.fallback)+'</section><section class="card timing"><strong>Časování</strong><p>'+esc(g.timing)+'</p><small>'+esc(g.position)+'</small></section></div><p class="next-preview">'+nextText+'</p><footer class="controls"><button onclick="command(\'previous\')" '+(!p.previous?'disabled':'')+'>← Předchozí</button>'+primary+'<button onclick="command(\'toggle-presenter\')">'+(p.presenterMode?'Ukončit projekci':'Spustit projekci')+'</button><button onclick="slideStarted=Date.now()">Vynulovat čas části</button></footer>'};
 setInterval(()=>{const e=document.querySelector('#timers');if(e)e.textContent=fmt(Date.now()-slideStarted)+' / '+fmt(Date.now()-started)},1000);channel&&(channel.onmessage=e=>{if(e.data?.type==='state')window.renderPresenterState(e.data.payload)});channel?.postMessage({type:'command',action:'request-state'});try{opener?.__ghrabPresenterCommand?.({action:'request-state'})}catch{}
 <\/script></body></html>`;
 }
@@ -361,35 +410,54 @@ function navigate(path) {
   location.hash = path;
 }
 
-function completedLesson(courseId, lessonId) {
-  return Boolean(state.completedLessons[lessonKey(courseId, lessonId)]);
+function openChangelog() {
+  const overlay = document.querySelector('.changelog-overlay');
+  if (!overlay) return;
+  overlay.hidden = false;
+  document.body.classList.add('modal-open');
+  requestAnimationFrame(() => overlay.classList.add('open'));
+  overlay.querySelector('.changelog-close')?.focus();
 }
 
-function courseProgress(course) {
-  const completed = course.lessons.filter(lesson => completedLesson(course.id, lesson.id)).length;
-  return {
-    completed,
-    total: course.lessons.length,
-    percent: Math.round((completed / course.lessons.length) * 100)
-  };
+function closeChangelog() {
+  const overlay = document.querySelector('.changelog-overlay');
+  if (!overlay || overlay.hidden) return;
+  overlay.classList.remove('open');
+  document.body.classList.remove('modal-open');
+  setTimeout(() => { overlay.hidden = true; }, 180);
 }
 
-function overallProgress() {
-  const total = courses.reduce((sum, course) => sum + course.lessons.length, 0);
-  const completed = courses.reduce(
-    (sum, course) => sum + course.lessons.filter(lesson => completedLesson(course.id, lesson.id)).length,
-    0
-  );
-  return { completed, total, percent: Math.round((completed / total) * 100) };
+async function exitPresenter(goHome = false) {
+  presenterMode = false;
+  presentationCover = false;
+  presentationEnd = false;
+  document.body.classList.remove('presenter-mode');
+  try {
+    if (document.fullscreenElement) await document.exitFullscreen();
+  } catch {}
+  if (goHome) {
+    if (route().page === 'home') renderHome();
+    else navigate('/');
+  } else {
+    render();
+  }
 }
 
-function prerequisiteStatus(course) {
-  if (!course.prerequisites.length) return { ready: true, missing: [] };
-  const missing = course.prerequisites.filter(id => {
-    const prerequisite = courseMap.get(id);
-    return prerequisite && courseProgress(prerequisite).percent < 100;
-  });
-  return { ready: missing.length === 0, missing };
+
+function renderChangelogModal() {
+  return `
+    <div class="changelog-overlay" data-changelog-overlay hidden>
+      <section class="changelog-dialog panel-glass" role="dialog" aria-modal="true" aria-labelledby="changelog-title">
+        <header>
+          <div><p class="eyebrow">HISTORIE VÝVOJE</p><h2 id="changelog-title">Posledních 10 změn</h2><p>Nová položka se vkládá nahoru a automaticky vytlačí nejstarší záznam.</p></div>
+          <button type="button" class="changelog-close" data-action="close-changelog" aria-label="Zavřít changelog">${icons.close}</button>
+        </header>
+        <div class="changelog-list">
+          ${CHANGELOG.map((item, index) => `<article class="changelog-item ${index === 0 ? 'latest' : ''}"><div><span>v${escapeHtml(item.version)}</span><time>${escapeHtml(item.date)}</time></div><section><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.detail)}</p></section></article>`).join('')}
+        </div>
+        <footer><span>Zobrazeno ${CHANGELOG.length} nejnovějších změn</span><strong>AI Akademie GHRAB v${APP_VERSION}</strong></footer>
+      </section>
+    </div>`;
 }
 
 function shell(content, currentPage = 'home') {
@@ -399,16 +467,18 @@ function shell(content, currentPage = 'home') {
         <span class="brand-mark"><img src="./assets/brand/icon-192.png" alt="" width="48" height="48"></span>
         <span class="brand-copy"><strong>AI Akademie <em>GHRAB</em></strong><small>Prezentace a podklady školitele</small></span>
       </a>
-      ${!presenterMode ? (() => { const progress = overallProgress(); return `<div class="header-progress" title="Dokončeno ${progress.completed} z ${progress.total} částí"><span>${progress.percent}%</span><div class="mini-progress"><i style="width:${progress.percent}%"></i></div></div>`; })() : ''}
       <nav class="top-nav" aria-label="Hlavní navigace a prezentační ovládání">
         <a href="#/" class="${currentPage === 'home' ? 'active' : ''}" title="Zpět na rozcestník">${icons.home}<span>Rozcestník</span></a>
         ${currentPage === 'course' ? `<button type="button" data-action="toggle-trainer" class="${state.trainerMode ? 'active' : ''}" aria-pressed="${state.trainerMode}" title="Zobrazit nebo skrýt poznámky řečníka">${icons.notes}<span>Poznámky</span></button>` : ''}
+        ${!presenterMode ? `<button type="button" data-action="open-changelog" title="Zobrazit posledních deset změn">${icons.history}<span>Změny</span></button>` : ''}
+        ${presenterMode ? `<button type="button" class="presenter-exit-button" data-action="exit-presenter" title="Ukončit prezentační režim a vrátit se do Akademie">${icons.close}<span>Ukončit prezentaci</span></button>` : ''}
         <button type="button" data-action="fullscreen" title="Přepnout celou obrazovku">${icons.expand}<span>Celá obrazovka</span></button>
       </nav>
       <button class="mobile-menu" type="button" data-action="toggle-menu" aria-expanded="false" aria-label="Otevřít navigaci">☰</button>
     </header>
     <main class="main ${presenterMode ? 'presenter-main' : ''}">${content}</main>
     ${presenterMode ? '' : footer()}
+    ${renderChangelogModal()}
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
   `;
 }
@@ -418,9 +488,10 @@ function footer() {
     <footer class="site-footer">
       <div>
         <img src="./assets/brand/school-logo.png" alt="Logo Gymnázia Ostrava-Hrabůvka">
-        <span><strong>AI Akademie GHRAB</strong><small>Soukromý rozcestník interaktivních prezentací · verze 1.3.1</small></span>
+        <span><strong>AI Akademie GHRAB</strong><small>Soukromý rozcestník interaktivních prezentací · verze ${APP_VERSION}</small></span>
       </div>
       <div class="footer-actions">
+        <button type="button" data-action="open-changelog" class="text-button">${icons.history} Changelog · v${APP_VERSION}</button>
         <button type="button" data-action="install" class="text-button" ${deferredInstallPrompt ? '' : 'hidden'}>Nainstalovat rozcestník</button>
       </div>
     </footer>
@@ -430,6 +501,8 @@ function footer() {
 function renderHome() {
   document.body.classList.remove('presenter-mode');
   presenterMode = false;
+  presentationCover = false;
+  presentationEnd = false;
   const categories = ['Vše', ...new Set(courses.map(course => course.category))];
   const filtered = courses.filter(course => {
     const query = searchTerm.trim().toLocaleLowerCase('cs');
@@ -471,8 +544,6 @@ function renderHome() {
         <div class="orbit-label orbit-label-c">EXPORT</div>
       </div>
     </section>
-
-    ${(() => { const progress = overallProgress(); return `<section class="progress-summary shell-wide panel-glass" aria-label="Můj postup Akademií"><div class="progress-ring" style="--progress:${Math.round(progress.percent * 3.6)}deg"><span>${progress.percent}%</span></div><div><p class="eyebrow">MŮJ POSTUP V TOMTO PROHLÍŽEČI</p><h2>${progress.completed ? `Dokončeno ${progress.completed} z ${progress.total} částí` : 'Začněte společným základem'}</h2><p>Postup, odpovědi a checklisty se ukládají pouze lokálně v tomto prohlížeči. Neobsahují jména ani údaje studentů.</p></div><button type="button" class="text-button" data-action="reset-progress">Vynulovat místní postup</button></section>`; })()}
 
     <section class="presenter-dashboard shell-wide" aria-label="Možnosti rozcestníku">
       <article class="presenter-feature panel-glass"><span>${icons.present}</span><div><p class="eyebrow">PREZENTOVAT</p><h2>Spusťte školení přímo z rozcestníku</h2><p>Každá část funguje jako samostatná obrazovka. Šipky mění části, klávesa F zapíná celou obrazovku a P prezentační režim.</p></div></article>
@@ -584,8 +655,6 @@ function mapNode(id, number, label, className = '') {
 function renderCourseCard(course) {
   const lessonWord = course.lessons.length === 1 ? 'část' : course.lessons.length < 5 ? 'části' : 'částí';
   const prerequisites = (course.prerequisites || []).map(id => courseMap.get(id)?.shortTitle || id);
-  const progress = courseProgress(course);
-  const readiness = prerequisiteStatus(course);
   return `
     <article class="course-card presenter-card" style="--course-accent:${course.accent}">
       <div class="course-card-top">
@@ -603,9 +672,7 @@ function renderCourseCard(course) {
         <span>${course.lessons.length} ${lessonWord}</span>
         <span>${escapeHtml(course.audience)}</span>
       </div>
-      ${prerequisites.length ? `<p class="prerequisite-note ${readiness.ready ? 'ready' : 'waiting'}">${readiness.ready ? 'Doporučená návaznost splněna' : 'Nejprve doporučujeme'}: ${escapeHtml(prerequisites.join(', '))}</p>` : ''}
-      <div class="course-progress-row"><span>Místní postup</span><strong>${progress.completed} / ${progress.total} částí</strong></div>
-      <div class="course-progress" aria-label="Dokončeno ${progress.percent} procent"><i style="width:${progress.percent}%"></i></div>
+      ${prerequisites.length ? `<p class="prerequisite-note">Doporučená návaznost: ${escapeHtml(prerequisites.join(', '))}</p>` : ''}
       <div class="course-card-actions">
         <a class="course-open" href="#/course/${course.id}/${course.lessons[0].id}">Otevřít školení ${icons.arrowRight}</a>
         <a class="course-download" href="./exports/${course.id}.html" download>${icons.download} Stáhnout HTML</a>
@@ -645,13 +712,30 @@ function renderPresentationCover(course) {
     </nav>`;
 }
 
-function renderLessonCompletion(course, lesson, lessonIndex) {
-  const done = completedLesson(course.id, lesson.id);
-  const progress = courseProgress(course);
-  return `<section class="lesson-completion ${done ? 'done' : ''}" aria-label="Stav dokončení této části">
-    <div><span>${done ? icons.check : String(lessonIndex + 1).padStart(2, '0')}</span><div><strong>${done ? 'Tato část je dokončená' : 'Označte část po skutečném absolvování'}</strong><p>Postup se ukládá pouze v tomto prohlížeči · kurz ${progress.completed} / ${progress.total}</p></div></div>
-    <button type="button" class="button ${done ? 'secondary' : 'primary'}" data-action="mark-complete">${done ? 'Označit jako nedokončené' : 'Označit jako dokončené'}</button>
-  </section>`;
+function renderPresentationEnd(course) {
+  const timing = courseTiming(course);
+  return `
+    <div class="presentation-end">
+      <div class="presentation-end-orbit" aria-hidden="true"><span>${icons.check}</span></div>
+      <p class="eyebrow">${escapeHtml(course.code)} · KONEC ŠKOLENÍ</p>
+      <h1>Děkuji za pozornost.</h1>
+      <p>Prezentace <strong>${escapeHtml(course.title)}</strong> je u konce. Nyní můžete školení bezpečně ukončit, vrátit se na rozcestník nebo jej spustit znovu.</p>
+      <div class="presentation-end-summary">
+        <span>${icons.clock}${timing.total} min plánovaného času</span>
+        <span>${course.lessons.length} obsahových částí</span>
+        <span>${icons.check} závěrečná obrazovka</span>
+      </div>
+      <div class="presentation-end-actions">
+        <button type="button" class="button primary" data-action="exit-presenter">${icons.close} Ukončit prezentaci</button>
+        <button type="button" class="button secondary" data-action="restart-presentation">${icons.replay} Spustit znovu od úvodu</button>
+        <button type="button" class="button secondary" data-action="back-home">${icons.home} Zpět na rozcestník</button>
+      </div>
+      <small>Prezentaci lze kdykoliv ukončit také tlačítkem vpravo nahoře nebo klávesou X či Esc.</small>
+    </div>
+    <nav class="lesson-controls presentation-end-controls" aria-label="Konec prezentace">
+      <button type="button" data-action="previous-lesson">${icons.arrowLeft}<span><small>Zpět k poslední části</small><strong>${escapeHtml(course.lessons.at(-1).title)}</strong></span></button>
+      <button type="button" data-action="exit-presenter"><span><small>Ukončit projekci</small><strong>Vrátit se do Akademie</strong></span>${icons.close}</button>
+    </nav>`;
 }
 
 function renderLessonStage(course, lesson, lessonIndex) {
@@ -682,10 +766,9 @@ function renderLessonStage(course, lesson, lessonIndex) {
     <div class="lesson-content"><div class="lesson-content-inner layout-${escapeHtml(lesson.layout || 'standard')}">
       ${lesson.blocks.map((block, index) => renderBlock(block, course, lesson, index)).join('')}
     </div></div>
-    ${!presenterMode ? renderLessonCompletion(course, lesson, lessonIndex) : ''}
     <nav class="lesson-controls" aria-label="Navigace mezi částmi">
       <button type="button" data-action="previous-lesson" ${lessonIndex === 0 && !presenterMode ? 'disabled' : ''}>${icons.arrowLeft}<span><small>Předchozí část</small><strong>${lessonIndex > 0 ? escapeHtml(course.lessons[lessonIndex - 1].title) : presenterMode ? 'Úvodní obrazovka' : 'Začátek prezentace'}</strong></span></button>
-      <button type="button" data-action="next-lesson" ${lessonIndex === course.lessons.length - 1 ? 'disabled' : ''}><span><small>Další část</small><strong>${lessonIndex < course.lessons.length - 1 ? escapeHtml(course.lessons[lessonIndex + 1].title) : 'Konec prezentace'}</strong></span>${icons.arrowRight}</button>
+      <button type="button" data-action="next-lesson" ${lessonIndex === course.lessons.length - 1 && !presenterMode ? 'disabled' : ''}><span><small>${lessonIndex < course.lessons.length - 1 ? 'Další část' : 'Závěrečná obrazovka'}</small><strong>${lessonIndex < course.lessons.length - 1 ? escapeHtml(course.lessons[lessonIndex + 1].title) : 'Konec prezentace'}</strong></span>${icons.arrowRight}</button>
     </nav>`;
 }
 
@@ -700,7 +783,6 @@ function renderCourse(courseId, lessonId) {
   if (lessonIndex < 0) lessonIndex = 0;
   const lesson = course.lessons[lessonIndex];
   const timing = courseTiming(course);
-  const progress = courseProgress(course);
   state.lastCourse = course.id;
   state.lastLesson = lesson.id;
   saveState(state);
@@ -718,7 +800,6 @@ function renderCourse(courseId, lessonId) {
           <p class="course-timing-detail">${timing.content} min výukového obsahu${timing.reserve ? ` · ${timing.reserve} min diskuse a organizační rezervy` : ''}</p>
           <p class="course-route-detail"><strong>Základní cesta:</strong> ${course.minimumLessons} částí · <strong>Rozšíření:</strong> ${Math.max(0, course.lessons.length - course.minimumLessons)} částí</p>
         </div>
-        <div class="course-hero-progress" aria-label="Postup kurzem"><strong>${progress.percent}%</strong><span>${progress.completed} z ${progress.total} částí dokončeno</span><div><i style="width:${progress.percent}%"></i></div></div>
         <div class="course-hero-actions">
           <button type="button" class="button secondary" data-action="open-console">${icons.console} Konzole školitele</button>
           <a class="button secondary download-presentation" href="./exports/${course.id}.html" download>${icons.download} HTML pro účastníky</a>
@@ -758,15 +839,15 @@ function renderCourse(courseId, lessonId) {
           <p class="eyebrow">OSNOVA PREZENTACE</p>
           <button type="button" class="outline-close" data-action="toggle-outline" aria-label="Zavřít obsah školení">×</button>
           <nav class="lesson-nav" aria-label="Části prezentace">
-            ${course.lessons.map((item, index) => `<a href="#/course/${course.id}/${item.id}" class="${index === lessonIndex ? 'active' : ''}" ${index === lessonIndex ? 'aria-current="step"' : ''}><span>${completedLesson(course.id, item.id) ? icons.check : String(index + 1).padStart(2, '0')}</span><span><strong>${escapeHtml(item.title)}</strong><small>${index < course.minimumLessons ? 'Základní cesta' : 'Rozšíření'} · ${item.duration} min</small></span></a>`).join('')}
+            ${course.lessons.map((item, index) => `<a href="#/course/${course.id}/${item.id}" class="${index === lessonIndex ? 'active' : ''}" ${index === lessonIndex ? 'aria-current="step"' : ''}><span>${String(index + 1).padStart(2, '0')}</span><span><strong>${escapeHtml(item.title)}</strong><small>${index < course.minimumLessons ? 'Základní cesta' : 'Rozšíření'} · ${item.duration} min</small></span></a>`).join('')}
           </nav>
         </div>
         <div class="sidebar-panel outcomes panel-glass"><p class="eyebrow">CÍLE ŠKOLENÍ</p><ul>${course.outcomes.map(outcome => `<li>${icons.check}${escapeHtml(outcome)}</li>`).join('')}</ul></div>
         <div class="sidebar-panel share-panel panel-glass"><p class="eyebrow">PRO ÚČASTNÍKY</p><p>Samostatný HTML export neobsahuje poznámky řečníka ani ostatní prezentace.</p><a href="./exports/${course.id}.html" download>${icons.download} Stáhnout prezentaci</a></div>
       </aside>
 
-      <article class="lesson-stage panel-glass ${presenterMode && presentationCover ? 'is-cover' : ''}" data-course="${course.id}" data-lesson="${presentationCover ? 'cover' : lesson.id}">
-        ${presenterMode && presentationCover ? renderPresentationCover(course) : renderLessonStage(course, lesson, lessonIndex)}
+      <article class="lesson-stage panel-glass ${presenterMode && presentationCover ? 'is-cover' : ''} ${presenterMode && presentationEnd ? 'is-end' : ''}" data-course="${course.id}" data-lesson="${presentationCover ? 'cover' : presentationEnd ? 'end' : lesson.id}">
+        ${presenterMode && presentationCover ? renderPresentationCover(course) : presenterMode && presentationEnd ? renderPresentationEnd(course) : renderLessonStage(course, lesson, lessonIndex)}
       </article>
     </section>`;
 
@@ -890,11 +971,39 @@ function handleClick(event) {
       return;
     }
     if (action === 'toggle-presenter') {
-      presenterMode = !presenterMode;
-      presentationCover = presenterMode;
-      document.body.classList.toggle('presenter-mode', presenterMode);
+      if (presenterMode) {
+        exitPresenter();
+      } else {
+        presenterMode = true;
+        presentationCover = true;
+        presentationEnd = false;
+        document.body.classList.add('presenter-mode');
+        render();
+        if (presenterConsoleWindow && !presenterConsoleWindow.closed) presenterConsoleWindow.focus();
+      }
+      return;
+    }
+    if (action === 'exit-presenter') {
+      exitPresenter();
+      return;
+    }
+    if (action === 'restart-presentation' && context) {
+      presentationEnd = false;
+      presentationCover = true;
+      navigate(`/course/${context.course.id}/${context.course.lessons[0].id}`);
       render();
-      if (presenterMode && presenterConsoleWindow && !presenterConsoleWindow.closed) presenterConsoleWindow.focus();
+      return;
+    }
+    if (action === 'back-home') {
+      exitPresenter(true);
+      return;
+    }
+    if (action === 'open-changelog') {
+      openChangelog();
+      return;
+    }
+    if (action === 'close-changelog') {
+      closeChangelog();
       return;
     }
     if (action === 'toggle-outline') {
@@ -907,29 +1016,33 @@ function handleClick(event) {
       actionElement.setAttribute('aria-expanded', String(Boolean(expanded)));
       return;
     }
-    if (action === 'mark-complete' && context) {
-      const key = lessonKey(context.course.id, context.lesson.id);
-      state.completedLessons[key] = !state.completedLessons[key];
-      saveState(state);
-      render();
-      toast(state.completedLessons[key] ? 'Lekce označena jako dokončená.' : 'Lekce označena jako nedokončená.');
-      return;
-    }
     if (action === 'next-lesson' && context) {
       if (presenterMode && presentationCover) {
         presentationCover = false;
+        presentationEnd = false;
         render();
         return;
       }
+      if (presenterMode && presentationEnd) return;
       if (context.lessonIndex < context.course.lessons.length - 1) {
         const next = context.course.lessons[context.lessonIndex + 1];
         navigate(`/course/${context.course.id}/${next.id}`);
+      } else if (presenterMode) {
+        presentationEnd = true;
+        presentationCover = false;
+        render();
       }
       return;
     }
     if (action === 'previous-lesson' && context) {
+      if (presenterMode && presentationEnd) {
+        presentationEnd = false;
+        navigate(`/course/${context.course.id}/${context.course.lessons.at(-1).id}`);
+        return;
+      }
       if (presenterMode && !presentationCover && context.lessonIndex === 0) {
         presentationCover = true;
+        presentationEnd = false;
         render();
         return;
       }
@@ -949,14 +1062,6 @@ function handleClick(event) {
       render();
       return;
     }
-    if (action === 'reset-progress') {
-      if (confirm('Opravdu chcete smazat celý postup, odpovědi a checklisty v tomto prohlížeči?')) {
-        state = resetState();
-        render();
-        toast('Místní postup byl smazán.');
-      }
-      return;
-    }
     if (action === 'install' && deferredInstallPrompt) {
       deferredInstallPrompt.prompt();
       deferredInstallPrompt.userChoice.finally(() => {
@@ -965,6 +1070,11 @@ function handleClick(event) {
       });
       return;
     }
+  }
+
+  if (event.target.matches('[data-changelog-overlay]')) {
+    closeChangelog();
+    return;
   }
 
   const categoryButton = event.target.closest('[data-category]');
@@ -1011,6 +1121,14 @@ function handleChange(event) {
 }
 
 function handleKeyboard(event) {
+  if (event.key === 'Escape' && !document.querySelector('.changelog-overlay')?.hidden) {
+    closeChangelog();
+    return;
+  }
+  if (event.key === 'Escape' && presenterMode) {
+    exitPresenter();
+    return;
+  }
   if (event.target.matches('input, textarea, select, button')) return;
   const context = currentCourseContext();
   if (!context) return;
@@ -1024,18 +1142,26 @@ function handleKeyboard(event) {
   }
   if (event.key === 'Home' && presenterMode) {
     presentationCover = true;
+    presentationEnd = false;
     render();
   }
   if (event.key === 'End' && presenterMode) {
     presentationCover = false;
+    presentationEnd = true;
     navigate(`/course/${context.course.id}/${context.course.lessons.at(-1).id}`);
+    render();
   }
   if (event.key.toLowerCase() === 'f') toggleFullscreen();
   if (event.key.toLowerCase() === 'p') {
-    presenterMode = !presenterMode;
-    presentationCover = presenterMode;
-    render();
+    if (presenterMode) exitPresenter();
+    else {
+      presenterMode = true;
+      presentationCover = true;
+      presentationEnd = false;
+      render();
+    }
   }
+  if (event.key.toLowerCase() === 'x' && presenterMode) exitPresenter();
   if (event.key.toLowerCase() === 'n') {
     if (presenterMode) openPresenterConsole();
     else {
@@ -1076,7 +1202,7 @@ async function copyText(text, message) {
 function fitPresenterSlide() {
   const content = document.querySelector('.presenter-mode .lesson-content');
   const inner = content?.querySelector('.lesson-content-inner');
-  if (!content || !inner || presentationCover) return;
+  if (!content || !inner || presentationCover || presentationEnd) return;
   inner.style.transform = '';
   inner.style.width = '';
   inner.dataset.scale = '1';
