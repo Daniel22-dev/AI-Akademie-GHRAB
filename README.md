@@ -1,8 +1,18 @@
-# AI Akademie GHRAB 1.3.0
+# AI Akademie GHRAB 1.3.1
 
 Soukromý prezentační a školicí rozcestník projektu AI Studio GHRAB. Akademie je určena především školiteli: připraví výklad, zobrazí scénář řečníka, spustí čistou projekci a vytvoří samostatný interaktivní HTML materiál pro účastníky.
 
-## Co přináší verze 1.3.0
+## Co přináší verze 1.3.1
+
+### Oprava 1.3.1 — přehlednější vzdělávací mapa
+
+- větev tvorby materiálů už není namačkaná do jedné řady,
+- Diferenciátor je jasně označen jako výchozí krok,
+- Generátor testů a LUDUS jsou přehledně zobrazeny jako dvě alternativy,
+- komunikace a hodnocení mají vyvážené samostatné karty,
+- pokročilý workflow a role správce jsou oddělené navazující možnosti,
+- rozložení se přizpůsobuje notebooku, tabletu i mobilu.
+
 
 - čistý projektorový režim s vlastní úvodní obrazovkou každého kurzu;
 - automatické přizpůsobení všech slidů dostupné výšce bez rolování;

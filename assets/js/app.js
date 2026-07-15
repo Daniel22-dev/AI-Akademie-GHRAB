@@ -418,7 +418,7 @@ function footer() {
     <footer class="site-footer">
       <div>
         <img src="./assets/brand/school-logo.png" alt="Logo Gymnázia Ostrava-Hrabůvka">
-        <span><strong>AI Akademie GHRAB</strong><small>Soukromý rozcestník interaktivních prezentací · verze 1.3.0</small></span>
+        <span><strong>AI Akademie GHRAB</strong><small>Soukromý rozcestník interaktivních prezentací · verze 1.3.1</small></span>
       </div>
       <div class="footer-actions">
         <button type="button" data-action="install" class="text-button" ${deferredInstallPrompt ? '' : 'hidden'}>Nainstalovat rozcestník</button>
@@ -506,38 +506,73 @@ function renderLearningMap() {
   return `
     <section class="learning-map shell-wide">
       <div class="section-heading compact">
-        <div><p class="eyebrow">DOPORUČENÁ VZDĚLÁVACÍ CESTA</p><h2>Společný základ, potom cesta podle skutečné potřeby učitele.</h2></div>
-        <p>Ne každý musí absolvovat všechna školení. Po dvou úvodních kurzech si kolega zvolí větev podle toho, co chce ve své práci zlepšit.</p>
+        <div><p class="eyebrow">DOPORUČENÁ VZDĚLÁVACÍ CESTA</p><h2>Nejdříve společný základ. Potom si každý vybere to, co skutečně potřebuje.</h2></div>
+        <p>Mapa není povinný žebřík všech kurzů. Ukazuje dvě společné vstupní prezentace a následné samostatné směry podle práce učitele.</p>
       </div>
-      <div class="map-stage panel-glass presenter-map learning-path-v2">
+      <div class="map-stage panel-glass presenter-map learning-path-v3">
         <section class="map-foundation">
-          <header><span>SPOLEČNÝ ZÁKLAD</span><strong>Pro všechny uživatele</strong></header>
-          <div>${mapNode('ai-literacy', '01', 'AI gramotnost', 'core')}<span class="map-arrow">→</span>${mapNode('start', '02', 'Bezpečný start', 'core')}</div>
+          <header><span>1 · SPOLEČNÝ ZÁKLAD</span><strong>Začínají zde všichni uživatelé</strong></header>
+          <div class="foundation-flow">
+            ${mapNode('ai-literacy', '01', 'AI gramotnost', 'core')}
+            <span class="map-arrow" aria-hidden="true">→</span>
+            ${mapNode('start', '02', 'Bezpečný start', 'core')}
+          </div>
         </section>
-        <div class="map-choice-label"><span>Potom si vyberte cestu</span></div>
-        <div class="map-branches map-branches-v2">
-          <article class="map-branch materials">
-            <header><span>TVORBA MATERIÁLŮ</span><strong>Od pracovního listu k interaktivní aktivitě</strong></header>
-            <div>${mapNode('differentiator', 'A1', 'Diferenciátor')}<span>→</span>${mapNode('generator', 'A2', 'Generátor testů')}<span>nebo</span>${mapNode('ludus', 'A3', 'LUDUS')}</div>
-            <a class="map-optional" href="#/course/github">Volitelné publikování: GitHub Pages</a>
+
+        <div class="map-choice-label"><span>2 · Vyberte si jednu nebo více praktických cest</span></div>
+
+        <div class="map-routes">
+          <article class="map-route map-route-materials">
+            <header>
+              <div><span>CESTA A</span><h3>Tvorba výukových materiálů</h3></div>
+              <p>Od úpravy pracovního listu až po hotový test nebo interaktivní aktivitu.</p>
+            </header>
+            <div class="materials-path">
+              <div class="materials-start">
+                <small>ZAČNĚTE ZDE</small>
+                ${mapNode('differentiator', 'A1', 'Diferenciátor')}
+              </div>
+              <div class="materials-next">
+                <small>POTOM ZVOLTE FORMU VÝSTUPU</small>
+                <div>
+                  ${mapNode('generator', 'A2', 'Generátor testů')}
+                  <span class="choice-or">NEBO</span>
+                  ${mapNode('ludus', 'A3', 'LUDUS')}
+                </div>
+              </div>
+            </div>
+            <a class="map-optional" href="#/course/github"><span>VOLITELNÉ ROZŠÍŘENÍ</span><strong>Publikování přes GitHub Pages</strong></a>
           </article>
-          <article class="map-branch communication">
-            <header><span>KOMUNIKACE</span><strong>Rychlejší a citlivější korespondence</strong></header>
-            <div>${mapNode('correspondence', 'B1', 'Korespondenční asistent')}</div>
-          </article>
-          <article class="map-branch evaluation">
-            <header><span>HODNOCENÍ</span><strong>Kontrolované hodnocení podle rubriky</strong></header>
-            <div>${mapNode('evaluator', 'C1', 'Hodnotitel')}</div>
-          </article>
+
+          <div class="map-route-pair">
+            <article class="map-route map-route-simple communication">
+              <header>
+                <div><span>CESTA B</span><h3>Komunikace</h3></div>
+                <p>Rychlejší, věcná a citlivá školní korespondence.</p>
+              </header>
+              ${mapNode('correspondence', 'B1', 'Korespondenční asistent')}
+            </article>
+            <article class="map-route map-route-simple evaluation">
+              <header>
+                <div><span>CESTA C</span><h3>Hodnocení</h3></div>
+                <p>Kontrolované hodnocení podle předem dané rubriky.</p>
+              </header>
+              ${mapNode('evaluator', 'C1', 'Hodnotitel')}
+            </article>
+          </div>
         </div>
-        <section class="map-advanced map-advanced-v2">
-          <div><span>POKROČILÁ PRÁCE</span><p>Po zvládnutí alespoň dvou aplikací</p></div>
-          ${mapNode('workflow', 'D1', 'Propojený pracovní postup', 'advanced')}
-        </section>
-        <section class="map-role-track">
-          <div><span>SAMOSTATNÁ ROLE</span><p>Není pokračováním běžné učitelské cesty</p></div>
-          ${mapNode('administrator', 'S1', 'Správce a lektor', 'advanced')}
-        </section>
+
+        <div class="map-choice-label secondary"><span>3 · Navazující možnosti</span></div>
+        <div class="map-secondary-grid">
+          <section class="map-secondary-card advanced-track">
+            <div><span>POKROČILÁ PRÁCE</span><h3>Propojte více aplikací</h3><p>Doporučeno po zvládnutí alespoň dvou nástrojů.</p></div>
+            ${mapNode('workflow', 'D1', 'Propojený pracovní postup', 'advanced')}
+          </section>
+          <section class="map-secondary-card role-track">
+            <div><span>SAMOSTATNÁ ROLE</span><h3>Správa a vedení školení</h3><p>Není součástí běžné učitelské cesty.</p></div>
+            ${mapNode('administrator', 'S1', 'Správce a lektor', 'advanced')}
+          </section>
+        </div>
       </div>
     </section>`;
 }

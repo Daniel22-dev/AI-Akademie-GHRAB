@@ -1,4 +1,4 @@
-# Nahrání AI Akademie GHRAB 1.3.0 na GitHub Pages
+# Nahrání AI Akademie GHRAB 1.3.1 na GitHub Pages
 
 ## 1. Před nahráním
 
@@ -8,7 +8,7 @@ V kořeni projektu spusťte:
 npm test
 ```
 
-Správný výsledek potvrzuje deset školení, 68 částí, vytvoření deseti exportů a verzi 1.3.0.
+Správný výsledek potvrzuje deset školení, 68 částí, vytvoření deseti exportů a verzi 1.3.1.
 
 ## 2. Nahrajte obsah rozbalené složky
 
@@ -25,7 +25,7 @@ manifest.webmanifest
 package.json
 README.md
 NAHRANI-NA-GITHUB.md
-AUDIT-IMPLEMENTACE-v1.3.0.md
+AUDIT-IMPLEMENTACE-v1.3.1.md
 sw.js
 ```
 
@@ -79,7 +79,7 @@ Scénáře řečníka jsou v `courses/speaker-notes.js`. Příkaz `npm run build
 
 ## 6. Obnovení nainstalované PWA
 
-Service worker používá cache verze 1.3.0. Po nasazení obvykle stačí aplikaci zavřít a znovu otevřít. Při přetrvávající staré verzi:
+Service worker používá cache verze 1.3.1. Po nasazení obvykle stačí aplikaci zavřít a znovu otevřít. Při přetrvávající staré verzi:
 
 1. proveďte tvrdé obnovení `Ctrl + F5`;
 2. zavřete všechny karty Akademie;

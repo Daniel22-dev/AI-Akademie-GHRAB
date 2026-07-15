@@ -10,7 +10,7 @@ const requiredFiles = [
   'index.html', 'manifest.webmanifest', 'sw.js', 'assets/css/styles.css',
   'assets/js/app.js', 'assets/js/storage.js', 'assets/js/starfield.js', 'courses/index.js',
   'courses/speaker-notes.js', 'courses/presentation-enhancements.js',
-  'README.md', 'NAHRANI-NA-GITHUB.md', 'AUDIT-IMPLEMENTACE-v1.3.0.md'
+  'README.md', 'NAHRANI-NA-GITHUB.md', 'AUDIT-IMPLEMENTACE-v1.3.1.md'
 ];
 const allowedBlocks = new Set([
   'lead', 'cards', 'flow', 'comparison', 'steps', 'callout', 'checklist',

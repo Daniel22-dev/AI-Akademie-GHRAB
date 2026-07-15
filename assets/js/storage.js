@@ -7,7 +7,7 @@ const defaultState = {
   trainerMode: false,
   lastCourse: null,
   lastLesson: null,
-  installedVersion: '1.3.0'
+  installedVersion: '1.3.1'
 };
 
 export function loadState() {
