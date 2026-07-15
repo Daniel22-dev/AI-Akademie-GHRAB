@@ -1,4 +1,4 @@
-# Nahrání AI Akademie GHRAB 1.3.1 na GitHub Pages
+# Nahrání AI Akademie GHRAB 1.3.2 na GitHub Pages
 
 ## 1. Před nahráním
 
@@ -8,11 +8,11 @@ V kořeni projektu spusťte:
 npm test
 ```
 
-Správný výsledek potvrzuje deset školení, 68 částí, vytvoření deseti exportů a verzi 1.3.1.
+Správný výsledek potvrdí deset školení, 68 částí, deset samostatných exportů a verzi 1.3.2.
 
 ## 2. Nahrajte obsah rozbalené složky
 
-Do kořene repozitáře nahrajte přímo tyto položky, nikoli nadřazenou složku:
+Do kořene repozitáře nahrajte přímo:
 
 ```text
 assets/
@@ -25,21 +25,15 @@ manifest.webmanifest
 package.json
 README.md
 NAHRANI-NA-GITHUB.md
-AUDIT-IMPLEMENTACE-v1.3.1.md
+AUDIT-IMPLEMENTACE-v1.3.2.md
 sw.js
 ```
 
-Složka `.github` ani GitHub Actions nejsou pro toto statické nasazení potřeba.
+Nenahrávejte nadřazenou složku jako další úroveň repozitáře.
 
 ## 3. Nastavte GitHub Pages
 
-V repozitáři otevřete:
-
-```text
-Settings → Pages
-```
-
-Nastavte:
+V repozitáři otevřete `Settings → Pages` a nastavte:
 
 ```text
 Source: Deploy from a branch
@@ -51,18 +45,18 @@ Potvrďte **Save**.
 
 ## 4. Kontrola po nasazení
 
-Ověřte alespoň toto:
+Ověřte:
 
-- zobrazí se rozcestník a všech deset jednotných ikon;
-- mapa správně odděluje společný základ, tři učitelské větve a správce;
-- u každého kurzu je vidět celkový čas, základní cesta a rozšíření;
-- tlačítko **Spustit od úvodu** otevře čistou titulní obrazovku;
-- projektorový režim na 1366 × 768 nevyžaduje rolování a navigace zůstává viditelná;
-- Konzole školitele se synchronizuje pouze s právě otevřenou relací;
-- postup, kvízy a checklisty se po obnovení stránky zachovají;
-- každý soubor ve složce `exports/` funguje samostatně a offline;
-- příkaz Tisk/PDF v exportu připraví všechny obrazovky, ne pouze aktuální;
-- export neobsahuje poznámky řečníka ani celý katalog Akademie.
+- rozcestník zobrazuje všech deset školení;
+- nikde se nezobrazuje osobní postup ani procento absolvování;
+- tlačítko **Změny** otevře changelog s deseti položkami;
+- v každém kurzu lze spustit prezentaci od úvodní obrazovky;
+- v prezentačním režimu je vpravo nahoře tlačítko **Ukončit prezentaci**;
+- poslední obsahová část pokračuje na závěrečný slide **Děkuji za pozornost**;
+- ze závěrečného slidu funguje ukončení, nové spuštění i návrat na rozcestník;
+- každý soubor v `exports/` má vlastní závěrečnou obrazovku;
+- Tisk/PDF připraví celou prezentaci;
+- exporty neobsahují poznámky školitele.
 
 ## 5. Při změně kurzu
 
@@ -77,14 +71,24 @@ Potom nahrajte upravený zdrojový modul i nově vytvořený soubor v `exports/`
 
 Scénáře řečníka jsou v `courses/speaker-notes.js`. Příkaz `npm run build:notes` je znovu vygeneruje a může přepsat ruční úpravy.
 
-## 6. Obnovení nainstalované PWA
+## 6. Při přidání změny do changelogu
 
-Service worker používá cache verze 1.3.1. Po nasazení obvykle stačí aplikaci zavřít a znovu otevřít. Při přetrvávající staré verzi:
+Otevřete:
+
+```text
+assets/js/changelog.js
+```
+
+Novou položku vložte nahoru. V aplikaci se vždy ukazuje pouze deset nejnovějších změn. Po úpravě spusťte `npm test`.
+
+## 7. Obnovení nainstalované PWA
+
+Service worker používá cache verze 1.3.2. Po nasazení aplikaci zavřete a znovu otevřete. Při přetrvávající staré verzi:
 
 1. proveďte tvrdé obnovení `Ctrl + F5`;
 2. zavřete všechny karty Akademie;
 3. případně odinstalujte starou PWA a nainstalujte ji znovu.
 
-## 7. Bezpečnost před zveřejněním
+## 8. Bezpečnost před zveřejněním
 
 Před každým nahráním zkontrolujte, že repozitář neobsahuje API klíče, podpisové klíče, hesla, přístupové soubory ani neanonymizované údaje studentů, rodičů či zaměstnanců.
