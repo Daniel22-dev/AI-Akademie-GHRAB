@@ -1250,7 +1250,22 @@ addEventListener('appinstalled', () => {
 startStarfield(document.querySelector('#starfield'));
 
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+  let serviceWorkerReloading = false;
+
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (serviceWorkerReloading) return;
+    serviceWorkerReloading = true;
+    location.reload();
+  });
+
+  addEventListener('load', async () => {
+    try {
+      const registration = await navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' });
+      await registration.update();
+    } catch {
+      // Aplikace musí zůstat použitelná i v prohlížeči bez funkční podpory PWA.
+    }
+  });
 }
 
 render();
