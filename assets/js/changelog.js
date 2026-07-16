@@ -1,8 +1,14 @@
-export const APP_VERSION = '1.4.1';
+export const APP_VERSION = '1.4.2';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.4.2',
+    date: '15. 7. 2026',
+    title: 'Hloubková revize prezentací',
+    detail: 'Jádro všech deseti prezentací bylo zpřehledněno: kratší slidy, méně položek na obrazovce, civilnější jazyk, jasnější tabulky a kontroly věcné přesnosti u částí o API klíči, limitech a modelech.'
+  },
   {
     version: '1.4.1',
     date: '15. 7. 2026',

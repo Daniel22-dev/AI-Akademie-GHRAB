@@ -1,21 +1,20 @@
-# AI Akademie GHRAB 1.4.1
+# AI Akademie GHRAB 1.4.2
 
 Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
 Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
 
-## Novinky ve verzi 1.4.1
+## Novinky ve verzi 1.4.2
 
-- mluvená část všech **68 lekcí byla přepsána ručně**, nikoli sestavena střídáním univerzálních šablon;
-- formulace používají přirozenější učitelský jazyk, různou délku vět, konkrétní příklady a běžné řečnické zkratky;
-- poznámky už nenutí školitele každou část uvádět, shrnovat a uzavírat stejným způsobem;
-- přechod mezi slidy je často jen praktický pokyn k přepnutí, protože v živém projevu není vždy potřeba další umělá mezivěta;
-- otázky pro kolegy jsou napsané zvlášť pro každou lekci a směřují ke konkrétní školní praxi;
-- interní metodické pokyny používají jednotně civilní oslovení v jednotném čísle;
-- konzole školitele jasně upozorňuje, že první karta nabízí možné formulace, nikoli text k recitování;
-- kontrolní skript hlídá návrat zakázaných šablonových vět a opakování stejných začátků.
+- proběhla hloubková revize obsahu všech **10 prezentací** a všech **68 lekcí**;
+- husté slidy byly zkráceny, dlouhé seznamy omezeny a čtyřsloupcové bloky převedeny na čitelnější dvousloupcové rozvržení;
+- jazyk byl přepsán do civilnější učitelské češtiny, aby prezentace nepůsobily jako technická dokumentace;
+- u části o API klíči, modelech a limitech byly odstraněny zastarávající nebo příliš pevné formulace a nahrazeny bezpečnějším popisem podle aktuální dokumentace;
+- tabulky, checklisty a porovnání mají méně řádků a jasnější názvy, aby je šlo přečíst z projektoru;
+- barvy a výrazné bloky jsou použité střídměji: upozornění, rizika a praktické kroky jsou odlišené podle významu, ne jako dekorace;
+- do projektu byl doplněn soubor `AUDIT-PREZENTACI-v1.4.2.md` s komentářem k provedeným změnám.
 
-Verze 1.3.2 přinesla závěrečné obrazovky, bezpečný návrat z prezentace a changelog. Verze 1.3.1 upravila rozcestník a verze 1.3.0 projektorový režim, konzoli školitele, tisk a vizuální systém.
+Verze 1.4.1 přepsala poznámky řečníka lidským hlasem. Verze 1.4.0 zavedla jasné pořadí poznámek a rychlou oporu školitele. Verze 1.3.2 přinesla závěrečné obrazovky, bezpečný návrat z prezentace a changelog. Verze 1.3.1 upravila rozcestník a verze 1.3.0 projektorový režim, konzoli školitele, tisk a vizuální systém.
 
 ## Deset školení
 
