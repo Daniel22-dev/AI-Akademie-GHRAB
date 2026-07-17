@@ -1,8 +1,14 @@
-export const APP_VERSION = '1.4.2';
+export const APP_VERSION = '1.4.3';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.4.3',
+    date: '17. 7. 2026',
+    title: 'Opravená konzole, aktualizace a prezentační režim',
+    detail: 'Konzole školitele nyní běží v samostatném bezpečném souboru, poznámky se kontrolují proti zdrojům, aktualizace se načte jen po potvrzení a nikdy sama nepřeruší probíhající prezentaci. Zároveň byla opravena navigace, PWA cache, klávesnice a přístupnost.'
+  },
   {
     version: '1.4.2',
     date: '15. 7. 2026',

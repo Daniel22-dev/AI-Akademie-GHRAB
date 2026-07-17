@@ -6,22 +6,26 @@ const defaultState = {
   quizAnswers: {},
   trainerMode: false,
   lastCourse: null,
-  lastLesson: null,
-  installedVersion: '1.4.1'
+  lastLesson: null
 };
 
 export function loadState() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY) || '{}';
-    const parsed = JSON.parse(raw);
-    return {
+    const current = localStorage.getItem(STORAGE_KEY);
+    const legacy = current ? null : localStorage.getItem(LEGACY_STORAGE_KEY);
+    const parsed = JSON.parse(current || legacy || '{}');
+    const state = {
       checklistItems: parsed.checklistItems || {},
       quizAnswers: parsed.quizAnswers || {},
       trainerMode: Boolean(parsed.trainerMode),
       lastCourse: parsed.lastCourse || null,
-      lastLesson: parsed.lastLesson || null,
-      installedVersion: '1.4.1'
+      lastLesson: parsed.lastLesson || null
     };
+    if (legacy) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
+    }
+    return state;
   } catch {
     return structuredClone(defaultState);
   }
@@ -34,9 +38,9 @@ export function saveState(state) {
       quizAnswers: state.quizAnswers || {},
       trainerMode: Boolean(state.trainerMode),
       lastCourse: state.lastCourse || null,
-      lastLesson: state.lastLesson || null,
-      installedVersion: '1.4.1'
+      lastLesson: state.lastLesson || null
     }));
+    localStorage.removeItem(LEGACY_STORAGE_KEY);
   } catch {
     // Akademie zůstává použitelná i v režimu, který blokuje místní úložiště.
   }

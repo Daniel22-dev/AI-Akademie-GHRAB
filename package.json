@@ -1,15 +1,15 @@
 {
   "name": "ai-akademie-ghrab",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "private": true,
   "type": "module",
   "description": "Soukromý prezentační rozcestník AI Akademie GHRAB",
   "scripts": {
     "build:notes": "node scripts/build-speaker-notes.mjs",
     "build:exports": "node scripts/build-exports.mjs",
-    "build": "npm run build:exports",
+    "build": "npm run build:notes && npm run build:exports",
     "check": "node scripts/check.mjs",
-    "test": "node scripts/build-exports.mjs && node scripts/check.mjs"
+    "test": "npm run build:exports && node scripts/check.mjs"
   },
   "engines": {
     "node": ">=18"

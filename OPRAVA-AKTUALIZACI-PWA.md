@@ -1,18 +1,14 @@
-# Oprava načítání nové verze PWA
+# Aktualizace PWA — řízený model od verze 1.4.3
 
-Tato varianta opravuje situaci, kdy se po nasazení nové verze z GitHub Pages nejprve zobrazila stará verze a nová se načetla až po `Ctrl + Shift + R`.
+Tento dokument nahrazuje dřívější postup s automatickým obnovením otevřených oken.
 
-## Provedené změny
+## Aktuální chování
 
-- nová cache `ghrab-academy-v1.4.1-cache-1`,
-- při instalaci service workeru se klíčové soubory stahují bez použití staré HTTP cache,
-- HTML, JavaScript, CSS a manifest používají při online provozu strategii `network first`,
-- po aktivaci nového service workeru se otevřené okno aplikace samo jednou obnoví,
-- registrace používá `updateViaCache: 'none'` a při spuštění výslovně kontroluje aktualizaci,
-- offline režim zůstává zachován.
+- nový service worker se stáhne na pozadí, ale otevřenou prezentaci sám neobnoví;
+- aplikace mimo prezentační režim nabídne oznámení **Aktualizace je připravena**;
+- teprve kliknutí na tlačítko odešle čekajícímu service workeru pokyn `SKIP_WAITING` a provede jedno řízené obnovení;
+- v prezentačním režimu se výzva odloží až do jeho ukončení;
+- chyba při ukládání konkrétního souboru do precache se vypíše čitelně do konzole;
+- HTML, JavaScript, CSS a manifest používají při online provozu strategii network-first, ostatní soubory runtime cache.
 
-## Nasazení
-
-Nahraj obsah této složky do kořene stejného GitHub repozitáře a původní soubory přepiš. Nezakládej další vnořenou složku.
-
-U zařízení, která mají právě aktivní starou verzi 1.3.1, může být při prvním otevření po nasazení vidět krátké automatické obnovení. Poté se další verze mají přepínat bez ručního tvrdého obnovení.
+Tento model chrání živé školení před nečekaným restartem při nasazení nové verze na GitHub Pages.

@@ -7,15 +7,15 @@ export default {
       "Nechci z toho dělat ani zázrak, ani strašáka. Je to nástroj, který už ve škole máme kolem sebe, a potřebujeme se naučit poznat, kdy nám pomáhá a kdy už rozhodnutí musí zůstat na nás."
     ],
     "explain": [
-      "AI nemá nahradit učitele. Má odstranit práci, při které učitel nemusí rozhodovat.",
-      "Nejdůležitější otázka už nezní „zda AI používat“, ale „kdy, proč, s jakými daty a jak ověřit výsledek“. Učitel zůstává autorem rozhodnutí, AI může být spolupracovníkem.",
-      "Příprava: Nápady, struktury hodin, varianty aktivit, pracovní listy a otázky."
+      "AI nenahrazuje učitele. Urychluje návrhy, třídění a úpravy — rozhodnutí zůstává na člověku.",
+      "Neřešíme, jestli AI do školy patří. Řešíme, jak ji používat bezpečně, účelně a bez slepé důvěry.",
+      "Příprava: Návrhy aktivit, pracovní listy, otázky a varianty hodin."
     ],
     "ask": [
       "Kde vám už dnes AI reálně šetří čas — a kde jí naopak zatím nevěříte?"
     ],
     "expected": [
-      "Ať z odpovědí nakonec vyplyne toto: „AI všechno vyřeší“ i „AI do školy nepatří“ obcházejí skutečný úkol: naučit se technologii používat účelně, bezpečně a kriticky."
+      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: „AI všechno vyřeší“ i „AI do školy nepatří“ obcházejí skutečný úkol: naučit se technologii používat účelně, bezpečně a kriticky."
     ],
     "demo": [
       "Použij jeden krátký modelový příklad bez osobních údajů. Ukaž na něm konkrétní dopad, ne celou aplikaci."
@@ -43,8 +43,8 @@ export default {
       "Proto ji beru jako rychlého spolupracovníka na návrhy a zpracování textu, ne jako někoho, kdo má automaticky pravdu."
     ],
     "explain": [
-      "Co AI umí dobře: rychle navrhnout více variant, pracovat se strukturou a stylem.",
-      "Co z odpovědi neplyne: že jsou fakta správná, že citovaný zdroj skutečně existuje."
+      "Co AI umí dobře: navrhne více variant, zlepší strukturu a styl.",
+      "Co z odpovědi neplyne: že fakta sedí, že zdroj opravdu existuje."
     ],
     "ask": [
       "Která vlastnost AI podle vás nejčastěji mate začínající uživatele?"
@@ -98,7 +98,7 @@ export default {
       "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "Nech poslední bod chvíli doznít a otevři „Jak zpracovávat materiály s AI“. Další slide sám vysvětlí, proč pokračujeme právě tam."
+      "Nech poslední bod chvíli doznít a otevři „Bezpečný postup práce s materiálem“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „schéma postupu“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -114,18 +114,18 @@ export default {
       "Nejlepší výsledky mi stejně nevznikají na první pokus. Vzniknou až ve chvíli, kdy modelu přesně řeknu, co je špatně a co naopak nesmí změnit."
     ],
     "explain": [
-      "Vyberte důvěryhodný podklad: Vlastní text, učebnici, oficiální zdroj, rubriku nebo ověřená data. AI nemusí informace domýšlet.",
-      "Očistěte data: Odstraňte jména, kontakty, citlivé údaje a vše, co není pro úkol nezbytné.",
-      "Nechte AI nejprve porozumět zadání: Požádejte o stručné shrnutí cíle, omezení a možných rizik. Opravte nedorozumění dřív, než vznikne celý materiál."
+      "Vezmu důvěryhodný podklad: Vlastní text, učebnici, rubriku nebo ověřený zdroj.",
+      "Odstraním citlivé údaje: Jména, kontakty a jedinečné osobní detaily do nástroje nepatří.",
+      "Upřesním cíl a formát: Pro koho výstup je, co má vzniknout a co se nesmí změnit."
     ],
     "ask": [
       "Ve kterém kroku nejčastěji podle vás vznikne chyba: podklad, zadání, nebo kontrola?"
     ],
     "expected": [
-      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: Kvalita obvykle vzniká v cyklu: návrh → kontrola → cílená oprava → závěrečné ověření. Ne v jednom kliknutí."
+      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: Dobrá práce s AI má rytmus: návrh → kontrola → cílená oprava → poslední ověření."
     ],
     "demo": [
-      "Na obrazovce projdi jen první dva kroky: Vyber důvěryhodný podklad → Očistěte data. U každého ukaž, co po něm zůstane hotové."
+      "Na obrazovce projdi jen první dva kroky: Vezmu důvěryhodný podklad → Odstraním citlivé údaje. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
       "Ukaž jeden reálný anonymizovaný materiál a projdi pracovní postup živě. Zdůrazni, že jeden dlouhý prompt není vždy lepší než postupná práce."
@@ -134,7 +134,7 @@ export default {
       "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "Přejdi bez shrnování celé části na „Kritické myšlení a ověřování výstupů“. Stačí krátké: „A právě na to navazuje další krok.“"
+      "Přejdi bez shrnování celé části na „Co musím ověřit před použitím“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -150,15 +150,15 @@ export default {
       "U faktů, citací, řešení úloh a hodnocení proto potřebuji druhý zdroj nebo vlastní odbornou kontrolu. Kontrola stejnou AI není nezávislá kontrola."
     ],
     "explain": [
-      "Fakta: Lze tvrzení potvrdit v nezávislém důvěryhodném zdroji?",
-      "Zdroje: Existují citace, autoři, dokumenty a odkazy skutečně?",
-      "Logika: Navazuje závěr na důkazy, nebo pouze zní přesvědčivě?"
+      "Fakta: Sedí klíčová tvrzení i řešení?",
+      "Zdroje: Existují citace, autoři a odkazy?",
+      "Logika: Navazuje závěr na důkazy?"
     ],
     "ask": [
       "Co z výstupu byste nikdy nepřevzali bez ověření v jiném zdroji?"
     ],
     "expected": [
-      "Ať z odpovědí nakonec vyplyne toto: Model může zopakovat vlastní chybu nebo vytvořit přesvědčivé vysvětlení nesprávného tvrzení. Nezávislý zdroj a odborný úsudek nelze obejít."
+      "Po dvou reakcích vrať diskusi k tomuto bodu: Model může zopakovat vlastní chybu nebo vytvořit přesvědčivé vysvětlení nesprávného tvrzení. Nezávislý zdroj a odborný úsudek nelze obejít."
     ],
     "demo": [
       "Použij jeden krátký modelový příklad bez osobních údajů. Ukaž na něm konkrétní dopad, ne celou aplikaci."
@@ -170,7 +170,7 @@ export default {
       "Požádat AI o kontrolu nestačí: Model může zopakovat vlastní chybu nebo vytvořit přesvědčivé vysvětlení nesprávného tvrzení. Nezávislý zdroj a odborný úsudek nelze obejít."
     ],
     "transition": [
-      "Tady už nic dalšího nepřidávej. Přepni rovnou na „AI, žáci a proměna zadávání úkolů“; obsah na sebe přirozeně navazuje."
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „AI a zadávání úkolů žákům“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
@@ -187,14 +187,14 @@ export default {
     ],
     "explain": [
       "Úkol snadno nahraditelný AI: obecný referát bez práce se zdroji, shrnutí známého tématu.",
-      "Úkol podporující skutečné učení: práce s konkrétním školním podkladem, obhajoba voleb a změn.",
+      "Úkol podporující skutečné učení: práce s konkrétním podkladem, obhajoba voleb a změn.",
       "Stanovte pravidla použití: Co je dovoleno, co se má přiznat a co už je nahrazení vlastní práce."
     ],
     "ask": [
       "Který běžný domácí úkol dnes AI zvládne, aniž by se žák cokoli naučil?"
     ],
     "expected": [
-      "Po dvou reakcích vrať diskusi k tomuto bodu: Automatické detektory mohou chybovat a nesmí být jediným podkladem pro obvinění žáka. Důležitější je dobře navržený proces práce a ověřitelné podklady."
+      "Po dvou reakcích vrať diskusi k tomuto bodu: Detektory AI mohou chybovat. Samy o sobě nejsou spravedlivým důkazem podvodu."
     ],
     "demo": [
       "Na obrazovce projdi jen první dva kroky: Stanovte pravidla použití → Hodnoťte proces. U každého ukaž, co po něm zůstane hotové."
@@ -203,10 +203,10 @@ export default {
       "Zeptej se: Který běžný domácí úkol dnes AI zvládne bez učení? Poté společně úkol přepracuj."
     ],
     "caution": [
-      "Detektor AI není důkaz: Automatické detektory mohou chybovat a nesmí být jediným podkladem pro obvinění žáka. Důležitější je dobře navržený proces práce a ověřitelné podklady."
+      "Detektor AI není důkaz: Detektory AI mohou chybovat. Samy o sobě nejsou spravedlivým důkazem podvodu."
     ],
     "transition": [
-      "Uzavři poslední myšlenku a pokračuj rovnou částí „Bezpečnost, autorská odpovědnost a transparentnost“. Není potřeba vyrábět zvláštní spojovací větu."
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Data, autorství a transparentnost“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -222,15 +222,15 @@ export default {
       "Co do nástroje posílám, odkud mám podklady, co jsem ověřil a jestli bych se pod finální výstup bez obav podepsal."
     ],
     "explain": [
-      "Data: Používám jen nezbytná a anonymizovaná data. Citlivé údaje do nástroje nevkládám.",
-      "Autorství: AI může pomoci, ale výběr, úpravy a odpovědnost za materiál nesu já.",
-      "Transparentnost: Tam, kde je to významné, dokážu popsat, jakou roli AI v přípravě nebo úkolu hrála."
+      "Data: Používám jen nezbytné a anonymizované vstupy.",
+      "Autorství: Výběr, úpravy i odpovědnost nesu já.",
+      "Transparentnost: Umím popsat, jakou roli AI hrála."
     ],
     "ask": [
       "U kterého typu práce byste považovali za fér otevřeně říct, že pomáhala AI?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Učitel musí vědět, jaká data používá, odkud pochází podklad, kdo odpovídá za finální výstup a kdy je vhodné použití AI přiznat."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Učitel musí vědět, co do nástroje vložil, co převzal, co ověřil a kdy je fér použití AI přiznat."
     ],
     "demo": [
       "Vyber jeden běžný řádek a projdi ho zleva doprava: Situace → Rozumný postup. Zbytek nech jako přehled."
@@ -242,7 +242,7 @@ export default {
       "Nečti tabulku po řádcích. Jeden dobře vysvětlený případ je užitečnější než rychlé projetí všeho."
     ],
     "transition": [
-      "Nech poslední bod chvíli doznít a otevři „Pět pravidel pro každodenní práci“. Další slide sám vysvětlí, proč pokračujeme právě tam."
+      "Nech poslední bod chvíli doznít a otevři „Pět návyků pro běžnou práci“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „tabulku“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -295,14 +295,14 @@ export default {
     ],
     "explain": [
       "„Mám odkaz, takže mám přístup ke všemu.“ → Odkaz + oprávnění + API klíč.",
-      "AI Studio GHRAB není jedna univerzální aplikace. Je to bezpečný vstupní portál, který propojuje samostatné nástroje a kontroluje, ke kterým z nich má konkrétní učitel oprávnění.",
+      "AI Studio GHRAB propojuje samostatné školní nástroje. Každý učitel vidí jen aplikace, ke kterým má aktivovaný přístup.",
       "Jeden vstup: Kolega si uloží jediný odkaz na AI Studio a odtud otevírá dostupné aplikace."
     ],
     "ask": [
       "Co byste čekali od Studia: jednu aplikaci, nebo rozcestník více nástrojů?"
     ],
     "expected": [
-      "Po dvou reakcích vrať diskusi k tomuto bodu: Odkaz na AI Studio otevře portál. Aplikaci ale zpřístupní až platné osobní oprávnění vydané správcem."
+      "Tohle je místo, kam je potřeba odpovědi dovést: Odkaz na AI Studio otevře portál. Aplikaci ale zpřístupní až platné osobní oprávnění vydané správcem."
     ],
     "demo": [
       "Nech nejdřív vyniknout rozdíl „„Mám odkaz, takže mám přístup ke všemu.““ → „Odkaz + oprávnění + API klíč“. Až potom pojmenuj, co změnu způsobilo."
@@ -314,7 +314,7 @@ export default {
       "Nejdůležitější věta prvního školení: Odkaz na AI Studio otevře portál. Aplikaci ale zpřístupní až platné osobní oprávnění vydané správcem."
     ],
     "transition": [
-      "Uzavři poslední myšlenku a pokračuj rovnou částí „Tři podmínky spuštění“. Není potřeba vyrábět zvláštní spojovací větu."
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Tři věci, které musí sedět“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -330,9 +330,9 @@ export default {
       "Stačí postupovat po jedné. Když začneme měnit všechno najednou, jen si ztížíme hledání chyby."
     ],
     "explain": [
-      "Odkaz na Studio: Řekne prohlížeči, kam má jít. Je stejný pro všechny.",
-      "Školní oprávnění: Určí, které aplikace smí konkrétní kolega otevřít.",
-      "API klíč: Umožní konkrétní aplikaci využít model Gemini pro generování."
+      "Odkaz na Studio: Vede do portálu. Je stejný pro všechny.",
+      "Oprávnění: Říká, které aplikace smí kolega otevřít.",
+      "API klíč: Umožní aplikaci volat Gemini API."
     ],
     "ask": [
       "Když se aplikace nespustí, kterou z těch tří oblastí byste kontrolovali jako první?"
@@ -347,7 +347,7 @@ export default {
       "Použij přirovnání k budově: adresa školy, vstupní karta a energie pro konkrétní zařízení."
     ],
     "caution": [
-      "Drž se jedné myšlenky a jednoho příkladu. Další detaily nech na dotazy."
+      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
       "Nech poslední bod chvíli doznít a otevři „Aktivace osobního přístupu“. Další slide sám vysvětlí, proč pokračujeme právě tam."
@@ -386,7 +386,7 @@ export default {
       "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "Přejdi bez shrnování celé části na „Gemini API klíč krok za krokem“. Stačí krátké: „A právě na to navazuje další krok.“"
+      "Přejdi bez shrnování celé části na „Gemini API klíč bez zbytečné techniky“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -402,27 +402,27 @@ export default {
       "Ukážu celý postup pomalu. Hlavně si pohlídáme, kam se klíč vkládá a kam se naopak nikdy kopírovat nemá."
     ],
     "explain": [
-      "Aplikace AI Studia GHRAB používají modely Gemini. Aby Google věděl, ke kterému účtu se požadavky vztahují, každý učitel používá svůj vlastní API klíč.",
-      "Přihlaste se na aistudio.google.com: Použijte Google účet, který smíte pro tento účel využívat. U školního účtu může správce organizace některé funkce omezit.",
-      "Otevřete Dashboard a API Keys: Novému uživateli může být výchozí projekt a klíč vytvořen automaticky. V takovém případě stačí existující klíč zkopírovat."
+      "Aplikace používají modely Gemini přes API. Klíč pouze propojí požadavky s konkrétním Google účtem a projektem.",
+      "Přihlaste se do Google AI Studia: Použijte účet, který pro tento účel smíte využívat.",
+      "Otevřete Dashboard → API keys: Novému uživateli může AI Studio po přijetí podmínek vytvořit výchozí projekt a klíč."
     ],
     "ask": [
       "Které místo v práci s API klíčem vám připadá nejrizikovější?"
     ],
     "expected": [
-      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: Google nabízí bezplatnou úroveň pro vybrané modely, ale dostupnost modelů a limity se mohou měnit. Aktuální limity je potřeba kontrolovat přímo v AI Studiu."
+      "Po dvou reakcích vrať diskusi k tomuto bodu: Dostupnost modelů a limity se mohou měnit podle účtu, projektu a zvoleného modelu. Aktuální stav vždy ověřujte v AI Studiu."
     ],
     "demo": [
-      "Na obrazovce projdi jen první dva kroky: Přihlaste se na aistudio.google.com → Otevřete Dashboard a API Keys. U každého ukaž, co po něm zůstane hotové."
+      "Na obrazovce projdi jen první dva kroky: Přihlaste se do Google AI Studia → Otevřete Dashboard → API keys. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
       "Rozhraní Google AI Studio se může měnit. Vždy zdůrazni cíl postupu: Dashboard → API Keys. Pevná čísla limitů neuvádějte; mění se podle modelu a účtu."
     ],
     "caution": [
-      "Bezplatná úroveň není univerzální slib: Google nabízí bezplatnou úroveň pro vybrané modely, ale dostupnost modelů a limity se mohou měnit. Aktuální limity je potřeba kontrolovat přímo v AI Studiu."
+      "Bezplatná úroveň není univerzální slib: Dostupnost modelů a limity se mohou měnit podle účtu, projektu a zvoleného modelu. Aktuální stav vždy ověřujte v AI Studiu."
     ],
     "transition": [
-      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Bezpečnostní minimum“; obsah na sebe přirozeně navazuje."
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Bezpečnostní minimum pro učitele“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -439,7 +439,7 @@ export default {
     ],
     "explain": [
       "Do aplikace lze běžně vložit: anonymizovaný učební text, obecné zadání aktivity.",
-      "Do aplikace nevkládejte: jméno a příjmení žáka, rodné číslo, adresu nebo kontakt.",
+      "Do aplikace nevkládejte: jméno a příjmení žáka, kontakt, adresa nebo rodné číslo.",
       "Anonymizovat: Odstranit identifikátory a detaily, podle nichž by šlo člověka poznat."
     ],
     "ask": [
@@ -458,7 +458,7 @@ export default {
       "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "Uzavři poslední myšlenku a pokračuj rovnou částí „První kontrola a řešení problémů“. Není potřeba vyrábět zvláštní spojovací větu."
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Když něco nejde spustit“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -480,7 +480,7 @@ export default {
       "Podle čeho poznáte, že problém není v přístupu, ale v API klíči?"
     ],
     "expected": [
-      "Ať z odpovědí nakonec vyplyne toto: Po zvládnutí společného základu pokračujte školením Diferenciátor: první materiál. Je použitelné napříč předměty a přináší rychlý praktický výsledek."
+      "Tohle je místo, kam je potřeba odpovědi dovést: Po zvládnutí společného základu pokračujte školením Diferenciátor: první materiál. Je použitelné napříč předměty a přináší rychlý praktický výsledek."
     ],
     "demo": [
       "Vyber jeden běžný řádek a projdi ho zleva doprava: Co vidím → Pravděpodobná příčina → Co udělám. Zbytek nech jako přehled."
@@ -516,7 +516,7 @@ export default {
       "Jak by se mohla lišit cesta dvou žáků ke stejnému cíli?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Diferenciace není mechanické zkrácení textu. Mění cestu k cíli, ne nutně samotný vzdělávací cíl."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Diferenciace nemá snižovat cíl. Upravuje míru opory, rozsah kroku nebo hloubku přemýšlení."
     ],
     "demo": [
       "Nech nejdřív vyniknout rozdíl „Jeden pracovní list pro celou třídu“ → „Tři úrovně se stejným výukovým cílem“. Až potom pojmenuj, co změnu způsobilo."
@@ -528,7 +528,7 @@ export default {
       "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "Nech poslední bod chvíli doznít a otevři „Příprava vstupního podkladu“. Další slide sám vysvětlí, proč pokračujeme právě tam."
+      "Nech poslední bod chvíli doznít a otevři „Nejdřív připravím vstup“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -564,7 +564,7 @@ export default {
       "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "Přejdi bez shrnování celé části na „Nastavení tří variant“. Stačí krátké: „A právě na to navazuje další krok.“"
+      "Přejdi bez shrnování celé části na „Tři varianty bez tří různých cílů“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
@@ -600,7 +600,7 @@ export default {
       "Pozor na skryté snížení cíle: Podpůrná varianta nesmí automaticky znamenat, že žák procvičuje jinou a méně důležitou dovednost."
     ],
     "transition": [
-      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Generování a první kontrola“; obsah na sebe přirozeně navazuje."
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Vygenerovat nestačí“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „schéma postupu“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -624,7 +624,7 @@ export default {
       "Co kontrolujete jako první, když vám AI vytvoří pracovní list?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: AI výstup není hotový materiál. První kontrola se zaměřuje na cíl, instrukce, faktickou správnost a reálnou použitelnost."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: První výstup je návrh. Učitel kontroluje cíl, zadání, správnost a použitelnost ve třídě."
     ],
     "demo": [
       "Na obrazovce projdi jen první dva kroky: Přečtěte všechny tři varianty → Porovnej vzdělávací cíl. U každého ukaž, co po něm zůstane hotové."
@@ -732,7 +732,7 @@ export default {
       "Kde dnes ukládáte interaktivní materiály, které chcete poslat žákům?"
     ],
     "expected": [
-      "Po dvou reakcích vrať diskusi k tomuto bodu: Do veřejného ani soukromého repozitáře nevkládejte API klíče, hesla, osobní údaje žáků ani přístupové soubory AI Studia."
+      "Tohle je místo, kam je potřeba odpovědi dovést: Do veřejného ani soukromého repozitáře nevkládej API klíče, hesla, osobní údaje žáků ani přístupové soubory AI Studia."
     ],
     "demo": [
       "Nech nejdřív vyniknout rozdíl „Samostatný HTML soubor“ → „Stálý odkaz přes GitHub Pages“. Až potom pojmenuj, co změnu způsobilo."
@@ -744,7 +744,7 @@ export default {
       "Nikdy na GitHub nedávejte tajné údaje: Do veřejného ani soukromého repozitáře nevkládejte API klíče, hesla, osobní údaje žáků ani přístupové soubory AI Studia."
     ],
     "transition": [
-      "Přejdi bez shrnování celé části na „Účet a nový repozitář“. Stačí krátké: „A právě na to navazuje další krok.“"
+      "Přejdi bez shrnování celé části na „Účet a repozitář bez zmatku“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -768,7 +768,7 @@ export default {
       "Jaký název účtu nebo repozitáře by působil profesionálně i za dva roky?"
     ],
     "expected": [
-      "Po dvou reakcích vrať diskusi k tomuto bodu: GitHub Pages je vhodný pro hotové anonymní výukové materiály. Není vhodný pro seznamy žáků, výsledky testů ani interní dokumenty."
+      "Tohle je místo, kam je potřeba odpovědi dovést: GitHub Pages je vhodný pro hotové anonymní výukové materiály. Není vhodný pro seznamy žáků, výsledky testů ani interní dokumenty."
     ],
     "demo": [
       "Na obrazovce projdi jen první dva kroky: Založte nebo otevřete účet na github.com → Zvol New repository. U každého ukaž, co po něm zůstane hotové."
@@ -780,7 +780,7 @@ export default {
       "Veřejné neznamená doporučené ke sdílení všeho: GitHub Pages je vhodný pro hotové anonymní výukové materiály. Není vhodný pro seznamy žáků, výsledky testů ani interní dokumenty."
     ],
     "transition": [
-      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Aktivace GitHub Pages“; obsah na sebe přirozeně navazuje."
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „GitHub Pages: main a root“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -796,18 +796,18 @@ export default {
       "Jakmile je uložíme, GitHub začne vytvářet web. První spuštění může chvíli trvat, takže mu dáme čas a nebudeme nastavení hned překopávat."
     ],
     "explain": [
-      "Otevřete Settings repozitáře: Pokud záložku nevidíte, může být v rozbalovací nabídce.",
-      "V levém menu zvolte Pages: Sekce je obvykle pod Code and automation.",
-      "Nastavte Source: Deploy from a branch: Pro jednoduchý statický web není potřeba vlastní build."
+      "Otevřete Settings → Pages: Nastavení je uvnitř konkrétního repozitáře.",
+      "Zvolte větev main: To je hlavní větev, do které nahráváte soubory.",
+      "Zvolte /root: Root znamená kořen repozitáře: soubory leží přímo v hlavní složce, ne uvnitř další podsložky."
     ],
     "ask": [
       "Které dvě volby musíme nastavit, aby se z repozitáře stal web?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: GitHub Pages lze publikovat z vybrané větve a složky. Pro tento projekt používáme větev main a kořen repozitáře."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Pro běžné školní HTML stačí nastavit větev main a složku root. GitHub z nich vytvoří veřejný web."
     ],
     "demo": [
-      "Na obrazovce projdi jen první dva kroky: Otevřete Settings repozitáře → V levém menu zvol Pages. U každého ukaž, co po něm zůstane hotové."
+      "Na obrazovce projdi jen první dva kroky: Otevřete Settings → Pages → Zvol větev main. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
       "Rozhraní může skrýt Settings do rozbalovací nabídky na menší obrazovce. Ukaž i tuto variantu."
@@ -852,7 +852,7 @@ export default {
       "Limity webového nahrávání: GitHub omezuje velikost jednotlivých souborů a počet souborů nahrávaných najednou. Běžný samostatný HTML materiál je však zpravidla výrazně menší."
     ],
     "transition": [
-      "Nech poslední bod chvíli doznít a otevři „Odkaz pro žáky“. Další slide sám vysvětlí, proč pokračujeme právě tam."
+      "Nech poslední bod chvíli doznít a otevři „Odkaz zkontroluji jako žák“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -868,7 +868,7 @@ export default {
       "Nejlepší kontrola je otevřít ho v anonymním okně. Tím hned poznám, jestli funguje i člověku, který není přihlášený do mého účtu."
     ],
     "explain": [
-      "Projektový odkaz má stálou strukturu. Pro každý materiál se mění pouze název souboru."
+      "Odkaz pošlete až po kontrole v anonymním okně. Tím ověříte, že funguje i bez přihlášení do vašeho účtu."
     ],
     "ask": [
       "Jak byste ověřili, že odkaz funguje i žákovi bez vašeho přihlášení?"
@@ -919,7 +919,7 @@ export default {
       "Zdůrazni, že po nasazení může prohlížeč krátce zobrazovat starší verzi. Pomůže tvrdé obnovení nebo otevření v anonymním okně."
     ],
     "caution": [
-      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
+      "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
       "Na závěr nech každého vybrat jeden konkrétní krok, který opravdu použije. Pak školení ukonči bez dalšího dlouhého shrnutí."
@@ -939,8 +939,8 @@ export default {
     ],
     "explain": [
       "Téma, úroveň a výukový cíl → Ověřený interaktivní test.",
-      "Rychlé procvičování: Okamžitá zpětná vazba, opakování a práce v hodině nebo doma.",
-      "Běžný test: Bodování, výsledek a kontrolovaný známkovaný výstup."
+      "Procvičování: Nízký stres, rychlá zpětná vazba, prostor pro chybu.",
+      "Ověření: Krátká kontrola, co žáci zvládli po výkladu nebo domácí přípravě."
     ],
     "ask": [
       "Kdy byste zvolili procvičování a kdy už klasifikovaný test?"
@@ -958,7 +958,7 @@ export default {
       "Drž se jedné myšlenky a jednoho příkladu. Další detaily nech na dotazy."
     ],
     "transition": [
-      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Zdroj a parametry testu“; obsah na sebe přirozeně navazuje."
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Malý zdroj, jasný cíl“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -982,7 +982,7 @@ export default {
       "Jak malý může být první test, aby měl pořád smysl?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Test může vycházet z vlastního textu, tématu nebo strukturovaného materiálu. Vstup musí odpovídat cíli a úrovni skupiny."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: U prvního testu je lepší kratší podklad a méně úloh. Snáz odhalíte chyby a doladíte zadání."
     ],
     "demo": [
       "Na obrazovce projdi jen první dva kroky: Zvol jazykový modul → Určete režim a úroveň. U každého ukaž, co po něm zůstane hotové."
@@ -994,7 +994,7 @@ export default {
       "Nečti všechny kroky ze slidu. U každého stačí říct, proč tam je a co po něm zůstane hotové."
     ],
     "transition": [
-      "Uzavři poslední myšlenku a pokračuj rovnou částí „Typy úloh a didaktická skladba“. Není potřeba vyrábět zvláštní spojovací větu."
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Typ úlohy podle cíle“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -1018,7 +1018,7 @@ export default {
       "Který typ úlohy nejlépe odpovídá tomu, co ve svém předmětu skutečně chcete ověřit?"
     ],
     "expected": [
-      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: U otevřených odpovědí může být potřeba přijmout více správných variant nebo provést učitelskou kontrolu."
+      "Ať z odpovědí nakonec vyplyne toto: U otevřených odpovědí může být potřeba přijmout více správných variant nebo provést učitelskou kontrolu."
     ],
     "demo": [
       "Vyber jeden běžný řádek a projdi ho zleva doprava: Cíl → Vhodné typy úloh → Riziko. Zbytek nech jako přehled."
@@ -1066,7 +1066,7 @@ export default {
       "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "Přejdi bez shrnování celé části na „Náhled, opravy a kontrolní režim Test Lab“. Stačí krátké: „A právě na to navazuje další krok.“"
+      "Přejdi bez shrnování celé části na „Test Lab: projít test jako žák“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -1082,7 +1082,7 @@ export default {
       "Kliknu každou cestu, zkontroluji klíč, body, zpětnou vazbu a zkusím i telefon. Test Lab je přesně na tohle."
     ],
     "explain": [
-      "Před exportem je potřeba projít test jako žák, ověřit klíč, bodování, navigaci a chování na různých zařízeních."
+      "Před exportem klikněte celou žákovskou cestu. Zkontrolujte otázky, klíč, body, zpětnou vazbu i zobrazení na telefonu."
     ],
     "ask": [
       "Kterou chybu byste při pouhém pohledu na náhled nemuseli vůbec odhalit?"
@@ -1194,7 +1194,7 @@ export default {
       "Kde ve vaší hodině by hra měla skutečný didaktický smysl a nebyla jen odměnou navíc?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: LUDUS používá herní světy a mechaniky jako prostředek k procvičení učiva. Nejdříve se volí vzdělávací cíl, až potom estetika hry."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: LUDUS má motivovat, ale hra sama o sobě nestačí. Nejdřív určete cíl, obsah a způsob ověření."
     ],
     "demo": [
       "Nech nejdřív vyniknout rozdíl „Sada otázek bez příběhu“ → „Obsah zasazený do herní mise“. Až potom pojmenuj, co změnu způsobilo."
@@ -1230,7 +1230,7 @@ export default {
       "Která pracovní cesta nejlépe odpovídá aktivitě, kterou máte právě v hlavě?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: LUDUS nabízí několik cest: hra z vlastního učiva, import z AI Studia, třídní soutěž a lesson pack."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Vyber jen jednu pracovní cestu podle hodiny. Není potřeba ukázat všechny možnosti najednou."
     ],
     "demo": [
       "Použij jeden krátký modelový příklad bez osobních údajů. Ukaž na něm konkrétní dopad, ne celou aplikaci."
@@ -1242,7 +1242,7 @@ export default {
       "Neprocházej všechny karty stejně podrobně. Vyber dvě, které mají pro tuto skupinu největší význam."
     ],
     "transition": [
-      "Nech poslední bod chvíli doznít a otevři „Mechanika a herní svět“. Další slide sám vysvětlí, proč pokračujeme právě tam."
+      "Nech poslední bod chvíli doznít a otevři „Mechanika bez samoúčelnosti“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
@@ -1264,7 +1264,7 @@ export default {
       "Dali byste přednost efektnějšímu náhledu, nebo jednoduššímu ověřenému enginu? Proč?"
     ],
     "expected": [
-      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: Používejte pouze enginy, u kterých LUDUS výslovně uvádí, že jsou kompatibilní s dílnou a připravené k exportu."
+      "Tohle je místo, kam je potřeba odpovědi dovést: Používejte pouze enginy, u kterých LUDUS výslovně uvádí, že jsou kompatibilní s dílnou a připravené k exportu."
     ],
     "demo": [
       "Vyber jeden běžný řádek a projdi ho zleva doprava: Stav → Co znamená → Co smím udělat. Zbytek nech jako přehled."
@@ -1312,7 +1312,7 @@ export default {
       "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Učitelský režim a řízení hodiny“; obsah na sebe přirozeně navazuje."
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Učitel drží hru pod kontrolou“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -1336,7 +1336,7 @@ export default {
       "Kterou možnost řízení hry byste jako učitel potřebovali nejčastěji?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Hotové enginy mají sjednocený učitelský vstup a záchranný dock. Učitel má mít možnost hru řídit, uložit stav nebo získat report."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Hra nesmí převzít hodinu. Učitel potřebuje umět aktivitu spustit, zastavit, vysvětlit a případně zachránit."
     ],
     "demo": [
       "Použij jeden krátký modelový příklad bez osobních údajů. Ukaž na něm konkrétní dopad, ne celou aplikaci."
@@ -1348,7 +1348,7 @@ export default {
       "Drž se jedné myšlenky a jednoho příkladu. Další detaily nech na dotazy."
     ],
     "transition": [
-      "Uzavři poslední myšlenku a pokračuj rovnou částí „Testování a export“. Není potřeba vyrábět zvláštní spojovací větu."
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Otestovat dřív než ve třídě“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
@@ -1435,14 +1435,14 @@ export default {
     ],
     "explain": [
       "Emotivní nebo příliš dlouhá odpověď → Tři kontrolované varianty tónu.",
-      "Příchozí zpráva: Rozbor toho, co odesílatel skutečně potřebuje a na co odpovědět.",
-      "Vlastní e-mail: Koncept z několika bodů, cíle a požadovaného tónu."
+      "Příchozí zpráva: Rozbor faktů, požadavku a dalšího kroku.",
+      "Vlastní e-mail: Koncept z bodů, cíle a požadovaného tónu."
     ],
     "ask": [
       "Kterou situaci byste raději řešili osobně než pomocí e-mailu?"
     ],
     "expected": [
-      "Ať z odpovědí nakonec vyplyne toto: Bezprostřední ohrožení, závažná právní nebo kázeňská věc, velmi citlivé zdravotní údaje či situace vyžadující osobní kontakt se neřeší pouhým generováním e-mailu."
+      "Po dvou reakcích vrať diskusi k tomuto bodu: Bezprostřední ohrožení, závažná právní nebo kázeňská věc, velmi citlivé zdravotní údaje či situace vyžadující osobní kontakt se neřeší pouhým generováním e-mailu."
     ],
     "demo": [
       "Nech nejdřív vyniknout rozdíl „Emotivní nebo příliš dlouhá odpověď“ → „Tři kontrolované varianty tónu“. Až potom pojmenuj, co změnu způsobilo."
@@ -1454,7 +1454,7 @@ export default {
       "Kdy raději bez AI: Bezprostřední ohrožení, závažná právní nebo kázeňská věc, velmi citlivé zdravotní údaje či situace vyžadující osobní kontakt se neřeší pouhým generováním e-mailu."
     ],
     "transition": [
-      "Nech poslední bod chvíli doznít a otevři „Povinná anonymizace“. Další slide sám vysvětlí, proč pokračujeme právě tam."
+      "Nech poslední bod chvíli doznít a otevři „Nejdřív anonymizace“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -1526,7 +1526,7 @@ export default {
       "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
     ],
     "transition": [
-      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Tři varianty odpovědi“; obsah na sebe přirozeně navazuje."
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Tři verze nejsou tři stupně slušnosti“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
@@ -1542,13 +1542,13 @@ export default {
       "Stručná se hodí, když je věc jednoduchá. Standardní pokryje běžnou komunikaci. Diplomatická pomůže tam, kde záleží na vztahu a formulaci každé věty."
     ],
     "explain": [
-      "Aplikace může vytvořit stručnou, standardní a diplomatickou verzi. Uživatel vybírá podle vztahu, situace a cíle."
+      "Stručná, standardní a diplomatická verze mají jiný účel. Finální odpověď vždy upravuje učitel."
     ],
     "ask": [
       "Kdy by vám stručná odpověď pomohla a kdy by naopak mohla působit necitlivě?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Aplikace může vytvořit stručnou, standardní a diplomatickou verzi. Uživatel vybírá podle vztahu, situace a cíle."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Stručná, standardní a diplomatická verze mají jiný účel. Finální odpověď vždy upravuje učitel."
     ],
     "demo": [
       "Vyber jeden běžný řádek a projdi ho zleva doprava: Varianta → Kdy ji volit → Na co dát pozor. Zbytek nech jako přehled."
@@ -1596,7 +1596,7 @@ export default {
       "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "Nech poslední bod chvíli doznít a otevři „Kontrola před odesláním“. Další slide sám vysvětlí, proč pokračujeme právě tam."
+      "Nech poslední bod chvíli doznít a otevři „Před odesláním čtu jako adresát“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -1690,7 +1690,7 @@ export default {
       "Proč je bezpečnější, když AI připraví důkazy, ale body počítá pevná logika?"
     ],
     "expected": [
-      "Ať z odpovědí nakonec vyplyne toto: Žádná zpětná vazba se nemá distribuovat bez učitelské kontroly a schválení."
+      "Po dvou reakcích vrať diskusi k tomuto bodu: Žádná zpětná vazba se nemá distribuovat bez učitelské kontroly a schválení."
     ],
     "demo": [
       "Nech nejdřív vyniknout rozdíl „„Text působí asi na dvojku.““ → „Kritérium → důkaz → body → schválení“. Až potom pojmenuj, co změnu způsobilo."
@@ -1738,7 +1738,7 @@ export default {
       "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Anonymizace a pseudonymizace“; obsah na sebe přirozeně navazuje."
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Anonymizace není jen smazané jméno“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
@@ -1762,7 +1762,7 @@ export default {
       "Které údaje potřebujeme lokálně, ale model je k samotnému hodnocení vůbec nepotřebuje?"
     ],
     "expected": [
-      "Ať z odpovědí nakonec vyplyne toto: Bez vědomého zapnutí se nemá uchovávat studentský text, výsledek, seznam, podpis ani vlastní komentářová banka."
+      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: Bez vědomého zapnutí se nemá uchovávat studentský text, výsledek, seznam, podpis ani vlastní komentářová banka."
     ],
     "demo": [
       "Dej kolegům deset vteřin na tiché porovnání. Potom ukaž jeden rozdíl, který má v praxi největší dopad."
@@ -1774,7 +1774,7 @@ export default {
       "Citlivé ukládání je výchozí vypnuté: Bez vědomého zapnutí se nemá uchovávat studentský text, výsledek, seznam, podpis ani vlastní komentářová banka."
     ],
     "transition": [
-      "Uzavři poslední myšlenku a pokračuj rovnou částí „Rubrika, důkazy a podmínky neúspěchu“. Není potřeba vyrábět zvláštní spojovací větu."
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Rubrika je hranice hodnocení“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -1810,7 +1810,7 @@ export default {
       "Nenech návrh AI zaměnit za konečné odborné rozhodnutí učitele. Drž se přesně zadané rubriky."
     ],
     "transition": [
-      "Nech poslední bod chvíli doznít a otevři „Učitelská revize“. Další slide sám vysvětlí, proč pokračujeme právě tam."
+      "Nech poslední bod chvíli doznít a otevři „Učitelská revize před převzetím“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -1833,7 +1833,7 @@ export default {
       "Kterou část výsledku byste chtěli před schválením vidět vždy jako první?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Učitel kontroluje slovní hodnocení, chyby, doporučení, tón i konečný výsledek. Teprve potom označí práci jako schválenou."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Návrh hodnocení čtěte proti textu žáka a proti rubrice. Ne proti tomu, jak přesvědčivě AI píše."
     ],
     "demo": [
       "Dej kolegům deset vteřin na tiché porovnání. Potom ukaž jeden rozdíl, který má v praxi největší dopad."
@@ -1842,10 +1842,10 @@ export default {
       "Nech účastníky najít alespoň jednu větu, kterou by z pedagogických důvodů přeformulovali."
     ],
     "caution": [
-      "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
+      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
-      "Přejdi bez shrnování celé části na „Dávkové hodnocení a fronta“. Stačí krátké: „A právě na to navazuje další krok.“"
+      "Přejdi bez shrnování celé části na „Dávka šetří čas, ne kontrolu“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -1869,7 +1869,7 @@ export default {
       "Kde se při dávkovém zpracování nejčastěji může stát chyba v přiřazení?"
     ],
     "expected": [
-      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: Obnovení nemusí uchovávat původní binární přílohy. Při návratu je potřeba ověřit, které podklady jsou stále dostupné."
+      "Ať z odpovědí nakonec vyplyne toto: Obnovení nemusí uchovávat původní binární přílohy. Při návratu je potřeba ověřit, které podklady jsou stále dostupné."
     ],
     "demo": [
       "Na obrazovce projdi jen první dva kroky: Zkontrolujte roster a soubory → Potvrďte přepisy obrazových prací. U každého ukaž, co po něm zůstane hotové."
@@ -1881,7 +1881,7 @@ export default {
       "Obnova dávky má omezení: Obnovení nemusí uchovávat původní binární přílohy. Při návratu je potřeba ověřit, které podklady jsou stále dostupné."
     ],
     "transition": [
-      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Reporty a bezpečná distribuce“; obsah na sebe přirozeně navazuje."
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Report posílat až po kontrole“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -1914,7 +1914,7 @@ export default {
       "Pro první použití doporuč koncepty místo automatického odeslání. Uživatel tak ještě jednou zkontroluje adresáta i přílohu."
     ],
     "caution": [
-      "Nedělej úkol za kolegy. Dej jim chvíli ticha a nápovědu nabídni až potom."
+      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
     ],
     "transition": [
       "Na závěr nech každého vybrat jeden konkrétní krok, který opravdu použije. Pak školení ukonči bez dalšího dlouhého shrnutí."
@@ -1941,7 +1941,7 @@ export default {
       "Který svůj materiál byste dokázali využít zároveň pro diferenciaci, test i hru?"
     ],
     "expected": [
-      "Tohle je místo, kam je potřeba odpovědi dovést: Učitel nevytváří každou podobu od nuly. Zachovává společný cíl a pracuje s ověřeným obsahem."
+      "Ať z odpovědí nakonec vyplyne toto: Učitel nevytváří každou podobu od nuly. Zachovává společný cíl a pracuje s ověřeným obsahem."
     ],
     "demo": [
       "Nech nejdřív vyniknout rozdíl „Každá aplikace začíná od nuly“ → „Jeden ověřený zdrojový balíček“. Až potom pojmenuj, co změnu způsobilo."
@@ -1953,7 +1953,7 @@ export default {
       "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Znovupoužitelný zdrojový materiál“; obsah na sebe přirozeně navazuje."
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Zdrojový materiál pro opakované použití“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -1977,7 +1977,7 @@ export default {
       "Co musí zdroj obsahovat, aby ho bez vysvětlování pochopil i kolega?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Zdroj musí být srozumitelný člověku i aplikacím. Obsahuje pedagogický kontext, cíle, úlohy a omezení."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Uložte si čistý zdroj, cíl, úroveň a omezení. Příště nezačínáte od nuly."
     ],
     "demo": [
       "Použij jeden krátký modelový příklad bez osobních údajů. Ukaž na něm konkrétní dopad, ne celou aplikaci."
@@ -1989,7 +1989,7 @@ export default {
       "Drž se jedné myšlenky a jednoho příkladu. Další detaily nech na dotazy."
     ],
     "transition": [
-      "Uzavři poslední myšlenku a pokračuj rovnou částí „Předání mezi aplikacemi: Studio Bridge a soubor“. Není potřeba vyrábět zvláštní spojovací větu."
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Předání mezi aplikacemi“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
@@ -2005,15 +2005,15 @@ export default {
       "V obou případech platí totéž: předávám jen to, co opravdu potřebuji, a po importu zkontroluji, jestli se nic neztratilo."
     ],
     "explain": [
-      "Přímý Studio Bridge: stejný prohlížeč, krátkodobá lokální předávka.",
-      "Souborový export: vědomě uložený soubor, lze archivovat a sdílet.",
+      "Přímý Studio Bridge: stejný prohlížeč, rychlé lokální předání.",
+      "Souborový export: vědomě uložený soubor, jde archivovat nebo předat kolegovi.",
       "Dokončete a zkontrolujte zdroj: Předávka nesmí být způsob, jak obejít kontrolu."
     ],
     "ask": [
       "Kdy je praktičtější rychlé předání v prohlížeči a kdy raději uložený soubor?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Aplikace mohou ve stejném prohlížeči převzít krátkodobé anonymní předání. Záložní cestou je export a import strukturovaného souboru."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Studio Bridge nebo exportní soubor přenáší výsledek do další aplikace. Před předáním vždy zkontrolujte obsah."
     ],
     "demo": [
       "Na obrazovce projdi jen první dva kroky: Dokončete a zkontrolujte zdroj → Zvol cílovou aplikaci. U každého ukaž, co po něm zůstane hotové."
@@ -2022,10 +2022,10 @@ export default {
       "Ukaž obě cesty. Přímé předání je pohodlnější, soubor je průhlednější a vhodný pro archivaci či předání kolegovi."
     ],
     "caution": [
-      "Pracuj jen s fiktivními nebo skutečně anonymizovanými údaji. Samotné odstranění jména nemusí stačit."
+      "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "Nech poslední bod chvíli doznít a otevři „Kterou aplikaci použít“. Další slide sám vysvětlí, proč pokračujeme právě tam."
+      "Nech poslední bod chvíli doznít a otevři „Jak vybrat další aplikaci“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -2041,7 +2041,7 @@ export default {
       "Když potřebuji oporu pro různé žáky, začnu Diferenciátorem. Když ověření, Generátorem. Když aktivizaci, LUDUSem."
     ],
     "explain": [
-      "Nástroj se volí podle cíle konkrétní části výuky, ne podle toho, která aplikace působí nejefektněji."
+      "Nechte se vést cílem. Potřebujete více úrovní, ověření, hru, komunikaci nebo hodnocení?"
     ],
     "ask": [
       "Jaký výsledek právě potřebujete: podporu, ověření, nebo aktivizaci?"
@@ -2059,7 +2059,7 @@ export default {
       "Drž se jedné myšlenky a jednoho příkladu. Další detaily nech na dotazy."
     ],
     "transition": [
-      "Přejdi bez shrnování celé části na „Verze, názvy a archivace“. Stačí krátké: „A právě na to navazuje další krok.“"
+      "Přejdi bez shrnování celé části na „Verze a názvy bez chaosu“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „tabulku“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -2081,7 +2081,7 @@ export default {
       "Jak dnes poznáte, který z několika podobných souborů je opravdu poslední verze?"
     ],
     "expected": [
-      "Ať z odpovědí nakonec vyplyne toto: Při opravě veřejného HTML zachovejte stejný název, pokud chcete zachovat odkaz, a po nasazení vždy ověřte skutečnou Pages URL."
+      "Ať z odpovědí nakonec vyplyne toto: Při opravě veřejného HTML zachovejte stejný název, pokud chcete zachovat odkaz, a po nasazení vždy ověř skutečnou Pages URL."
     ],
     "demo": [
       "Zobraz blok „Doporučený název zdroje“ a zvýrazni jen místa, která má učitel skutečně upravovat."
@@ -2093,7 +2093,7 @@ export default {
       "Aktuální odkaz musí ukazovat na aktuální obsah: Při opravě veřejného HTML zachovejte stejný název, pokud chcete zachovat odkaz, a po nasazení vždy ověřte skutečnou Pages URL."
     ],
     "transition": [
-      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Společná kontrolní brána“; obsah na sebe přirozeně navazuje."
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Kontrolní brána před použitím“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pokračuj s příkladem na slidu. Cíl části se dá splnit i bez živé ukázky."
@@ -2189,7 +2189,7 @@ export default {
       "Které činnosti patří školiteli a které už správci provozu?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Školitel vysvětluje pedagogické použití a ověřuje základní kompetenci. Správce vydává oprávnění, vede evidenci a řeší provozní stav."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Školitel vede praxi. Správce drží přístupy, verze, podporu a bezpečný provoz."
     ],
     "demo": [
       "Nech nejdřív vyniknout rozdíl „Přístupy a podpora bez evidence“ → „Evidence, školení, podpora a audit“. Až potom pojmenuj, co změnu způsobilo."
@@ -2201,7 +2201,7 @@ export default {
       "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "Uzavři poslední myšlenku a pokračuj rovnou částí „Plán vzdělávací cesty“. Není potřeba vyrábět zvláštní spojovací větu."
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Vzdělávací cesta bez zahlcení“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „ukázku před a po“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -2225,7 +2225,7 @@ export default {
       "Které moduly by podle vás měli absolvovat všichni a které jen vybrané skupiny?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Všichni absolvují společný základ. Další moduly se vybírají podle skutečné potřeby a předmětu."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Všichni projdou společný základ. Další školení se vybírá podle potřeby, ne jako povinná série všeho."
     ],
     "demo": [
       "Projeď tok zleva doprava na jednom konkrétním příkladu. U každého kroku řekni, co se pokazí, když ho přeskočíme."
@@ -2237,7 +2237,7 @@ export default {
       "Nečti všechny kroky ze slidu. U každého stačí říct, proč tam je a co po něm zůstane hotové."
     ],
     "transition": [
-      "Nech poslední bod chvíli doznít a otevři „Vydání podepsaného přístupu“. Další slide sám vysvětlí, proč pokračujeme právě tam."
+      "Nech poslední bod chvíli doznít a otevři „Vydání přístupu krok za krokem“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „schéma postupu“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -2253,18 +2253,18 @@ export default {
       "Ten načítám jen na důvěryhodném zařízení, vytvořím oprávnění a potom ho z prostředí zase odstraním. Samotnému kolegovi předávám jen podepsaný výsledek."
     ],
     "explain": [
-      "Otevřete administrátorský nástroj Vydání přístupu: Nástroj pracuje lokálně v prohlížeči.",
-      "Načtěte soukromý podpisový klíč: Klíč nesmí být uložen v repozitáři, e-mailu ani sdíleném disku.",
+      "Otevřete nástroj Vydání přístupu: Pracuje lokálně v prohlížeči.",
+      "Načtěte soukromý podpisový klíč: Nepatří do e-mailu, repozitáře ani běžného sdíleného disku.",
       "Vyplňte konkrétního uživatele: Použijte jednoznačné jméno pro místní evidenci."
     ],
     "ask": [
       "Který krok při vydání přístupu je nejcitlivější a proč?"
     ],
     "expected": [
-      "Tohle je místo, kam je potřeba odpovědi dovést: Nikdy jej neposílejte, nevkládejte do cloudu bez odpovídající ochrany a nepoužívejte na nedůvěryhodném zařízení."
+      "Nenech debatu rozběhnout do šířky; uzavři ji tímto: Nikdy jej neposílejte, nevkládej do cloudu bez odpovídající ochrany a nepoužívejte na nedůvěryhodném zařízení."
     ],
     "demo": [
-      "Na obrazovce projdi jen první dva kroky: Otevřete administrátorský nástroj Vydání přístupu → Načtěte soukromý podpisový klíč. U každého ukaž, co po něm zůstane hotové."
+      "Na obrazovce projdi jen první dva kroky: Otevřete nástroj Vydání přístupu → Načtěte soukromý podpisový klíč. U každého ukaž, co po něm zůstane hotové."
     ],
     "facilitation": [
       "Tento postup provádějte bez sdílení obrazovky v části, kde je viditelný soukromý klíč. Používejte pouze vlastní důvěryhodné zařízení."
@@ -2273,7 +2273,7 @@ export default {
       "Soukromý klíč je nejcitlivější soubor systému: Nikdy jej neposílejte, nevkládejte do cloudu bez odpovídající ochrany a nepoužívejte na nedůvěryhodném zařízení."
     ],
     "transition": [
-      "Přejdi bez shrnování celé části na „Evidence a revokace“. Stačí krátké: „A právě na to navazuje další krok.“"
+      "Přejdi bez shrnování celé části na „Evidence a zneplatnění přístupu“. Stačí krátké: „A právě na to navazuje další krok.“"
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -2297,7 +2297,7 @@ export default {
       "Jaké minimum potřebujete evidovat, abyste dokázali přístup později najít a zneplatnit?"
     ],
     "expected": [
-      "Tohle je místo, kam je potřeba odpovědi dovést: V serverless fázi je evidence místní. Je potřeba mít bezpečný provozní postup pro zálohu a práci na určeném zařízení."
+      "Tohle je místo, kam je potřeba odpovědi dovést: V současné verzi bez serveru je evidence místní. Mějte určené zařízení, zálohu a jasný postup pro změny."
     ],
     "demo": [
       "Na obrazovce projdi jen první dva kroky: Označte ztracený nebo zneužitý přístup → Přidejte jej do revokačního seznamu. U každého ukaž, co po něm zůstane hotové."
@@ -2306,10 +2306,10 @@ export default {
       "Předveďte revokaci na testovacím oprávnění. Uživatel musí pochopit, že revokovaný přístup může být zneplatněn centrálním seznamem."
     ],
     "caution": [
-      "Evidence není centrální databáze: V serverless fázi je evidence místní. Je potřeba mít bezpečný provozní postup pro zálohu a práci na určeném zařízení."
+      "Evidence není centrální databáze: V současné verzi bez serveru je evidence místní. Mějte určené zařízení, zálohu a jasný postup pro změny."
     ],
     "transition": [
-      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Jak vést kvalitní školení“; obsah na sebe přirozeně navazuje."
+      "Tady už nic dalšího nepřidávej. Přepni rovnou na „Školení jako praktická dílna“; obsah na sebe přirozeně navazuje."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -2333,7 +2333,7 @@ export default {
       "Co si musí kolega ze školení skutečně odnést, aby mělo smysl?"
     ],
     "expected": [
-      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Úspěšné školení je praktická dílna s jedním dokončeným výstupem. Technické minimum se vysvětluje v okamžiku, kdy je potřeba."
+      "Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: Dobré školení nekončí výkladem. Každý účastník má odejít s jedním hotovým a zkontrolovaným výstupem."
     ],
     "demo": [
       "Projeď tok zleva doprava na jednom konkrétním příkladu. U každého kroku řekni, co se pokazí, když ho přeskočíme."
@@ -2381,7 +2381,7 @@ export default {
       "Nedělej z porovnání černobílý soud. Pojmenuj podmínky, za kterých je postup vhodný nebo rizikový."
     ],
     "transition": [
-      "Nech poslední bod chvíli doznít a otevři „Provozní kontrola projektu“. Další slide sám vysvětlí, proč pokračujeme právě tam."
+      "Nech poslední bod chvíli doznít a otevři „Pravidelná provozní kontrola“. Další slide sám vysvětlí, proč pokračujeme právě tam."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „porovnání“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
@@ -2397,7 +2397,7 @@ export default {
       "Ověřím dostupnost aplikací, verze, platnost přístupů, bezpečnostní pravidla a zpětnou vazbu. Díky tomu se malé problémy nehromadí."
     ],
     "explain": [
-      "Správce pravidelně kontroluje dostupnost aplikací, verze, školení, přístupy, bezpečnostní pravidla a zpětnou vazbu uživatelů."
+      "Kontrolujte odkazy, verze, přístupy, bezpečnostní pravidla, hlášené chyby a to, zda obsah školení odpovídá aktuální realitě."
     ],
     "ask": [
       "Které tři věci by měly být součástí pravidelné provozní kontroly?"

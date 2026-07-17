@@ -440,32 +440,32 @@ function toInternalFragment(value) {
 
 function expectedFor(lesson) {
   const quiz = lesson.blocks.find(block => block.type === 'quiz');
-  if (quiz) return `Po hlasování stručně vysvětli logiku správné volby: ${sentence(quiz.explanation)}`;
+  if (quiz) return `Po hlasování stručně vysvětli logiku správné volby: ${toInternalVoice(quiz.explanation)}`;
   const decision = lesson.blocks.find(block => block.type === 'decision');
   if (decision) return 'Nehledej jednu univerzální odpověď. Vrať diskusi k cíli, situaci a důsledkům zvolené varianty.';
   const activity = lesson.blocks.find(block => block.type === 'activity');
   if (activity) {
-    const output = clean(activity.output).replace(/[.!?]+$/, '');
+    const output = toInternalFragment(activity.output);
     return `Vezmi dvě konkrétní odpovědi. U každé krátce pojmenuj, co je použitelné a co ještě chybí k výsledku „${output}“.`;
   }
   const warning = lesson.blocks.find(block => block.type === 'callout' && ['warning', 'danger', 'success'].includes(block.tone));
   if (warning) {
     const endings = [
-      `Ať z odpovědí nakonec vyplyne toto: ${sentence(warning.text)}`,
-      `Po dvou reakcích vrať diskusi k tomuto bodu: ${sentence(warning.text)}`,
-      `Nenech debatu rozběhnout do šířky; uzavři ji tímto: ${sentence(warning.text)}`,
-      `Tohle je místo, kam je potřeba odpovědi dovést: ${sentence(warning.text)}`
+      `Ať z odpovědí nakonec vyplyne toto: ${toInternalVoice(warning.text)}`,
+      `Po dvou reakcích vrať diskusi k tomuto bodu: ${toInternalVoice(warning.text)}`,
+      `Nenech debatu rozběhnout do šířky; uzavři ji tímto: ${toInternalVoice(warning.text)}`,
+      `Tohle je místo, kam je potřeba odpovědi dovést: ${toInternalVoice(warning.text)}`
     ];
     return endings[lesson.title.length % endings.length];
   }
-  return `Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: ${sentence(lesson.summary)}`;
+  return `Stačí jedna nebo dvě konkrétní zkušenosti. Potom je propoj s tématem slidu: ${toInternalVoice(lesson.summary)}`;
 }
 
 function demoFor(lesson) {
   const showcase = lesson.blocks.find(block => block.type === 'showcase');
   if (showcase) return `Nech nejdřív vyniknout rozdíl „${showcase.before.title}“ → „${showcase.after.title}“. Až potom pojmenuj, co změnu způsobilo.`;
   const activity = lesson.blocks.find(block => block.type === 'activity');
-  if (activity) return `${toInternalVoice(activity.brief)} Na konci ukaž konkrétní výstup: ${sentence(activity.output)}`;
+  if (activity) return `${toInternalVoice(activity.brief)} Na konci ukaž konkrétní výstup: ${toInternalVoice(activity.output)}`;
   const steps = lesson.blocks.find(block => block.type === 'steps');
   if (steps) return `Na obrazovce projdi jen první dva kroky: ${steps.items.slice(0, 2).map(item => toInternalFragment(item.title)).join(' → ')}. U každého ukaž, co po něm zůstane hotové.`;
   const flow = lesson.blocks.find(block => block.type === 'flow');
@@ -559,5 +559,9 @@ for (const course of courses) {
 }
 
 const output = `// Ručně psaná mluvená opora pro všech 68 částí.\n// Není určená k doslovnému čtení. Znovu vytvořit: npm run build:notes\nexport default ${JSON.stringify(entries, null, 2)};\n`;
-await fs.writeFile(path.resolve('courses/speaker-notes.js'), output, 'utf8');
-console.log(`Vytvořeno ${Object.keys(entries).length} sad přirozených poznámek.`);
+const outputFlagIndex = process.argv.indexOf('--output');
+const outputPath = outputFlagIndex >= 0 && process.argv[outputFlagIndex + 1]
+  ? path.resolve(process.argv[outputFlagIndex + 1])
+  : path.resolve('courses/speaker-notes.js');
+await fs.writeFile(outputPath, output, 'utf8');
+console.log(`Vytvořeno ${Object.keys(entries).length} sad přirozených poznámek: ${outputPath}`);

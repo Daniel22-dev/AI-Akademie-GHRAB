@@ -1,27 +1,22 @@
-const CACHE = 'ghrab-academy-v1.4.2-cache-1';
+const CACHE = 'ghrab-academy-v1.4.3-cache-1';
 const FILES = [
   './',
   './index.html',
+  './console.html',
   './manifest.webmanifest',
   './404.html',
   './assets/css/styles.css',
   './assets/js/app.js',
+  './assets/js/console.js',
   './assets/js/changelog.js',
   './assets/js/starfield.js',
   './assets/js/storage.js',
   './assets/brand/apple-touch-icon.png',
-  './assets/brand/brand-mark.svg',
   './assets/brand/icon-192.png',
   './assets/brand/icon-32.png',
   './assets/brand/icon-512.png',
-  './assets/brand/portal-gateway.png',
+  './assets/brand/icon-512-maskable.png',
   './assets/brand/school-logo.png',
-  './assets/apps/ai-literacy.png',
-  './assets/apps/correspondence.png',
-  './assets/apps/differentiator.png',
-  './assets/apps/essay-evaluator-v2.png',
-  './assets/apps/generator.png',
-  './assets/apps/ludus.png',
   './assets/course-icons/administrator.png',
   './assets/course-icons/ai-literacy.png',
   './assets/course-icons/correspondence.png',
@@ -44,25 +39,24 @@ const FILES = [
   './courses/08-administrator.js',
   './courses/index.js',
   './courses/presentation-enhancements.js',
-  './courses/speaker-notes.js',
-  './exports/administrator.html',
-  './exports/ai-literacy.html',
-  './exports/correspondence.html',
-  './exports/differentiator.html',
-  './exports/evaluator.html',
-  './exports/generator.html',
-  './exports/github.html',
-  './exports/ludus.html',
-  './exports/start.html',
-  './exports/workflow.html'
+  './courses/speaker-notes.js'
 ];
 
 const FRESH_EXTENSIONS = /\.(?:html?|js|css|webmanifest)$/i;
 
 async function precacheFreshFiles() {
   const cache = await caches.open(CACHE);
-  const requests = FILES.map(url => new Request(url, { cache: 'reload' }));
-  await cache.addAll(requests);
+  for (const url of FILES) {
+    try {
+      const request = new Request(url, { cache: 'no-cache' });
+      const response = await fetch(request);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      await cache.put(request, response);
+    } catch (error) {
+      console.error(`[AI Akademie] Precache selhal pro ${url}`, error);
+      throw error;
+    }
+  }
 }
 
 async function deleteOldCaches() {
@@ -70,14 +64,8 @@ async function deleteOldCaches() {
   await Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)));
 }
 
-async function reloadOpenWindows() {
-  const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-  await Promise.all(windows.map(client => client.navigate(client.url).catch(() => undefined)));
-}
-
 async function networkFirst(request, offlineFallback) {
   const cache = await caches.open(CACHE);
-
   try {
     const response = await fetch(request, { cache: 'no-store' });
     if (response && response.status === 200 && response.type !== 'opaque') {
@@ -96,7 +84,6 @@ async function cacheFirst(request) {
   const cache = await caches.open(CACHE);
   const cached = await cache.match(request);
   if (cached) return cached;
-
   try {
     const response = await fetch(request);
     if (response && response.status === 200 && response.type !== 'opaque') {
@@ -109,20 +96,19 @@ async function cacheFirst(request) {
 }
 
 self.addEventListener('install', event => {
-  event.waitUntil(precacheFreshFiles().then(() => self.skipWaiting()));
+  event.waitUntil(precacheFreshFiles());
 });
 
 self.addEventListener('activate', event => {
-  event.waitUntil(
-    deleteOldCaches()
-      .then(() => self.clients.claim())
-      .then(() => reloadOpenWindows())
-  );
+  event.waitUntil(deleteOldCaches().then(() => self.clients.claim()));
+});
+
+self.addEventListener('message', event => {
+  if (event.data?.type === 'SKIP_WAITING') self.skipWaiting();
 });
 
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
-
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 

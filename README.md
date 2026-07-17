@@ -1,20 +1,19 @@
-# AI Akademie GHRAB 1.4.2
+# AI Akademie GHRAB 1.4.3
 
 Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
 Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
 
-## Novinky ve verzi 1.4.2
+## Novinky ve verzi 1.4.3
 
-- proběhla hloubková revize obsahu všech **10 prezentací** a všech **68 lekcí**;
-- husté slidy byly zkráceny, dlouhé seznamy omezeny a čtyřsloupcové bloky převedeny na čitelnější dvousloupcové rozvržení;
-- jazyk byl přepsán do civilnější učitelské češtiny, aby prezentace nepůsobily jako technická dokumentace;
-- u části o API klíči, modelech a limitech byly odstraněny zastarávající nebo příliš pevné formulace a nahrazeny bezpečnějším popisem podle aktuální dokumentace;
-- tabulky, checklisty a porovnání mají méně řádků a jasnější názvy, aby je šlo přečíst z projektoru;
-- barvy a výrazné bloky jsou použité střídměji: upozornění, rizika a praktické kroky jsou odlišené podle významu, ne jako dekorace;
-- do projektu byl doplněn soubor `AUDIT-PREZENTACI-v1.4.2.md` s komentářem k provedeným změnám.
+- Konzole školitele je nově samostatná bezpečná stránka `console.html` s externím skriptem, takže ji neblokuje CSP.
+- Poznámky řečníka jsou znovu vygenerované a kontrola sestavení hlídá jejich shodu se zdrojem i platnost přechodů mezi lekcemi.
+- Aktualizace PWA se už nenačítá automatickým restartem otevřené prezentace; uživatel ji spustí řízeně až mimo prezentační režim.
+- Úvodní obrazovka prezentace skutečně pokračuje první lekcí a stav coveru či závěru se při změně adresy bezpečně resetuje.
+- Precache byl zeštíhlen, odstraněny byly nepoužívané obrázky a PWA dostala samostatnou komprimovanou maskovatelnou ikonu.
+- Prezentační CSS, ovládání klávesnicí, focus v modalech, titulky stránek, úložiště a 404 přesměrování prošly opravou a zpřesněním.
 
-Verze 1.4.1 přepsala poznámky řečníka lidským hlasem. Verze 1.4.0 zavedla jasné pořadí poznámek a rychlou oporu školitele. Verze 1.3.2 přinesla závěrečné obrazovky, bezpečný návrat z prezentace a changelog. Verze 1.3.1 upravila rozcestník a verze 1.3.0 projektorový režim, konzoli školitele, tisk a vizuální systém.
+Verze 1.4.2 provedla hloubkovou obsahovou revizi všech 10 prezentací a 68 lekcí. Starší změny jsou popsány v changelogu aplikace.
 
 ## Deset školení
 
@@ -94,6 +93,7 @@ Trvalé změny mluvených formulací zapisujte do map v `scripts/build-speaker-n
 Vyžadován je Node.js 18 nebo novější.
 
 ```bash
+npm run build:notes
 npm run build:exports
 npm test
 ```
@@ -102,7 +102,7 @@ Kontrola ověřuje mimo jiné:
 
 - deset kurzů a 68 částí;
 - shodu časů s obsahem a rezervou;
-- scénáře ke všem částem;
+- scénáře ke všem částem a jejich synchronizaci s generátorem;
 - platnost kvízů a vizuálních bloků;
 - závěrečnou obrazovku hlavní i samostatné prezentace;
 - přítomnost changelogu s deseti položkami;

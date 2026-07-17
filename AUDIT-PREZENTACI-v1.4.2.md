@@ -92,7 +92,7 @@ Zároveň bylo upraveno zobrazení čtyřsloupcových bloků v aplikaci i export
 - 68 lekcí zachováno.
 - Samostatné HTML exporty znovu vygenerovány.
 - Kontrola projektu proběhla bez chyb.
-- Poznámky řečníka z verze 1.4.1 zůstaly zachované.
+- Poznámky řečníka byly ve verzi 1.4.3 znovu vygenerovány a synchronizovány s aktuálními názvy a obsahem lekcí.
 
 ## Doporučení pro další ruční průchod
 

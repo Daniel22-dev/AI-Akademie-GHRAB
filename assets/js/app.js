@@ -10,10 +10,26 @@ let activeCategory = 'Vše';
 let presenterMode = false;
 let presentationCover = false;
 let presentationEnd = false;
+let routePresentationTarget = null;
 let deferredInstallPrompt = null;
 let presenterConsoleWindow = null;
-const presenterSessionId = sessionStorage.getItem('ghrab-presenter-session') || (crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`);
-sessionStorage.setItem('ghrab-presenter-session', presenterSessionId);
+let pendingUpdateWorker = null;
+let updateReloadRequested = false;
+let changelogReturnFocus = null;
+
+function createPresenterSessionId() {
+  const fallback = crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  try {
+    const stored = sessionStorage.getItem('ghrab-presenter-session');
+    if (stored) return stored;
+    sessionStorage.setItem('ghrab-presenter-session', fallback);
+  } catch {
+    // Některé soukromé režimy blokují sessionStorage. Relace pak žije jen v paměti této karty.
+  }
+  return fallback;
+}
+
+const presenterSessionId = createPresenterSessionId();
 const presenterChannelName = `ghrab-academy-presenter-${presenterSessionId}`;
 const presenterChannel = 'BroadcastChannel' in window ? new BroadcastChannel(presenterChannelName) : null;
 
@@ -45,14 +61,19 @@ function escapeHtml(value = '') {
     .replaceAll("'", '&#039;');
 }
 
+function safeAccent(value = '') {
+  const accent = String(value).trim();
+  return /^#[0-9a-f]{3,8}$/i.test(accent) ? accent : '#50e8ff';
+}
+
+function safeAssetPath(value = '') {
+  const asset = String(value).trim();
+  return /^\.\/assets\/[a-z0-9/_-]+\.(?:png|svg|webp|jpe?g)$/i.test(asset) ? escapeHtml(asset) : '';
+}
+
 
 function cleanSentence(value = '') {
   return String(value).replace(/\s+/g, ' ').trim();
-}
-
-function lowerFirst(value = '') {
-  const text = cleanSentence(value);
-  return text ? text.charAt(0).toLocaleLowerCase('cs') + text.slice(1) : '';
 }
 
 function uniqueList(items = []) {
@@ -84,107 +105,24 @@ function formatMinutes(total = 0) {
   return `${hours} h ${rest} min`;
 }
 
-function firstMeaningfulPoints(lesson, limit = 4) {
-  const points = [];
-  for (const block of lesson.blocks || []) {
-    if (block.type === 'lead' && block.text) points.push(cleanSentence(block.text));
-    if (block.type === 'cards' || block.type === 'flow' || block.type === 'steps') {
-      for (const item of block.items || []) {
-        const point = [item.title, item.text].filter(Boolean).join(': ');
-        if (point) points.push(cleanSentence(point));
-      }
-    }
-    if (block.type === 'comparison') {
-      if (block.left?.title) points.push(`${block.left.title}: ${(block.left.items || []).slice(0, 2).join(', ')}`);
-      if (block.right?.title) points.push(`${block.right.title}: ${(block.right.items || []).slice(0, 2).join(', ')}`);
-    }
-    if (block.type === 'callout' && block.title) points.push(`${block.title}: ${block.text || ''}`);
-    if (points.length >= limit) break;
-  }
-  return uniqueList(points).slice(0, limit);
-}
-
-function suggestedQuestion(lesson) {
-  const quiz = (lesson.blocks || []).find(block => block.type === 'quiz');
-  if (quiz?.question) return quiz.question;
-  const activity = (lesson.blocks || []).find(block => block.type === 'activity');
-  if (activity?.title) return `Jak byste téma „${activity.title}“ převedli do svého předmětu nebo své běžné praxe?`;
-  const comparison = (lesson.blocks || []).find(block => block.type === 'comparison');
-  if (comparison) return 'Který z uvedených přístupů je vám bližší a podle čeho byste se rozhodovali v praxi?';
-  const checklist = (lesson.blocks || []).find(block => block.type === 'checklist');
-  if (checklist) return 'Který bod tohoto kontrolního seznamu bývá podle vás v praxi nejtěžší dodržet?';
-  return `Kde se s tématem „${lesson.title}“ setkáváte ve své vlastní učitelské praxi?`;
-}
-
-function expectedAnswer(lesson) {
-  const quiz = (lesson.blocks || []).find(block => block.type === 'quiz');
-  if (quiz) return `Směřujte diskusi k tomuto závěru: ${quiz.explanation}`;
-  const callout = (lesson.blocks || []).find(block => block.type === 'callout' && ['success', 'warning', 'danger'].includes(block.tone));
-  if (callout) return `Očekávaný závěr: ${callout.text}`;
-  return `Očekávejte konkrétní příklad z výuky. Nakonec jej propojte s hlavní myšlenkou této části: ${lesson.summary}`;
-}
-
-function suggestedDemo(lesson) {
-  const activity = (lesson.blocks || []).find(block => block.type === 'activity');
-  if (activity) return `${activity.brief} Výstup, který má být na konci vidět: ${activity.output}`;
-  const code = (lesson.blocks || []).find(block => block.type === 'code');
-  if (code) return `Na obrazovce ukažte část „${code.label}“. Zvýrazněte jen dvě místa, která mají kolegové upravit pro svůj předmět.`;
-  const steps = (lesson.blocks || []).find(block => block.type === 'steps');
-  if (steps) return 'Postupujte po jednotlivých krocích. Po každém kroku ukažte konkrétní dopad na výsledný materiál nebo rozhodnutí.';
-  const comparison = (lesson.blocks || []).find(block => block.type === 'comparison');
-  if (comparison) return 'Nechte kolegy nejprve deset sekund porovnat oba sloupce. Potom zvýrazněte jeden rozhodující rozdíl.';
-  return 'Ukažte jeden stručný konkrétní příklad z běžné školní situace a pojmenujte, co přesně se díky postupu zlepšilo.';
-}
-
-function suggestedCaution(lesson) {
-  const warning = (lesson.blocks || []).find(block => block.type === 'callout' && ['warning', 'danger'].includes(block.tone));
-  if (warning) return `${warning.title}: ${warning.text}`;
-  return 'Nenechte diskusi sklouznout k obecnému nadšení ani odmítání. Vraťte ji ke konkrétnímu cíli, odpovědnosti učitele a ověření výsledku.';
-}
-
-function timingPlan(lesson) {
-  const total = Math.max(3, Number(lesson.duration) || 5);
-  const hasActivity = (lesson.blocks || []).some(block => ['activity', 'quiz', 'checklist'].includes(block.type));
-  const intro = Math.max(1, Math.round(total * .16));
-  const interaction = Math.max(1, Math.round(total * (hasActivity ? .38 : .24)));
-  const explanation = Math.max(1, total - intro - interaction);
-  return `${intro} min uvedení tématu · ${explanation} min vysvětlení nebo ukázka · ${interaction} min zapojení kolegů a shrnutí`;
-}
-
 function buildSpeakerGuide(course, lesson, lessonIndex) {
   const explicit = lesson.speakerNotes || {};
-  const points = uniqueList(explicit.explain || firstMeaningfulPoints(lesson));
-  const spokenSummary = lowerFirst(lesson.summary).replace(/\.$/, '');
-  const say = uniqueList(explicit.say || [
-    `Tady bych se na chvíli zastavil u tématu „${lesson.title}“.`,
-    `Za mě je hlavní pointa jednoduchá: ${spokenSummary}.`,
-    points[0] ? `Během této části si všímejte hlavně toho, že ${lowerFirst(points[0])}.` : 'Zkuste si u toho rovnou vybavit jednu situaci z vlastní praxe.'
-  ]);
-  const ask = uniqueList(explicit.ask || [suggestedQuestion(lesson)]);
-  const demo = uniqueList(explicit.demo || [suggestedDemo(lesson)]);
-  const caution = uniqueList(explicit.caution || [suggestedCaution(lesson)]);
-  const facilitation = uniqueList(explicit.facilitation || [lesson.trainerNote]);
-  const expected = uniqueList(explicit.expected || [expectedAnswer(lesson)]);
-  const nextLesson = course.lessons[lessonIndex + 1];
-  const transition = uniqueList(explicit.transition || [nextLesson
-    ? `Dobře, základ máme. Pojďme dál k části „${nextLesson.title}“.`
-    : 'Než skončíme, vyberte si jeden konkrétní krok, který použijete ve své praxi.']);
-  const fallback = uniqueList(explicit.fallback || ['Když nefunguje internet nebo aplikace, použijte připravený statický příklad na slidu a nechte kolegy popsat správný postup vlastními slovy.']);
-  const shortcut = uniqueList(explicit.shortcut || ['Řekněte hlavní pointu, použijte jeden příklad, položte jednu otázku a přejděte dál.']);
-  const timing = explicit.timing || timingPlan(lesson);
   const timingMeta = courseTiming(course);
+  const missing = ['say', 'explain', 'ask', 'expected', 'demo', 'facilitation', 'caution', 'transition', 'fallback']
+    .filter(field => !Array.isArray(explicit[field]) || explicit[field].length === 0);
+  if (missing.length) console.warn(`Chybí poznámky ${course.id}/${lesson.id}: ${missing.join(', ')}`);
   return {
-    say,
-    explain: points,
-    ask,
-    expected,
-    demo,
-    facilitation,
-    caution,
-    transition,
-    fallback,
-    shortcut,
-    timing,
+    say: uniqueList(explicit.say || ['Poznámky pro tuto část nejsou k dispozici.']),
+    explain: uniqueList(explicit.explain || ['Poznámky pro tuto část nejsou k dispozici.']),
+    ask: uniqueList(explicit.ask || ['Jak se toto téma promítá do vaší praxe?']),
+    expected: uniqueList(explicit.expected || ['Vrať diskusi k cíli této části.']),
+    demo: uniqueList(explicit.demo || ['Použij připravený příklad na slidu.']),
+    facilitation: uniqueList(explicit.facilitation || [lesson.trainerNote || 'Drž se cíle této části.']),
+    caution: uniqueList(explicit.caution || ['Nevkládej do ukázky osobní ani citlivé údaje.']),
+    transition: uniqueList(explicit.transition || ['Přejdi na další část prezentace.']),
+    fallback: uniqueList(explicit.fallback || ['Pokračuj s připraveným obsahem na slidu bez živé ukázky.']),
+    shortcut: uniqueList(explicit.shortcut || ['Řekni hlavní pointu, polož jednu otázku a přejdi dál.']),
+    timing: explicit.timing || `${lesson.duration} min na tuto část`,
     position: `Část ${lessonIndex + 1} z ${course.lessons.length} · ${lesson.duration} min tato část · ${timingMeta.total} min celé školení`
   };
 }
@@ -343,7 +281,7 @@ function handlePresenterCommand(message = {}) {
     if (presenterMode && presentationCover) {
       presentationCover = false;
       presentationEnd = false;
-      render();
+      navigate(`/course/${course.id}/${course.lessons[0].id}`);
       return;
     }
     if (presenterMode && presentationEnd) return;
@@ -382,41 +320,19 @@ function handlePresenterCommand(message = {}) {
   if (message.action === 'request-state') sendPresenterState();
 }
 
-function presenterConsoleDocument() {
-  return `<!doctype html>
-<html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Konzole školitele · AI Akademie GHRAB</title>
-<style>
-:root{color-scheme:dark;--bg:#030815;--panel:#08182a;--text:#eef8ff;--muted:#8da8bb;--cyan:#50e8ff;--purple:#a877ff;--gold:#f0aa4b;--green:#59e0a5;--red:#ff8f9a;--line:rgba(126,203,255,.2);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;color:var(--text);background:radial-gradient(circle at 20% 0%,rgba(57,139,211,.2),transparent 34%),linear-gradient(180deg,#020714,#061321);line-height:1.45}.app{min-height:100vh;padding:18px}.top{position:sticky;top:0;z-index:4;margin:-18px -18px 16px;padding:15px 18px;border-bottom:1px solid var(--line);background:rgba(2,8,18,.94);backdrop-filter:blur(18px)}.topline{display:flex;justify-content:space-between;gap:12px;align-items:center}.eyebrow{margin:0;color:var(--cyan);font-size:.68rem;font-weight:950;letter-spacing:.14em}.screen-note{margin:9px 0 0;color:var(--muted);font-size:.72rem}.screen-note b{color:var(--gold)}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}.metric{padding:11px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.035)}.metric strong{display:block;font-size:1.08rem}.metric span{color:var(--muted);font-size:.64rem}.slide{padding:18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(8,27,46,.92),rgba(3,13,25,.88))}.slide small{color:var(--purple);font-weight:900;letter-spacing:.08em}.slide h1{margin:8px 0;font-size:clamp(1.7rem,5vw,2.7rem);line-height:1.02}.slide p{margin:0;color:#c8dce8}.guide{display:grid;gap:12px;margin-top:13px}.guide-note{margin:0;padding:12px 14px;border:1px solid rgba(80,232,255,.2);border-radius:13px;color:var(--muted);background:rgba(80,232,255,.04);font-size:.76rem}.guide-note strong{color:var(--cyan)}.flow{display:grid;gap:0}.step{position:relative;display:grid;grid-template-columns:38px minmax(0,1fr);gap:12px;padding-bottom:12px}.step:not(:last-child)::before{content:'';position:absolute;top:34px;bottom:-2px;left:18px;width:2px;background:linear-gradient(var(--line),rgba(80,232,255,.08))}.stepno{position:relative;z-index:1;width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:#03111d;background:linear-gradient(135deg,var(--cyan),#9abaff);font-size:.76rem;font-weight:950}.stepbody{padding:14px 15px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.035)}.stepbody>small{display:block;margin-bottom:3px;color:var(--muted);font-size:.61rem;font-weight:950;letter-spacing:.1em}.stepbody>strong{display:block;margin-bottom:8px}.stepbody ul{display:grid;gap:7px;margin:0;padding-left:19px}.stepbody li,.stepbody p{color:#d4e5ef;font-size:.82rem}.step.say .stepbody{border-color:rgba(80,232,255,.28);background:rgba(80,232,255,.06)}.step.say .stepbody>strong{color:var(--cyan)}.speech{display:grid;gap:8px}.speech p{margin:0;padding-left:13px;border-left:2px solid rgba(80,232,255,.42);color:#effcff;font-size:.9rem;font-weight:680}.step.explain .stepbody>strong{color:#d4c2ff}.step.demo .stepbody>strong{color:#a7ffd6}.step.ask .stepbody>strong{color:#ffd18d}.step.transition .stepbody>strong{color:#b9d1ff}.expected{margin-top:10px;padding-top:9px;border-top:1px solid var(--line)}.expected>small{display:block;margin-bottom:5px;color:var(--gold);font-weight:900}.support-title{margin:3px 0 0;color:var(--muted);font-size:.68rem;font-weight:950;letter-spacing:.1em}.support{display:grid;gap:9px}.card{padding:13px 14px;border:1px solid var(--line);border-left:4px solid;border-radius:0 13px 13px 0;background:rgba(255,255,255,.03)}.card strong{display:block;margin-bottom:7px}.card ul{display:grid;gap:6px;margin:0;padding-left:18px}.card li,.card p{color:#d4e5ef;font-size:.78rem}.card.method{border-left-color:var(--green)}.card.method strong{color:#a7ffd6}.card.caution{border-left-color:var(--red)}.card.caution strong{color:#ffbbc1}.card.shortcut{border-left-color:var(--gold)}.card.shortcut strong{color:#ffd18d}.card.fallback{border-left-color:var(--purple)}.card.fallback strong{color:#d4c2ff}.card.timing{border-left-color:#8da8bb}.card small{color:var(--muted)}.timer{font-variant-numeric:tabular-nums}.controls{position:sticky;bottom:0;display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:16px -18px -18px;padding:13px 18px;border-top:1px solid var(--line);background:rgba(2,8,18,.94);backdrop-filter:blur(18px)}button{min-height:44px;border:1px solid var(--line);border-radius:12px;color:var(--text);background:rgba(255,255,255,.045);font:inherit;font-weight:850;cursor:pointer}button.primary{color:#03111d;border-color:transparent;background:linear-gradient(135deg,var(--cyan),#9abaff)}button:disabled{opacity:.35;cursor:default}.next-preview{margin-top:12px;color:var(--muted);font-size:.72rem}
-</style></head><body><div id="root" class="app"><p>Načítám poznámky…</p></div>
-<script>
-const channel='BroadcastChannel' in window?new BroadcastChannel('${presenterChannelName}'):null;let started=Date.now(),slideStarted=Date.now(),lastLesson='';
-const esc=v=>String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
-const list=items=>'<ul>'+((items||[]).map(x=>'<li>'+esc(x)+'</li>').join(''))+'</ul>';const spoken=items=>'<div class="speech">'+((items||[]).map(x=>'<p>'+esc(String(x||'').trim().replace(/^„/,'').replace(/“$/,''))+'</p>').join(''))+'</div>';const step=(n,label,title,kind,body)=>'<section class="step '+kind+'"><span class="stepno">'+n+'</span><div class="stepbody"><small>'+label+'</small><strong>'+title+'</strong>'+body+'</div></section>';const fmt=ms=>{const sec=Math.floor(ms/1000),m=Math.floor(sec/60),s=sec%60;return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')};
-function command(action,extra={}){try{if(opener&&typeof opener.__ghrabPresenterCommand==='function'){opener.__ghrabPresenterCommand({action,...extra});return}}catch{}channel?.postMessage({type:'command',action,...extra})}
-window.renderPresenterState=p=>{if(!p)return;if(lastLesson!==p.lesson.id){lastLesson=p.lesson.id;slideStarted=Date.now()}const g=p.guide;const position=p.isCover?' · ÚVODNÍ OBRAZOVKA':p.isEnd?' · ZÁVĚREČNÁ OBRAZOVKA':' · ČÁST '+(p.lessonIndex+1)+' / '+p.course.totalLessons;const nextText=p.isEnd?'Prezentace je u konce.':p.next?'Další část: '+esc(p.next.title):'Konec prezentace';const primary=p.isEnd?'<button class="primary" onclick="command(\'toggle-presenter\')">Ukončit projekci</button>':'<button class="primary" onclick="command(\'next\')" '+(!p.next?'disabled':'')+'>Další →</button>';document.querySelector('#root').innerHTML='<header class="top"><div class="topline"><div><p class="eyebrow">KONZOLE ŠKOLITELE · '+esc(p.course.code)+'</p><strong>'+esc(p.course.title)+'</strong></div><span>'+(p.presenterMode?'PREZENTACE BĚŽÍ':'PŘÍPRAVNÝ REŽIM')+'</span></div><p class="screen-note"><b>Důležité:</b> projektor nastavte ve Windows na „Rozšířit“, nikoli „Duplikovat“. Toto okno ponechte na displeji notebooku.</p></header><section class="metrics"><div class="metric"><strong>'+p.course.duration+' min</strong><span>celé školení</span></div><div class="metric"><strong>'+p.lesson.duration+' min</strong><span>tato část</span></div><div class="metric"><strong class="timer" id="timers">00:00</strong><span>čas části / celkem</span></div></section><section class="slide"><small>'+esc(p.lesson.kicker)+position+'</small><h1>'+esc(p.lesson.title)+'</h1><p>'+esc(p.lesson.summary)+'</p></section><div class="guide"><p class="guide-note"><strong>Jdi shora dolů, ale nemluv podle papíru.</strong> První karta nabízí možné formulace; ostatní body jsou jen opěrné body pro živé vedení.</p><div class="flow">'+step('1','ROZJEZD','Začni jednou přirozenou větou','say',spoken(g.say))+step('2','CO MUSÍ ZAZNÍT','Drž se dvou nebo tří bodů','explain',list(g.explain))+step('3','PŘÍKLAD NEBO UKÁZKA','Ukaž konkrétní dopad','demo',list(g.demo))+step('4','ZAPOJENÍ SKUPINY','Polož jednu otázku a počkej','ask',list(g.ask)+'<div class="expected"><small>Kam odpovědi vrátit</small>'+list(g.expected)+'</div>')+step('5','KAM DÁL','Uzavři, nebo rovnou přepni','transition',spoken(g.transition))+'</div><p class="support-title">RYCHLÁ OPORA · POUŽIJ JEN PODLE SITUACE</p><div class="support"><section class="card method"><strong>Metodický tip</strong>'+list(g.facilitation)+'</section><section class="card caution"><strong>Na co si dát pozor</strong>'+list(g.caution)+'</section><section class="card shortcut"><strong>Když nestíháš</strong>'+list(g.shortcut)+'</section><section class="card fallback"><strong>Když selže technika</strong>'+list(g.fallback)+'</section><section class="card timing"><strong>Časování</strong><p>'+esc(g.timing)+'</p><small>'+esc(g.position)+'</small></section></div></div><p class="next-preview">'+nextText+'</p><footer class="controls"><button onclick="command(\'previous\')" '+(!p.previous?'disabled':'')+'>← Předchozí</button>'+primary+'<button onclick="command(\'toggle-presenter\')">'+(p.presenterMode?'Ukončit projekci':'Spustit projekci')+'</button><button onclick="slideStarted=Date.now()">Vynulovat čas části</button></footer>'};
-setInterval(()=>{const e=document.querySelector('#timers');if(e)e.textContent=fmt(Date.now()-slideStarted)+' / '+fmt(Date.now()-started)},1000);channel&&(channel.onmessage=e=>{if(e.data?.type==='state')window.renderPresenterState(e.data.payload)});channel?.postMessage({type:'command',action:'request-state'});try{opener?.__ghrabPresenterCommand?.({action:'request-state'})}catch{}
-<\/script></body></html>`;
-}
-
 function openPresenterConsole() {
   const context = currentCourseContext();
   if (!context) return;
-  const popup = window.open('', 'ghrab-presenter-console', 'popup=yes,width=590,height=900,resizable=yes,scrollbars=yes');
+  const consoleUrl = new URL('./console.html', location.href);
+  consoleUrl.searchParams.set('session', presenterSessionId);
+  const popup = window.open(consoleUrl.href, 'ghrab-presenter-console', 'popup=yes,width=590,height=900,resizable=yes,scrollbars=yes');
   if (!popup) {
     toast('Prohlížeč zablokoval okno konzole. Povolte vyskakovací okna pro tuto stránku.');
     return;
   }
   presenterConsoleWindow = popup;
-  try {
-    popup.document.open();
-    popup.document.write(presenterConsoleDocument());
-    popup.document.close();
-    popup.focus();
-    setTimeout(sendPresenterState, 120);
-  } catch {
-    toast('Konzoli školitele se nepodařilo otevřít.');
-  }
+  popup.focus();
+  setTimeout(sendPresenterState, 250);
 }
 
 window.__ghrabPresenterCommand = handlePresenterCommand;
@@ -435,12 +351,16 @@ function route() {
 }
 
 function navigate(path) {
-  location.hash = path;
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  const target = `#${normalized}`;
+  if (location.hash === target) render();
+  else location.hash = normalized;
 }
 
 function openChangelog() {
   const overlay = document.querySelector('.changelog-overlay');
   if (!overlay) return;
+  changelogReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
   overlay.hidden = false;
   document.body.classList.add('modal-open');
   requestAnimationFrame(() => overlay.classList.add('open'));
@@ -452,7 +372,30 @@ function closeChangelog() {
   if (!overlay || overlay.hidden) return;
   overlay.classList.remove('open');
   document.body.classList.remove('modal-open');
-  setTimeout(() => { overlay.hidden = true; }, 180);
+  setTimeout(() => {
+    overlay.hidden = true;
+    changelogReturnFocus?.focus?.();
+    changelogReturnFocus = null;
+  }, 180);
+}
+
+function trapChangelogFocus(event) {
+  if (event.key !== 'Tab') return false;
+  const overlay = document.querySelector('.changelog-overlay');
+  if (!overlay || overlay.hidden) return false;
+  const focusable = [...overlay.querySelectorAll('button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])')]
+    .filter(element => !element.disabled && !element.hidden);
+  if (!focusable.length) return true;
+  const first = focusable[0];
+  const last = focusable.at(-1);
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+  return true;
 }
 
 async function exitPresenter(goHome = false) {
@@ -469,6 +412,7 @@ async function exitPresenter(goHome = false) {
   } else {
     render();
   }
+  queueMicrotask(showPendingUpdateToast);
 }
 
 
@@ -526,14 +470,10 @@ function footer() {
   `;
 }
 
-function renderHome() {
-  document.body.classList.remove('presenter-mode');
-  presenterMode = false;
-  presentationCover = false;
-  presentationEnd = false;
-  const categories = ['Vše', ...new Set(courses.map(course => course.category))];
-  const filtered = courses.filter(course => {
-    const query = searchTerm.trim().toLocaleLowerCase('cs');
+
+function filteredCourses() {
+  const query = searchTerm.trim().toLocaleLowerCase('cs');
+  return courses.filter(course => {
     const matchesSearch = !query || [course.title, course.subtitle, course.category, course.audience, course.code]
       .join(' ')
       .toLocaleLowerCase('cs')
@@ -541,6 +481,23 @@ function renderHome() {
     const matchesCategory = activeCategory === 'Vše' || course.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
+}
+
+function renderCourseResults(items = filteredCourses()) {
+  return items.length
+    ? items.map(renderCourseCard).join('')
+    : '<div class="empty-state"><h3>Žádná prezentace neodpovídá filtru.</h3><p>Zkuste jiný výraz nebo zrušte filtr kategorií.</p></div>';
+}
+
+function renderHome() {
+  if (presenterMode && document.fullscreenElement) document.exitFullscreen().catch(() => undefined);
+  document.title = 'AI Akademie GHRAB · Prezentace školitele';
+  document.body.classList.remove('presenter-mode');
+  presenterMode = false;
+  presentationCover = false;
+  presentationEnd = false;
+  const categories = ['Vše', ...new Set(courses.map(course => course.category))];
+  const filtered = filteredCourses();
   const totalSections = courses.reduce((sum, course) => sum + course.lessons.length, 0);
   const totalMinutes = courses.reduce((sum, course) => sum + course.duration, 0);
 
@@ -593,7 +550,7 @@ function renderHome() {
         </div>
       </div>
       <div class="course-grid">
-        ${filtered.length ? filtered.map(renderCourseCard).join('') : '<div class="empty-state"><h3>Žádná prezentace neodpovídá filtru.</h3><p>Zkuste jiný výraz nebo zrušte filtr kategorií.</p></div>'}
+        ${renderCourseResults(filtered)}
       </div>
     </section>
   `;
@@ -684,9 +641,9 @@ function renderCourseCard(course) {
   const lessonWord = course.lessons.length === 1 ? 'část' : course.lessons.length < 5 ? 'části' : 'částí';
   const prerequisites = (course.prerequisites || []).map(id => courseMap.get(id)?.shortTitle || id);
   return `
-    <article class="course-card presenter-card" style="--course-accent:${course.accent}">
+    <article class="course-card presenter-card" style="--course-accent:${safeAccent(course.accent)}">
       <div class="course-card-top">
-        <div class="course-icon"><img src="${course.icon}" alt=""></div>
+        <div class="course-icon"><img src="${safeAssetPath(course.icon)}" alt=""></div>
         <div class="course-badges">
           <span class="badge ready">${escapeHtml(course.status || 'Připraveno')}</span>
           <span class="badge">${escapeHtml(course.code)}</span>
@@ -728,9 +685,9 @@ function renderPresentationCover(course) {
           <ul>${course.outcomes.slice(0, 4).map(outcome => `<li>${escapeHtml(outcome)}</li>`).join('')}</ul>
         </div>
       </div>
-      <div class="presentation-cover-art" style="--course-accent:${course.accent}">
+      <div class="presentation-cover-art" style="--course-accent:${safeAccent(course.accent)}">
         <div class="cover-orbit orbit-a"></div><div class="cover-orbit orbit-b"></div>
-        <img src="${course.icon}" alt="">
+        <img src="${safeAssetPath(course.icon)}" alt="">
         <span>AI AKADEMIE<br>GHRAB</span>
       </div>
     </div>
@@ -811,16 +768,17 @@ function renderCourse(courseId, lessonId) {
   if (lessonIndex < 0) lessonIndex = 0;
   const lesson = course.lessons[lessonIndex];
   const timing = courseTiming(course);
+  document.title = `${lesson.title} · ${course.title} · AI Akademie GHRAB`;
   state.lastCourse = course.id;
   state.lastLesson = lesson.id;
   saveState(state);
 
   document.body.classList.toggle('presenter-mode', presenterMode);
   const content = `
-    <section class="course-hero shell-wide" style="--course-accent:${course.accent}">
+    <section class="course-hero shell-wide" style="--course-accent:${safeAccent(course.accent)}">
       <a class="back-link" href="#/">${icons.arrowLeft} Zpět na rozcestník</a>
       <div class="course-hero-grid presenter-course-hero">
-        <div class="course-hero-icon"><img src="${course.icon}" alt=""></div>
+        <div class="course-hero-icon"><img src="${safeAssetPath(course.icon)}" alt=""></div>
         <div>
           <div class="course-title-row"><span>${escapeHtml(course.code)}</span><span>${escapeHtml(course.category)}</span><span>${escapeHtml(course.level)}</span><span class="course-total-duration">${icons.clock} CELKEM ${timing.total} MIN</span></div>
           <h1>${escapeHtml(course.title)}</h1>
@@ -1018,7 +976,6 @@ function handleClick(event) {
     if (action === 'restart-presentation' && context) {
       presentationEnd = false;
       presentationCover = true;
-      navigate(`/course/${context.course.id}/${context.course.lessons[0].id}`);
       render();
       return;
     }
@@ -1045,39 +1002,11 @@ function handleClick(event) {
       return;
     }
     if (action === 'next-lesson' && context) {
-      if (presenterMode && presentationCover) {
-        presentationCover = false;
-        presentationEnd = false;
-        render();
-        return;
-      }
-      if (presenterMode && presentationEnd) return;
-      if (context.lessonIndex < context.course.lessons.length - 1) {
-        const next = context.course.lessons[context.lessonIndex + 1];
-        navigate(`/course/${context.course.id}/${next.id}`);
-      } else if (presenterMode) {
-        presentationEnd = true;
-        presentationCover = false;
-        render();
-      }
+      handlePresenterCommand({ action: 'next' });
       return;
     }
     if (action === 'previous-lesson' && context) {
-      if (presenterMode && presentationEnd) {
-        presentationEnd = false;
-        navigate(`/course/${context.course.id}/${context.course.lessons.at(-1).id}`);
-        return;
-      }
-      if (presenterMode && !presentationCover && context.lessonIndex === 0) {
-        presentationCover = true;
-        presentationEnd = false;
-        render();
-        return;
-      }
-      if (context.lessonIndex > 0) {
-        const previous = context.course.lessons[context.lessonIndex - 1];
-        navigate(`/course/${context.course.id}/${previous.id}`);
-      }
+      handlePresenterCommand({ action: 'previous' });
       return;
     }
     if (action === 'copy-link') {
@@ -1132,11 +1061,8 @@ function handleClick(event) {
 function handleInput(event) {
   if (event.target.id === 'course-search') {
     searchTerm = event.target.value;
-    const caret = event.target.selectionStart;
-    renderHome();
-    const input = document.querySelector('#course-search');
-    input?.focus();
-    input?.setSelectionRange(caret, caret);
+    const grid = document.querySelector('.course-grid');
+    if (grid) grid.innerHTML = renderCourseResults();
   }
 }
 
@@ -1149,6 +1075,7 @@ function handleChange(event) {
 }
 
 function handleKeyboard(event) {
+  if (trapChangelogFocus(event)) return;
   if (event.key === 'Escape' && !document.querySelector('.changelog-overlay')?.hidden) {
     closeChangelog();
     return;
@@ -1157,7 +1084,8 @@ function handleKeyboard(event) {
     exitPresenter();
     return;
   }
-  if (event.target.matches('input, textarea, select, button')) return;
+  if (event.target.matches('input, textarea, select, [contenteditable="true"]')) return;
+  if (event.target.matches('button') && event.key === ' ') return;
   const context = currentCourseContext();
   if (!context) return;
   if (['ArrowRight', 'PageDown', ' '].includes(event.key)) {
@@ -1174,10 +1102,16 @@ function handleKeyboard(event) {
     render();
   }
   if (event.key === 'End' && presenterMode) {
+    const lastLessonId = context.course.lessons.at(-1).id;
     presentationCover = false;
-    presentationEnd = true;
-    navigate(`/course/${context.course.id}/${context.course.lessons.at(-1).id}`);
-    render();
+    if (context.lesson.id === lastLessonId) {
+      presentationEnd = true;
+      render();
+    } else {
+      presentationEnd = false;
+      routePresentationTarget = 'end';
+      navigate(`/course/${context.course.id}/${lastLessonId}`);
+    }
   }
   if (event.key.toLowerCase() === 'f') toggleFullscreen();
   if (event.key.toLowerCase() === 'p') {
@@ -1231,25 +1165,55 @@ function fitPresenterSlide() {
   const content = document.querySelector('.presenter-mode .lesson-content');
   const inner = content?.querySelector('.lesson-content-inner');
   if (!content || !inner || presentationCover || presentationEnd) return;
+  inner.style.zoom = '';
   inner.style.transform = '';
   inner.style.width = '';
   inner.dataset.scale = '1';
   const available = Math.max(1, content.clientHeight - 2);
   const needed = Math.max(1, inner.scrollHeight);
   const scale = Math.min(1, available / needed);
-  inner.style.transform = `scale(${scale})`;
-  inner.style.width = `${100 / scale}%`;
+  if (CSS.supports?.('zoom', String(scale))) inner.style.zoom = String(scale);
+  else inner.style.transform = `scale(${scale})`;
   inner.dataset.scale = scale.toFixed(3);
   document.querySelector('.lesson-stage')?.style.setProperty('--slide-scale', scale.toFixed(3));
 }
 
-function toast(message) {
+function showPendingUpdateToast() {
+  if (!pendingUpdateWorker || presenterMode) return;
+  toast('Je připravena nová verze Akademie.', {
+    persistent: true,
+    actionLabel: 'Načíst aktualizaci',
+    onAction: () => {
+      updateReloadRequested = true;
+      pendingUpdateWorker.postMessage({ type: 'SKIP_WAITING' });
+    }
+  });
+}
+
+function offerUpdate(worker) {
+  if (!worker) return;
+  pendingUpdateWorker = worker;
+  queueMicrotask(showPendingUpdateToast);
+}
+
+function toast(message, options = {}) {
   const element = document.querySelector('#toast');
   if (!element) return;
-  element.textContent = message;
+  const { persistent = false, actionLabel = '', onAction = null } = options;
+  element.replaceChildren();
+  const text = document.createElement('span');
+  text.textContent = message;
+  element.append(text);
+  if (actionLabel && typeof onAction === 'function') {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = actionLabel;
+    button.addEventListener('click', onAction, { once: true });
+    element.append(button);
+  }
   element.classList.add('show');
   clearTimeout(toast.timer);
-  toast.timer = setTimeout(() => element.classList.remove('show'), 2600);
+  if (!persistent) toast.timer = setTimeout(() => element.classList.remove('show'), 2600);
 }
 
 function render() {
@@ -1257,18 +1221,25 @@ function render() {
   if (current.page === 'course') renderCourse(current.courseId, current.lessonId);
   else renderHome();
   queueMicrotask(sendPresenterState);
+  queueMicrotask(showPendingUpdateToast);
 }
 
 app.addEventListener('click', handleClick);
 app.addEventListener('input', handleInput);
 app.addEventListener('change', handleChange);
-addEventListener('hashchange', render);
+addEventListener('hashchange', () => {
+  const target = routePresentationTarget;
+  routePresentationTarget = null;
+  presentationCover = target === 'cover';
+  presentationEnd = target === 'end';
+  render();
+});
 addEventListener('resize', () => requestAnimationFrame(fitPresenterSlide));
 addEventListener('keydown', handleKeyboard);
 addEventListener('beforeinstallprompt', event => {
   event.preventDefault();
   deferredInstallPrompt = event;
-  render();
+  document.querySelectorAll('[data-action="install"]').forEach(button => { button.hidden = false; });
 });
 addEventListener('appinstalled', () => {
   deferredInstallPrompt = null;
@@ -1278,20 +1249,27 @@ addEventListener('appinstalled', () => {
 startStarfield(document.querySelector('#starfield'));
 
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  let serviceWorkerReloading = false;
-
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (serviceWorkerReloading) return;
-    serviceWorkerReloading = true;
+    if (!updateReloadRequested) return;
+    updateReloadRequested = false;
     location.reload();
   });
 
   addEventListener('load', async () => {
     try {
       const registration = await navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' });
+      if (registration.waiting) offerUpdate(registration.waiting);
+      registration.addEventListener('updatefound', () => {
+        const installing = registration.installing;
+        installing?.addEventListener('statechange', () => {
+          if (installing.state === 'installed' && navigator.serviceWorker.controller) {
+            offerUpdate(registration.waiting || installing);
+          }
+        });
+      });
       await registration.update();
-    } catch {
-      // Aplikace musí zůstat použitelná i v prohlížeči bez funkční podpory PWA.
+    } catch (error) {
+      console.warn('Service worker se nepodařilo aktualizovat.', error);
     }
   });
 }

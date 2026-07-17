@@ -1,18 +1,20 @@
-# Nahrání AI Akademie GHRAB 1.4.1 na GitHub Pages
+# Nahrání AI Akademie GHRAB 1.4.3 na GitHub Pages
 
 ## 1. Před nahráním
 
 V kořeni projektu spusťte:
 
 ```bash
+npm run build:notes
+npm run build:exports
 npm test
 ```
 
-Správný výsledek potvrdí deset školení, 68 částí, deset samostatných exportů a verzi 1.4.1.
+Správný výsledek potvrdí 10 školení, 68 částí, 10 samostatných exportů a verzi 1.4.3. Kontrola navíc ověřuje, že poznámky školitele odpovídají generátoru, odkazy mezi lekcemi jsou platné a PWA cache nepřekračuje stanovený limit.
 
 ## 2. Nahrajte obsah rozbalené složky
 
-Do kořene repozitáře nahrajte přímo:
+Do kořene stejného repozitáře nahrajte přímo:
 
 ```text
 assets/
@@ -20,18 +22,18 @@ courses/
 exports/
 scripts/
 404.html
+console.html
 index.html
 manifest.webmanifest
 package.json
 README.md
 NAHRANI-NA-GITHUB.md
-AUDIT-IMPLEMENTACE-v1.3.2.md
 sw.js
 ```
 
-Nenahrávejte nadřazenou složku jako další úroveň repozitáře.
+Původní soubory přepište. Nenahrávejte nadřazenou složku jako další úroveň repozitáře.
 
-## 3. Nastavte GitHub Pages
+## 3. Nastavení GitHub Pages
 
 V repozitáři otevřete `Settings → Pages` a nastavte:
 
@@ -45,52 +47,36 @@ Potvrďte **Save**.
 
 ## 4. Kontrola po nasazení
 
-Ověřte:
+Ověřte zejména:
 
-- rozcestník zobrazuje všech deset školení;
-- nikde se nezobrazuje osobní postup ani procento absolvování;
-- tlačítko **Změny** otevře changelog s deseti položkami;
-- v každém kurzu lze spustit prezentaci od úvodní obrazovky;
-- interní poznámky jsou seřazené v pěti očíslovaných krocích a nemají dva rovnocenné sloupce;
-- konzole školitele používá stejné pořadí a zobrazuje také variantu **Když nestíháš**;
-- v prezentačním režimu je vpravo nahoře tlačítko **Ukončit prezentaci**;
-- poslední obsahová část pokračuje na závěrečný slide **Děkuji za pozornost**;
-- ze závěrečného slidu funguje ukončení, nové spuštění i návrat na rozcestník;
-- každý soubor v `exports/` má vlastní závěrečnou obrazovku;
-- Tisk/PDF připraví celou prezentaci;
-- exporty neobsahují poznámky školitele.
+- rozcestník zobrazuje všech 10 školení;
+- tlačítko **Konzole školitele** otevře samostatné okno a do několika sekund zobrazí poznámky;
+- tlačítka Předchozí/Další v konzoli ovládají hlavní prezentaci;
+- spuštění prezentace z libovolné lekce zobrazí úvodní obrazovku a potom přejde na první lekci;
+- šipky fungují i poté, co jste myší klikli na navigační tlačítko;
+- aktualizace aplikace sama neobnoví otevřenou prezentaci; mimo prezentaci se zobrazí nabídka **Načíst aktualizaci**;
+- poslední obsahová část pokračuje na závěrečnou obrazovku;
+- každý soubor v `exports/` funguje samostatně, obsahuje úplný tisk/PDF a neobsahuje poznámky školitele;
+- v konzoli prohlížeče nejsou CSP chyby ani syntaktické chyby.
 
-## 5. Při změně kurzu
+## 5. Změna obsahu kurzů
 
-Po úpravě souboru v `courses/` spusťte:
+Po změně souboru v `courses/` spusťte vždy:
 
 ```bash
+npm run build:notes
 npm run build:exports
 npm test
 ```
 
-Potom nahrajte upravený zdrojový modul i nově vytvořený soubor v `exports/`.
+Mluvené formulace se trvale upravují v `scripts/build-speaker-notes.mjs`; výsledný soubor `courses/speaker-notes.js` je generovaný artefakt a musí být nahrán spolu se zdroji.
 
-Výsledné scénáře jsou v `courses/speaker-notes.js`. Trvalé změny mluvených formulací provádějte v mapách souboru `scripts/build-speaker-notes.mjs` a potom spusťte `npm run build:notes`.
+## 6. Aktualizace nainstalované PWA
 
-## 6. Při přidání změny do changelogu
+Nová verze se již nenačítá násilným obnovením otevřených oken. Aplikace připraví aktualizaci na pozadí a nabídne tlačítko **Načíst aktualizaci**. Během prezentačního režimu se nabídka nezobrazuje, aby školení nebylo přerušeno.
 
-Otevřete:
+Při přetrvávající staré verzi zavřete všechny karty Akademie a znovu ji otevřete; teprve poté případně použijte `Ctrl + F5`.
 
-```text
-assets/js/changelog.js
-```
+## 7. Bezpečnost
 
-Novou položku vložte nahoru. V aplikaci se vždy ukazuje pouze deset nejnovějších změn. Po úpravě spusťte `npm test`.
-
-## 7. Obnovení nainstalované PWA
-
-Service worker používá cache verze 1.4.1. Po nasazení aplikaci zavřete a znovu otevřete. Při přetrvávající staré verzi:
-
-1. proveďte tvrdé obnovení `Ctrl + F5`;
-2. zavřete všechny karty Akademie;
-3. případně odinstalujte starou PWA a nainstalujte ji znovu.
-
-## 8. Bezpečnost před zveřejněním
-
-Před každým nahráním zkontrolujte, že repozitář neobsahuje API klíče, podpisové klíče, hesla, přístupové soubory ani neanonymizované údaje studentů, rodičů či zaměstnanců.
+Před nahráním zkontrolujte, že repozitář neobsahuje API klíče, hesla, přístupové soubory ani neanonymizované údaje studentů, rodičů či zaměstnanců.
