@@ -1,82 +1,16 @@
-# Nahrání AI Akademie GHRAB 1.4.3 na GitHub Pages
+# Nahrání AI Studio GHRAB 0.21.11
 
-## 1. Před nahráním
+> Aktuální verze: **0.21.11** · etapa P5
 
-V kořeni projektu spusťte:
+Tato verze navazuje na zjednodušené Studio 0.21.0 a vrací do horní navigace **Materiály** v nové roli: dnes jako pravdivě místní katalog a pracovní prostor, do budoucna jako připravený serverový katalog předmětových komisí s verzemi a stavem ověření. Rychlá kontrola dat je nově rozbalovací pomocník pro nejisté situace. P5, offline-start a role učitel/správce zůstávají zachovány. AI Studio se nadále nasazuje jako poslední, po všech samostatných aplikacích.
 
-```bash
-npm run build:notes
-npm run build:exports
-npm test
-```
+## Povinné pořadí
 
-Správný výsledek potvrdí 10 školení, 68 částí, 10 samostatných exportů a verzi 1.4.3. Kontrola navíc ověřuje, že poznámky školitele odpovídají generátoru, odkazy mezi lekcemi jsou platné a PWA cache nepřekračuje stanovený limit.
-
-## 2. Nahrajte obsah rozbalené složky
-
-Do kořene stejného repozitáře nahrajte přímo:
-
-```text
-assets/
-courses/
-exports/
-scripts/
-404.html
-console.html
-index.html
-manifest.webmanifest
-package.json
-README.md
-NAHRANI-NA-GITHUB.md
-sw.js
-```
-
-Původní soubory přepište. Nenahrávejte nadřazenou složku jako další úroveň repozitáře.
-
-## 3. Nastavení GitHub Pages
-
-V repozitáři otevřete `Settings → Pages` a nastavte:
-
-```text
-Source: Deploy from a branch
-Branch: main
-Folder: / (root)
-```
-
-Potvrďte **Save**.
-
-## 4. Kontrola po nasazení
-
-Ověřte zejména:
-
-- rozcestník zobrazuje všech 10 školení;
-- tlačítko **Konzole školitele** otevře samostatné okno a do několika sekund zobrazí poznámky;
-- tlačítka Předchozí/Další v konzoli ovládají hlavní prezentaci;
-- spuštění prezentace z libovolné lekce zobrazí úvodní obrazovku a potom přejde na první lekci;
-- šipky fungují i poté, co jste myší klikli na navigační tlačítko;
-- aktualizace aplikace sama neobnoví otevřenou prezentaci; mimo prezentaci se zobrazí nabídka **Načíst aktualizaci**;
-- poslední obsahová část pokračuje na závěrečnou obrazovku;
-- každý soubor v `exports/` funguje samostatně, obsahuje úplný tisk/PDF a neobsahuje poznámky školitele;
-- v konzoli prohlížeče nejsou CSP chyby ani syntaktické chyby.
-
-## 5. Změna obsahu kurzů
-
-Po změně souboru v `courses/` spusťte vždy:
-
-```bash
-npm run build:notes
-npm run build:exports
-npm test
-```
-
-Mluvené formulace se trvale upravují v `scripts/build-speaker-notes.mjs`; výsledný soubor `courses/speaker-notes.js` je generovaný artefakt a musí být nahrán spolu se zdroji.
-
-## 6. Aktualizace nainstalované PWA
-
-Nová verze se již nenačítá násilným obnovením otevřených oken. Aplikace připraví aktualizaci na pozadí a nabídne tlačítko **Načíst aktualizaci**. Během prezentačního režimu se nabídka nezobrazuje, aby školení nebylo přerušeno.
-
-Při přetrvávající staré verzi zavřete všechny karty Akademie a znovu ji otevřete; teprve poté případně použijte `Ctrl + F5`.
-
-## 7. Bezpečnost
-
-Před nahráním zkontrolujte, že repozitář neobsahuje API klíče, hesla, přístupové soubory ani neanonymizované údaje studentů, rodičů či zaměstnanců.
+1. Korespondenční asistent 5.9.21
+2. SORTIO 1.0.9
+3. Lesson Hub 1.2.6
+4. Diferenciátor 1.3.10
+5. ACTIVA 0.5.7
+6. Hodnotitel maturitních slohů 1.5.8
+7. LUDUS 1.16.9
+8. Generátor interaktivních testů 7.1.10

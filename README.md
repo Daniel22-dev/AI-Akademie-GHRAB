@@ -1,141 +1,109 @@
-# AI Akademie GHRAB 1.4.3
+# AI Studio GHRAB
 
-Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
+**Aktuální verze:** 0.21.11
+**Platforma:** GHRAB Platform 1.1.0 · etapa P5
 
-Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
+**Verze 0.21.11 – CI/security hotfix zdrojového registru po běhu 0.21.7; funkční změny Studia zůstávají beze změny.**
 
-## Novinky ve verzi 1.4.3
+AI Studio GHRAB je centrální brána školních digitálních a AI nástrojů. Jednotlivé aplikace zůstávají v samostatných repozitářích; Studio zajišťuje společnou navigaci, Top 4, synchronizaci verzí, bezpečnostní rámec, pilotní měření, správu podepsaných přístupů a kanonický základ technického reportéru. Materiály jsou viditelnou součástí portálu, ale v dnešním bezserverovém režimu se vlastní obsah ukládá pouze místně.
 
-- Konzole školitele je nově samostatná bezpečná stránka `console.html` s externím skriptem, takže ji neblokuje CSP.
-- Poznámky řečníka jsou znovu vygenerované a kontrola sestavení hlídá jejich shodu se zdrojem i platnost přechodů mezi lekcemi.
-- Aktualizace PWA se už nenačítá automatickým restartem otevřené prezentace; uživatel ji spustí řízeně až mimo prezentační režim.
-- Úvodní obrazovka prezentace skutečně pokračuje první lekcí a stav coveru či závěru se při změně adresy bezpečně resetuje.
-- Precache byl zeštíhlen, odstraněny byly nepoužívané obrázky a PWA dostala samostatnou komprimovanou maskovatelnou ikonu.
-- Prezentační CSS, ovládání klávesnicí, focus v modalech, titulky stránek, úložiště a 404 přesměrování prošly opravou a zpřesněním.
+## Hlavní novinky 0.21.11
 
-Verze 1.4.2 provedla hloubkovou obsahovou revizi všech 10 prezentací a 68 lekcí. Starší změny jsou popsány v changelogu aplikace.
+- Opraven repository fallback synchronizace: po úspěšném ověření veřejného GitHub zdroje se do `apps.generated.json` použije právě ověřený manifest místo staršího lokálního snapshotu.
+- Bezpečnostní validátor při identickém generated/fallback registru nově vyžaduje buď explicitně potvrzený offline snapshot, nebo úplnou a přesnou shodu verzí všech ověřených zdrojů.
+- Přidána regresní kontrola proti situaci, kdy je zdroj označen jako ověřený, ale generovaný registr stále obsahuje jinou/starší verzi.
+- Uživatelské změny 0.21.7 — modrá samostatná patička, rozšířený semafor, zástupce správce, zdrojová diagnostika a opravy Prezentace/showcase filmu — zůstávají beze změny.
 
-## Deset školení
 
-1. **AI v práci učitele** — AI gramotnost, ověřování a odpovědnost.
-2. **První bezpečný vstup** — přístup, API klíč a bezpečnost dat.
-3. **Diferenciátor: první materiál** — varianty stejného materiálu pro různé potřeby.
-4. **GitHub bez strachu** — zveřejnění bezpečného interaktivního HTML.
-5. **Generátor interaktivních testů**.
-6. **LUDUS: dílna výukových her**.
-7. **Korespondenční asistent**.
-8. **Hodnotitel maturitních slohů**.
-9. **Propojený pracovní postup aplikací**.
-10. **Mentor a správce školení**.
+## Předchozí vydání 0.20.18
 
-## Logika rozcestníku
+**Verze 0.20.18 – zarovnání s opraveným Korespondenčním asistentem 5.9.21 po reprodukci skutečného embedded bootstrapu.**
 
-Společný základ tvoří AI gramotnost a bezpečný vstup. Potom lze podle cíle školení otevřít některou z větví:
+## Hlavní novinky 0.20.18
 
-- tvorba materiálů: Diferenciátor, Generátor a LUDUS;
-- komunikace: Korespondenční asistent;
-- hodnocení: Hodnotitel;
-- pokročilá práce: propojený pracovní postup;
-- samostatná role: správce a lektor.
+- Produkční reprodukce celé cesty Studio → iframe → GHRAB Platform → KS odhalila skutečnou příčinu obecné přístupové chyby v KS 5.9.20: TDZ pád `geminiModel` před dokončením `ksAppReady`.
+- Registr Studia je aktualizován na opravený Korespondenční asistent 5.9.21 a cache `ghrab-correspondence-v5.9.21`; samotná runtime oprava je v repozitáři KS.
+- Přístupový kontrakt ani vydané přístupové tokeny se nemění; launch URL Korespondenčního asistenta zůstává stejná.
+- Zachovány jsou opravy 0.20.17 pro čekání na lokální platformní unlock, PWA aktualizace a CI browser gate i opravy ovládání/cache z 0.20.15–0.20.16.
 
-Označení **základní cesta** a **rozšíření** pomáhá školiteli připravit kratší nebo podrobnější variantu prezentace. Nejde o evidenci absolvování účastníka.
+## Zachováno z platformního vydání 0.20.14
 
-## Bezpečná projekce s poznámkami
+- GHRAB Platform 1.1.0 sjednocuje branding, motiv, úložiště, Studio Bridge, artefakty a PWA aktualizace ve všech devíti projektech.
+- Všechny aplikace používají jeden kanonický školní logotyp bez inline base64 kopií a jednotnou autorskou patičku.
+- Aplikační data mají namespace `ghrab.<appId>.*`; historické klíče se migrují vratně a před změnou vzniká úplná záloha.
+- Studio Bridge v2 zachovává kompatibilitu se starším handoffem v1 a strukturované exporty používají artifact envelope v1 se SHA-256.
+- Registr Studia je synchronizován s verzemi KS 5.9.21, SORTIO 1.0.9, Lesson Hub 1.2.6, Diferenciátor 1.3.10, ACTIVA 0.5.7, Hodnotitel 1.5.8, LUDUS 1.16.9 a Generátor 7.1.10.
 
-1. Ve Windows stiskněte `Win + P` a vyberte **Rozšířit**. Na macOS nastavte rozšířenou plochu v nastavení monitorů.
-2. V Akademii otevřete **Konzoli školitele** a ponechte ji na displeji notebooku.
-3. Hlavní prezentaci přesuňte na projektor a spusťte prezentační nebo celoobrazovkový režim.
-4. Projektor zobrazuje čistý slide. Poznámky a metodika zůstávají v konzoli.
-5. Na konci prezentace použijte závěrečný slide. Z režimu lze kdykoliv odejít také tlačítkem vpravo nahoře nebo klávesou `X`.
+## Serverová vrstva z P1
 
-Při režimu **Duplikovat** nelze před účastníky skrýt obsah notebooku.
+Školní relace, GHRAB AI Core, School Gateway, CSP, datové manifesty a privacy-safe observability z verze 0.20.9 zůstávají zachovány.
 
-## Changelog
+## Starší milník 0.10.0
 
-Changelog se otevírá:
+- Každá chráněná aplikace anonymně eviduje skutečné otevření po ověření přístupu a orientační aktivní čas. Čas se počítá jen při viditelné kartě, zaměřeném okně a nedávné interakci; po pěti minutách nečinnosti se měření zastaví.
+- Generátor, Diferenciátor, LUDUS, Korespondenční asistent, Hodnotitel maturitních slohů, ACTIVA a SORTIO zapisují pouze technické počty pokusů, úspěšných výstupů, chyb a zrušení. Nezapisují prompty ani obsah výstupů.
+- Správce může zapnout testovací režim. Jeho vývojové a kontrolní použití se ukládá odděleně a nikdy nevstupuje do pilotního reportu.
+- Report odděluje moje místní data, importované anonymní souhrny kolegů a celkový součet. Místní data lze z celku jedním přepínačem vyloučit.
+- Během posledních sedmi kalendářních dnů měsíce se učitelům nejvýše jednou denně zobrazí zdvořilá prosba o anonymní souhrn, dokud nepotvrdí jeho odeslání.
+- Přidán interaktivní návod pro stažení a odeslání souhrnu, včetně práce na dvou zařízeních.
+- Report lze stáhnout jako jednostránkové barevné nebo černobílé PDF A4 s logem školy, bránou AI Studia, metrikami po aplikacích, metodickou poznámkou a autorstvím.
 
-- tlačítkem **Změny** v horní navigaci;
-- tlačítkem **Changelog** v patičce.
+## Co se neukládá
 
-Zdroj záznamů je v souboru:
+Pilotní měření neukládá jména, e-maily, prompty, klávesové vstupy, testové otázky, odpovědi, texty materiálů ani volné poznámky. Aktivní čas je orientační metrika používání, nikoli docházkový nebo kontrolní systém.
 
-```text
-assets/js/changelog.js
-```
+## Přístup bez serveru
 
-Novou změnu vložte na začátek pole `CHANGELOG`. Aplikace zobrazuje pouze deset nejnovějších položek pomocí `.slice(0, 10)`, takže jedenáctý záznam automaticky zmizí.
+Veřejný portál obsahuje pouze veřejný EC P-256 klíč. Správce vytvoří podepsaný přístup na stránce `tools/access-issuer/` pomocí soukromého klíče uloženého mimo repozitář. Oprávnění určuje roli, povolené aplikace, datum platnosti a verzi školení.
 
-## Samostatné prezentace pro účastníky
+Bez serveru nelze spolehlivě ověřit totožnost držitele, centrálně synchronizovat zařízení ani automaticky odesílat reporty. Jde o přechodové řešení před školním přihlášením a databází.
 
-Ve složce `exports/` je pro každý kurz jeden samostatný HTML soubor. Obsahuje pouze dané školení a funguje bez připojení k internetu.
+## Ochrana přímých adres a měření
 
-Samostatné prezentace:
+Ochranný bootstrap je určen pro Generátor 7.1.8, Diferenciátor 1.3.8, Hodnotitel maturitních slohů 1.5.6, LUDUS 1.16.7, Korespondenčního asistenta 5.9.15, ACTIVA 0.5.5, SORTIO 1.0.7 a Lesson Hub 1.2.4. Stejný centrální modul ověřuje podepsaný přístup a po úspěšném otevření spustí místní měření. Dílčí aplikace navíc hlásí pouze povolené technické typy výstupů.
 
-- neobsahují scénáře ani poznámky školitele;
-- ukládají kvízy a checklisty pouze v místním prohlížeči;
-- mají mobilní osnovu a dotykové ovládání;
-- lze vytisknout nebo uložit celé jako PDF;
-- obsahují závěrečnou obrazovku s ukončením celé obrazovky a novým spuštěním.
+## Doporučené pořadí nasazení P2
 
-## Úprava obsahu
+1. AI Studio GHRAB 0.21.11 jako zpětně kompatibilní platformní základ.
+2. Korespondenční asistent 5.9.15.
+3. Diferenciátor 1.3.8.
+4. Generátor testů 7.1.8.
+5. Hodnotitel maturitních slohů 1.5.6.
+6. ACTIVA 0.5.5.
+7. LUDUS 1.16.7.
+8. Lesson Hub 1.2.4.
+9. SORTIO 1.0.7.
+10. V AI Studiu spustit závěrečnou synchronizaci a certifikaci registru.
 
-Obsah kurzů je ve složce `courses/`. Doplňující prezentační vrstvy jsou oddělené:
+Po zeleném nasazení zavřete staré otevřené karty Studia a znovu je otevřete. Nová verze service workeru se aktivuje až po bezpečném ukončení staré relace; rutinní `Ctrl + F5` už není součástí standardního postupu.
 
-- `courses/presentation-enhancements.js` — základní cesty, vizuální bloky a kompozice;
-- `courses/speaker-notes.js` — upravitelný scénář všech 68 částí;
-- `scripts/build-speaker-notes.mjs` — znovu sestaví ručně kurátorované mluvené opory a podpůrné body;
-- `assets/js/changelog.js` — deset nejnovějších změn aplikace.
-
-Trvalé změny mluvených formulací zapisujte do map v `scripts/build-speaker-notes.mjs` a potom spusťte `npm run build:notes`. Tím se změna bezpečně promítne do všech poznámek.
-
-## Sestavení a kontrola
-
-Vyžadován je Node.js 18 nebo novější.
+## Lokální kontrola
 
 ```bash
-npm run build:notes
-npm run build:exports
+npm run sync:offline
 npm test
 ```
 
-Kontrola ověřuje mimo jiné:
+Autor a vývojový garant: Daniel Baláž
+Školní projekt Gymnázia, Ostrava-Hrabůvka
 
-- deset kurzů a 68 částí;
-- shodu časů s obsahem a rezervou;
-- scénáře ke všem částem a jejich synchronizaci s generátorem;
-- platnost kvízů a vizuálních bloků;
-- závěrečnou obrazovku hlavní i samostatné prezentace;
-- přítomnost changelogu s deseti položkami;
-- nepřítomnost osobního postupu účastníka;
-- nepřítomnost interních poznámek v exportech;
-- bezpečné chování service workeru.
+## Novinky 0.13.0
 
-## Klávesové zkratky
+- tři skutečné vrstvy prstenců se po kliknutí otáčejí nezávisle a v opačných směrech,
+- prstence několikrát zpomalí a uzamknou se místo obyčejného nepřetržitého točení,
+- sedm světelných zámků postupně potvrzuje navolení brány,
+- stavový štítek zobrazuje jednotlivé fáze otevření,
+- animace respektuje plný, lehký, vypnutý i systémově omezený režim pohybu.
 
-V hlavní Akademii:
+## Novinky 0.12.0
 
-- `←` / `→`, `Page Up` / `Page Down`, mezerník — předchozí nebo další část;
-- `Home` — úvodní obrazovka prezentace;
-- `End` — závěrečná obrazovka prezentace;
-- `P` — zapnutí nebo ukončení prezentačního režimu;
-- `X` nebo `Esc` — okamžité ukončení prezentačního režimu;
-- `F` — celá obrazovka;
-- `N` — poznámky nebo Konzole školitele.
+- krátká aktivační animace hvězdné brány před otevřením aplikace,
+- jednotné hlášení technických chyb ve všech chráněných aplikacích,
+- až pět screenshotů, ruční nahrání obrázku a začernění citlivých údajů,
+- jeden ZIP balíček s komentářem a bezpečnými technickými údaji,
+- předvyplněný e-mail správci a systémové sdílení na podporovaných zařízeních,
+- interaktivní návod `manualy/error-report.html`.
 
-V samostatném HTML:
+## Hlášení chyb 0.12.0
 
-- `←` / `→`, `Page Up` / `Page Down` — změna obrazovky;
-- `Home` / `End` — úvodní nebo závěrečná obrazovka;
-- `F` — celá obrazovka;
-- `Esc` — ukončení celé obrazovky.
-
-## Bezpečnost a anonymizace
-
-Do Akademie ani do veřejného repozitáře nevkládejte API klíče, hesla, přístupové soubory ani neanonymizované údaje studentů, rodičů či zaměstnanců. Odstranění jména samo o sobě nemusí znamenat anonymizaci; odstraňte také třídu, diagnózu, kontakt, podpis a jedinečné osobní okolnosti.
-
-## Nasazení
-
-Aplikace je statická a nepotřebuje backend ani GitHub Actions. Postup pro GitHub Pages je v souboru `NAHRANI-NA-GITHUB.md`.
-
-Autor a vývojový garant: **Daniel Baláž**  
-Školní projekt Gymnázia, Ostrava-Hrabůvka.
+Reporter připravuje detailní e-mail a ZIP s přehledným HTML souhrnem, screenshoty a bezpečnými technickými údaji. Screenshot má ponechat chybu v kontextu; volitelné začernění je určeno jen pro nesouvisející osobní údaje.
