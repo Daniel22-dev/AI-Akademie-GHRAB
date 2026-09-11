@@ -1,8 +1,15 @@
-# AI Akademie GHRAB 1.4.3
+# AI Akademie GHRAB 1.4.4
 
 Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
 Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
+
+## Novinky ve verzi 1.4.4
+
+- Akademie umí bezpečný návrat do **AI Studia** přímo z horní navigace.
+- Tlačítko se zobrazí pouze po ověření platného **full-admin** oprávnění přes stávající access runtime Studia. Role učitele ani zástupce správce ho neuvidí.
+- Mezi aplikacemi se nepřenáší permit, token ani jiné tajné údaje; Studio předává pouze svou návratovou URL.
+- Přímé otevření Akademie na GitHub Pages používá jako bezpečný výchozí cíl `/AI-Studio-GHRAB/`; školní profil počítá s `/ai-studio/`.
 
 ## Novinky ve verzi 1.4.3
 

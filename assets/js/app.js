@@ -16,6 +16,7 @@ let presenterConsoleWindow = null;
 let pendingUpdateWorker = null;
 let updateReloadRequested = false;
 let changelogReturnFocus = null;
+let studioAdminBridge = { verified: false, visible: false, studioUrl: '' };
 
 function createPresenterSessionId() {
   const fallback = crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -49,7 +50,8 @@ const icons = {
   console: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9l2 2 3-3M14 12h3"/></svg>',
   history: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/></svg>',
   close: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
-  replay: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>'
+  replay: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>',
+  studio: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/><path d="M9 22h6M12 19v3"/></svg>'
 };
 
 function escapeHtml(value = '') {
@@ -340,6 +342,70 @@ presenterChannel?.addEventListener('message', event => {
   if (event.data?.type === 'command') handlePresenterCommand(event.data);
 });
 
+function resolveStudioUrl() {
+  if (!['http:', 'https:'].includes(location.protocol)) return null;
+  const params = new URLSearchParams(location.search);
+  const fallbackPath = location.pathname.includes('/apps/ai-akademie/')
+    ? '/ai-studio/'
+    : '/AI-Studio-GHRAB/';
+  try {
+    const candidate = new URL(params.get('studio') || fallbackPath, location.href);
+    if (candidate.origin !== location.origin) return null;
+    const normalizedPath = candidate.pathname.endsWith('/') ? candidate.pathname : `${candidate.pathname}/`;
+    if (!['/AI-Studio-GHRAB/', '/ai-studio/'].includes(normalizedPath)) return null;
+    candidate.pathname = normalizedPath;
+    candidate.search = '';
+    candidate.hash = '';
+    return candidate;
+  } catch {
+    return null;
+  }
+}
+
+function syncStudioReturnLink() {
+  const nav = document.querySelector('.top-nav');
+  if (!nav) return;
+  const existing = nav.querySelector('.studio-return-link');
+  if (!studioAdminBridge.visible || !studioAdminBridge.studioUrl) {
+    existing?.remove();
+    return;
+  }
+  if (existing) {
+    existing.href = studioAdminBridge.studioUrl;
+    return;
+  }
+  const link = document.createElement('a');
+  link.href = studioAdminBridge.studioUrl;
+  link.className = 'studio-return-link';
+  link.title = 'Zpět do AI Studia';
+  link.innerHTML = `${icons.studio}<span>AI Studio</span>`;
+  const homeLink = nav.querySelector('a[href="#/"]');
+  if (homeLink) homeLink.insertAdjacentElement('afterend', link);
+  else nav.prepend(link);
+}
+
+async function initialiseStudioAdminBridge() {
+  const studioUrl = resolveStudioUrl();
+  if (!studioUrl) {
+    studioAdminBridge = { verified: true, visible: false, studioUrl: '' };
+    return;
+  }
+  try {
+    const accessRuntimeUrl = new URL('access/access-control.js', studioUrl);
+    const accessRuntime = await import(accessRuntimeUrl.href);
+    await accessRuntime.initialiseAccess();
+    studioAdminBridge = {
+      verified: true,
+      visible: accessRuntime.isAdmin() === true,
+      studioUrl: studioUrl.href
+    };
+  } catch (error) {
+    studioAdminBridge = { verified: true, visible: false, studioUrl: '' };
+    console.warn('AI Akademie: správcovský návrat do Studia se nepodařilo ověřit.', error);
+  }
+  syncStudioReturnLink();
+}
+
 function route() {
   const clean = location.hash.replace(/^#\/?/, '');
   if (!clean) return { page: 'home' };
@@ -441,6 +507,7 @@ function shell(content, currentPage = 'home') {
       </a>
       <nav class="top-nav" aria-label="Hlavní navigace a prezentační ovládání">
         <a href="#/" class="${currentPage === 'home' ? 'active' : ''}" title="Zpět na rozcestník">${icons.home}<span>Rozcestník</span></a>
+        ${studioAdminBridge.visible ? `<a href="${escapeHtml(studioAdminBridge.studioUrl)}" class="studio-return-link" title="Zpět do AI Studia">${icons.studio}<span>AI Studio</span></a>` : ''}
         ${currentPage === 'course' ? `<button type="button" data-action="toggle-trainer" class="${state.trainerMode ? 'active' : ''}" aria-pressed="${state.trainerMode}" title="Zobrazit nebo skrýt poznámky řečníka">${icons.notes}<span>Poznámky</span></button>` : ''}
         ${!presenterMode ? `<button type="button" data-action="open-changelog" title="Zobrazit posledních deset změn">${icons.history}<span>Změny</span></button>` : ''}
         ${presenterMode ? `<button type="button" class="presenter-exit-button" data-action="exit-presenter" title="Ukončit prezentační režim a vrátit se do Akademie">${icons.close}<span>Ukončit prezentaci</span></button>` : ''}
@@ -1275,3 +1342,4 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
 }
 
 render();
+void initialiseStudioAdminBridge();

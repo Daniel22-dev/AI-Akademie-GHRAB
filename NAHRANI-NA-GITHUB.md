@@ -1,4 +1,4 @@
-# Nahrání AI Akademie GHRAB 1.4.3 na GitHub Pages
+# Nahrání AI Akademie GHRAB 1.4.4 na GitHub Pages
 
 ## 1. Před nahráním
 
@@ -10,7 +10,7 @@ npm run build:exports
 npm test
 ```
 
-Správný výsledek potvrdí 10 školení, 68 částí, 10 samostatných exportů a verzi 1.4.3. Kontrola navíc ověřuje, že poznámky školitele odpovídají generátoru, odkazy mezi lekcemi jsou platné a PWA cache nepřekračuje stanovený limit.
+Správný výsledek potvrdí 10 školení, 68 částí, 10 samostatných exportů a verzi 1.4.4. Kontrola navíc ověřuje, že poznámky školitele odpovídají generátoru, odkazy mezi lekcemi jsou platné a PWA cache nepřekračuje stanovený limit.
 
 ## 2. Nahrajte obsah rozbalené složky
 

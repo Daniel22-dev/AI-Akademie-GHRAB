@@ -58,6 +58,7 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .top-nav a, .top-nav button { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; padding: 9px 12px; border: 1px solid transparent; border-radius: 12px; color: var(--soft); background: transparent; text-decoration: none; cursor: pointer; font-size: .79rem; font-weight: 800; white-space: nowrap; transition: .2s ease; }
 .top-nav a:hover, .top-nav button:hover, .top-nav .active { color: var(--text); border-color: var(--line); background: rgba(80, 232, 255, 0.07); }
 .top-nav .active { color: var(--cyan); }
+.top-nav .studio-return-link { border-color: rgba(80, 232, 255, .22); background: rgba(80, 232, 255, .045); }
 .header-progress { display: flex; align-items: center; gap: 9px; min-width: 110px; }
 .header-progress > span { color: var(--cyan); font-size: .77rem; font-weight: 900; }
 .mini-progress { width: 76px; height: 6px; overflow: hidden; border-radius: 999px; background: rgba(255, 255, 255, 0.08); }

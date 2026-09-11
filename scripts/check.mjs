@@ -211,6 +211,13 @@ if (!app.includes('renderPresentationEnd')) errors.push('Hlavní aplikace nemá 
 if (!app.includes('exitPresenter')) errors.push('Hlavní aplikace nemá bezpečný návrat z prezentačního režimu.');
 if (!app.includes('open-changelog') || !app.includes('CHANGELOG')) errors.push('Hlavní aplikace nemá dostupný changelog.');
 if (!app.includes('course.minimumLessons')) errors.push('Hlavní aplikace nerozlišuje základní a rozšiřující cestu.');
+if (!app.includes('function initialiseStudioAdminBridge()')) errors.push('Akademie nemá ověření správcovského návratu do AI Studia.');
+if (!app.includes('accessRuntime.isAdmin() === true')) errors.push('Návrat do AI Studia není omezen na plného správce.');
+if (!app.includes("candidate.origin !== location.origin")) errors.push('Návrat do AI Studia nehlídá stejný origin.');
+if (!app.includes("['/AI-Studio-GHRAB/', '/ai-studio/'].includes(normalizedPath)")) errors.push('Akademie nepovoluje jen známé cesty AI Studia.');
+if (!app.includes('function syncStudioReturnLink()') || !app.includes("existing?.remove()")) errors.push('Adminský návrat do Studia nemá bezpečnou synchronizaci bez překreslení celé Akademie.');
+if (!app.includes('studioAdminBridge.visible ?')) errors.push('Tlačítko AI Studio není podmíněno ověřenou admin rolí.');
+if (/searchParams\.set\(["'](?:token|permit|access)/i.test(app)) errors.push('Akademie nesmí přijímat ani předávat přístupový token v URL.');
 const consoleHtml = await fs.readFile(path.join(root, 'console.html'), 'utf8');
 const consoleJs = await fs.readFile(path.join(root, 'assets/js/console.js'), 'utf8');
 if (!consoleHtml.includes('assets/js/console.js')) errors.push('console.html nenačítá externí console.js.');
