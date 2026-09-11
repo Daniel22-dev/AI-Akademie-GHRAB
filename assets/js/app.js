@@ -362,6 +362,18 @@ function resolveStudioUrl() {
   }
 }
 
+function launchedFromStudio() {
+  return new URLSearchParams(location.search).get('from') === 'ai-studio';
+}
+
+function openStudioInNewContext(url) {
+  const link = document.createElement('a');
+  link.href = url;
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  link.click();
+}
+
 function syncStudioReturnLink() {
   const nav = document.querySelector('.top-nav');
   if (!nav) return;
@@ -372,10 +384,16 @@ function syncStudioReturnLink() {
   }
   if (existing) {
     existing.href = studioAdminBridge.studioUrl;
+    existing.target = '_blank';
+    existing.rel = 'noopener noreferrer';
+    existing.dataset.action = 'return-to-studio';
     return;
   }
   const link = document.createElement('a');
   link.href = studioAdminBridge.studioUrl;
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  link.dataset.action = 'return-to-studio';
   link.className = 'studio-return-link';
   link.title = 'Zpět do AI Studia';
   link.innerHTML = `${icons.studio}<span>AI Studio</span>`;
@@ -507,7 +525,7 @@ function shell(content, currentPage = 'home') {
       </a>
       <nav class="top-nav" aria-label="Hlavní navigace a prezentační ovládání">
         <a href="#/" class="${currentPage === 'home' ? 'active' : ''}" title="Zpět na rozcestník">${icons.home}<span>Rozcestník</span></a>
-        ${studioAdminBridge.visible ? `<a href="${escapeHtml(studioAdminBridge.studioUrl)}" class="studio-return-link" title="Zpět do AI Studia">${icons.studio}<span>AI Studio</span></a>` : ''}
+        ${studioAdminBridge.visible ? `<a href="${escapeHtml(studioAdminBridge.studioUrl)}" target="_blank" rel="noopener noreferrer" data-action="return-to-studio" class="studio-return-link" title="Zpět do AI Studia">${icons.studio}<span>AI Studio</span></a>` : ''}
         ${currentPage === 'course' ? `<button type="button" data-action="toggle-trainer" class="${state.trainerMode ? 'active' : ''}" aria-pressed="${state.trainerMode}" title="Zobrazit nebo skrýt poznámky řečníka">${icons.notes}<span>Poznámky</span></button>` : ''}
         ${!presenterMode ? `<button type="button" data-action="open-changelog" title="Zobrazit posledních deset změn">${icons.history}<span>Změny</span></button>` : ''}
         ${presenterMode ? `<button type="button" class="presenter-exit-button" data-action="exit-presenter" title="Ukončit prezentační režim a vrátit se do Akademie">${icons.close}<span>Ukončit prezentaci</span></button>` : ''}
@@ -1017,6 +1035,17 @@ function handleClick(event) {
     }
     if (action === 'open-console') {
       openPresenterConsole();
+      return;
+    }
+    if (action === 'return-to-studio') {
+      if (!studioAdminBridge.visible || !studioAdminBridge.studioUrl) {
+        event.preventDefault();
+        return;
+      }
+      if (!launchedFromStudio()) return;
+      event.preventDefault();
+      window.close();
+      if (!window.closed) openStudioInNewContext(studioAdminBridge.studioUrl);
       return;
     }
     if (action === 'fullscreen') {
