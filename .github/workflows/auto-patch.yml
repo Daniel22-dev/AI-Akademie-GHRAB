@@ -121,9 +121,8 @@ jobs:
           const files = execFileSync('git', ['diff', '--name-only', '-z'], { encoding: 'utf8' }).split('\0').filter(Boolean);
           if (!files.length) throw new Error('AUTO PATCH produced no worktree changes');
           const protectedPath = p =>
-            p.startsWith('.github/') || p.startsWith('security/') || p.startsWith('dist/') ||
-            p.startsWith('dist-school-server/') || p === 'package.json' || p === 'package-lock.json' ||
-            p === 'scripts/auto-patch-worker.mjs' || p === 'scripts/auto-patch-guard.mjs' ||
+            p.startsWith('.github/') || p.startsWith('security/') || p.startsWith('scripts/') ||
+            p.startsWith('dist/') || p.startsWith('dist-school-server/') || p === 'package.json' || p === 'package-lock.json' ||
             /(^|\/)\.env(?:\.|$)/i.test(p) || /\.(pem|key|p12|pfx|jks|keystore)$/i.test(p) ||
             /\.(zip|7z|rar|tar|gz|png|jpe?g|gif|webp|ico|pdf|woff2?|ttf|otf|mp4|mp3|wav)$/i.test(p);
           const blocked = files.filter(protectedPath);
@@ -189,7 +188,7 @@ jobs:
             if [ -n "${ISSUE_NUMBER:-}" ]; then echo "- Authorized issue: #${ISSUE_NUMBER}"; fi
             echo "- Model: ${AUTO_PATCH_MODEL}"
             echo "- Direct push to main: disabled by design"
-            echo "- GARP/control-plane paths: protected from the patch worker"
+            echo "- GARP/control-plane and test tooling: protected from the patch worker"
             echo
             echo "This PR still requires the independent PR validation workflow and human review before merge. A full signed AUTO-PATCH-PREP release chain is created only by the trusted release/signing path, not by the AI worker."
           } > "$body_file"
