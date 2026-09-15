@@ -54,7 +54,11 @@ jobs:
           git fetch --no-tags origin main
           git checkout --detach origin/main
           npm test
-          npm run qa:garp25:static
+          npm run build:school-server
+          npm run qa:secrets
+          npm run qa:garp25:sw
+          npm run qa:garp25:vendored
+          npm run qa:garp25:sbom
           git reset --hard origin/main
           git clean -fd -e node_modules
 
@@ -130,12 +134,16 @@ jobs:
           console.log(JSON.stringify({ status: 'PASS', changedFiles: files }, null, 2));
           NODE
 
-      - name: Run application tests and GARP static controls
+      - name: Run application tests and GARP controls
         shell: bash
         run: |
           set -euo pipefail
           npm test
-          npm run qa:garp25:static
+          npm run build:school-server
+          npm run qa:secrets
+          npm run qa:garp25:sw
+          npm run qa:garp25:vendored
+          npm run qa:garp25:sbom
 
       - name: Remove test-generated trusted outputs
         shell: bash
