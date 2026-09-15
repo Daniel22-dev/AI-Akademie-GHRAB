@@ -30,7 +30,7 @@ jobs:
       AUTO_PATCH_MODEL: gpt-5.6-terra
       AUTO_PATCH_MAX_FILES: "30"
       AUTO_PATCH_MAX_CHANGED_LINES: "4000"
-      AUTO_PATCH_MAX_CONTEXT_BYTES: "1800000"
+      AUTO_PATCH_MAX_CONTEXT_BYTES: "1000000"
     steps:
       - name: Checkout trusted base
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
