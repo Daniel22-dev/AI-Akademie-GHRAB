@@ -1,8 +1,14 @@
-export const APP_VERSION = '1.4.5';
+export const APP_VERSION = '1.4.6';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.4.6',
+    date: '14. 9. 2026',
+    title: 'Jednotný návrat do Studia vlevo nahoře',
+    detail: 'Tlačítko AI Studio je po ověření full-admin oprávnění umístěno vlevo nahoře před značkou Akademie, stejně jako návratová tlačítka ostatních aplikací. PWA-safe návrat, zákaz přenosu permitu a skrytí při prezentaci zůstávají zachované.'
+  },
   {
     version: '1.4.5',
     date: '11. 9. 2026',

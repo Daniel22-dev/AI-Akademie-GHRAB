@@ -375,10 +375,12 @@ function openStudioInNewContext(url) {
 }
 
 function syncStudioReturnLink() {
-  const nav = document.querySelector('.top-nav');
-  if (!nav) return;
-  const existing = nav.querySelector('.studio-return-link');
-  if (!studioAdminBridge.visible || !studioAdminBridge.studioUrl) {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  const existing = header.querySelector('.studio-return-link');
+  const visible = Boolean(studioAdminBridge.visible && studioAdminBridge.studioUrl);
+  header.classList.toggle('has-studio-return', visible);
+  if (!visible) {
     existing?.remove();
     return;
   }
@@ -396,10 +398,11 @@ function syncStudioReturnLink() {
   link.dataset.action = 'return-to-studio';
   link.className = 'studio-return-link';
   link.title = 'Zpět do AI Studia';
-  link.innerHTML = `${icons.studio}<span>AI Studio</span>`;
-  const homeLink = nav.querySelector('a[href="#/"]');
-  if (homeLink) homeLink.insertAdjacentElement('afterend', link);
-  else nav.prepend(link);
+  link.setAttribute('aria-label', 'Zpět do AI Studia');
+  link.innerHTML = `${icons.arrowLeft}<span>AI Studio</span>`;
+  const brand = header.querySelector('.brand');
+  if (brand) brand.insertAdjacentElement('beforebegin', link);
+  else header.prepend(link);
 }
 
 async function initialiseStudioAdminBridge() {
@@ -518,14 +521,14 @@ function renderChangelogModal() {
 
 function shell(content, currentPage = 'home') {
   return `
-    <header class="site-header ${presenterMode ? 'is-presenting' : ''}">
+    <header class="site-header ${presenterMode ? 'is-presenting' : ''} ${studioAdminBridge.visible ? 'has-studio-return' : ''}">
+      ${studioAdminBridge.visible ? `<a href="${escapeHtml(studioAdminBridge.studioUrl)}" target="_blank" rel="noopener noreferrer" data-action="return-to-studio" class="studio-return-link" title="Zpět do AI Studia" aria-label="Zpět do AI Studia">${icons.arrowLeft}<span>AI Studio</span></a>` : ''}
       <a class="brand" href="#/" aria-label="AI Akademie GHRAB — rozcestník prezentací">
         <span class="brand-mark"><img src="./assets/brand/icon-192.png" alt="" width="48" height="48"></span>
         <span class="brand-copy"><strong>AI Akademie <em>GHRAB</em></strong><small>Prezentace a podklady školitele</small></span>
       </a>
       <nav class="top-nav" aria-label="Hlavní navigace a prezentační ovládání">
         <a href="#/" class="${currentPage === 'home' ? 'active' : ''}" title="Zpět na rozcestník">${icons.home}<span>Rozcestník</span></a>
-        ${studioAdminBridge.visible ? `<a href="${escapeHtml(studioAdminBridge.studioUrl)}" target="_blank" rel="noopener noreferrer" data-action="return-to-studio" class="studio-return-link" title="Zpět do AI Studia">${icons.studio}<span>AI Studio</span></a>` : ''}
         ${currentPage === 'course' ? `<button type="button" data-action="toggle-trainer" class="${state.trainerMode ? 'active' : ''}" aria-pressed="${state.trainerMode}" title="Zobrazit nebo skrýt poznámky řečníka">${icons.notes}<span>Poznámky</span></button>` : ''}
         ${!presenterMode ? `<button type="button" data-action="open-changelog" title="Zobrazit posledních deset změn">${icons.history}<span>Změny</span></button>` : ''}
         ${presenterMode ? `<button type="button" class="presenter-exit-button" data-action="exit-presenter" title="Ukončit prezentační režim a vrátit se do Akademie">${icons.close}<span>Ukončit prezentaci</span></button>` : ''}
