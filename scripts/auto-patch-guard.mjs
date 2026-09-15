@@ -16,9 +16,9 @@ function protectedReason(inputPath) {
   const lower = p.toLowerCase();
   if (p.startsWith('.github/')) return 'trusted GitHub workflow';
   if (p.startsWith('security/')) return 'trusted GARP/security/control-plane';
+  if (p.startsWith('scripts/')) return 'trusted build/test/AUTO PATCH tooling';
   if (p.startsWith('dist/') || p.startsWith('dist-school-server/')) return 'generated deployment output';
   if (p === 'package.json' || p === 'package-lock.json') return 'dependency/build metadata';
-  if (p === 'scripts/auto-patch-worker.mjs' || p === 'scripts/auto-patch-guard.mjs') return 'AUTO PATCH worker/guard';
   if (lower === '.env' || lower.startsWith('.env.') || /\.(pem|key|p12|pfx|jks|keystore)$/i.test(p)) return 'secret/key material';
   if (/\.(zip|7z|rar|tar|gz|png|jpe?g|gif|webp|ico|pdf|woff2?|ttf|otf|mp4|mp3|wav)$/i.test(p)) return 'binary asset';
   return null;
@@ -64,6 +64,7 @@ if (additions + deletions > maxChangedLines) {
 }
 
 const diff = run(['diff', '--no-ext-diff', '--unified=0', `${base}...${head}`]);
+const addedOnly = diff.split(/\r?\n/).filter(l => l.startsWith('+') && !l.startsWith('+++')).join('\n');
 const forbiddenPatterns = [
   [/OPENAI_API_KEY\s*[=:]\s*['\"][^'\"]+/i, 'embedded OpenAI API key'],
   [/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/, 'private key material'],
@@ -74,7 +75,6 @@ const forbiddenPatterns = [
   [/insertAdjacentHTML\s*\(/i, 'HTML injection sink']
 ];
 for (const [pattern, label] of forbiddenPatterns) {
-  const addedOnly = diff.split(/\r?\n/).filter(l => l.startsWith('+') && !l.startsWith('+++')).join('\n');
   if (pattern.test(addedOnly)) fail(`AUTO PATCH introduced forbidden construct: ${label}`);
 }
 
