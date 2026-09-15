@@ -1,0 +1,2 @@
+AUTO PATCH validation smoke test.
+This temporary file exists only to verify the pull-request validation pipeline.
