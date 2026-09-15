@@ -40,8 +40,15 @@ jobs:
       - name: Application regression tests
         run: npm test
 
-      - name: GARP static controls
-        run: npm run qa:garp25:static
+      - name: Application-bound GARP controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run build:school-server
+          npm run qa:secrets
+          npm run qa:garp25:sw
+          npm run qa:garp25:vendored
+          npm run qa:garp25:sbom
 
       - name: Confirm candidate did not alter trusted controls
         shell: bash
