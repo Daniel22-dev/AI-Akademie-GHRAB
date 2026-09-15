@@ -48,7 +48,7 @@ jobs:
         run: |
           set -euo pipefail
           changed=$(git diff --name-only origin/main...HEAD)
-          blocked=$(printf '%s\n' "$changed" | grep -E '^(\.github/|security/|dist/|dist-school-server/|package\.json$|package-lock\.json$|scripts/auto-patch-(worker|guard)\.mjs$)' || true)
+          blocked=$(printf '%s\n' "$changed" | grep -E '^(\.github/|security/|scripts/|dist/|dist-school-server/|package\.json$|package-lock\.json$)' || true)
           if [ -n "$blocked" ]; then
             echo "Protected paths changed by candidate:"
             printf '%s\n' "$blocked"
