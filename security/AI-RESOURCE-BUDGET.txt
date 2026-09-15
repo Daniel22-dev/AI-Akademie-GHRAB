@@ -1,0 +1,2 @@
+AI AKADEMIE 1.4.9 — AI RESOURCE BUDGET
+N/A. Runtime aplikace nevolá LLM/provider/gateway a nemá AI resource consumption boundary. Přidání AI volání je změna bezpečnostní hranice a vyžaduje novou SH-AI/AI-RED revalidaci.

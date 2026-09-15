@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <meta http-equiv="refresh" content="2;url=/AI-Akademie-GHRAB/">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
   <title>Přesměrování · AI Akademie GHRAB</title>
 </head>
 <body>
-  <p>Přesměrování na AI Akademii…</p>
-  <script>
-    const segments = location.pathname.split('/').filter(Boolean);
-    const root = location.hostname.endsWith('.github.io') && segments.length ? `/${segments[0]}/` : '/';
-    location.replace(root);
-  </script>
+  <main>
+    <p>Přesměrování na AI Akademii…</p>
+    <p><a id="academy-home" href="./">Otevřít AI Akademii</a></p>
+  </main>
+  <script type="module" src="./assets/js/not-found.js"></script>
 </body>
 </html>

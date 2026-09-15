@@ -1,0 +1,33 @@
+{
+  "schema": "ghrab-build-provenance-v1",
+  "subject": {
+    "name": "AI-Akademie-GHRAB-1.4.9-SCHOOL-PAYLOAD.zip",
+    "sha256": "49227f497d82f207d09bd466d5cb1cc2e12a91aa181ad25f892c75d675941e99"
+  },
+  "source": {
+    "repository": null,
+    "revision": null,
+    "sourcePackageSha256": "a9a20d4975ef2af106e66f11c9d9ce133a78226cad2d69bf4c93bec13a0a6ca2"
+  },
+  "builder": {
+    "id": "local-untrusted-builder",
+    "workflow": null,
+    "entrypoint": "npm run build:school-server"
+  },
+  "invocation": {
+    "startedAt": null,
+    "finishedAt": "2026-09-15T16:45:37.384Z",
+    "lockfileSha256": "7250492dda570cfe9d8438478009dc1e970b83133eb56a78383df1822ec3a30b",
+    "parameters": {
+      "profile": "auto-patch-prep"
+    }
+  },
+  "releaseIntegrity": {
+    "artifactDigest": "2198254b97cd28d732206c026da9b784ea64a11953314d712e2f6f6201e37689"
+  },
+  "assurance": {
+    "slsaReference": "v1.2",
+    "claimedSlsaLevel": null,
+    "note": "Custom GARP provenance is not by itself a SLSA level attestation."
+  }
+}

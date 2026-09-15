@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "root": "/mnt/data/aka149_work/dist-school-server",
+  "info": [
+    "INFO-binary-not-scanned:assets/apps/ai-literacy.png",
+    "INFO-binary-not-scanned:assets/apps/correspondence.png",
+    "INFO-binary-not-scanned:assets/apps/differentiator.png",
+    "INFO-binary-not-scanned:assets/apps/essay-evaluator-v2.png",
+    "INFO-binary-not-scanned:assets/apps/generator.png",
+    "INFO-binary-not-scanned:assets/apps/ludus.png",
+    "INFO-binary-not-scanned:assets/brand/apple-touch-icon.png",
+    "INFO-binary-not-scanned:assets/brand/icon-192.png",
+    "INFO-binary-not-scanned:assets/brand/icon-32.png",
+    "INFO-binary-not-scanned:assets/brand/icon-512-maskable.png",
+    "INFO-binary-not-scanned:assets/brand/icon-512.png",
+    "INFO-binary-not-scanned:assets/brand/portal-gateway.png",
+    "INFO-binary-not-scanned:assets/brand/school-logo.png",
+    "INFO-binary-not-scanned:assets/course-icons/administrator.png",
+    "INFO-binary-not-scanned:assets/course-icons/ai-literacy.png",
+    "INFO-binary-not-scanned:assets/course-icons/correspondence.png",
+    "INFO-binary-not-scanned:assets/course-icons/differentiator.png",
+    "INFO-binary-not-scanned:assets/course-icons/evaluator.png",
+    "INFO-binary-not-scanned:assets/course-icons/generator.png",
+    "INFO-binary-not-scanned:assets/course-icons/github.png",
+    "INFO-binary-not-scanned:assets/course-icons/ludus.png",
+    "INFO-binary-not-scanned:assets/course-icons/start.png",
+    "INFO-binary-not-scanned:assets/course-icons/workflow.png"
+  ]
+}

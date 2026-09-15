@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "canonicalRoot": "..",
+  "components": [],
+  "checkedCopies": 0,
+  "drift": 0,
+  "findings": []
+}

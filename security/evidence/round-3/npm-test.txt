@@ -1,0 +1,10 @@
+
+> ai-akademie-ghrab@1.4.9 test
+> npm run build:exports && node scripts/check.mjs
+
+
+> ai-akademie-ghrab@1.4.9 build:exports
+> node scripts/build-exports.mjs
+
+Vytvořeno 10 samostatných HTML prezentací v exports/.
+OK: 10 školení, 68 lekcí, 26 výrazných vizuálních bloků, verze 1.4.9.

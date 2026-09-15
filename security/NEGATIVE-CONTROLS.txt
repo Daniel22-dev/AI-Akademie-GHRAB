@@ -1,0 +1,28 @@
+AI AKADEMIE 1.4.9 — NEGATIVE CONTROLS
+Datum: 2026-09-15
+
+Provedeno v disposable kopiích, nikdy na školní produkci:
+- one-byte runtime tamper -> RI verifier FAIL;
+- manifest byte change -> detached signature verifier FAIL;
+- missing signature -> FAIL;
+- revoked PREP key -> FAIL;
+- synthetic private-key marker in deployment copy -> leak scanner FAIL;
+- validly signed old release -> signature VERIFIED, registry then DENIED;
+- missing runtime file -> RI verifier FAIL;
+- mixed/partial deployment -> RI verifier FAIL;
+- unauthorized registry digest change -> registry verifier FAIL;
+- evidence-manifest content tamper -> evidence verifier FAIL;
+- removed service-worker critical guard -> SW freeze checker FAIL;
+- same PREP artifact evaluated with `school` profile -> release gate RED because canonical school builder policy is deny-unless-listed and currently has no trusted school builder.
+
+Důkazy: security/post-release/.
+- wrong-but-present provenance sourcePackageSha256 -> R12 provenance verifier FAIL;
+- wrong provenance artifactDigest -> R12 provenance verifier FAIL;
+- signed manifest source hash != actual BUILD-INPUT-SOURCE.zip -> R12 provenance verifier FAIL;
+- simulated network outage -> service worker rejects request, 0 cache-match calls.
+
+- forged provenance bytes with unchanged signed RI anchors -> R12 assurance-links FAIL;
+- forged evidence manifest with unchanged signed RI anchors -> R12 assurance-links FAIL;
+- forged SBOM with unchanged signed RI anchors -> R12 assurance-links FAIL;
+- arbitrary non-empty school builder id -> R12 canonical builder policy FAIL;
+- builder workflow mismatch -> R12 canonical builder policy FAIL.

@@ -162,32 +162,21 @@ if (visualBlockCount < courses.length) errors.push('Akademie nemá dostatek výr
 
 const sw = await fs.readFile(path.join(root, 'sw.js'), 'utf8');
 const pkg = JSON.parse(await fs.readFile(path.join(root, 'package.json'), 'utf8'));
-if (!sw.includes(`ghrab-academy-v${pkg.version}`)) errors.push('Verze cache v sw.js neodpovídá package.json.');
-if (!sw.includes("event.request.mode === 'navigate'")) errors.push('Service worker nerozlišuje navigaci od chybějících assetů.');
+if (!sw.includes(`ghrab-ai-akademie-v${pkg.version}`)) errors.push('Verze cache v sw.js neodpovídá package.json.');
+if (sw.includes("event.request.mode === 'navigate'")) warnings.push('Service worker rozlišuje navigaci, ale fail-closed model ji nepotřebuje.');
 if (sw.includes("catch(() => caches.match('./index.html'))")) errors.push('Service worker stále maskuje chyby assetů hlavní stránkou.');
 if (sw.includes('reloadOpenWindows')) errors.push('Service worker stále automaticky obnovuje otevřená okna.');
 if (sw.includes('precacheFreshFiles().then(() => self.skipWaiting())')) errors.push('Service worker stále aktivuje aktualizaci bez souhlasu uživatele.');
 if (!sw.includes("event.data?.type === 'SKIP_WAITING'")) errors.push('Service worker nemá řízenou aktivaci čekající aktualizace.');
 const skipWaitingCalls = (sw.match(/self\.skipWaiting\(\)/g) || []).length;
 if (skipWaitingCalls !== 1) errors.push(`Service worker musí volat skipWaiting právě jednou a jen po zprávě uživatele; nalezeno ${skipWaitingCalls}.`);
-const cachedPaths = [...sw.matchAll(/^\s*'(.+?)',?$/gm)].map(match => match[1]);
-let precacheBytes = 0;
-for (const cachedPath of cachedPaths) {
-  const localPath = cachedPath === './' ? 'index.html' : cachedPath.replace(/^\.\//, '');
-  try { precacheBytes += (await fs.stat(path.join(root, localPath))).size; }
-  catch { errors.push(`Service worker odkazuje na chybějící soubor: ${cachedPath}`); }
+const forbiddenOfflineMarkers = ['cache.addAll(', 'cache.put(', 'cache.match(', 'caches.match('];
+for (const marker of forbiddenOfflineMarkers) {
+  if (sw.includes(marker)) errors.push(`Service worker nesmí po security hardeningu ukládat interní runtime offline: ${marker}`);
 }
-if (precacheBytes >= 2 * 1024 * 1024) errors.push(`Precache je příliš velká: ${(precacheBytes / 1024 / 1024).toFixed(2)} MB (limit < 2 MB).`);
-for (const cachedFile of [
-  './console.html',
-  './assets/js/console.js',
-  './assets/js/changelog.js',
-  './courses/presentation-enhancements.js',
-  './courses/speaker-notes.js',
-  ...courses.map(course => course.icon)
-]) {
-  if (!sw.includes(`'${cachedFile}'`)) errors.push(`Service worker neukládá důležitý soubor do offline cache: ${cachedFile}`);
-}
+if (!sw.includes("fetch(request, { cache: 'no-store' })")) errors.push('Service worker nevynucuje network-only/no-store pro interní runtime.');
+if (!sw.includes("key.startsWith(CACHE_PREFIX)")) errors.push('Service worker nečistí staré cache Akademie po přechodu na fail-closed režim.');
+if (!sw.includes("event.respondWith(networkOnlyNoStore(request))")) errors.push('Service worker nevede běžný runtime přes network-only/no-store.');
 
 const index = await fs.readFile(path.join(root, 'index.html'), 'utf8');
 if (!index.includes('assets/js/app.js')) errors.push('index.html nenačítá hlavní modul aplikace.');
@@ -200,12 +189,12 @@ const app = await fs.readFile(path.join(root, 'assets/js/app.js'), 'utf8');
 if (!app.includes('fitPresenterSlide')) errors.push('Hlavní aplikace nemá automatické přizpůsobení slidu výšce projekce.');
 if (!app.includes('presentationCover')) errors.push('Hlavní aplikace nemá úvodní prezentační obrazovky kurzů.');
 if (app.includes("new BroadcastChannel('ghrab-academy-presenter-v1')")) errors.push('Konzole školitele stále používá společný kanál bez identifikátoru relace.');
-if (!app.includes('presenterSessionId')) errors.push('Konzole školitele nemá oddělené relace.');
+if (app.includes('presenterSessionId') || app.includes('BroadcastChannel')) errors.push('Konzole školitele stále používá URL/cross-tab capability místo same-origin opener vazby.');
 if (app.includes('document.write')) errors.push('Konzole školitele stále používá document.write.');
 if (!app.includes("new URL('./console.html'")) errors.push('Hlavní aplikace neotevírá statickou konzoli školitele.');
 if (!app.includes('if (!updateReloadRequested) return;')) errors.push('controllerchange není chráněn před automatickým reloadem.');
 if (!app.includes('if (!pendingUpdateWorker || presenterMode) return;')) errors.push('Výzva k aktualizaci není odložená během prezentačního režimu.');
-if (!app.includes('function createPresenterSessionId()') || !app.includes('try {\n    const stored = sessionStorage')) errors.push('Přístup k sessionStorage nemá bezpečný fallback.');
+if (app.includes("searchParams.set('session'") || app.includes('ghrab-presenter-session')) errors.push('Identifikátor prezentační relace se stále přenáší/ukládá jako capability.');
 if (app.includes('renderLessonCompletion') || app.includes('completedLessons') || app.includes('overallProgress') || app.includes('courseProgress')) errors.push('Hlavní aplikace stále obsahuje osobní postup účastníka.');
 if (!app.includes('renderPresentationEnd')) errors.push('Hlavní aplikace nemá závěrečnou prezentační obrazovku.');
 if (!app.includes('exitPresenter')) errors.push('Hlavní aplikace nemá bezpečný návrat z prezentačního režimu.');
@@ -225,12 +214,17 @@ const consoleJs = await fs.readFile(path.join(root, 'assets/js/console.js'), 'ut
 if (!consoleHtml.includes('assets/js/console.js')) errors.push('console.html nenačítá externí console.js.');
 if (consoleHtml.includes('onclick=')) errors.push('console.html obsahuje inline obsluhu událostí.');
 if (!consoleJs.includes('addEventListener')) errors.push('console.js nepoužívá bezpečné event listenery.');
+if (consoleJs.includes('location.search') || consoleJs.includes('BroadcastChannel')) errors.push('console.js stále čte capability z URL nebo používá globální BroadcastChannel.');
+if (!consoleJs.includes('window.opener.location.origin === location.origin')) errors.push('console.js neověřuje same-origin opener.');
 if (!consoleHtml.includes('name="robots" content="noindex')) errors.push('console.html nemá zákaz indexování.');
 const manifest = JSON.parse(await fs.readFile(path.join(root, 'manifest.webmanifest'), 'utf8'));
 if (!manifest.id) errors.push('Manifest PWA nemá stabilní id.');
 if (manifest.icons?.some(icon => String(icon.purpose).includes('any maskable'))) errors.push('Manifest stále kombinuje any a maskable v jedné ikoně.');
 const notFound = await fs.readFile(path.join(root, '404.html'), 'utf8');
-if (!notFound.includes("location.hostname.endsWith('.github.io')")) errors.push('404.html neumí odvodit kořen GitHub Pages projektu.');
+if (!notFound.includes('assets/js/not-found.js')) errors.push('404.html nepoužívá externí redirect modul kompatibilní s CSP.');
+const notFoundJs = await fs.readFile(path.join(root, 'assets/js/not-found.js'), 'utf8');
+if (!notFoundJs.includes("'/apps/ai-akademie/'") || !notFoundJs.includes("endsWith('.github.io')")) errors.push('404 redirect neumí školní ani GitHub Pages kořen.');
+if (notFound.includes('<script>')) errors.push('404.html obsahuje inline script, který by blokovala strict CSP.');
 if (!notFound.includes('name="robots" content="noindex')) errors.push('404.html nemá zákaz indexování.');
 const storage = await fs.readFile(path.join(root, 'assets/js/storage.js'), 'utf8');
 if (storage.includes('completedLessons')) errors.push('Místní úložiště stále eviduje osobní postup lekcemi.');

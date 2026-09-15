@@ -1,0 +1,17 @@
+GARP 2.5.1 R12 - ASSURANCE LINK + BUILDER POLICY HOTFIX
+Date: 2026-09-15
+
+Closes findings from independent AI Akademie 1.4.8 round 3:
+- A3-N1 HIGH: signed buildProvenanceSha256/evidenceManifestSha256/sbomSha256 were not enforced by the gate.
+- A3-N2 HIGH: SCHOOL builder trust accepted any non-local non-empty builder id.
+- A3-N3 MEDIUM: SCHOOL gate could be invoked without project-root, so external evidence drift could be skipped.
+
+R12 changes:
+1. Adds TOOLS/verify-assurance-links.mjs. SCHOOL and AUTO-PATCH-PREP fail closed unless actual provenance, evidence manifest and SBOM bytes match the hashes signed in release-integrity.json.
+2. SCHOOL requires project-root and sbom inputs. External evidence is therefore verified against the exact project tree.
+3. Adds canonical POLICY-PINS/school-builder-policy.json with deny-unless-listed semantics. The shipped policy intentionally contains no trusted builder until IT pins the real school builder/workflow.
+4. verify-build-provenance.mjs supports --builder-policy and requires an exact allowlist match, including workflow/entrypoint when pinned.
+5. Missing assurance verifier is a hard failure for profiles that require assurance links; it is never a skipped GREEN control.
+6. Selftests include assurance-file mutations and arbitrary-builder rejection.
+
+PREP remains allowed to use local-untrusted-builder explicitly. SCHOOL GREEN is impossible until the canonical builder policy is configured by the school deployment authority.

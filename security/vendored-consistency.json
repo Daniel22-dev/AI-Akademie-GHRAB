@@ -1,0 +1,8 @@
+{
+  "schema": "ghrab-vendored-consistency-v1",
+  "canonicalRoot": "..",
+  "components": [],
+  "consumers": [
+    { "appId": "ai-akademie", "root": "..", "copies": {} }
+  ]
+}

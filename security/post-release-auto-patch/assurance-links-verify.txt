@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "anchors": {
+    "buildProvenanceSha256": "99eb1b780609c3bd43857c1441fa90c0b8e62b2ff4ff3b8bb14175f58a5c8b7f",
+    "evidenceManifestSha256": "4966218c3f229305d1cfd4ec08bdcfaca49b88d3630458019aee8f62d8df0730",
+    "sbomSha256": "7a57196ee3de771765a6cecb506d862a943bc70f6bc0d107fd049e531907ee87"
+  }
+}

@@ -1,0 +1,22 @@
+AI AKADEMIE 1.4.9 — SECURITY EXCEPTIONS / DEBTS
+
+E-01 CSP INLINE STYLE
+Status: AMBER/LOW. Hlavní index má style-src 'unsafe-inline' kvůli stávajícím prezentačním inline stylům. script-src je self-only. Před SCHOOL GREEN odstranit potřebu unsafe-inline nebo mít explicitní, časově omezenou výjimku ověřenou na served CSP.
+
+E-02 SERVER ACCESS / DAST
+Status: NOT TESTED. Soukromost hlavního školitelského centra nesmí stát na skrytém odkazu. Cílový school-server musí vynutit autorizaci na routě a projít access-bypass/served-header testem.
+
+E-03 SHIELD-LIVE / RI-LIVE
+Status: NOT TESTED. Lokální PREP podpis a trust root nejsou produkční custody.
+
+E-04 INDEPENDENT GH-10
+Status: AMBER. Toto kolo provádí opravu i adversariální self-audit stejný model. Výsledek nesmí být označen za nezávislé přijetí.
+
+E-05 GH-12 MEDIA RIGHTS EVIDENCE
+Status: NOT VERIFIED / RELEASE BLOCKER FOR SCHOOL/PUBLIC PROFILE. Deployment contains 24 image/SVG assets whose legal provenance was not established by repository evidence in this audit. Exact inventory: security/BINARY-RIGHTS-INVENTORY.txt.
+
+E-06 OFFLINE REVOCATION
+Status: CLOSED in 1.4.9. Interní runtime není offline cacheován; network outage/revocation nemůže použít SW cache fallback.
+
+E-07 PROVENANCE BINDING
+Status: CLOSED in 1.4.9 / R12. Source/artifact binding plus signed provenance/evidence/SBOM assurance anchors are fail-closed; R12 delta regression is 10/10 PASS.

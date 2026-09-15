@@ -1,0 +1,10 @@
+AI AKADEMIE 1.4.9 — SAST / STATIC ASSURANCE
+Datum: 2026-09-15
+Status: PASS PREP WITH DECLARED LIMITS
+- A9 canonical tooling selftest: 113/113 PASS.
+- App-native npm test: PASS; 10 školení, 68 lekcí, 26 výrazných vizuálních bloků.
+- GARP SW freeze checker: PASS after remediation; security-critical routes are network-only/no-store and canonical minimum inventory is covered.
+- Secret scanner: PASS, 0 findings in application/source scope; canonical GARP selftest fixtures are exactly excluded from the local helper scanner, not globally suppressed.
+- Canonical deployment leak scanner: PASS.
+- Static sink/egress inventory: no eval/new Function; no runtime LLM/provider path; innerHTML sinks use escaped dynamic text or trusted build-time course material.
+This is not a commercial SAST certification. Served/browser DAST remains NOT TESTED.

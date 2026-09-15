@@ -1,0 +1,15 @@
+{
+  "schema": "ghrab-sw-security-freeze-policy-v1",
+  "appId": "differentiator",
+  "policyMode": "auto-patch-security-logic-freeze",
+  "normalizedSwSha256": "efcece0e5780f84952c621285c0709a03ea6f322805d6bf0c617c408589685ba",
+  "normalization": [
+    "APP_VERSION constrained token [0-9A-Za-z.-]{1,32}",
+    "CACHE_NAME exact ghrab-<appid>-v<constrained token>",
+    "GHRAB Platform injected caches.open exact ghrab-<appid>-v<constrained token>"
+  ],
+  "rule": "Any service-worker source change outside the three narrowly constrained version/cache tokens is non-PASS and requires explicit security recertification/policy update. AUTO-PATCH releases for this app require the auto-patch-prep gate profile.",
+  "target": "built service worker after GHRAB Platform injection",
+  "requiredPlatformCacheMarkers": 1,
+  "requiredGateProfile": "auto-patch-prep"
+}

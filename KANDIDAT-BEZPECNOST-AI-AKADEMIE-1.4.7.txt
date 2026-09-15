@@ -1,0 +1,437 @@
+======================================================================
+AI AKADEMIE GHRAB 1.4.7 — GARP 2.5.1 SHIELD-PREP
+ADVERSARIÁLNÍ SELF-AUDIT + REMEDIACE
+Datum: 2026-09-15
+======================================================================
+
+0. VERDIKT
+----------------------------------------------------------------------
+PREP mechanická release gate: GREEN, 8/8 kroků PASS.
+RI-PREP: GREEN pro lokální přípravný profil.
+RI-LIVE / SHIELD-LIVE: NOT TESTED.
+OVERALL tohoto kola: AMBER.
+Produkční/school-server release approval: NE.
+REÁLNÁ STUDENTSKÁ DATA: NEPOUŽÍVAT.
+
+Důvod AMBER není potvrzený CRITICAL/HIGH runtime bypass. Otevřené jsou zejména:
+- serverová route authorization a served DAST až na školním serveru;
+- úplný browserový SIM-07 service-worker lifecycle;
+- `style-src 'unsafe-inline'` v CSP (LOW, před SCHOOL GREEN odstranit/výjimka);
+- GH-10: opravář a auditor jsou v tomto kole stejný ChatGPT průchod, tedy nejde o nezávislé přijetí;
+- GH-12: právní původ 24 image/SVG assetů nebyl v dodaných podkladech doložen.
+
+1. IDENTITA A PROVENANCE
+----------------------------------------------------------------------
+Aplikace: AI Akademie GHRAB
+appId: ai-akademie
+Vstupní verze: 1.4.6
+Výstupní PREP kandidát: 1.4.7
+Vstupní ZIP SHA-256:
+  2f5f3d0734938f71df03f6cd4924fc827a239c9d594d0def85e30daaa1f4fa77
+Kanonický GARP:
+  A9-GARP-2.5.1-ZAVEDENI-TOOLING-R2-R10-ARTIFACT-PROFILE-BINDING-HOTFIX.zip
+GARP A9 SHA-256:
+  8afb9cd083dc542a3329cdfad0a4386f9837b60e86b6c744c10568e74728b9d2
+GARP selftest: 113/113 PASS.
+Build profile: school-server-prep.
+Builder: local-untrusted-builder (PREP only).
+Payload ZIP SHA-256:
+  6e767a3f66b55e88e1f86fc83c8970fa44546aab7485b38a7ab8f94a0575305a
+Payload reprodukovatelnost: PASS — dva nezávislé ZIP buildy měly shodný SHA-256.
+Release artifactDigest v2:
+  6006b01803402024e9bdd08dab499d1112f4ca438039a184deee33f8d52c02ab
+Release inventory: 59 runtime souborů (RI manifest/signature se do inventory z principu nezapočítávají).
+
+Audit mode: ChatGPT remediation + adversariální self-audit.
+EVIDENCE MODE: kombinace skutečně spuštěných lokálních testů, artefaktové kontroly a source review.
+NEZÁVISLOST: NESPLNĚNA podle GH-10; pozdější jiný model/osoba musí reprodukovat kritické závěry.
+
+2. ARCHITEKTURA
+----------------------------------------------------------------------
+PREP ARCHITEKTURA: SERVERLESS / statická PWA.
+CÍLOVÁ ARCHITEKTURA: SCHOOL SERVER static pod serverovou autorizací.
+Runtime backend/API: žádný v tomto artefaktu.
+Runtime AI/LLM provider: žádný.
+AGENTIC: NO.
+Data class: D0.
+
+Hlavní runtime cesty:
+- index.html + assets/js/app.js;
+- console.html + assets/js/console.js;
+- 10 samostatných exports/*.html;
+- sw.js;
+- volitelný same-origin admin-return bridge do AI Studia.
+
+Přístupová poznámka: hlavní Akademie se sama nesmí vydávat za soukromou jen proto,
+že je odkaz ve Studiu viditelný pouze adminovi. Statický direct URL přístup není
+serverová autorizační hranice. Proto RT-01 zůstává do serverového nasazení NOT TESTED.
+
+3. RT-00 — DATA MAP & SCOPE
+----------------------------------------------------------------------
+Zpracovávaná studentská/osobní data: žádná provozně požadovaná.
+Free-text studentský vstup: neexistuje.
+Upload/import: neexistuje.
+AI egress: neexistuje.
+
+Memory/state:
+- navigace, filtr, prezentační režim, update worker reference.
+localStorage `ghrab-academy-state-v2`:
+- checklistItems;
+- quizAnswers;
+- trainerMode;
+- lastCourse;
+- lastLesson.
+sessionStorage:
+- `ghrab-presenter-session` — lokální náhodný identifikátor prezentační relace.
+IndexedDB: nezjištěna.
+Cache Storage / SW cache:
+- pouze statické aplikační assety; security-critical názvy jsou network-only/no-store.
+URL:
+- hash route;
+- same-origin allowlisted `studio` návrat;
+- `from=ai-studio`;
+- `console.html?session=<random-id>`.
+Export:
+- 10 statických HTML prezentací pro účastníky; bez trainer notes; reimport do Akademie neexistuje.
+Log/error report:
+- žádný centralizovaný error reporter/telemetrie; pouze lokální console warning/error cesty.
+
+Datová mapa:
+TRUSTED COURSE SOURCE -> STATIC RENDER -> BROWSER UI -> D0 LOCAL UI STATE
+                                          -> STATIC PARTICIPANT EXPORT
+                                          -> NO AI/API EGRESS
+
+RT-00 STATUS: PASS.
+Důkaz: security/ATTACK-SURFACE.txt, source-security-inventory, storage.js, build/deployment inventář.
+
+4. SYNTHETICKÝ CANARY
+----------------------------------------------------------------------
+Marker: GARP-STUDENT-CANARY-AKA-20260915-7F2C9A
+E-mail: garp.student.canary.aka.20260915.7f2c9a@example.invalid
+Reálný student: NE.
+
+Protože aplikace nemá studentský datový ingress, canary nemá legitimní runtime cíl.
+Statický sweep app source/runtime/export/build cest: 0 neočekávaných markerů, 0 e-mailů — PASS.
+Browser storage/cache dynamický canary lifecycle: N/A pro studentský ingress; úplný browser SW lifecycle zůstává SIM-07 NOT TESTED.
+Důkaz: security/evidence/post-release/canary-static-sweep.txt.
+
+5. NÁLEZY
+----------------------------------------------------------------------
+AKA-N1 | HIGH během migrace | CLOSED
+R10 SW checker odmítl příliš úzký security-critical inventory. Oprava: explicitní
+kanonické minimum security-critical názvů + networkOnlyNoStore route. Finální checker PASS.
+
+AKA-N2 | MEDIUM během migrace | CLOSED
+Precache používal `cache.put(request, ...)` v tvaru, který R10 nedokázal prokázat
+jako bezpečný a označil unresolved cache write. Oprava: deterministický `cache.addAll(FILES)`;
+finální SW checker PASS.
+
+AKA-N3 | MEDIUM | OPEN / LIVE DEBT
+Serverová route authorization není součástí statického PREP artefaktu. Direct URL
+proto zatím nelze považovat za chráněnou. Closure: school-server auth + access bypass DAST.
+
+AKA-N4 | LOW | OPEN
+CSP obsahuje `style-src 'unsafe-inline'`. Script CSP zůstává self-only; žádné eval/new Function.
+Closure: odstranit inline style potřebu nebo schválit konkrétní časově omezenou výjimku před SCHOOL GREEN.
+
+AKA-N5 | MEDIUM PROCESS / GH-10 | OPEN
+Stejný ChatGPT průchod implementoval opravy i provedl toto hodnocení. Mechanické
+nástroje a negativní kontroly jsou reprodukovatelné, ale audit není nezávislé přijetí.
+
+AKA-N6 | RELEASE BLOCKER / GH-12 | OPEN
+24 image/SVG assetů nemá v dodaných repo podkladech doložený právní původ/licenci.
+Nejde o tvrzení, že práva nejsou v pořádku; pouze nejsou auditně doložena.
+
+AKA-N7 | TEST ENVIRONMENT | OPEN
+Headless Chromium 144 v kontejneru neposkytl spolehlivý browserový důkaz; home run
+timeoutoval ještě před důvěryhodným HTTP/browser artefaktem. Žádný browser PASS nebyl připsán.
+
+6. SKUTEČNĚ SPUŠTĚNÉ TESTY
+----------------------------------------------------------------------
+- `npm test` -> PASS: 10 školení, 68 lekcí, 26 výrazných vizuálních bloků, verze 1.4.7.
+- GARP A9 selftest -> PASS 113/113.
+- local secret scan -> PASS, 0 findings.
+- canonical deployment leak scan -> PASS.
+- SW security-freeze R10 -> PASS.
+- vendored consistency -> PASS, 0 copies / 0 drift (architektonicky N/A sdílené vendor vrstvy).
+- CycloneDX 1.5 SBOM -> PASS, 0 externích npm dependencies.
+- deterministic payload rebuild -> PASS, shodný ZIP SHA-256.
+- build provenance create + verify -> PASS PREP; local builder warning expected.
+- evidence manifest -> PASS: 11 evidence files + 11 external anchors.
+- release-integrity verifier -> PASS, 59 files.
+- Ed25519 signature verifier -> PASS.
+- PREP release registry -> PASS.
+- unified release gate `--profile prep` -> GREEN, 8/8.
+- same artifact `--profile school` -> RED na `builder-untrusted:local-untrusted-builder` — správný fail-closed.
+- client storage tamper -> PASS: injected `isAdmin`, `role`, `accessToken` fields nejsou převzaty do state modelu.
+
+NOT TESTED:
+- skutečný school-server route authorization;
+- served CSP/HSTS/TLS;
+- DAST na reálné URL;
+- úplný SIM-07 browser SW update/recovery;
+- LIVE Integrity Service / app-guard / alerting / watchdog;
+- produkční key custody + trusted builder;
+- GitHub account MFA/branch protection/push protection v tomto kole;
+- právní původ médií.
+
+7. NEGATIVNÍ KONTROLY / RISIM
+----------------------------------------------------------------------
+RISIM-01 one-byte tamper: PASS — modifikovaný index.html odmítnut.
+RISIM-02 manifest/signature substitution: PASS — změna manifest bytes -> SIGNATURE_INVALID.
+RISIM-03 signed old-release rollback: PASS — syntetický 1.4.6 manifest měl validní PREP podpis, registry jej odmítla.
+RISIM-04 wrong/revoked key: PASS — revoked key odmítnut.
+RISIM-05 missing signature: PASS — odmítnuto.
+RISIM-06 partial/mixed deployment: PASS — chybějící storage.js i 1.4.6 sw.js ve 1.4.7 stromu odmítnuty.
+RISIM-07 Integrity Service outage: NOT TESTED — LIVE.
+RISIM-08 unauthorized registry change: PASS — změněný digest odmítnut.
+RISIM-09 external watchdog visibility: NOT TESTED — LIVE.
+RISIM-10 source/development leak: PASS PREP — čistý deployment scan PASS; synthetic private-key leak FAIL.
+
+Další negative controls:
+- evidence content tamper -> verifier FAIL;
+- odstranění SW critical guard -> R10 checker FAIL;
+- PREP artifact proti school profilu -> gate RED, nikoli silent GREEN.
+
+Důkaz: security/evidence/post-release/.
+
+8. SIM-01 AŽ SIM-08
+----------------------------------------------------------------------
+SIM-01 Cross-App Authorization / Token Confusion: N/A — Akademie v PREP nekonzumuje vlastní authorization token/permit.
+SIM-02 Revocation / Permission Change Propagation: N/A PREP / NOT TESTED LIVE — serverová access hranice zatím není součástí runtime.
+SIM-03 Browser Back / Restore / Reopen: N/A pro studentská data; D0 UI state není A/B student context.
+SIM-04 Multi-Tab State Collision: N/A pro cross-student security; prezentační konzole používá session-scoped kanál; úplný browser test neproveden.
+SIM-05 AI Response as Hostile Input: N/A — bez AI odpovědi.
+SIM-06 Interrupted AI Request / Retry: N/A — bez AI requestu.
+SIM-07 Service Worker Update / Recovery Drill: NOT TESTED COMPLETE — statický SW freeze + cache cleanup review PASS, plný browser lifecycle neprokázán.
+SIM-08 Export -> Reimport -> Second User: N/A — Akademie nemá reimport cestu.
+
+9. AI-RED / AIR-01 AŽ AIR-12
+----------------------------------------------------------------------
+AI-enabled runtime: NE.
+AI EGRESS INSPECTION: ověřená absence AI request cesty ve skutečném runtime/source scope.
+Provider/model: N/A.
+Prompt assembly/system prompt: N/A.
+Tools/actions: N/A.
+
+AIR-01 N/A
+AIR-02 N/A
+AIR-03 N/A
+AIR-04 N/A
+AIR-05 N/A
+AIR-06 N/A
+AIR-07 N/A
+AIR-08 N/A
+AIR-09 N/A
+AIR-10 N/A
+AIR-11 N/A
+AIR-12 N/A
+RT-09: N/A.
+SH-AI-01..12: N/A.
+SH-AG-01..15: N/A; AGENTIC=NO.
+
+10. RED TEAM RT-01 AŽ RT-20
+----------------------------------------------------------------------
+RT-01 ACCESS BYPASS: NOT TESTED LIVE.
+  Statický PREP build nemá serverovou route authorization. Kritický bod pro school GREEN.
+
+RT-02 CLIENT STORAGE TAMPERING: PASS PREP.
+  Syntetické auth-like localStorage fields `isAdmin/role/accessToken` nejsou state modelem přijaty.
+  `trainerMode` je UI preference, nikoli autorizační údaj.
+
+RT-03 AUTHORIZATION TOKEN: N/A PREP.
+  Akademie vlastní token nevaliduje ani nepřenáší; URL token/permit/access parametry jsou app testem zakázány.
+
+RT-04 TIME MANIPULATION: N/A aplikační auth.
+  Aplikace nemá časově omezenou permission logiku; release key validity je pokryta RI.
+
+RT-05 OFFLINE / ROLLBACK: NOT TESTED COMPLETE.
+  Anti-rollback registry, SW static freeze a mixed deployment kontroly PASS; plný SIM-07 browser update/recovery chybí.
+
+RT-06 STUDENT DATA LEAKAGE: PASS PREP pro D0.
+  Žádný studentský ingress/AI/API; syntetický canary static sweep 0/0.
+
+RT-07 XSS / UNTRUSTED RENDERING: PASS PREP s omezením.
+  Jediný běžný free-text vstup je search; do value je escapován a do course content se nevkládá.
+  Renderované kurzové hodnoty procházejí escapeHtml; console payload texty se escapují.
+  Žádné eval/new Function/document.write. Browser DAST však nebyl proveden.
+
+RT-08 MALICIOUS IMPORT: N/A.
+  Žádná import/upload/reimport cesta.
+
+RT-09 AI PROMPT INJECTION / JAILBREAK: N/A.
+  Runtime bez AI.
+
+RT-10 SECRET EXPOSURE: PASS PREP.
+  Source helper 0 findings; deployment leak scan PASS; synthetic private-key leak FAIL jak má.
+  Privátní PREP podpisový klíč není v předávaném stromu.
+
+RT-11 ROLE ESCALATION: PASS PREP pro jedinou role-dependent funkci.
+  Admin-return link se zobrazí jen po same-origin importu Studio access runtime a `isAdmin() === true`; import failure -> hidden.
+  Ochrana samotné route Akademie je samostatný otevřený RT-01/LIVE bod.
+
+RT-12 POSTMESSAGE / IFRAME / URL: PASS PREP artefaktově.
+  Není iframe/postMessage. BroadcastChannel používá náhodný session-scoped název.
+  Studio URL je same-origin a přesně allowlisted na dvě známé cesty; query je očištěna od search/hash před použitím.
+
+RT-13 CSP / BROWSER BOUNDARY: FAIL LOW / AMBER.
+  `script-src 'self'` a bez unsafe-eval; `style-src 'unsafe-inline'` zůstává.
+  Served header stav není otestován. Před SCHOOL GREEN opravit nebo formálně ohraničit výjimku.
+
+RT-14 ERROR DATA LEAKAGE: PASS PREP.
+  Žádný externí error reporter/telemetrie. Console cesty neodesílají data ven; D0 scope.
+
+RT-15 CONCURRENCY / STATE: NOT TESTED COMPLETE.
+  Security-sensitive async server state neexistuje; presenter channel je session-scoped, ale plný browser multi-tab test nebyl spolehlivě proveden.
+
+RT-16 SUPPLY CHAIN / RELEASE: PASS RI-PREP / AMBER governance.
+  Lockfile, SBOM, reproducible payload, provenance, evidence manifest, signed RI, trust root, registry, mixed/tamper controls PASS.
+  Produkční custody, trusted builder, account MFA/branch protection nejsou tímto PREP kolem ověřeny.
+
+RT-17 CROSS-STUDENT DATA ISOLATION: N/A.
+  D0; aplikace nevede student identity/work contexts.
+
+RT-18 SCHOOL-SERVER READINESS: PREP READY / LIVE NOT TESTED.
+  Runtime-only deployment existuje a PREP gate je GREEN. School gate správně RED na local-untrusted-builder.
+  Chybí reálný auth/HTTPS/Integrity Service/app-guard/alerting deployment.
+
+RT-19 AI DATA MINIMIZATION / AI EGRESS: PASS.
+  AI EGRESS INSPECTION: žádná AI/provider request cesta nalezena; žádné jméno/e-mail/ID/localStorage se modelu neposílá, protože model není volán.
+
+RT-20 DATA RETENTION / DELETION: PASS PREP pro D0.
+  Trvale zůstává pouze D0 UI progress v localStorage; session presenter ID je sessionStorage; statická PWA cache obsahuje app assets.
+  Není backend, AI provider retention ani studentský content. Univerzální právní retenční dobu audit nevymýšlí.
+
+11. RI-01 AŽ RI-15
+----------------------------------------------------------------------
+RI-01 Release identity & provenance: PASS PREP.
+RI-02 Source/deployment separation: PASS PREP.
+RI-03 File inventory + SHA-256: PASS, 59 souborů.
+RI-04 Deterministic artifact digest: PASS, 6006b018...c02ab.
+RI-05 Detached digital signature: PASS, Ed25519.
+RI-06 Trust root / key ID: PASS PREP.
+RI-07 Independent verification: PASS technického kanonického verifieru; GH-10 lidská/modelová nezávislost NESPLNĚNA.
+RI-08 Approved release registry / anti-rollback: PASS PREP.
+RI-09 Partial / mixed deployment detection: PASS.
+RI-10 Integrity Service fail-closed: NOT TESTED LIVE.
+RI-11 AI Studio app-guard integration: NOT TESTED LIVE.
+RI-12 Minimal alerting + audit trail: NOT TESTED LIVE.
+RI-13 External watchdog: NOT TESTED LIVE / lze posoudit N/A až podle finálního provozního modelu.
+RI-14 Signing key custody/rotation/recovery: PASS PREP pro disposable external key + revoked-key drill; PRODUCTION NOT TESTED.
+RI-15 Source-disclosure minimization / IT handoff: PASS PREP — runtime-only deployment oddělen.
+
+RI-PREP: GREEN.
+RI-LIVE: NOT TESTED.
+
+12. GHRAB GH-01 AŽ GH-14
+----------------------------------------------------------------------
+GH-01 Vendored shared layer byte identity: N/A — Akademie nevendoruje app-guard/platform/error-reporter; checker 0 copies/0 drift.
+GH-02 SW freeze security layer: PASS statická část; dynamický browser SIM-07 NOT TESTED -> COMPLETE status AMBER.
+GH-03 Studio/app trust boundary: NOT TESTED LIVE pro server permit/revocation; admin-return bridge je same-origin fail-closed.
+GH-04 repository_dispatch attack path: N/A — v dodaném projektu nebyl repository_dispatch workflow nalezen.
+GH-05 Build profile / provider keys: PASS PREP; profile je v provenance, runtime žádný provider-key path nemá, secret/leak scan PASS.
+GH-06 Data classification: PASS — D0, no AI egress.
+GH-07 Error reporter exfiltration: N/A — žádný síťový error reporter.
+GH-08 PWA identity continuity: PASS statická identita (`id` i `start_url` stabilní bez verze); browser lifecycle viz GH-02.
+GH-09 Five-gate model: APLIKOVÁN.
+GH-10 Separation of fixer/evidence: NOT SATISFIED — toto kolo je self-audit; OVERALL nesmí být vydáván za nezávislý GREEN.
+GH-11 Solo operation/key management: PASS PREP pouze pro disposable key mimo artefakt; production custody/recovery druhou osobou NOT TESTED.
+GH-12 Legal cleanliness: NOT VERIFIED — 24 image/SVG assets bez doloženého rights evidence v tomto auditu; school/public release blocker.
+GH-13 Served headers/transport: FAIL/NOT TESTED pro SCHOOL — unsafe-inline style + žádný reálný served HSTS/TLS test.
+GH-14 Agentic profile: N/A, AGENTIC=NO proti call grafu.
+
+13. SHIELD
+----------------------------------------------------------------------
+SHIELD-APP:
+- threat model: PASS PREP;
+- attack surface: PASS;
+- auth/session: NOT TESTED LIVE;
+- injection/unsafe sinks: PASS PREP source review;
+- browser hardening: AMBER (unsafe-inline, browser DAST N/T);
+- import/export: PASS/N/A dle cest;
+- SAST: PASS PREP (lokální/static, ne externí certifikace);
+- SCA: PASS pro 0 dependencies;
+- SBOM: PASS;
+- DAST: NOT TESTED;
+- secret sweep: PASS;
+- exception register: PASS.
+
+SHIELD-SC:
+- pinned inputs/lock/provenance/rebuild/separation/signature/evidence: PASS PREP;
+- production trusted builder/account hardening/key custody: NOT TESTED.
+
+SHIELD-RUN:
+- server enforcement: NOT TESTED LIVE;
+- design: statický runtime bez secrets/AI egress, cílově server auth.
+
+SHIELD-DET:
+- PREP evidence retention a negative controls existují;
+- live tamper-resistant audit/alerts/watchdog/restore/key-compromise drill: NOT TESTED LIVE.
+
+SHIELD-AI: N/A.
+SHIELD-AG: N/A.
+
+14. VOLNÉ ADVERSARIÁLNÍ HLEDÁNÍ
+----------------------------------------------------------------------
+Hypotéza A: „skrytý admin odkaz“ by mohl být zaměněn za skutečnou ochranu Akademie.
+Metoda: source review route/startup a Studio bridge.
+Výsledek: potvrzeno jako architektonický dluh — odkaz je fail-closed, ale direct URL není chráněn serverem. AKA-N3.
+
+Hypotéza B: localStorage by mohl nést falešnou roli/admin token.
+Metoda: syntetický state s isAdmin/role/accessToken.
+Výsledek: nepodporovaná pole jsou zahozena; state model vrací pouze UI keys. PASS.
+
+Hypotéza C: service worker by mohl zamrazit budoucí bezpečnostní asset, i když dnes v deploymentu neexistuje.
+Metoda: R10 canonical critical inventory + behaviorální URL normalizační corpus v checkeru; removal negative control.
+Výsledek: po opravě PASS; odstranění guardu je checkerem odmítnuto.
+
+Hypotéza D: platně podepsaný starý release by mohl projít jen proto, že podpis sedí.
+Metoda: lokálně vytvořený validně podepsaný syntetický 1.4.6 manifest proti registry 1.4.7.
+Výsledek: signature VERIFIED, registry DENIED. Anti-rollback drží.
+
+Hypotéza E: mix 1.4.6/1.4.7 by mohl obejít kontrolu.
+Metoda: do kopie 1.4.7 vložen původní 1.4.6 sw.js.
+Výsledek: RI verifier FAIL. PASS negative control.
+
+Hypotéza F: audit by mohl přehlédnout ne-kódový release blocker.
+Metoda: inventář všech binárních image/SVG v deploymentu a hledání rights/licensing metadata.
+Výsledek: 24 assetů, evidence práv v repo nenalezena -> GH-12 NOT VERIFIED.
+
+15. PĚT GATE
+----------------------------------------------------------------------
+SECURITY GATE: AMBER
+  Důvody: RT-01 LIVE auth N/T, RT-05/SIM-07 browser N/T, RT-13 LOW CSP dluh, GH-13 served stav N/T.
+
+PRIVACY GATE: GREEN PREP
+  D0, žádný studentský datový ingress, žádný AI/API egress, canary static sweep čistý.
+
+RED TEAM GATE: AMBER
+  Důvody: relevantní LIVE/browser hranice nejsou behaviorálně uzavřené a GH-10 nezávislost chybí.
+
+RELEASE INTEGRITY GATE: GREEN PREP / RI-LIVE NOT TESTED
+  Unified PREP gate GREEN 8/8, relevantní tamper/rollback/mixed/leak negative controls PASS.
+
+SHIELD ASSURANCE GATE: AMBER
+  Důvody: DAST/server/runtime detection/custody LIVE N/T, GH-10, GH-12, GH-13.
+
+OVERALL: AMBER.
+
+16. PŘESNÉ PODMÍNKY PRO DALŠÍ POVÝŠENÍ
+----------------------------------------------------------------------
+Před nezávislým PREP uzavřením:
+1. jiný model/osoba reprodukuje hlavní testy a red-team závěry (GH-10);
+2. doplnit právní původ/licenci 24 mediálních assetů nebo problematické assety nahradit (GH-12).
+
+Před SCHOOL/LIVE GREEN:
+3. nasadit runtime-only deployment na školní HTTPS cestu za serverovou autorizací;
+4. použít trusted school builder / produkční provenance;
+5. zavést produkční trust root, registry a key-custody model;
+6. otestovat direct URL/access bypass, revokaci/session boundary;
+7. provést SIM-07 skutečný PWA update/recovery v prohlížeči;
+8. ověřit served CSP/HSTS/TLS a odstranit/uzavřít unsafe-inline výjimku;
+9. ověřit Integrity Service/app-guard/alerting a podle finálního modelu watchdog;
+10. zopakovat unified school/LIVE gate a relevantní RISIM na stagingu, nikoli destruktivně v produkci.
+
+======================================================================
+KONEC PROTOKOLU
+======================================================================

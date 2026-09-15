@@ -1,6 +1,6 @@
 {
   "name": "ai-akademie-ghrab",
-  "version": "1.4.6",
+  "version": "1.4.9",
   "private": true,
   "type": "module",
   "description": "Soukromý prezentační rozcestník AI Akademie GHRAB",
@@ -9,7 +9,14 @@
     "build:exports": "node scripts/build-exports.mjs",
     "build": "npm run build:notes && npm run build:exports",
     "check": "node scripts/check.mjs",
-    "test": "npm run build:exports && node scripts/check.mjs"
+    "test": "npm run build:exports && node scripts/check.mjs",
+    "build:school-server": "npm run build && node scripts/build-school-server.mjs",
+    "qa:secrets": "node scripts/qa-security-secrets.mjs",
+    "qa:garp25:tooling": "node security/garp25/tools/selftest-garp251.mjs",
+    "qa:garp25:sw": "node security/garp25/tools/check-sw-security-freeze.mjs dist-school-server/sw.js dist-school-server security/security-critical-assets.json",
+    "qa:garp25:vendored": "node security/garp25/tools/check-vendored-consistency.mjs security/vendored-consistency.json",
+    "qa:garp25:sbom": "node scripts/generate-cyclonedx-sbom.mjs",
+    "qa:garp25:static": "npm run qa:garp25:tooling && npm run build:school-server && npm run qa:secrets && npm run qa:garp25:sw && npm run qa:garp25:vendored && npm run qa:garp25:sbom"
   },
   "engines": {
     "node": ">=18"

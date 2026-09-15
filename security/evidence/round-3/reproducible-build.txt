@@ -1,0 +1,6 @@
+runtime_counts [60, 60, 60]
+candidate_eq_rebuild_a True
+candidate_eq_rebuild_b True
+dist-school-server ec1e4756a3b0c45dfac05b18b478b143783655eb4426fa4d437897dcf7b45bab
+/mnt/data/aka149_rebuild_a/dist-school-server ec1e4756a3b0c45dfac05b18b478b143783655eb4426fa4d437897dcf7b45bab
+/mnt/data/aka149_rebuild_b/dist-school-server ec1e4756a3b0c45dfac05b18b478b143783655eb4426fa4d437897dcf7b45bab

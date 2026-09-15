@@ -1,8 +1,15 @@
-# AI Akademie GHRAB 1.4.6
+# AI Akademie GHRAB 1.4.8
 
 Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
 Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
+
+## Novinky ve verzi 1.4.8
+
+- Přidána bezpečnostní a release vrstva **GARP 2.5.1 SHIELD-PREP**.
+- Zdrojový strom je oddělen od školního deploymentu `dist-school-server/`; do deploymentu nejdou auditní podklady ani vývojové skripty.
+- Service Worker má explicitní fail-closed `networkOnlyNoStore` cestu pro `release-integrity.json` a `release-integrity.sig`, takže integritní metadata nelze zmrazit v PWA cache.
+- Přidány SBOM, build provenance, evidence manifest, secret scan a podepisovaný PREP release. Jde o přípravu; SHIELD-LIVE/RI-LIVE se uzavírají až na skutečném školním serveru.
 
 ## Novinky ve verzi 1.4.6
 

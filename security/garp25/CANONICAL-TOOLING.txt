@@ -1,0 +1,4 @@
+Canonical GARP tooling source:
+A12-GARP-2.5.1-ZAVEDENI-TOOLING-R2-R12-AI-AKADEMIE-AUTO-PATCH-POLICY.zip
+SHA-256: e9ddf9715a6335d5921f69e887e1339321d9448bbe41493eb773b64711e9dcf1
+Derived from A11/R12. Policy-only delta: AI Akademie is explicitly bound to AUTO-PATCH-PREP with a pinned service-worker freeze policy and required evidence policy. No release-gate/checker logic changed.

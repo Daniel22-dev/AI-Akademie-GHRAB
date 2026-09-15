@@ -1,0 +1,14 @@
+{
+  "schema": "ghrab-sw-security-freeze-policy-v1",
+  "appId": "ai-akademie",
+  "policyMode": "auto-patch-security-logic-freeze",
+  "normalizedSwSha256": "f6b9f9a11c16df0cca19dbceafde6c72a6ea5048f561a254c6a7938faa946359",
+  "normalization": [
+    "APP_VERSION constrained token [0-9A-Za-z.-]{1,32}",
+    "CACHE_NAME exact ghrab-<appid>-v<constrained token>"
+  ],
+  "rule": "AUTO-PATCH may change only the constrained version/cache tokens. Any other service-worker source change is non-PASS and requires explicit security recertification/policy update.",
+  "target": "built service worker",
+  "requiredPlatformCacheMarkers": 0,
+  "requiredGateProfile": "auto-patch-prep"
+}

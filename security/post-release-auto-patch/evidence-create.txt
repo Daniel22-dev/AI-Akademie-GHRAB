@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "files": 9,
+  "externalFiles": 17,
+  "output": "/mnt/data/aka149_work/security/security-evidence-manifest.json"
+}

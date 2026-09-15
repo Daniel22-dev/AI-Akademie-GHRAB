@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "files": 9,
+  "externalFiles": 17,
+  "requiredPolicy": "/mnt/data/aka149_work/security/garp25/POLICY-PINS/ai-akademie-required-evidence-policy.json",
+  "releaseManifest": "/mnt/data/aka149_work/dist-school-server/release-integrity.json"
+}

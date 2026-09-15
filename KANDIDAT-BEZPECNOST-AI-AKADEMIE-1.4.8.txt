@@ -1,0 +1,179 @@
+======================================================================
+AI AKADEMIE GHRAB 1.4.8 — GARP 2.5.1 SHIELD-PREP
+OPRAVNÉ KOLO PO DRUHÉM HLOUBKOVÉM AUDITU
+Datum: 2026-09-15
+======================================================================
+
+0. VERDIKT
+----------------------------------------------------------------------
+PREP mechanická release gate: GREEN 8/8.
+RI-PREP: GREEN.
+GARP A10/R11 selftest: PASS 117/117.
+OVERALL: AMBER.
+SCHOOL/LIVE: NOT APPROVED / NOT TESTED COMPLETE.
+Reálná studentská data: NEPOUŽÍVAT.
+
+Důvod OVERALL AMBER po opravách není známý CRITICAL/HIGH/MEDIUM PREP runtime bypass.
+Otevřené zůstávají hranice, které nelze poctivě uzavřít v lokálním PREP kole:
+- reálná school-server autorizace, session revokace a DAST;
+- served CSP/HSTS/TLS;
+- produkční trusted builder a key custody;
+- kompletní browserový SIM-07 lifecycle na stagingu;
+- GH-10 formální nezávislá reprodukce jiným modelem/osobou;
+- GH-12 právní evidence 24 image/SVG assetů;
+- LOW CSP debt: style-src 'unsafe-inline'.
+
+1. IDENTITA A KANONICKÉ VSTUPY
+----------------------------------------------------------------------
+Aplikace: AI Akademie GHRAB
+appId: ai-akademie
+Verze: 1.4.8
+Kanonický tooling: A10-GARP-2.5.1-ZAVEDENI-TOOLING-R2-R11-PROVENANCE-BINDING-HOTFIX.zip
+SHA-256 toolingu: 0d38126e83574f412af401f0aa1f06c4274a3f6b8f5e19ac351fab2a37b34825
+Exact BUILD-INPUT-SOURCE.zip SHA-256:
+  79ab47b52add1d4bb807a8e65dc82bbfee08c79d52b0674b509e99c366d3907a
+Deterministický unsigned SCHOOL-PAYLOAD.zip SHA-256:
+  f39a6fd8d36fff90bb7aa79db4d55e9b104f3ed23beaf53fc24979b1726ec138
+Release artifactDigest v2:
+  352d93ea53b794aedd8bb5a2ac18c4ca3de387869b74ba53aabf3dfdc8771655
+Runtime inventory: 60 souborů + release-integrity.json + release-integrity.sig.
+Builder: local-untrusted-builder (PREP only).
+
+Build provenance obsahuje:
+- sourcePackageSha256 = 79ab47...3907a;
+- releaseIntegrity.artifactDigest = 352d93...71655;
+- subject SHA-256 = f39a6f...ec138.
+Podepsaný RI manifest obsahuje shodný sourcePackageSha256 a artifactDigest.
+
+2. OPRAVENÉ NÁLEZY DRUHÉHO AUDITU
+----------------------------------------------------------------------
+AKA2-N1 | HIGH | CLOSED
+Původní stav 1.4.7: provenance odkazovala na vstupní ZIP 1.4.6 a R10 verifier kontroloval
+pouhou přítomnost některých hodnot, nikoli jejich kryptografickou/artefaktovou vazbu.
+Oprava 1.4.8/R11:
+- vzniká exact BUILD-INPUT-SOURCE.zip před provenance;
+- verifier přepočítá SHA-256 skutečného source package;
+- actual source SHA musí souhlasit s provenance.source.sourcePackageSha256;
+- provenance source SHA musí souhlasit s podepsaným RI sourcePackageSha256;
+- provenance artifactDigest musí souhlasit s RI artifactDigest;
+- release gate předává --source-package a --release-manifest do provenance verifieru;
+- R11 selftest přidal regresní scénáře této třídy.
+Adversariální důkaz:
+- wrong-but-present provenance source SHA -> FAIL;
+- wrong provenance artifactDigest -> FAIL;
+- RI manifest source SHA != actual BUILD-INPUT-SOURCE.zip -> FAIL.
+Status: CLOSED.
+
+AKA2-N2 | MEDIUM | CLOSED
+Původní stav: service worker mohl při nedostupném serveru vrátit dříve cacheovaný interní
+obsah, čímž by offline stav nebyl fail-closed vůči revokaci oprávnění.
+Oprava:
+- žádný interní runtime se neprecacheuje;
+- same-origin runtime je network-only/no-store;
+- staré ghrab-academy-v* cache jsou při aktivaci mazány;
+- SW freeze checker hlásí precachedEntries=0, unresolvedCacheWrites=[], cacheFirstDetected=false;
+- behaviorální outage harness: request rejected, cacheMatchCalls=0.
+Status: CLOSED.
+
+AKA2-N3 | LOW | CLOSED
+Původní 404 byl svázán s GitHub Pages cestou a inline redirectem.
+Oprava:
+- redirect je externí CSP-compatible modul assets/js/not-found.js;
+- rozlišuje /apps/ai-akademie/, /ai-akademie/, GitHub Pages repository root a root subdomény;
+- behaviorální routing test: 4/4 PASS.
+Status: CLOSED.
+
+AKA2-N4 | LOW | CLOSED
+Původní presenter capability byla nesena v URL query a BroadcastChannel session.
+Oprava:
+- odstraněn session capability token z query i hash;
+- odstraněn BroadcastChannel;
+- console se otevírá jako console.html bez capability;
+- komunikace je pouze přes same-origin window.opener; cizí/no-opener kontext fail-closed.
+Status: CLOSED.
+
+3. R11 TOOLING REGRESE
+----------------------------------------------------------------------
+Kanonický selftest: 117/117 PASS.
+Nové fail-closed regresní třídy zahrnují:
+- nesprávný actual source-package hash;
+- nesprávný provenance artifactDigest;
+- podepsaný RI manifest s jiným sourcePackageSha256 než skutečný build input.
+
+R11 nepovoluje PREP GREEN vydávat za SCHOOL GREEN. Stejný artefakt hodnocený profilem
+school končí RED pouze na builder-untrusted:local-untrusted-builder; ostatní lokálně
+ověřitelné kroky school gate v tomto běhu prošly.
+
+4. REPRODUKOVATELNOST A RELEASE INTEGRITY
+----------------------------------------------------------------------
+Exact build-input snapshot byl rozbalen do dvou čistých stromů a dvakrát sestaven.
+Výsledek:
+- runtime inventory: 60 souborů v obou bězích;
+- tree digest obou běhů: shodný;
+- unsigned payload ZIP SHA-256 obou běhů: shodný f39a6f...ec138;
+- finální runtime před podpisem je 60/60 bajtově shodný s čistým rebuildem.
+
+RI:
+- verify-release-integrity: VERIFIED 60 files;
+- detached Ed25519 signature: VERIFIED;
+- PREP registry: APPROVED;
+- one-byte/index tamper: TAMPERED;
+- missing/empty signature: UNVERIFIED;
+- private key není součástí source/deployment artefaktů.
+
+5. FINÁLNÍ REGRESNÍ BĚH
+----------------------------------------------------------------------
+- npm test: PASS — 10 školení, 68 lekcí, 26 výrazných vizuálních bloků, verze 1.4.8;
+- GARP R11 selftest: PASS 117/117;
+- source secret scan: PASS / 0 findings;
+- deployment leak scan: PASS;
+- SW security freeze: PASS, 0 precache, 0 unresolved Cache API writes;
+- vendored consistency: PASS / 0 copies / 0 drift;
+- CycloneDX SBOM: PASS / 0 externích npm dependencies;
+- exact runtime vs deterministic rebuild: PASS 60/60 byte-identical;
+- provenance binding: PASS;
+- RI verification: PASS;
+- signature verification: PASS;
+- registry verification: PASS;
+- unified PREP release gate: GREEN 8/8.
+
+6. NEGATIVNÍ KONTROLY FINÁLNÍHO ŘETĚZCE
+----------------------------------------------------------------------
+PASS znamená, že škodlivá/nesprávná varianta byla odmítnuta:
+- provenance wrong source SHA -> FAIL as expected;
+- provenance wrong artifactDigest -> FAIL as expected;
+- manifest wrong source SHA vs actual source package -> FAIL as expected;
+- runtime tamper -> TAMPERED as expected;
+- empty/missing signature -> UNVERIFIED as expected;
+- school profile with local-untrusted-builder -> RED as expected.
+
+Důkazy: security/post-release/.
+
+7. OTEVŘENÉ BODY, KTERÉ SE NEPŘEDSTÍRAJÍ JAKO OPRAVENÉ
+----------------------------------------------------------------------
+OPEN-LIVE-01 | server-side authorization/direct URL/revocation | NOT TESTED LIVE
+OPEN-LIVE-02 | served CSP/HSTS/TLS + DAST | NOT TESTED LIVE
+OPEN-LIVE-03 | production trusted builder/key custody/rotation/recovery | NOT TESTED LIVE
+OPEN-LIVE-04 | complete browser SIM-07 PWA update/recovery | NOT TESTED COMPLETE
+OPEN-GH10 | jiný model/osoba musí reprodukovat klíčové závěry pro formální nezávislost
+OPEN-GH12 | 24 image/SVG assetů: rights status NOT VERIFIED; před SCHOOL/PUBLIC release doložit
+OPEN-CSP | LOW: style-src 'unsafe-inline' — odstranit nebo formálně ohraničit před SCHOOL GREEN
+
+8. GATE VERDIKTY
+----------------------------------------------------------------------
+SECURITY: AMBER
+PRIVACY: GREEN PREP
+RED TEAM: AMBER
+RI-PREP: GREEN
+RI-LIVE: NOT TESTED
+SHIELD ASSURANCE: AMBER
+OVERALL: AMBER
+SCHOOL-SERVER PRODUCTION RELEASE: NO
+PRODUCTION RELEASE APPROVAL: NO
+
+Mechanický PREP GREEN 8/8 znamená, že lokálně ověřitelné GARP 2.5.1/R11 kontroly prošly.
+Neznamená serverový/LIVE GREEN a nenahrazuje GH-10/GH-12 ani školní provozní důkazy.
+
+======================================================================
+KONEC PROTOKOLU
+======================================================================

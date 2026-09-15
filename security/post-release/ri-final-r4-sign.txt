@@ -1,0 +1,4 @@
+{
+  "signature": "/mnt/data/aka149_work/dist-school-server/release-integrity.sig",
+  "algorithm": "Ed25519"
+}

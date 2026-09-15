@@ -1,0 +1,7 @@
+{
+  "schema": "ghrab-school-builder-policy-v1",
+  "revision": "R12-2026-09-15",
+  "mode": "deny-unless-listed",
+  "allowedBuilders": [],
+  "note": "Fail-closed default. IT must pin the real trusted school builder/workflow in canonical A-tooling before SCHOOL GREEN is possible. PREP does not use this allowlist."
+}

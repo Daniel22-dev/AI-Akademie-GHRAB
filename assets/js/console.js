@@ -1,7 +1,7 @@
 const root = document.querySelector('#root');
-const sessionId = new URLSearchParams(location.search).get('session') || '';
-const channelName = sessionId ? `ghrab-academy-presenter-${sessionId}` : '';
-const channel = channelName && 'BroadcastChannel' in window ? new BroadcastChannel(channelName) : null;
+const hasTrustedOpener = (() => {
+  try { return !!window.opener && window.opener.location.origin === location.origin; } catch { return false; }
+})();
 let started = Date.now();
 let slideStarted = Date.now();
 let lastLesson = '';
@@ -42,7 +42,6 @@ function sendCommand(action, extra = {}) {
       return;
     }
   } catch {}
-  channel?.postMessage({ type: 'command', ...message });
 }
 
 function bindControls() {
@@ -125,12 +124,8 @@ function renderPresenterState(payload) {
 }
 
 window.renderPresenterState = renderPresenterState;
-channel?.addEventListener('message', event => {
-  if (event.data?.type === 'state') renderPresenterState(event.data.payload);
-});
-
-if (!sessionId) {
-  root.innerHTML = '<p class="error">Konzole nemá identifikátor relace. Zavřete ji a otevřete znovu z AI Akademie.</p>';
+if (!hasTrustedOpener || typeof window.opener.__ghrabPresenterCommand !== 'function') {
+  root.innerHTML = '<p class="error">Konzole musí být otevřena přímo z AI Akademie. Zavřete ji a otevřete znovu tlačítkem Konzole školitele.</p>';
 } else {
   sendCommand('request-state');
   setTimeout(() => {

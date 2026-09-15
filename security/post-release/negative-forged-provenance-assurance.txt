@@ -1,0 +1,12 @@
+{
+  "status": "FAIL",
+  "errors": [
+    "buildProvenanceSha256:signed-anchor-mismatch",
+    "evidenceManifestSha256:signed-anchor-mismatch"
+  ],
+  "actual": {
+    "buildProvenanceSha256": "503ac71704ba9d04498d4ecfad5ddec5ad935b5381536130a2ba685f68c135fc",
+    "evidenceManifestSha256": "3934ef03002cc1b3281c0471adc6ced574ef49587d410f061d123ceb101f9458",
+    "sbomSha256": "de2f4b668411ddfe70b7b2d54ec519944d570346a8176eb8782190c74088d432"
+  }
+}

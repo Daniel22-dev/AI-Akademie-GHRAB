@@ -1,0 +1,2 @@
+AI AKADEMIE 1.4.9 — KEY CUSTODY PREP
+V tomto kole se používá pouze disposable PREP Ed25519 klíč mimo source/deployment. Kandidát uchovává jen veřejný PREP trust root. Produkční podpisový klíč musí být mimo build/web root, s rotací/revokací a recovery postupem spravovaným se školním IT. Produkční custody: NOT TESTED.

@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "output": "security/sbom/ai-akademie-1.4.9.cdx.json",
+  "dependencies": 0
+}

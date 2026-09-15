@@ -1,0 +1,10 @@
+AI AKADEMIE 1.4.9 — BUILD PROFILE ATTESTATION
+profile: school-server-prep
+entrypoint: npm run build:school-server
+runtime output: dist-school-server/
+source input SHA-256 (exact BUILD-INPUT-SOURCE.zip): 564ed1edc3d9249b32f53d5cc1ac08e5c15f9a9a44cc651bf91558ea3494c116
+canonical GARP A12/R12 AUTO-PATCH policy SHA-256: e9ddf9715a6335d5921f69e887e1339321d9448bbe41493eb773b64711e9dcf1
+builder: local-untrusted-builder (PREP only)
+AI/provider credentials: application has no provider runtime and no provider-key configuration path.
+source/deployment separation: dist-school-server contains runtime-only static files; source tooling/security docs are excluded.
+Production claim: NO. School/LIVE build requires trusted builder/server controls and LIVE revalidation.

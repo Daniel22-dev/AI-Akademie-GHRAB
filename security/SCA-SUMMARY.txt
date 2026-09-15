@@ -1,0 +1,2 @@
+AI AKADEMIE 1.4.9 — SCA / DEPENDENCY SUMMARY
+package-lock.json je přítomen. Aplikace nemá runtime ani dev npm dependencies; build používá pouze Node standard library. CycloneDX 1.5 SBOM proto obsahuje aplikační komponentu a 0 externích npm knihoven. Registr-based vulnerability audit nemá nad prázdným dependency setem další balíčky k prověření.

@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "output": "/mnt/data/aka149_work/dist-school-server/release-integrity.json",
+  "files": 60,
+  "artifactDigest": "2198254b97cd28d732206c026da9b784ea64a11953314d712e2f6f6201e37689"
+}

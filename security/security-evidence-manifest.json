@@ -1,0 +1,142 @@
+{
+  "schema": "ghrab-security-evidence-manifest-v2",
+  "appId": "ai-akademie",
+  "version": "1.4.9",
+  "sourceRevision": null,
+  "sourcePackageSha256": "a9a20d4975ef2af106e66f11c9d9ce133a78226cad2d69bf4c93bec13a0a6ca2",
+  "createdAt": "2026-09-15T16:46:32.279Z",
+  "files": [
+    {
+      "path": "a12-tooling-internal-sha256.txt",
+      "size": 4335,
+      "sha256": "cc6eae1a55fb9f949283c1e5ecc727e919f1e7d022433fb912320f2b236d6ed8"
+    },
+    {
+      "path": "deployment-leak-scan.txt",
+      "size": 1530,
+      "sha256": "2939ff961f508ee0f45c77f014068cc6b134510a8d0f5141279f90c106a033fe"
+    },
+    {
+      "path": "garp-r12-delta-selftest.txt",
+      "size": 71,
+      "sha256": "29ce9eac1714118d29fc591e1f7e525c0872b779b10034122cf25fdaa5e8f3c9"
+    },
+    {
+      "path": "npm-test.txt",
+      "size": 293,
+      "sha256": "0b7b91ce00102fe4252833a9be32e6bce526f0d95f324df3d69fa0b45aef8bc5"
+    },
+    {
+      "path": "reproducible-build.txt",
+      "size": 176,
+      "sha256": "5b27c0b2852d4f6f22bdb44ee46e090ae821300cfb0c4572b4352d7b385f8127"
+    },
+    {
+      "path": "sbom-generation.txt",
+      "size": 100,
+      "sha256": "fa0cb2b0b0fb0e1c2cdd60fa4cf3009754b291a761b817557314e6f2e81c72d7"
+    },
+    {
+      "path": "secret-scan.txt",
+      "size": 119,
+      "sha256": "14d06af3553c163983eba7939925e51f0272f11891afb8c2d8ce122e856b18cc"
+    },
+    {
+      "path": "sw-security-freeze-auto-patch.txt",
+      "size": 48043,
+      "sha256": "d7f8e16fa20eaadf95720b1e2f159c2503290c6a6af1d5248ebe6503ce1c761d"
+    },
+    {
+      "path": "vendored-consistency.txt",
+      "size": 122,
+      "sha256": "63807f10c5e87838cf70e9cf638fcbdd49db3920da805655b89bd4bcfa3a354f"
+    }
+  ],
+  "externalFiles": [
+    {
+      "path": "APP-ai-akademie-GARP.txt",
+      "size": 6293,
+      "sha256": "529ed0f309eb8a4a3bdd9b3c6795bcb76ee1078d7e395263edbd2b8152b5ba0b"
+    },
+    {
+      "path": "RELEASE-NOTES-1.4.9.md",
+      "size": 762,
+      "sha256": "5921000aaa8e081e67a7122b029cb0aa07228dd09b695ca173566856c92e6e51"
+    },
+    {
+      "path": "package-lock.json",
+      "size": 248,
+      "sha256": "7250492dda570cfe9d8438478009dc1e970b83133eb56a78383df1822ec3a30b"
+    },
+    {
+      "path": "security/BUILD-INPUT-SOURCE-README.txt",
+      "size": 1034,
+      "sha256": "e5d393e63f21d85870e4c98338f11cf9fd1e7879340dd09e62a8a7e30f6d314f"
+    },
+    {
+      "path": "security/BUILD-PROFILE-ATTESTATION.txt",
+      "size": 763,
+      "sha256": "72c3b0b2cb3910a6902d2c0105c0f7df028718ec2f30eca6e119dec8b505fc92"
+    },
+    {
+      "path": "security/build-provenance.json",
+      "size": 1011,
+      "sha256": "99eb1b780609c3bd43857c1441fa90c0b8e62b2ff4ff3b8bb14175f58a5c8b7f"
+    },
+    {
+      "path": "security/garp25/CANONICAL-TOOLING.txt",
+      "size": 382,
+      "sha256": "cd7f98e68a7884213121f593e8caa41381338855b2bef14d001d741de257ba29"
+    },
+    {
+      "path": "security/garp25/POLICY-PINS/ai-akademie-required-evidence-policy.json",
+      "size": 990,
+      "sha256": "1ddb93f81f90e02c5030809dba35ac7df51028e8fdf2027cfd6402a6a0c3fc9e"
+    },
+    {
+      "path": "security/garp25/POLICY-PINS/ai-akademie-sw-security-freeze-policy.json",
+      "size": 672,
+      "sha256": "43520fab94a8dbc4ff2d6729468518db64d96298e2cb2e4ed58c51ebd93c90de"
+    },
+    {
+      "path": "security/garp25/POLICY-PINS/auto-patch-policy-index.json",
+      "size": 837,
+      "sha256": "c965f468208bd2d1cac2f741ae3401973dad76da38eefbe1de566cf9f5dcc7d8"
+    },
+    {
+      "path": "security/garp25/tools/check-sw-security-freeze.mjs",
+      "size": 79337,
+      "sha256": "490005530965e4b7b409b308aafba89238634852933ded38d5274274ceaecf9a"
+    },
+    {
+      "path": "security/garp25/tools/release-gate.mjs",
+      "size": 12664,
+      "sha256": "7b41b5b06fae38fa0bac70d719c6eb416db3889dbebfb254a3b1e98a7e5a3832"
+    },
+    {
+      "path": "security/garp25/tools/verify-assurance-links.mjs",
+      "size": 2363,
+      "sha256": "2f39dd9504c0f2a53b1ee09ef4820c7bb2cd3fc82fedf75a6a99713b58426375"
+    },
+    {
+      "path": "security/garp25/tools/verify-build-provenance.mjs",
+      "size": 5726,
+      "sha256": "2166caebc9ab67fd3911f1b9e5c8527ceb7236620ad39fd97f835e8dc81bdfde"
+    },
+    {
+      "path": "security/sbom/ai-akademie-1.4.9.cdx.json",
+      "size": 338,
+      "sha256": "7a57196ee3de771765a6cecb506d862a943bc70f6bc0d107fd049e531907ee87"
+    },
+    {
+      "path": "security/security-critical-assets.json",
+      "size": 295,
+      "sha256": "b6e59902a8d04ca5a2ea20cd67004b3602064b1bd5c631bdd457a865f83b2650"
+    },
+    {
+      "path": "security/sw-security-freeze-policy.json",
+      "size": 672,
+      "sha256": "43520fab94a8dbc4ff2d6729468518db64d96298e2cb2e4ed58c51ebd93c90de"
+    }
+  ]
+}

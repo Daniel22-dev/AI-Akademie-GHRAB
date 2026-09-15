@@ -1,0 +1,19 @@
+{
+  "schema": "ghrab-auto-patch-control-plane-v1",
+  "revision": "R12-AKADEMIE-AUTO-PATCH",
+  "rule": "AUTO-PATCH release gates fail closed unless the app is listed here, the signed release manifest and canonical policy require the authorized gate profile, and canonical policies are loaded from this A-tooling bundle.",
+  "apps": {
+    "differentiator": {
+      "swPolicy": "differentiator-sw-security-freeze-policy.json",
+      "requiredEvidencePolicy": "differentiator-required-evidence-policy.json",
+      "requiredGateProfile": "auto-patch-prep",
+      "autoPatchOnly": true
+    },
+    "ai-akademie": {
+      "swPolicy": "ai-akademie-sw-security-freeze-policy.json",
+      "requiredEvidencePolicy": "ai-akademie-required-evidence-policy.json",
+      "requiredGateProfile": "auto-patch-prep",
+      "autoPatchOnly": true
+    }
+  }
+}

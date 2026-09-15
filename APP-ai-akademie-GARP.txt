@@ -1,0 +1,65 @@
+GARP APPLICATION CARD — AI AKADEMIE GHRAB
+
+1. IDENTITA
+appId: ai-akademie
+Název: AI Akademie GHRAB
+Repozitář: AI-Akademie-GHRAB
+Aktuální verze: 1.4.9
+Verze standardu: GARP 2.5.1 GHRAB / A12 R12 AUTO-PATCH policy tooling
+SHA-256 kanonického A12 ZIPu: e9ddf9715a6335d5921f69e887e1339321d9448bbe41493eb773b64711e9dcf1
+Stav tohoto kola: auditni chyby A3-N1/A3-N2/A3-N3 jsou uzavrene. AUTO-PATCH-PREP je pro ai-akademie explicitne povoleny a musi projit fail-closed control-plane. SCHOOL zustava zamerne RED do IT/LIVE faze. School-server production release: NE.
+
+2. TRVALÁ KLASIFIKACE
+Třída dat: D0
+  odůvodnění: aplikace je prezentační a metodické centrum; runtime nevyžaduje jména, práce ani identifikátory studentů. Lokálně ukládá pouze stav UI, kvízů/checklistů a poslední otevřenou část.
+Povolená egress cesta: žádná aplikační AI/API egress; pouze same-origin načítání a same-origin dynamický import access runtime AI Studia pro volitelný admin návrat.
+AGENTIC: NO
+  ověřeno proti call grafu dne: 2026-09-15
+Deployment profil: A statický v PREP; cílově B school-server static za serverovou autorizací
+Build profil: school-server-prep, runtime-only deployment
+Service worker: ANO, ale bez offline runtime cache; same-origin runtime je network-only/no-store
+Vendorované komponenty: žádné lokální kopie sdílené bezpečnostní vrstvy
+
+3. TRVALÁ ROZHODNUTÍ
+KD-01 | AI-RED / SH-AI | N/A | Akademie v runtime nevolá LLM ani AI provider/gateway | ChatGPT | 2026-09-15
+KD-02 | SH-AG | N/A | žádný model, tool/MCP/shell ani autonomní akční loop | ChatGPT | 2026-09-15
+KD-03 | GH-01 vendored layer | N/A | aplikace nevendoruje platform/app-guard/error-reporter; Studio access runtime se načítá same-origin dynamickým importem | ChatGPT | 2026-09-15
+KD-04 | PWA offline access | FAIL-CLOSED | interní obsah se neprecacheuje; síťový výpadek nesmí odemknout starou cache | ChatGPT | 2026-09-15
+KD-05 | presenter bridge | SAME-ORIGIN OPENER ONLY | bez session capability v URL/hash a bez BroadcastChannel | ChatGPT | 2026-09-15
+
+4. REGISTR DLUHŮ
+DL-01 | MEDIUM | school-server route authorization není v PREP prostředí vynucena ani behaviorálně ověřena | přímý GitHub/static režim nepovažovat za soukromou bezpečnostní hranici | SHIELD-LIVE | serverová autorizace + DAST/access bypass test
+DL-02 | LOW | hlavní CSP obsahuje style-src 'unsafe-inline' kvůli stávajícím dynamickým prezentačním stylům | script-src zůstává self-only; žádné eval/new Function | před SCHOOL GREEN | odstranit inline style potřebu nebo schválit přesně ohraničenou výjimku
+DL-03 | MEDIUM PROCESS | formální GH-10 nezávislost zatím chybí, protože stejný ChatGPT systém provedl implementaci i auditní kola | zachovat reprodukovatelné důkazy pro jiný model/osobu | před finálním uzavřením | nezávislá reprodukce
+DL-04 | RELEASE BLOCKER GH-12 | právní původ/licence 24 image/SVG assetů není v dodaných podkladech doložen | žádný právní status se nevymýšlí | před SCHOOL/PUBLIC release | doplnit OWN WORK / SCHOOL-OWNED-AUTHORIZED / LICENSED / REPLACED pro každou položku
+
+5. NOT TESTED
+SHIELD-LIVE / RI-LIVE | školní server zatím není součástí tohoto kola | reálný serverový deployment
+DAST / served headers / TLS / HSTS | bez reálné URL nelze ověřit served stav | školní HTTPS endpoint
+SIM-07 kompletní browser SW update/recovery | lokálně je statický a behaviorální outage test PASS, ale celý browser lifecycle na stagingu chybí | staging/real browser test
+server-side access revocation | PREP statická aplikace nemá školní session boundary | školní auth/session vrstva
+produkční key custody/trusted builder | PREP používá disposable klíč a local-untrusted-builder | školní release pipeline
+
+6. HISTORIE KOL
+2026-09-15 | ChatGPT remediation+self-audit | input 1.4.6 SHA-256 2f5f3d0734938f71df03f6cd4924fc827a239c9d594d0def85e30daaa1f4fa77 | 1.4.7 | KANDIDAT-BEZPECNOST-AI-AKADEMIE-1.4.7.txt
+2026-09-15 | clean-room druhý audit | 1.4.7 | OVERALL RED kvůli HIGH provenance/tooling fail-open + MEDIUM offline revocation | NEZAVISLY-AUDIT-2-AI-AKADEMIE-1.4.7.txt
+2026-09-15 | opravné kolo R11 | 1.4.8 | AKA2-N1..N4 CLOSED; PREP gate GREEN 8/8; school profil očekávaně RED na local-untrusted-builder | KANDIDAT-BEZPECNOST-AI-AKADEMIE-1.4.8.txt
+
+7. REVALIDACE
+Znovu otevřít při změně service workeru, storage modelu, propojení se Studiem, přidání API/AI, importu souborů, autentizace/autorizace, serverového deploymentu nebo PWA identity.
+
+8. UZAVŘENÍ OPRAVNÉHO KOLA 1.4.8
+AKA2-N1 provenance binding: CLOSED — R11 verifier váže actual BUILD-INPUT-SOURCE.zip na provenance i podepsaný RI manifest a váže provenance artifactDigest na RI artifactDigest; negativní varianty FAIL.
+AKA2-N2 offline revocation: CLOSED — interní runtime není offline cacheován; simulovaný network outage končí rejectem a 0 cache-match calls.
+AKA2-N3 school 404: CLOSED — externí CSP-kompatibilní redirect modul, behaviorálně otestované školní/GitHub/root varianty.
+AKA2-N4 presenter capability: CLOSED — odstraněn URL/hash session token a BroadcastChannel; konzole používá pouze same-origin window.opener.
+
+
+9. OPRAVNE KOLO 1.4.9 / R12
+2026-09-15 | R12 assurance-link + builder-policy remediation | 1.4.9 | A3-N1/A3-N2/A3-N3 CLOSED in code/tooling; PREP assurance links fail-closed; SCHOOL builder policy deny-unless-listed | KANDIDAT-BEZPECNOST-AI-AKADEMIE-1.4.9.txt
+
+- A3-N1: CLOSED by mandatory verify-assurance-links.mjs comparing actual provenance/evidence/SBOM bytes with SHA-256 anchors inside signed release-integrity.json.
+- A3-N2: CLOSED by canonical POLICY-PINS/school-builder-policy.json with deny-unless-listed semantics and exact builder/workflow/entrypoint matching.
+- A3-N3: CLOSED by requiring project-root in SCHOOL profile and regenerating the evidence manifest only after all external evidence files are final.
+- SCHOOL GREEN remains intentionally unavailable until school IT pins the real trusted builder/workflow in canonical A-tooling and LIVE/server controls are tested.
+AUTO-PATCH-PREP: canonical policy binding enabled; final signed gate result is recorded in security/post-release-auto-patch/.

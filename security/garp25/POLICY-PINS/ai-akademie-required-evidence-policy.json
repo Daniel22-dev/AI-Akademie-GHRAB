@@ -1,0 +1,24 @@
+{
+  "schema": "ghrab-required-evidence-policy-v1",
+  "appId": "ai-akademie",
+  "minimumExternalFiles": 8,
+  "requiredExternalFiles": [
+    "security/garp25/POLICY-PINS/auto-patch-policy-index.json",
+    "security/garp25/POLICY-PINS/ai-akademie-sw-security-freeze-policy.json",
+    "security/garp25/POLICY-PINS/ai-akademie-required-evidence-policy.json",
+    "security/garp25/tools/check-sw-security-freeze.mjs",
+    "security/garp25/tools/release-gate.mjs",
+    "security/garp25/tools/verify-assurance-links.mjs",
+    "security/security-critical-assets.json",
+    "security/sw-security-freeze-policy.json"
+  ],
+  "requiredExternalGlobs": [],
+  "rule": "AI Akademie AUTO-PATCH requires the canonical control-plane policy, byte-identical app-local SW freeze policy, release gate/assurance tooling and signed SBOM anchor evidence.",
+  "requiredReleaseAnchors": [
+    {
+      "glob": "security/sbom/*.cdx.json",
+      "releaseManifestField": "sbomSha256",
+      "minimumMatches": 1
+    }
+  ]
+}

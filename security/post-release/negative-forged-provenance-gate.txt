@@ -1,0 +1,84 @@
+{
+  "gate": "GARP-2.5.1-RELEASE-GATE-R12",
+  "profile": "prep",
+  "status": "RED",
+  "serviceWorker": "/mnt/data/aka149_neg_final/forged-provenance/dist-school-server/sw.js",
+  "criticalAssetList": "/mnt/data/aka149_neg_final/forged-provenance/security/security-critical-assets.json",
+  "stepsRun": 8,
+  "steps": [
+    {
+      "step": "deployment-leaks",
+      "script": "scan-deployment-leaks.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "detail": "{\n  \"status\": \"PASS\",\n  \"root\": \"/mnt/data/aka149_neg_final/forged-provenance/dist-school-server\",\n  \"info\": [\n    \"INFO-binary-not-scanned:assets/apps/ai-literacy.png\",\n    \"INFO-binary-not-scanned:assets/apps/correspondence.png\",\n    \"INFO-binary-not-scanned:assets/apps/differentiator.png\",\n    \"INFO-binary-not-scanned:assets/apps/essay-evaluator-v2.png\",\n    \"INFO-binary-not-scanned:assets/apps/generator.png\",\n    \"INFO-binary-not-scanned:assets/apps/ludus.png\",\n    \"INFO-binary-not-scanned:assets/brand/apple-touch-icon.png\",\n    \"INFO-binary-not-scanned:assets/brand/icon-192.png\",\n    \"INFO-binary-not-scanned:assets/brand/icon-32.png\",\n    \"INFO-binary-not-scanned:assets/brand/icon-512-maskable.png\",\n    \"INFO-binary-not-scanned:assets/brand/icon-512.png\",\n    \"INFO-binary-not-scanned:assets/brand/portal-gateway.png\",\n    \"INFO-binary-not-scanned:assets/brand/school-logo.png\",\n    \"INFO-binary-not-scanned:assets/course-icons/administrator.png\",\n    \"INFO-binary-not-scanned:assets/course-icons/ai-literacy.png\",\n    \"INFO-binary-not-scanned:assets/course-icons/correspondence.png\",\n    \"INFO-binary-not-scanned:assets/course-icons/differentiator.png\",\n    \"INFO-binary-not-scanned:assets/course-icons/evaluator.png\",\n    \"INFO-binary-not-scanned:assets/course-icons/generator.png\",\n    \"INFO-binary-not-scanned:assets/course-icons/github.png\",\n    \"INFO-binary-not-scanned:assets/course-icons/ludus.png\",\n    \"INFO-binary-not-scanned:assets/course-icons/start.png\",\n    \"INFO-binary-not-scanned:assets/course-icons/workflow.png\"\n  ]\n}"
+    },
+    {
+      "step": "release-integrity",
+      "script": "verify-release-integrity.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "detail": "{\n  \"status\": \"VERIFIED\",\n  \"files\": 60,\n  \"artifactDigest\": \"52b708c3faf2718bf4ad6e33b8aeb13f76c9910fc1d3de7717c5d739eeee1f07\"\n}"
+    },
+    {
+      "step": "release-signature",
+      "script": "verify-release-signature.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "detail": "{\n  \"status\": \"VERIFIED\",\n  \"algorithm\": \"Ed25519\",\n  \"keyId\": \"ai-akademie-prep-20260915-r3\",\n  \"keyStatus\": \"active\"\n}"
+    },
+    {
+      "step": "release-registry",
+      "script": "verify-release-registry.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "detail": "{\n  \"status\": \"APPROVED\",\n  \"appId\": \"ai-akademie\",\n  \"version\": \"1.4.9\",\n  \"artifactDigest\": \"52b708c3faf2718bf4ad6e33b8aeb13f76c9910fc1d3de7717c5d739eeee1f07\",\n  \"keyId\": \"ai-akademie-prep-20260915-r3\"\n}"
+    },
+    {
+      "step": "build-provenance",
+      "script": "verify-build-provenance.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "detail": "{\n  \"status\": \"PASS\",\n  \"subjectSha256\": \"7afa667f673996a757c01e169fc084ce3c0b483b85ab9b6102e48af541a799b7\",\n  \"builderId\": \"synthetic-trusted-school-builder\",\n  \"builderWorkflow\": null,\n  \"sourceRevision\": null,\n  \"builderPolicy\": null,\n  \"warnings\": []\n}"
+    },
+    {
+      "step": "evidence-manifest",
+      "script": "verify-evidence-manifest.mjs",
+      "status": "FAIL",
+      "exitCode": 1,
+      "detail": "{\n  \"status\": \"FAIL\",\n  \"errors\": [\n    \"unexpected:build-school-server.txt\",\n    \"unexpected:deployment-leak-scan.txt\",\n    \"unexpected:garp-r12-delta-selftest.txt\",\n    \"unexpected:npm-test.txt\",\n    \"unexpected:provenance-create.txt\",\n    \"unexpected:provenance-preverify.txt\",\n    \"unexpected:reproducible-build.txt\",\n    \"unexpected:ri-pre-artifact-digest.txt\",\n    \"unexpected:sbom-generation.txt\",\n    \"unexpected:secret-scan.txt\",\n    \"unexpected:sw-security-freeze.txt\",\n    \"unexpected:vendored-consistency.txt\",\n    \"missing:round-3/build-school-server.txt\",\n    \"missing:round-3/deployment-leak-scan.txt\",\n    \"missing:round-3/garp-r12-delta-selftest.txt\",\n    \"missing:round-3/npm-test.txt\",\n    \"missing:round-3/provenance-create.txt\",\n    \"missing:round-3/provenance-preverify.txt\",\n    \"missing:round-3/reproducible-build.txt\",\n    \"missing:round-3/ri-pre-artifact-digest.txt\",\n    \"missing:round-3/sbom-generation.txt\",\n    \"missing:round-3/secret-scan.txt\",\n    \"missing:round-3/sw-security-freeze.txt\",\n    \"missing:round-3/vendored-consistency.txt\"\n  ],\n  \"requiredPolicy\": null,\n  \"releaseManifest\": null\n}"
+    },
+    {
+      "step": "assurance-links",
+      "script": "verify-assurance-links.mjs",
+      "status": "FAIL",
+      "exitCode": 1,
+      "detail": "{\n  \"status\": \"FAIL\",\n  \"errors\": [\n    \"buildProvenanceSha256:signed-anchor-mismatch\",\n    \"evidenceManifestSha256:signed-anchor-mismatch\"\n  ],\n  \"actual\": {\n    \"buildProvenanceSha256\": \"503ac71704ba9d04498d4ecfad5ddec5ad935b5381536130a2ba685f68c135fc\",\n    \"evidenceManifestSha256\": \"3934ef03002cc1b3281c0471adc6ced574ef49587d410f061d123ceb101f9458\",\n    \"sbomSha256\": \"de2f4b668411ddfe70b7b2d54ec519944d570346a8176eb8782190c74088d432\"\n  }\n}"
+    },
+    {
+      "step": "sw-security-freeze",
+      "script": "check-sw-security-freeze.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "detail": "{\n  \"status\": \"PASS\",\n  \"serviceWorker\": \"/mnt/data/aka149_neg_final/forged-provenance/dist-school-server/sw.js\",\n  \"criticalListSource\": \"/mnt/data/aka149_neg_final/forged-provenance/security/security-critical-assets.json\",\n  \"precachedEntries\": 0,\n  \"precacheSources\": [],\n  \"unresolvedCacheWrites\": [],\n  \"cacheFirstDetected\": false,\n  \"structuralNetworkOnlyGuard\": true,\n  \"structuralGuard\": {\n    \"pass\": true,\n    \"condition\": \"isSecurityCriticalRequest(url, scopePath)\",\n    \"preGuardRespondWith\": false,\n    \"hasRespondWithNetworkOnly\": true,\n    \"hasReturn\": true,\n    \"branchBeforeCacheFirst\": true\n  },\n  \"securityFunctionIdentity\": [\n    {\n      \"name\": \"isSecurityCriticalRequest\",\n      \"declarations\": 1,\n      \"assignments\": 0,\n      \"references\": 2,\n      \"required\": true,\n      \"pass\": true\n    },\n    {\n      \"name\": \"networkOnlyNoStore\",\n      \"declarations\": 1,\n      \"assignments\": 0,\n      \"references\": 3,\n      \"required\": true,\n      \"pass\": true\n    },\n    {\n      \"name\": \"networkFirst\",\n      \"declarations\": 0,\n      \"assignments\": 0,\n      \"references\": 0,\n      \"required\": false,\n      \"pass\": true\n    },\n    {\n      \"name\": \"cacheFirst\",\n      \"declarations\": 0,\n      \"assignments\": 0,\n      \"references\": 0,\n      \"required\": false,\n      \"pass\": true\n    },\n    {\n      \"name\": \"isRuntimeRequest\",\n      \"declarations\": 0,\n      \"assignments\": 0,\n      \"references\": 0,\n      \"required\": false,\n      \"pass\": true\n    }\n  ],\n  \"globalDependencyIdentity\": [\n    {\n      \"name\": \"fetch\",\n      \"declarations\": 0,\n      \"bareAssignments\": 0,\n      \"memberAssignmen"
+    }
+  ],
+  "skippedSteps": [
+    {
+      "step": "ai-assurance-fingerprint",
+      "reason": "no-ai-assurance-inputs-detected"
+    },
+    {
+      "step": "vendored-consistency",
+      "reason": "vendored-config-not-provided"
+    }
+  ],
+  "autoPatchControlPlane": null,
+  "artifactProfileBinding": {
+    "appId": "ai-akademie",
+    "signedRequiredGateProfile": null,
+    "canonicalRequiredGateProfile": null
+  },
+  "schoolBuilderPolicy": null,
+  "note": "PREP may explicitly use local-untrusted-builder. If assurance inputs are supplied, R12 binds them to the signed release manifest. PREP GREEN is not school-server LIVE GREEN."
+}

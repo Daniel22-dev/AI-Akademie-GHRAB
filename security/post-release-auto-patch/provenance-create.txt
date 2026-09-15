@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "output": "security/build-provenance.json",
+  "subjectSha256": "49227f497d82f207d09bd466d5cb1cc2e12a91aa181ad25f892c75d675941e99"
+}

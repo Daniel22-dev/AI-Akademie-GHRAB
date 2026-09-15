@@ -1,0 +1,6 @@
+{
+  "status": "FAIL",
+  "errors": [
+    "builder-policy-no-match"
+  ]
+}

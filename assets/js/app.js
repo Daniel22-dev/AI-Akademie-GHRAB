@@ -18,22 +18,8 @@ let updateReloadRequested = false;
 let changelogReturnFocus = null;
 let studioAdminBridge = { verified: false, visible: false, studioUrl: '' };
 
-function createPresenterSessionId() {
-  const fallback = crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-  try {
-    const stored = sessionStorage.getItem('ghrab-presenter-session');
-    if (stored) return stored;
-    sessionStorage.setItem('ghrab-presenter-session', fallback);
-  } catch {
-    // Některé soukromé režimy blokují sessionStorage. Relace pak žije jen v paměti této karty.
-  }
-  return fallback;
-}
-
-const presenterSessionId = createPresenterSessionId();
-const presenterChannelName = `ghrab-academy-presenter-${presenterSessionId}`;
-const presenterChannel = 'BroadcastChannel' in window ? new BroadcastChannel(presenterChannelName) : null;
-
+// Konzole školitele komunikuje pouze s oknem, které Akademie sama otevřela.
+// Žádný capability/session identifikátor se nepřenáší v URL ani přes globální cross-tab kanál.
 const icons = {
   arrowLeft: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>',
   arrowRight: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>',
@@ -252,7 +238,6 @@ function presenterPayload() {
 function sendPresenterState() {
   const payload = presenterPayload();
   if (!payload) return;
-  presenterChannel?.postMessage({ type: 'state', sessionId: presenterSessionId, payload });
   try {
     if (presenterConsoleWindow && !presenterConsoleWindow.closed && typeof presenterConsoleWindow.renderPresenterState === 'function') {
       presenterConsoleWindow.renderPresenterState(payload);
@@ -326,7 +311,6 @@ function openPresenterConsole() {
   const context = currentCourseContext();
   if (!context) return;
   const consoleUrl = new URL('./console.html', location.href);
-  consoleUrl.searchParams.set('session', presenterSessionId);
   const popup = window.open(consoleUrl.href, 'ghrab-presenter-console', 'popup=yes,width=590,height=900,resizable=yes,scrollbars=yes');
   if (!popup) {
     toast('Prohlížeč zablokoval okno konzole. Povolte vyskakovací okna pro tuto stránku.');
@@ -338,9 +322,6 @@ function openPresenterConsole() {
 }
 
 window.__ghrabPresenterCommand = handlePresenterCommand;
-presenterChannel?.addEventListener('message', event => {
-  if (event.data?.type === 'command') handlePresenterCommand(event.data);
-});
 
 function resolveStudioUrl() {
   if (!['http:', 'https:'].includes(location.protocol)) return null;

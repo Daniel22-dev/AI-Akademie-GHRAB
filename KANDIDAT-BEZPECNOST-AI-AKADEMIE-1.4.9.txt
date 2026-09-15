@@ -1,0 +1,241 @@
+======================================================================
+AI AKADEMIE GHRAB 1.4.9 — GARP 2.5.1 SHIELD-PREP / R12
+OPRAVNE KOLO PO NEZAVISLEM AUDITU 1.4.8
+Datum: 2026-09-15
+======================================================================
+
+0. VERDIKT
+----------------------------------------------------------------------
+PREP release gate R12: GREEN.
+SCHOOL release gate R12: RED — OCEKAVANE A SPRAVNE FAIL-CLOSED.
+OVERALL lokalniho PREP kola: AMBER.
+School-server production approval: NE.
+Realna studentska data: NEPOUZIVAT do LIVE/school schvaleni.
+
+Duvod, proc OVERALL neni GREEN:
+- SCHOOL builder policy je zamerne deny-unless-listed a zatim nema IT pripnuty
+  realny trusted builder/workflow;
+- serverova autorizace, HTTPS/HSTS/TLS, DAST a LIVE integrity/alerting nejsou
+  lokalnim PREP kolem prokazany;
+- GH-10 formalni nezavislost vyzaduje pozdejsi reprodukci jinou osobou/modelem;
+- GH-12 pravni puvod/licence 24 image/SVG assetu zustava auditne nedolozen;
+- CSP style-src 'unsafe-inline' zustava LOW dluh pred SCHOOL GREEN.
+
+Nove HIGH/MEDIUM blokatory nalezene v kole 3 na 1.4.8 jsou uzavrene.
+
+1. OPRAVENE NALEZY KOLA 3
+----------------------------------------------------------------------
+A3-N1 | HIGH | CLOSED
+Problem 1.4.8/R11:
+- release-integrity.json sice nesl buildProvenanceSha256, evidenceManifestSha256
+  a sbomSha256, ale release gate je nevynucoval proti skutecne predlozenym
+  souborum; forged provenance/evidence mohl projit.
+Oprava R12:
+- novy povinny verify-assurance-links.mjs;
+- SCHOOL a AUTO-PATCH-PREP vyzaduji provenance + evidence manifest + SBOM;
+- PREP, pokud assurance vstupy poskytne, je take fail-closed;
+- hash kazdeho skutecneho assurance souboru se musi rovnat podepsanemu anchoru
+  v release-integrity.json.
+Finalni negativni kontrola 1.4.9:
+- forged provenance + znovu sesouhlaseny evidence manifest, podepsany RI beze
+  zmeny -> RED;
+- buildProvenanceSha256:signed-anchor-mismatch;
+- evidenceManifestSha256:signed-anchor-mismatch.
+STATUS: CLOSED.
+
+A3-N2 | HIGH | CLOSED
+Problem 1.4.8/R11:
+- SCHOOL verifier odmital pouze local-untrusted-builder; libovolny jiny
+  neprázdny builder ID mohl byt povazovan za trusted.
+Oprava R12:
+- kanonicky POLICY-PINS/school-builder-policy.json;
+- schema ghrab-school-builder-policy-v1;
+- mode deny-unless-listed;
+- builder ID musi byt explicitne v allowlistu;
+- pokud policy pripina workflow/entrypoint, musi se shodovat presne;
+- vychozi allowlist je zamerne prazdny, dokud IT neurci skutecny trusted
+  builder/workflow.
+Finalni negativni kontrola:
+- synthetic-trusted-school-builder -> FAIL builder-policy-no-match.
+- cisty SCHOOL gate s local-untrusted-builder -> RED.
+STATUS: CLOSED / SCHOOL stale fail-closed podle navrhu.
+
+A3-N3 | MEDIUM | CLOSED
+Problem 1.4.8:
+- evidence manifest mohl byt stale po pozdejsi zmene externiho anchoru;
+- SCHOOL cesta mohla byt spustena bez project-root a tim neoverit externi
+  evidence.
+Oprava 1.4.9/R12:
+- SCHOOL povinne vyzaduje project-root i SBOM;
+- evidence se zmrazuje pred finalnim RI podpisem;
+- APP karta byla finalne aktualizovana PRED poslednim zmrazenim evidence;
+- pote byl znovu vytvoren evidence manifest, RI manifest a podpis.
+Finalni negativni kontrola:
+- zmena APP-ai-akademie-GARP.txt -> FAIL external-size + external-sha256.
+STATUS: CLOSED.
+
+2. KANONICKY R12 TOOLING
+----------------------------------------------------------------------
+Balik:
+A12-GARP-2.5.1-ZAVEDENI-TOOLING-R2-R12-AI-AKADEMIE-AUTO-PATCH-POLICY.zip
+SHA-256:
+e9ddf9715a6335d5921f69e887e1339321d9448bbe41493eb773b64711e9dcf1
+
+R12 delta selftest: 10/10 PASS.
+Pokryva mimo jine:
+- clean assurance links;
+- forged provenance FAIL;
+- forged evidence FAIL;
+- forged SBOM FAIL;
+- arbitrary builder FAIL;
+- workflow mismatch FAIL;
+- PREP gate s korektnimi signed anchors GREEN;
+- SCHOOL s prazdnou builder policy RED.
+
+Historicky R11 baseline pred R12: 117/117 PASS.
+Uplny dlouhy historicky SW corpus R12 nebyl v tomto omezenem kontejneru znovu
+cely dokoncen, protoze jeho sekvencni beh presahl tool-session timeout. Neni
+proto uvaden zadny smysleny kombinovany pocet. R12 delta 10/10 byla spustena
+samostatne a finalne znovu PASS; stare SW ochrany nebyly v R12 funkcne meneny.
+
+3. BUILD-INPUT / REPRODUKOVATELNOST
+----------------------------------------------------------------------
+Kanonicky build input:
+AI-Akademie-GHRAB-1.4.9-BUILD-INPUT-SOURCE.zip
+SHA-256:
+564ed1edc3d9249b32f53d5cc1ac08e5c15f9a9a44cc651bf91558ea3494c116
+
+Build input obsahuje explicitni runtime zdroje, courses/assets/scripts,
+package metadata a R12 security tooling/config. Post-release evidence,
+provenance, RI a auditni texty nejsou soucasti build-inputu.
+
+Dva ciste rebuildy:
+- 60 runtime souboru;
+- byte-for-byte shoda;
+- tree digest:
+  ec1e4756a3b0c45dfac05b18b478b143783655eb4426fa4d437897dcf7b45bab
+
+Unsigned school payload:
+AI-Akademie-GHRAB-1.4.9-SCHOOL-PAYLOAD.zip
+SHA-256:
+7afa667f673996a757c01e169fc084ce3c0b483b85ab9b6102e48af541a799b7
+
+4. FINALNI SIGNED RELEASE CHAIN
+----------------------------------------------------------------------
+Version: 1.4.9
+Build ID: ai-akademie-1.4.9-prep-20260915-r4
+Key ID: ai-akademie-prep-20260915-r3
+Key usage: disposable PREP; private key po finalnim podpisu smazan.
+
+Runtime fileCount: 60
+artifactDigest:
+52b708c3faf2718bf4ad6e33b8aeb13f76c9910fc1d3de7717c5d739eeee1f07
+
+sourcePackageSha256:
+564ed1edc3d9249b32f53d5cc1ac08e5c15f9a9a44cc651bf91558ea3494c116
+
+buildProvenanceSha256:
+ec32a1663113d380907c8c4ce95b441fc215ef75e7c231c6d0204413f8ae29cc
+
+evidenceManifestSha256:
+1171e538e48c170bed6c9a6c72fe46df45bf1d353142a9ead08180a64d49e829
+
+sbomSha256:
+de2f4b668411ddfe70b7b2d54ec519944d570346a8176eb8782190c74088d432
+
+Finalni RI manifest SHA-256:
+123d8aa8e3015256d41afe37db831c7dbf96205e5f43393cbc749e10eb81cfe3
+
+Direct verification:
+- release integrity: VERIFIED;
+- Ed25519 signature: VERIFIED;
+- PREP registry: APPROVED;
+- build provenance: PASS PREP;
+- evidence manifest: PASS;
+- signed assurance links: PASS.
+
+5. FINALNI RELEASE GATE
+----------------------------------------------------------------------
+PREP profile:
+- deployment-leaks PASS;
+- release-integrity PASS;
+- release-signature PASS;
+- release-registry PASS;
+- build-provenance PASS;
+- evidence-manifest PASS;
+- assurance-links PASS;
+- sw-security-freeze PASS;
+=> GREEN.
+
+SCHOOL profile:
+- release-integrity/signature/registry/evidence/assurance/SW: PASS;
+- build provenance: FAIL
+  builder-untrusted:local-untrusted-builder
+  builder-policy-no-match
+- canonical school builder allowlist: 0 entries.
+=> RED, spravne fail-closed.
+
+Tento SCHOOL RED neni regresni chyba. Je to pozadovany stav, dokud skolni IT
+nepripne skutecny builder/workflow do kanonicke A-tooling policy a nevznikne
+trusted school build.
+
+6. FINALNI NEGATIVNI KONTROLY
+----------------------------------------------------------------------
+- forged provenance + odpovidajici forged evidence manifest -> GATE RED;
+  signed assurance anchor mismatch.
+- arbitrary non-empty builder ID -> FAIL builder-policy-no-match.
+- forged SBOM -> GATE RED; evidence mismatch + sbom signed-anchor mismatch.
+- stale APP external evidence -> FAIL external size/SHA-256.
+- one-byte/runtime index tamper -> TAMPERED.
+- missing release-integrity.sig -> UNVERIFIED.
+
+Vsechny mutace byly provedeny pouze v disposable kopiich.
+
+7. APLIKACNI REGRESE / RUNTIME
+----------------------------------------------------------------------
+- npm test: PASS.
+- 10 skoleni, 68 lekci, 26 vyraznych vizualnich bloku, verze 1.4.9.
+- SW: zadny runtime precache/offline fallback pro interní Akademii;
+  network-only/no-store chovani zachovano.
+- presenter: bez capability/session tokenu v URL a bez BroadcastChannel;
+  same-origin opener model z 1.4.8 zachovan.
+- 404 school/GitHub routing oprava zachovana.
+- AI/LLM runtime volani: zadne.
+- studentsky datovy ingress: zadny; D0.
+
+8. ZUSTAVAJICI OTEVRENE BODY
+----------------------------------------------------------------------
+OPEN-LIVE-01 | server-side route authorization/direct URL bypass test.
+OPEN-LIVE-02 | served CSP/HSTS/TLS a DAST na skutecne HTTPS URL.
+OPEN-LIVE-03 | produkcni trusted builder + key custody/rotation/recovery.
+OPEN-LIVE-04 | LIVE Integrity Service / app-guard / alerting/watchdog podle finalniho provozu.
+OPEN-GH10    | formalni nezavisle prijeti jinou osobou/modelem.
+OPEN-GH12    | pravni evidence 24 image/SVG assetu.
+OPEN-CSP     | LOW: style-src 'unsafe-inline' pred SCHOOL GREEN odstranit nebo formalne ohranicit.
+
+9. KONECNY STAV
+----------------------------------------------------------------------
+A3-N1: CLOSED.
+A3-N2: CLOSED.
+A3-N3: CLOSED.
+R12 PREP: GREEN.
+AUTO-PATCH-PREP: GREEN 9/9 (final signed chain).
+SCHOOL: RED EXPECTED / FAIL-CLOSED PENDING IT BUILDER POLICY + LIVE TESTS.
+OVERALL PREP: AMBER.
+PRODUCTION APPROVAL: NE.
+
+======================================================================
+KONEC PROTOKOLU
+======================================================================
+
+10. AUTO-PATCH FINAL
+----------------------------------------------------------------------
+AUTO-PATCH-PREP profile: GREEN 9/9.
+PASS: deployment-leaks, release-integrity, release-signature, release-registry,
+build-provenance, evidence-manifest, assurance-links, sw-security-freeze,
+vendored-consistency.
+Signed requiredGateProfile: auto-patch-prep.
+Canonical requiredGateProfile: auto-patch-prep.
+AI Akademie is explicitly authorized in canonical A12 control-plane policy.
+SCHOOL/LIVE remains a separate later deployment phase and is not required for
+AUTO-PATCH-PREP acceptance.

@@ -1,0 +1,32 @@
+AI AKADEMIE 1.4.9 — ATTACK SURFACE INVENTORY
+Datum: 2026-09-15
+
+ENTRY POINTS / RUNTIME CESTY
+1. index.html -> assets/js/app.js: hlavní statická PWA, hash router.
+2. console.html -> assets/js/console.js: lokální konzole školitele; komunikuje pouze s oknem Akademie přes ověřený same-origin window.opener, bez URL capability a bez BroadcastChannel.
+3. exports/*.html: 10 samostatných statických účastnických exportů; bez poznámek školitele; žádný reimport do Akademie.
+4. sw.js: PWA update lifecycle bez offline runtime cache; veškerý same-origin runtime je network-only/no-store a při aktivaci se mažou staré cache Akademie.
+5. volitelný same-origin import AI Studia: pouze allowlisted /AI-Studio-GHRAB/ nebo /ai-studio/ + access/access-control.js; při chybě se admin návrat nezobrazí.
+
+VSTUPY
+- vyhledávací text v katalogu;
+- kliknutí, checkboxy, odpovědi kvízu;
+- hash route;
+- query `studio` pouze same-origin + přesná allowlist cesta;
+- query `from=ai-studio`;
+- lokální UI state z localStorage; sessionStorage už nenese prezentační capability.
+
+NEEXISTUJÍCÍ HRANICE
+- žádný formulář pro jméno/studentský text;
+- žádný upload/import souboru;
+- žádný backend/API endpoint v tomto artefaktu;
+- žádné runtime LLM/provider volání;
+- žádné agentní/tool/MCP/shell schopnosti.
+
+SINKY / EXECUTION
+- innerHTML se používá pro šablony tvořené z důvěryhodných kurzových zdrojů; dynamické textové hodnoty jsou vedeny přes escapeHtml.
+- žádné eval/new Function/document.write.
+- CSP script-src 'self'; style-src zatím obsahuje 'unsafe-inline' (evidovaný LOW dluh).
+
+SERVER / AUTH
+PREP build je statický a sám nevynucuje route authorization. Cílový school-server musí chránit cestu /apps/ai-akademie/ na serverové vrstvě. Skrytá záložka či admin-return link nejsou autorizační hranice.

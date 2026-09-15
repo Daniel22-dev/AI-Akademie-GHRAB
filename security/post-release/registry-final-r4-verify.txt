@@ -1,0 +1,7 @@
+{
+  "status": "APPROVED",
+  "appId": "ai-akademie",
+  "version": "1.4.9",
+  "artifactDigest": "52b708c3faf2718bf4ad6e33b8aeb13f76c9910fc1d3de7717c5d739eeee1f07",
+  "keyId": "ai-akademie-prep-20260915-r3"
+}

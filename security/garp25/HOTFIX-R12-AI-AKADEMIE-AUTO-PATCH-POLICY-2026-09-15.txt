@@ -1,0 +1,8 @@
+GARP 2.5.1 R12 - AI AKADEMIE AUTO-PATCH POLICY BINDING
+Date: 2026-09-15
+
+Scope is policy-only. No release-gate/checker logic is changed.
+- authorizes appId ai-akademie for requiredGateProfile auto-patch-prep;
+- pins the current fail-closed AI Akademie service worker by normalized SHA-256;
+- requires the AI Akademie AUTO-PATCH evidence minimum and signed SBOM anchor.
+Normalized SW SHA-256: f6b9f9a11c16df0cca19dbceafde6c72a6ea5048f561a254c6a7938faa946359

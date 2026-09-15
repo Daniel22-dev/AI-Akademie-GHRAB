@@ -1,0 +1,10 @@
+AI AKADEMIE 1.4.9 — GARP 2.5.1 THREAT MODEL
+
+Chráněná aktiva: integrita školících materiálů, interní poznámky školitele, lokální UI stav, PWA aktualizační cesta, vazba na AI Studio a release-integrity metadata.
+D0 data: aplikace nemá provozní potřebu pracovat se studentskými jmény, pracemi ani identifikátory. Testy používají pouze syntetická data.
+Trust boundaries: prohlížeč/localStorage; service worker update boundary; same-origin Studio access runtime import; build/release supply chain; budoucí reverse proxy/server auth.
+Hlavní hrozby: XSS přes chybné renderování, manipulace localStorage, zneužití presenter okna, offline přežití obsahu po revokaci, rollback/tamper deploymentu, přímý přístup mimo budoucí serverovou autorizaci.
+AI: N/A — žádná runtime AI cesta. AGENTIC=NO.
+LIVE-only rizika: skutečné serverové access control, served CSP/HSTS/TLS, revokace session, DAST, produkční key custody a watchdog/alerting.
+
+Mitigace 1.4.9: presenter je opener-only bez URL capability; SW runtime je network-only/no-store a staré cache jsou purgeovány; provenance je fail-closed vázána na skutečný source snapshot a podepsaný artifactDigest.

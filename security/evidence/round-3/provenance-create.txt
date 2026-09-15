@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "output": "/mnt/data/aka149_work/security/build-provenance.json",
+  "subjectSha256": "7afa667f673996a757c01e169fc084ce3c0b483b85ab9b6102e48af541a799b7"
+}

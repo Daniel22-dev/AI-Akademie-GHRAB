@@ -1,8 +1,33 @@
-export const APP_VERSION = '1.4.6';
+export const APP_VERSION = '1.4.9';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.4.9',
+    date: '15. 9. 2026',
+    title: 'GARP R12 assurance chain hardening',
+    changes: [
+      'Podepsany release manifest nyni povinne kryptograficky vaze provenance, evidence manifest a SBOM na skutecne predlozene soubory.',
+      'School builder je fail-closed a musi odpovidat kanonickemu allowlistu vcetne workflow/entrypointu, pokud jsou pripnute.',
+      'Evidence je znovu zmrazena az po finalizaci vsech externich souboru, aby nevznikal stale evidence manifest.'
+    ]
+  },
+  {
+    version: '1.4.8',
+    title: 'GARP provenance a fail-closed PWA hardening',
+    changes: [
+      'Přesná build provenance je nově vázána na konkrétní BUILD-INPUT-SOURCE snapshot a podepsaný artifactDigest.',
+      'Service worker už neuchovává interní obsah Akademie offline; při nedostupném serveru selže uzavřeně.',
+      'Konzole školitele nepřenáší identifikátor relace v URL a 404 přesměrování je kompatibilní se školní cestou.'
+    ]
+  },
+  {
+    version: '1.4.7',
+    date: '15. 9. 2026',
+    title: 'GARP 2.5.1 SHIELD-PREP a oddělený deployment',
+    detail: 'Doplněna release-integrity vrstva, oddělený school-server build, GARP security tooling, SBOM/provenance/evidence a fail-closed Service Worker výjimka pro integritní artefakty. Funkční obsah školení zůstává beze změny.'
+  },
   {
     version: '1.4.6',
     date: '14. 9. 2026',

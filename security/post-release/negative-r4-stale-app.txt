@@ -1,0 +1,9 @@
+{
+  "status": "FAIL",
+  "errors": [
+    "external-size:APP-ai-akademie-GARP.txt",
+    "external-sha256:APP-ai-akademie-GARP.txt"
+  ],
+  "requiredPolicy": null,
+  "releaseManifest": null
+}

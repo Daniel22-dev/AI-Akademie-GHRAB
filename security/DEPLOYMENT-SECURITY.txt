@@ -1,0 +1,4 @@
+AI AKADEMIE 1.4.9 — DEPLOYMENT SECURITY HANDOFF
+Cíl: statický runtime pod /apps/ai-akademie/ za school-server autorizací. Deployment ZIP nesmí obsahovat source scripts, audit docs, package tooling ani privátní klíče. Server musí vynutit HTTPS a přístupovou politiku; samotná skrytá záložka ve Studiu není bezpečnostní hranice. release-integrity.json/.sig musí být no-store a ověřeny proti produkčnímu trust rootu/registry mimo web root klíče.
+
+PWA fail-closed: interní runtime se v service workeru neprecacheuje ani nevrací z Cache Storage. Same-origin GET je network-only/no-store; staré ghrab-academy-v* cache jsou při aktivaci mazány.

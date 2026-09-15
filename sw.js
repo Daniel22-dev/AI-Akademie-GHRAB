@@ -1,106 +1,55 @@
-const CACHE = 'ghrab-academy-v1.4.6-cache-1';
-const FILES = [
-  './',
-  './index.html',
-  './console.html',
-  './manifest.webmanifest',
-  './404.html',
-  './assets/css/styles.css',
-  './assets/js/app.js',
-  './assets/js/console.js',
-  './assets/js/changelog.js',
-  './assets/js/starfield.js',
-  './assets/js/storage.js',
-  './assets/brand/apple-touch-icon.png',
-  './assets/brand/icon-192.png',
-  './assets/brand/icon-32.png',
-  './assets/brand/icon-512.png',
-  './assets/brand/icon-512-maskable.png',
-  './assets/brand/school-logo.png',
-  './assets/course-icons/administrator.png',
-  './assets/course-icons/ai-literacy.png',
-  './assets/course-icons/correspondence.png',
-  './assets/course-icons/differentiator.png',
-  './assets/course-icons/evaluator.png',
-  './assets/course-icons/generator.png',
-  './assets/course-icons/github.png',
-  './assets/course-icons/ludus.png',
-  './assets/course-icons/start.png',
-  './assets/course-icons/workflow.png',
-  './courses/00-ai-literacy.js',
-  './courses/00-start.js',
-  './courses/01-differentiator.js',
-  './courses/02-github.js',
-  './courses/03-generator.js',
-  './courses/04-ludus.js',
-  './courses/05-correspondence.js',
-  './courses/06-evaluator.js',
-  './courses/07-workflow.js',
-  './courses/08-administrator.js',
-  './courses/index.js',
-  './courses/presentation-enhancements.js',
-  './courses/speaker-notes.js'
-];
+const APP_VERSION = '1.4.9';
+const CACHE_NAME = 'ghrab-ai-akademie-v1.4.9';
+const CACHE_PREFIX = 'ghrab-ai-akademie-v';
+const LEGACY_CACHE_PREFIX = 'ghrab-academy-v';
 
-const FRESH_EXTENSIONS = /\.(?:html?|js|css|webmanifest)$/i;
-
-async function precacheFreshFiles() {
-  const cache = await caches.open(CACHE);
-  for (const url of FILES) {
-    try {
-      const request = new Request(url, { cache: 'no-cache' });
-      const response = await fetch(request);
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      await cache.put(request, response);
-    } catch (error) {
-      console.error(`[AI Akademie] Precache selhal pro ${url}`, error);
-      throw error;
+function isSecurityCriticalRequest(url, scopePath) {
+  const rawPathname = String(url?.pathname || '');
+  const rawScope = String(scopePath || '');
+  if (!rawPathname.startsWith(rawScope)) return false;
+  let relative = rawPathname.slice(rawScope.length);
+  try { relative = decodeURIComponent(relative); }
+  catch { return true; }
+  relative = relative.replace(/\\/g, '/');
+  const segments = [];
+  for (const segment of relative.split('/')) {
+    if (!segment || segment === '.') continue;
+    if (segment === '..') {
+      if (!segments.length) return true;
+      segments.pop();
+      continue;
     }
+    segments.push(segment);
   }
+  relative = segments.join('/');
+  return relative === 'runtime-config.js' ||
+    relative === 'config/deployment.json' ||
+    relative === 'config/deployment.school-server.json' ||
+    relative === 'access/deployment-config.js' ||
+    relative === 'ghrab/ghrab-platform.js' ||
+    relative === 'release-integrity.json' ||
+    relative === 'release-integrity.sig' ||
+    relative === 'integrity-status.json' ||
+    relative.endsWith('/app-guard.js') ||
+    relative.endsWith('/access-control.js') ||
+    relative.endsWith('/revoked-access.json');
 }
 
-async function deleteOldCaches() {
+async function networkOnlyNoStore(request) {
+  return fetch(request, { cache: 'no-store' });
+}
+
+async function purgeAcademyCaches() {
   const keys = await caches.keys();
-  await Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)));
+  await Promise.all(keys.filter(key => key.startsWith(CACHE_PREFIX) || key.startsWith(LEGACY_CACHE_PREFIX)).map(key => caches.delete(key)));
 }
 
-async function networkFirst(request, offlineFallback) {
-  const cache = await caches.open(CACHE);
-  try {
-    const response = await fetch(request, { cache: 'no-store' });
-    if (response && response.status === 200 && response.type !== 'opaque') {
-      await cache.put(request, response.clone());
-    }
-    return response;
-  } catch {
-    const cached = await cache.match(request);
-    if (cached) return cached;
-    if (offlineFallback) return cache.match(offlineFallback);
-    return new Response('Zdroj není dostupný offline.', { status: 504, statusText: 'Offline' });
-  }
-}
-
-async function cacheFirst(request) {
-  const cache = await caches.open(CACHE);
-  const cached = await cache.match(request);
-  if (cached) return cached;
-  try {
-    const response = await fetch(request);
-    if (response && response.status === 200 && response.type !== 'opaque') {
-      await cache.put(request, response.clone());
-    }
-    return response;
-  } catch {
-    return new Response('Zdroj není dostupný offline.', { status: 504, statusText: 'Offline' });
-  }
-}
-
-self.addEventListener('install', event => {
-  event.waitUntil(precacheFreshFiles());
+self.addEventListener('install', () => {
+  // Záměrně nic neprecacheujeme. Interní Akademie musí při odebrání oprávnění selhat uzavřeně.
 });
 
 self.addEventListener('activate', event => {
-  event.waitUntil(deleteOldCaches().then(() => self.clients.claim()));
+  event.waitUntil(purgeAcademyCaches().then(() => self.clients.claim()));
 });
 
 self.addEventListener('message', event => {
@@ -108,18 +57,18 @@ self.addEventListener('message', event => {
 });
 
 self.addEventListener('fetch', event => {
-  if (event.request.method !== 'GET') return;
-  const url = new URL(event.request.url);
+  const request = event.request;
+  if (request.method !== 'GET') return;
+  const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
+  const scopePath = new URL('./', self.location.href).pathname;
+  if (!url.pathname.startsWith(scopePath)) return;
 
-  const needsFreshVersion =
-    event.request.mode === 'navigate' ||
-    ['document', 'script', 'style'].includes(event.request.destination) ||
-    FRESH_EXTENSIONS.test(url.pathname);
-
-  event.respondWith(
-    needsFreshVersion
-      ? networkFirst(event.request, event.request.mode === 'navigate' ? './index.html' : null)
-      : cacheFirst(event.request)
-  );
+  // Security-critical i běžný interní runtime je vždy network-only/no-store.
+  // Tím se po expiraci/odebrání serverového oprávnění nepoužije stará SW cache.
+  if (isSecurityCriticalRequest(url, scopePath)) {
+    event.respondWith(networkOnlyNoStore(request));
+    return;
+  }
+  event.respondWith(networkOnlyNoStore(request));
 });

@@ -1,0 +1,32 @@
+AI AKADEMIE 1.4.9 — GH-12 BINARY / MEDIA RIGHTS INVENTORY
+Datum auditu: 2026-09-15
+Status: NOT VERIFIED IN THIS ROUND
+
+GARP GH-12 requires provenance/rights status for binary media before school/public release. Repository metadata supplied to this audit does not establish the legal provenance of the following deployed image assets. No rights status is inferred from filenames.
+
+assets/apps/ai-literacy.png | NOT VERIFIED
+assets/apps/correspondence.png | NOT VERIFIED
+assets/apps/differentiator.png | NOT VERIFIED
+assets/apps/essay-evaluator-v2.png | NOT VERIFIED
+assets/apps/generator.png | NOT VERIFIED
+assets/apps/ludus.png | NOT VERIFIED
+assets/brand/apple-touch-icon.png | NOT VERIFIED
+assets/brand/brand-mark.svg | NOT VERIFIED
+assets/brand/icon-192.png | NOT VERIFIED
+assets/brand/icon-32.png | NOT VERIFIED
+assets/brand/icon-512-maskable.png | NOT VERIFIED
+assets/brand/icon-512.png | NOT VERIFIED
+assets/brand/portal-gateway.png | NOT VERIFIED
+assets/brand/school-logo.png | NOT VERIFIED IN AUDIT EVIDENCE
+assets/course-icons/administrator.png | NOT VERIFIED
+assets/course-icons/ai-literacy.png | NOT VERIFIED
+assets/course-icons/correspondence.png | NOT VERIFIED
+assets/course-icons/differentiator.png | NOT VERIFIED
+assets/course-icons/evaluator.png | NOT VERIFIED
+assets/course-icons/generator.png | NOT VERIFIED
+assets/course-icons/github.png | NOT VERIFIED
+assets/course-icons/ludus.png | NOT VERIFIED
+assets/course-icons/start.png | NOT VERIFIED
+assets/course-icons/workflow.png | NOT VERIFIED
+
+Required closure: for every row record one of OWN WORK / SCHOOL-OWNED-AUTHORIZED / LICENSED (with license/source) / REPLACED. This audit does not request copyrighted source files beyond what is already in the project.

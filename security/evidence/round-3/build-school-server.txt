@@ -1,0 +1,19 @@
+
+> ai-akademie-ghrab@1.4.9 build:school-server
+> npm run build && node scripts/build-school-server.mjs
+
+
+> ai-akademie-ghrab@1.4.9 build
+> npm run build:notes && npm run build:exports
+
+
+> ai-akademie-ghrab@1.4.9 build:notes
+> node scripts/build-speaker-notes.mjs
+
+Vytvořeno 68 sad přirozených poznámek: /mnt/data/aka149_work/courses/speaker-notes.js
+
+> ai-akademie-ghrab@1.4.9 build:exports
+> node scripts/build-exports.mjs
+
+Vytvořeno 10 samostatných HTML prezentací v exports/.
+ai-akademie-ghrab 1.4.9: dist-school-server/ runtime-only build hotov.

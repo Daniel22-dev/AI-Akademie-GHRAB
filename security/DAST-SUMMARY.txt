@@ -1,0 +1,4 @@
+AI AKADEMIE 1.4.9 — DAST SUMMARY
+Status: NOT TESTED.
+Důvod: toto je PREP kolo bez skutečného školního HTTPS endpointu.
+Před SCHOOL/LIVE: ověřit served CSP/HSTS/TLS, route authorization, direct URL access, session revocation a service-worker lifecycle na reálné cestě.

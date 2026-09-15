@@ -1,0 +1,6 @@
+{
+  "status": "VERIFIED",
+  "algorithm": "Ed25519",
+  "keyId": "ai-akademie-prep-20260915-r3",
+  "keyStatus": "active"
+}

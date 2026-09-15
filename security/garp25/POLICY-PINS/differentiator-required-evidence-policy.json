@@ -1,0 +1,21 @@
+{
+  "schema": "ghrab-required-evidence-policy-v1",
+  "appId": "differentiator",
+  "minimumExternalFiles": 6,
+  "requiredExternalFiles": [
+    "security/evidence/ai-assurance-fingerprint.json",
+    "security/garp25/tools/check-sw-security-freeze.mjs",
+    "security/garp25/tools/selftest-garp251.mjs",
+    "security/security-critical-assets.json",
+    "security/sw-security-freeze-policy.json"
+  ],
+  "requiredExternalGlobs": [],
+  "rule": "Manifest externalFiles must be a superset of this canonical control-plane minimum. The SBOM evidence must cryptographically match the sbomSha256 anchor in the signed release-integrity manifest; a glob-name-only decoy is insufficient.",
+  "requiredReleaseAnchors": [
+    {
+      "glob": "security/sbom/*.cdx.json",
+      "releaseManifestField": "sbomSha256",
+      "minimumMatches": 1
+    }
+  ]
+}

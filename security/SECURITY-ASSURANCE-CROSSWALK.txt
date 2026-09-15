@@ -1,0 +1,2 @@
+AI AKADEMIE 1.4.9 — ASSURANCE CROSSWALK
+OWASP/ASVS/NIST/SLSA odkazy v GARP jsou mapování kontrol, nikoli certifikace. Relevantní oblasti: browser injection/CSP, storage tampering, software supply chain, signed release, provenance, service-worker update/rollback a server authorization. SH-AI/SH-AG jsou N/A podle skutečného call grafu.

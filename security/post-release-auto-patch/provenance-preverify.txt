@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "subjectSha256": "49227f497d82f207d09bd466d5cb1cc2e12a91aa181ad25f892c75d675941e99",
+  "builderId": "local-untrusted-builder",
+  "builderWorkflow": null,
+  "sourceRevision": null,
+  "builderPolicy": null,
+  "warnings": [
+    "builder=local-untrusted-builder (PREP only, never school release)"
+  ]
+}
