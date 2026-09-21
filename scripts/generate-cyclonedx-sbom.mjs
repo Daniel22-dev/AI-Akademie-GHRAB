@@ -13,7 +13,12 @@ for (const [lockPath,meta] of Object.entries(lock.packages||{})) {
   components.push({type:'library',name,version:String(meta.version),purl:`pkg:npm/${encodeURIComponent(name).replace('%40','@')}@${meta.version}`});
 }
 components.sort((a,b)=>a.purl.localeCompare(b.purl,'en'));
-const bom={bomFormat:'CycloneDX',specVersion:'1.5',serialNumber:`urn:uuid:${crypto.randomUUID()}`,version:1,metadata:{timestamp:new Date().toISOString(),component:{type:'application',name:pkg.name,version:pkg.version}},components};
+const seed=crypto.createHash('sha256').update(`${pkg.name}\\0${pkg.version}\\0${lock.lockfileVersion}\\0${components.map(c=>c.purl).join('\\n')}`).digest('hex');
+const uuidHex=seed.slice(0,32).split(''); uuidHex[12]='5'; uuidHex[16]=(['8','9','a','b'][parseInt(uuidHex[16],16)%4]);
+const uuid=`${uuidHex.slice(0,8).join('')}-${uuidHex.slice(8,12).join('')}-${uuidHex.slice(12,16).join('')}-${uuidHex.slice(16,20).join('')}-${uuidHex.slice(20,32).join('')}`;
+const epoch=Number(process.env.SOURCE_DATE_EPOCH||0);
+const timestamp=Number.isFinite(epoch)&&epoch>0?new Date(epoch*1000).toISOString():new Date().toISOString();
+const bom={bomFormat:'CycloneDX',specVersion:'1.5',serialNumber:`urn:uuid:${uuid}`,version:1,metadata:{timestamp,component:{type:'application',name:pkg.name,version:pkg.version}},components};
 const out=process.argv[2]||`security/sbom/ai-akademie-${pkg.version}.cdx.json`;
 fs.mkdirSync(path.dirname(out),{recursive:true});
 fs.writeFileSync(out,JSON.stringify(bom,null,2)+'\n');
