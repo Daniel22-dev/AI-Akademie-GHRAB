@@ -4,10 +4,10 @@ GARP APPLICATION CARD — AI AKADEMIE GHRAB
 appId: ai-akademie
 Název: AI Akademie GHRAB
 Repozitář: AI-Akademie-GHRAB
-Aktuální verze: 1.4.9
-Verze standardu: GARP 2.5.1 GHRAB / A12 R12 AUTO-PATCH policy tooling
+Aktuální verze: 1.4.10
+Verze standardu: GARP 2.5.1 GHRAB / A12 R12 cumulative + N5 + Safe Promotion
 SHA-256 kanonického A12 ZIPu: e9ddf9715a6335d5921f69e887e1339321d9448bbe41493eb773b64711e9dcf1
-Stav tohoto kola: auditni chyby A3-N1/A3-N2/A3-N3 jsou uzavrene. AUTO-PATCH-PREP je pro ai-akademie explicitne povoleny a musi projit fail-closed control-plane. SCHOOL zustava zamerne RED do IT/LIVE faze. School-server production release: NE.
+Stav tohoto kola: 1.4.10 doplňuje N5 a Safe Promotion. Historický AUTO-PATCH-PREP profil zůstává v GARP toolingu, ale AI Akademie není enrolled do současného centrálního AI Studio auto-patche. LIVE GREEN vyžaduje empiricky ověřený chráněný main, required checks a Pages deploy z GitHub Actions. School-server production release: NE.
 
 2. TRVALÁ KLASIFIKACE
 Třída dat: D0
@@ -63,3 +63,10 @@ AKA2-N4 presenter capability: CLOSED — odstraněn URL/hash session token a Bro
 - A3-N3: CLOSED by requiring project-root in SCHOOL profile and regenerating the evidence manifest only after all external evidence files are final.
 - SCHOOL GREEN remains intentionally unavailable until school IT pins the real trusted builder/workflow in canonical A-tooling and LIVE/server controls are tested.
 AUTO-PATCH-PREP: canonical policy binding enabled; final signed gate result is recorded in security/post-release-auto-patch/.
+
+
+10. OPRAVNÉ KOLO 1.4.10 / SAFE PROMOTION + N5
+2026-09-21 | Infrastructure PATCH | GARP selftest fixture fix + N5 JWK/encrypted PEM/private PGP + candidate/PR Safe Promotion + verified Pages workflow.
+- Centrální AI Studio auto-patch: NOT ENROLLED / NOT APPLICABLE pro aktuální architekturu AI Akademie.
+- Historické GREEN/PREP reporty 1.4.9 jsou audit trail, nikoli důkaz pro 1.4.10.
+- Aktuální GREEN smí být deklarován až nad konkrétním 1.4.10 commitem a GitHub Actions runy po aktivaci governance.
