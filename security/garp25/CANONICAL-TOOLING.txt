@@ -1,4 +1,11 @@
-Canonical GARP tooling source:
+Historical canonical GARP baseline:
 A12-GARP-2.5.1-ZAVEDENI-TOOLING-R2-R12-AI-AKADEMIE-AUTO-PATCH-POLICY.zip
-SHA-256: e9ddf9715a6335d5921f69e887e1339321d9448bbe41493eb773b64711e9dcf1
-Derived from A11/R12. Policy-only delta: AI Akademie is explicitly bound to AUTO-PATCH-PREP with a pinned service-worker freeze policy and required evidence policy. No release-gate/checker logic changed.
+Historical SHA-256: e9ddf9715a6335d5921f69e887e1339321d9448bbe41493eb773b64711e9dcf1
+
+AI Akademie cumulative delta — 2026-09-21 / 1.4.10:
+- preserved the existing A12/R12 app-specific control-plane and SW hardening;
+- fixed the full selftest fixture that omitted mandatory --sbom for auto-patch-prep;
+- added permanent N5 regressions for private JWK, encrypted private PEM and private PGP blocks;
+- added Safe Promotion / pinned GitHub workflow governance without restoring the removed historical central auto-patch workflow.
+
+This repository is intentionally NOT byte-identical to the historical A12 ZIP. Current test evidence has precedence over the historical baseline.
