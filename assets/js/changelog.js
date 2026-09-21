@@ -1,8 +1,18 @@
-export const APP_VERSION = '1.4.9';
+export const APP_VERSION = '1.4.10';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.4.10',
+    date: '21. 9. 2026',
+    title: 'Safe Promotion a N5 release hardening',
+    changes: [
+      'Release cesta je připravena na candidate → povinné P5/GARP kontroly → PR → chráněný main → ověřený Pages deploy.',
+      'N5 regresní sada nově explicitně odmítá privátní JWK, encrypted private PEM a private PGP block.',
+      'Aktuální release evidence se váže na konkrétní commit, hash nasazovaného artefaktu a SBOM; centrální AI Studio auto-patch se pro Akademii nezapíná.'
+    ]
+  },
   {
     version: '1.4.9',
     date: '15. 9. 2026',
