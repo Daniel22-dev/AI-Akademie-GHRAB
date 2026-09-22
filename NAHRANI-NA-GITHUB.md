@@ -1,3 +1,11 @@
+# DŮLEŽITÉ — od 1.4.10
+
+Novou verzi už **nenahrávej přímo do `main`**. Trvalá vstupní větev je `candidate`. Po nahrání do `candidate` musí proběhnout P5/GARP/N5 kontroly; teprve GREEN candidate smí přes PR a required checks do chráněného `main`. Produkční Pages deploy se spouští pouze z ověřeného `main`.
+
+Níže uvedené starší instrukce ber jako historické tam, kde mluví o přímém uploadu do `main`.
+
+---
+
 # Nahrání AI Akademie GHRAB 1.4.6 na GitHub Pages
 
 ## 1. Před nahráním

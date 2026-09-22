@@ -226,6 +226,18 @@ try {
   r = run('scan-deployment-leaks.mjs', [leak]);
   expect('NC-sourcemap-detected', r.status !== 0);
   await rm(path.join(leak, 'app.js.map'));
+  await writeFile(path.join(leak, 'jwk.json'), JSON.stringify({ kty: 'EC', crv: 'P-256', x: 'A'.repeat(43), y: 'B'.repeat(43), d: 'C'.repeat(43) }));
+  r = run('scan-deployment-leaks.mjs', [leak]);
+  expect('NC-jwk-private-key-detected', r.status !== 0);
+  await rm(path.join(leak, 'jwk.json'));
+  await writeFile(path.join(leak, 'encrypted.txt'), '-----BEGIN ' + 'ENCRYPTED PRIVATE KEY-----\n' + 'A'.repeat(64) + '\n-----END ' + 'ENCRYPTED PRIVATE KEY-----\n');
+  r = run('scan-deployment-leaks.mjs', [leak]);
+  expect('NC-encrypted-private-key-detected', r.status !== 0);
+  await rm(path.join(leak, 'encrypted.txt'));
+  await writeFile(path.join(leak, 'pgp.txt'), '-----BEGIN ' + 'PGP PRIVATE KEY ' + 'BLOCK-----\n' + 'A'.repeat(64) + '\n-----END ' + 'PGP PRIVATE KEY ' + 'BLOCK-----\n');
+  r = run('scan-deployment-leaks.mjs', [leak]);
+  expect('NC-pgp-private-key-detected', r.status !== 0);
+  await rm(path.join(leak, 'pgp.txt'));
 
   // --- evidence
   const ev = path.join(t, 'evidence'); await mkdir(ev);
@@ -720,7 +732,7 @@ const __k='add'+'EventListener'; globalThis[__k]('fetch',()=>{});
   expect('NC-r10-signed-profile-binding-cannot-be-omitted',r.status!==0&&(r.stderr.includes('auto-patch-artifact-profile-binding-missing-or-mismatch')||r.stdout.includes('auto-patch-artifact-profile-binding-missing-or-mismatch')));
   const dummyReadable=path.join(t,'r10-readable.json'); await writeFile(dummyReadable,'{}\n');
   await writeFile(bindManifest,JSON.stringify({schema:'ghrab-release-integrity-v2',appId:'constructor',requiredGateProfile:'auto-patch-prep'},null,2));
-  r=run('release-gate.mjs',['--profile','auto-patch-prep','--deploy',swDir,'--manifest',bindManifest,'--signature',dummySig,'--trust-root',dummyTrust,'--registry',dummyReadable,'--artifact',dummyReadable,'--provenance',dummyReadable,'--source-package',dummyReadable,'--evidence-dir',ev,'--evidence-manifest',dummyReadable,'--project-root',t,'--vendored-config',dummyReadable]);
+  r=run('release-gate.mjs',['--profile','auto-patch-prep','--deploy',swDir,'--manifest',bindManifest,'--signature',dummySig,'--trust-root',dummyTrust,'--registry',dummyReadable,'--artifact',dummyReadable,'--provenance',dummyReadable,'--source-package',dummyReadable,'--evidence-dir',ev,'--evidence-manifest',dummyReadable,'--project-root',t,'--vendored-config',dummyReadable,'--sbom',dummyReadable]);
   expect('NC-r10-prototype-appId-is-cleanly-unauthorized',r.status!==0&&(r.stderr.includes('auto-patch-app-not-authorized-by-control-plane')||r.stdout.includes('auto-patch-app-not-authorized-by-control-plane'))&&!r.stderr.includes('TypeError'));
 
   // N6 hardening: release gate itself must enforce the authoritative list and propagate SW failure.

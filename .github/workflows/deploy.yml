@@ -1,0 +1,124 @@
+name: AI Akademie verified Pages deploy
+
+on:
+  workflow_run:
+    workflows: ["AI Akademie P5 release gate"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ai-akademie-pages-${{ github.event.workflow_run.head_branch || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  release-build:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.ref_name == 'main') ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    outputs:
+      app_version: ${{ steps.meta.outputs.app_version }}
+      source_sha: ${{ steps.meta.outputs.source_sha }}
+    steps:
+      - name: Checkout verified main source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22.22.2
+          cache: npm
+      - name: Confirm verified source identity
+        shell: bash
+        env:
+          EXPECTED_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Set deterministic build time
+        shell: bash
+        run: echo "SOURCE_DATE_EPOCH=$(git show -s --format=%ct HEAD)" >> "$GITHUB_ENV"
+      - name: Re-run mandatory release controls
+        run: |
+          npm test
+          npm run qa:garp25:tooling
+          npm run qa:garp25:pinned
+          npm run qa:secrets
+          npm run qa:safe-promotion
+      - name: Build and scan production artifact
+        run: |
+          npm run build:pages
+          npm run qa:garp25:deployment
+          npm run qa:garp25:sw-pages
+          npm run qa:garp25:vendored
+          npm run qa:garp25:sbom
+      - name: Build exact current release evidence
+        env:
+          GHRAB_SOURCE_COMMIT: ${{ github.event.workflow_run.head_sha || github.sha }}
+          GHRAB_BUILD_ID: deploy-${{ github.run_id }}-${{ github.run_attempt }}
+          GHRAB_ENVIRONMENT: LIVE-PUBLIC-PAGES
+        run: npm run qa:current-evidence
+      - name: Export release metadata
+        id: meta
+        shell: bash
+        run: |
+          echo "app_version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+          echo "source_sha=$(jq -r '.sourceCommit' qa-results/release-current/current-release-evidence.json)" >> "$GITHUB_OUTPUT"
+      - name: Upload release evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ai-akademie-live-${{ github.event.workflow_run.head_sha || github.sha }}
+          path: qa-results/release-current/**
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
+      - name: Upload verified Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
+        with:
+          path: dist-pages
+
+  deploy:
+    needs: release-build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy verified artifact to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128
+
+  verify-live:
+    needs: [release-build, deploy]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout release verifier
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ needs.release-build.outputs.source_sha }}
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22.22.2
+      - name: Verify live Pages version with bounded retry
+        env:
+          GHRAB_LIVE_URL: https://daniel22-dev.github.io/AI-Akademie-GHRAB/
+          GHRAB_LIVE_VERSION: ${{ needs.release-build.outputs.app_version }}
+          GHRAB_LIVE_ATTEMPTS: "8"
+          GHRAB_LIVE_DELAY_MS: "5000"
+          GHRAB_LIVE_MAX_DELAY_MS: "30000"
+        run: node scripts/verify-live-pages.mjs
