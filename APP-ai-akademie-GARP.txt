@@ -7,7 +7,7 @@ Repozitář: AI-Akademie-GHRAB
 Aktuální verze: 1.4.10
 Verze standardu: GARP 2.5.1 GHRAB / A12 R12 cumulative + N5 + Safe Promotion
 SHA-256 kanonického A12 ZIPu: e9ddf9715a6335d5921f69e887e1339321d9448bbe41493eb773b64711e9dcf1
-Stav tohoto kola: 1.4.10 doplňuje N5 a Safe Promotion. Historický AUTO-PATCH-PREP profil zůstává v GARP toolingu, ale AI Akademie není enrolled do současného centrálního AI Studio auto-patche. TECHNICAL LIVE GREEN je empiricky ověřen na chráněném mainu, required checks, verified Pages deployi a live version checku pro commit 2eade9a189b59257a5099dac8f45a5439cf04f07. Celkové PUBLIC/SCHOOL uzavření zůstává CONDITIONAL kvůli GH-12 rights provenance. School-server production release: NE.
+Stav tohoto kola: 1.4.10 doplňuje N5 a Safe Promotion. Historický AUTO-PATCH-PREP profil zůstává v GARP toolingu, ale AI Akademie není enrolled do současného centrálního AI Studio auto-patche. TECHNICAL LIVE GREEN je empiricky ověřen na chráněném mainu, required checks, verified Pages deployi a live version checku pro commit 2eade9a189b59257a5099dac8f45a5439cf04f07. GH-12 rights provenance je CLOSED pro aktuální deployed media inventory. School-server production release: NE. School-server production release: NE.
 
 2. TRVALÁ KLASIFIKACE
 Třída dat: D0
@@ -31,7 +31,7 @@ KD-05 | presenter bridge | SAME-ORIGIN OPENER ONLY | bez session capability v UR
 DL-01 | MEDIUM | school-server route authorization není v PREP prostředí vynucena ani behaviorálně ověřena | přímý GitHub/static režim nepovažovat za soukromou bezpečnostní hranici | SHIELD-LIVE | serverová autorizace + DAST/access bypass test
 DL-02 | LOW | hlavní CSP obsahuje style-src 'unsafe-inline' kvůli stávajícím dynamickým prezentačním stylům | script-src zůstává self-only; žádné eval/new Function | před SCHOOL GREEN | odstranit inline style potřebu nebo schválit přesně ohraničenou výjimku
 DL-03 | MEDIUM PROCESS | formální GH-10 nezávislost zatím chybí, protože stejný ChatGPT systém provedl implementaci i auditní kola | zachovat reprodukovatelné důkazy pro jiný model/osobu | před finálním uzavřením | nezávislá reprodukce
-DL-04 | RELEASE BLOCKER GH-12 | právní původ/licence 24 image/SVG assetů zůstává podle security/BINARY-RIGHTS-INVENTORY.txt nedoložen | technický GitHub/Pages release může být GREEN, ale bezpodmínečné PUBLIC/SCHOOL uzavření ne | před bezpodmínečným SCHOOL/PUBLIC closure | doplnit OWN WORK / SCHOOL-OWNED-AUTHORIZED / LICENSED / REPLACED pro každou položku
+DL-04 | CLOSED 2026-09-22 | GH-12 právní původ/licence 24 image/SVG assetů doložen v security/BINARY-RIGHTS-INVENTORY.txt | AI/project-generated assets = OWN WORK / AI-GENERATED FOR THIS PROJECT; school-logo.png = SCHOOL-OWNED-AUTHORIZED | re-open při přidání/nahrazení media assetu
 
 5. NOT TESTED
 SHIELD-LIVE / RI-LIVE | školní server zatím není součástí tohoto kola | reálný serverový deployment
@@ -69,4 +69,4 @@ AUTO-PATCH-PREP: canonical policy binding enabled; final signed gate result is r
 2026-09-21 | Infrastructure PATCH | GARP selftest fixture fix + N5 JWK/encrypted PEM/private PGP + candidate/PR Safe Promotion + verified Pages workflow.
 - Centrální AI Studio auto-patch: NOT ENROLLED / NOT APPLICABLE pro aktuální architekturu AI Akademie.
 - Historické GREEN/PREP reporty 1.4.9 jsou audit trail, nikoli důkaz pro 1.4.10.
-- TECHNICAL GREEN ověřen 2026-09-22 nad commitem 2eade9a189b59257a5099dac8f45a5439cf04f07: main P5 35700115299 GREEN; verified Pages deploy + live verification 35700235351 GREEN; main ruleset Active bez bypass actorů. Overall PUBLIC/SCHOOL release zůstává CONDITIONAL kvůli DL-04 / GH-12.
+- TECHNICAL GREEN ověřen 2026-09-22 nad commitem 2eade9a189b59257a5099dac8f45a5439cf04f07: main P5 35700115299 GREEN; verified Pages deploy + live verification 35700235351 GREEN; main ruleset Active bez bypass actorů. GH-12 CLOSED 2026-09-22; current public Pages technical/media-rights closure GREEN. School-server LIVE remains a separate future phase.
