@@ -1,8 +1,14 @@
-export const APP_VERSION = '1.4.10';
+export const APP_VERSION = '1.4.11';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.4.11',
+    date: '22. 9. 2026',
+    title: 'Návrat do AI Studia bez nové karty',
+    detail: 'AI Akademie otevřená ze Studia nyní zůstává ve stejném kontextu prohlížeče. Tlačítko AI Studio se vrací přímo do Studia bez zavírání okna a bez otevírání nové karty; ověření plného správce a zákaz přenosu permitu zůstávají zachované.'
+  },
   {
     version: '1.4.10',
     date: '21. 9. 2026',

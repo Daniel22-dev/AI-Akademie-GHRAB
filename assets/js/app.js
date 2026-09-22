@@ -347,14 +347,6 @@ function launchedFromStudio() {
   return new URLSearchParams(location.search).get('from') === 'ai-studio';
 }
 
-function openStudioInNewContext(url) {
-  const link = document.createElement('a');
-  link.href = url;
-  link.target = '_blank';
-  link.rel = 'noopener noreferrer';
-  link.click();
-}
-
 function syncStudioReturnLink() {
   const header = document.querySelector('.site-header');
   if (!header) return;
@@ -367,15 +359,13 @@ function syncStudioReturnLink() {
   }
   if (existing) {
     existing.href = studioAdminBridge.studioUrl;
-    existing.target = '_blank';
-    existing.rel = 'noopener noreferrer';
+    existing.removeAttribute('target');
+    existing.removeAttribute('rel');
     existing.dataset.action = 'return-to-studio';
     return;
   }
   const link = document.createElement('a');
   link.href = studioAdminBridge.studioUrl;
-  link.target = '_blank';
-  link.rel = 'noopener noreferrer';
   link.dataset.action = 'return-to-studio';
   link.className = 'studio-return-link';
   link.title = 'Zpět do AI Studia';
@@ -503,7 +493,7 @@ function renderChangelogModal() {
 function shell(content, currentPage = 'home') {
   return `
     <header class="site-header ${presenterMode ? 'is-presenting' : ''} ${studioAdminBridge.visible ? 'has-studio-return' : ''}">
-      ${studioAdminBridge.visible ? `<a href="${escapeHtml(studioAdminBridge.studioUrl)}" target="_blank" rel="noopener noreferrer" data-action="return-to-studio" class="studio-return-link" title="Zpět do AI Studia" aria-label="Zpět do AI Studia">${icons.arrowLeft}<span>AI Studio</span></a>` : ''}
+      ${studioAdminBridge.visible ? `<a href="${escapeHtml(studioAdminBridge.studioUrl)}" data-action="return-to-studio" class="studio-return-link" title="Zpět do AI Studia" aria-label="Zpět do AI Studia">${icons.arrowLeft}<span>AI Studio</span></a>` : ''}
       <a class="brand" href="#/" aria-label="AI Akademie GHRAB — rozcestník prezentací">
         <span class="brand-mark"><img src="./assets/brand/icon-192.png" alt="" width="48" height="48"></span>
         <span class="brand-copy"><strong>AI Akademie <em>GHRAB</em></strong><small>Prezentace a podklady školitele</small></span>
@@ -1026,10 +1016,8 @@ function handleClick(event) {
         event.preventDefault();
         return;
       }
-      if (!launchedFromStudio()) return;
       event.preventDefault();
-      window.close();
-      if (!window.closed) openStudioInNewContext(studioAdminBridge.studioUrl);
+      location.assign(studioAdminBridge.studioUrl);
       return;
     }
     if (action === 'fullscreen') {
