@@ -1,16 +1,53 @@
-# DŮLEŽITÉ — od 1.4.10
+# AI Akademie GHRAB — aktuální release postup od 1.4.10
 
-Novou verzi už **nenahrávej přímo do `main`**. Trvalá vstupní větev je `candidate`. Po nahrání do `candidate` musí proběhnout P5/GARP/N5 kontroly; teprve GREEN candidate smí přes PR a required checks do chráněného `main`. Produkční Pages deploy se spouští pouze z ověřeného `main`.
+## Zásadní pravidlo
+Novou verzi **nikdy nenahrávej přímo do `main`**. Trvalá vstupní větev je `candidate`.
 
-Níže uvedené starší instrukce ber jako historické tam, kde mluví o přímém uploadu do `main`.
+Aktuální cesta je:
 
----
+`candidate → P5/GARP/N5 → PR → protected main → main P5 → verified GitHub Pages deploy → live verification`
 
-# Nahrání AI Akademie GHRAB 1.4.6 na GitHub Pages
+## 1. Kam nahrávat změny
+Změny patří do větve:
 
-## 1. Před nahráním
+`candidate`
 
-V kořeni projektu spusťte:
+Po pushi musí doběhnout workflow **AI Akademie P5 release gate**.
+
+## 2. Co musí být GREEN
+Před merge do `main` musí být GREEN:
+- `p5-release-gate`
+- `candidate-to-main`
+
+`main` je chráněn rulesetem **Protect main - Safe Promotion**. Přímý push, smazání a non-fast-forward změny jsou blokované.
+
+## 3. GitHub Pages
+V `Settings → Pages → Build and deployment` musí být:
+
+`Source: GitHub Actions`
+
+Nepoužívej staré nastavení **Deploy from a branch**.
+
+Produkční workflow je **AI Akademie verified Pages deploy** a smí nasadit pouze ověřený `main`.
+
+## 4. Po nasazení
+Za hotový release považuj až stav, kdy:
+- main P5 je GREEN,
+- verified Pages deploy je GREEN,
+- job `verify-live` je GREEN,
+- live aplikace hlásí očekávanou verzi.
+
+## 5. Lokální kontrola před push
+V kořeni projektu můžeš spustit:
+
+```bash
+npm ci
+npm test
+npm run qa:garp25:static
+```
+
+## 6. Obsahové změny kurzů
+Po změně souboru v `courses/` spusť vždy:
 
 ```bash
 npm run build:notes
@@ -18,73 +55,16 @@ npm run build:exports
 npm test
 ```
 
-Správný výsledek potvrdí 10 školení, 68 částí, 10 samostatných exportů a verzi 1.4.6. Kontrola navíc ověřuje, že poznámky školitele odpovídají generátoru, odkazy mezi lekcemi jsou platné a PWA cache nepřekračuje stanovený limit.
+Mluvené formulace se trvale upravují v `scripts/build-speaker-notes.mjs`; výsledný soubor `courses/speaker-notes.js` je generovaný artefakt a musí zůstat synchronní se zdroji.
 
-## 2. Nahrajte obsah rozbalené složky
+## 7. PWA aktualizace
+Nová verze se nenačítá násilným obnovením otevřených prezentačních oken. Aplikace připraví aktualizaci na pozadí a nabídne tlačítko **Načíst aktualizaci**. Během prezentačního režimu se nabídka nezobrazuje.
 
-Do kořene stejného repozitáře nahrajte přímo:
+Při přetrvávající staré verzi zavři všechny karty Akademie a znovu ji otevři; případně použij `Ctrl + F5`.
 
-```text
-assets/
-courses/
-exports/
-scripts/
-404.html
-console.html
-index.html
-manifest.webmanifest
-package.json
-README.md
-NAHRANI-NA-GITHUB.md
-sw.js
-```
-
-Původní soubory přepište. Nenahrávejte nadřazenou složku jako další úroveň repozitáře.
-
-## 3. Nastavení GitHub Pages
-
-V repozitáři otevřete `Settings → Pages` a nastavte:
-
-```text
-Source: Deploy from a branch
-Branch: main
-Folder: / (root)
-```
-
-Potvrďte **Save**.
-
-## 4. Kontrola po nasazení
-
-Ověřte zejména:
-
-- rozcestník zobrazuje všech 10 školení;
-- tlačítko **Konzole školitele** otevře samostatné okno a do několika sekund zobrazí poznámky;
-- tlačítka Předchozí/Další v konzoli ovládají hlavní prezentaci;
-- spuštění prezentace z libovolné lekce zobrazí úvodní obrazovku a potom přejde na první lekci;
-- šipky fungují i poté, co jste myší klikli na navigační tlačítko;
-- aktualizace aplikace sama neobnoví otevřenou prezentaci; mimo prezentaci se zobrazí nabídka **Načíst aktualizaci**;
-- poslední obsahová část pokračuje na závěrečnou obrazovku;
-- každý soubor v `exports/` funguje samostatně, obsahuje úplný tisk/PDF a neobsahuje poznámky školitele;
-- v konzoli prohlížeče nejsou CSP chyby ani syntaktické chyby.
-
-## 5. Změna obsahu kurzů
-
-Po změně souboru v `courses/` spusťte vždy:
-
-```bash
-npm run build:notes
-npm run build:exports
-npm test
-```
-
-Mluvené formulace se trvale upravují v `scripts/build-speaker-notes.mjs`; výsledný soubor `courses/speaker-notes.js` je generovaný artefakt a musí být nahrán spolu se zdroji.
-
-## 6. Aktualizace nainstalované PWA
-
-Nová verze se již nenačítá násilným obnovením otevřených oken. Aplikace připraví aktualizaci na pozadí a nabídne tlačítko **Načíst aktualizaci**. Během prezentačního režimu se nabídka nezobrazuje, aby školení nebylo přerušeno.
-
-Při přetrvávající staré verzi zavřete všechny karty Akademie a znovu ji otevřete; teprve poté případně použijte `Ctrl + F5`.
-
-## 7. Bezpečnost
-
-Před nahráním zkontrolujte, že repozitář neobsahuje API klíče, hesla, přístupové soubory ani neanonymizované údaje studentů, rodičů či zaměstnanců.
+## 8. Bezpečnost a release limity
+- Do repozitáře nepatří API klíče, hesla, tokeny ani neanonymizované osobní údaje.
+- `SAFE_PROMOTION_TOKEN` patří pouze do GitHub Actions secrets.
+- Historické auditní soubory nemaž; tvoří audit trail.
+- AI Akademie není enrolled do současného centrálního AI Studio auto-patche.
+- Před bezpodmínečným PUBLIC/SCHOOL uzavřením musí být doložen GH-12 původ/licence všech položek v `security/BINARY-RIGHTS-INVENTORY.txt`.
