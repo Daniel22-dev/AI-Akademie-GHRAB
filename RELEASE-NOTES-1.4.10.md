@@ -23,5 +23,9 @@ Commit `2eade9a189b59257a5099dac8f45a5439cf04f07`:
 - bypass actors — none
 - deletion + non-fast-forward — blocked
 
-## Otevřený GH-12 bod
-`security/BINARY-RIGHTS-INVENTORY.txt` stále eviduje 24 nasazovaných image/SVG položek jako `NOT VERIFIED`. Technický release je GREEN, ale bez doložení OWN WORK / SCHOOL-OWNED-AUTHORIZED / LICENSED / REPLACED nelze prohlásit celkový PUBLIC/SCHOOL release za bezpodmínečně uzavřený.
+## GH-12 media rights closure
+Dne 2026-09-22 byl uzavřen `security/BINARY-RIGHTS-INVENTORY.txt`:
+- aplikační a projektové ikony: `OWN WORK / AI-GENERATED FOR THIS PROJECT`
+- oficiální školní logo: `SCHOOL-OWNED-AUTHORIZED`
+
+GH-12 je pro aktuální nasazený media inventory CLOSED. Při přidání nového image/SVG/media assetu se musí znovu otevřít.
