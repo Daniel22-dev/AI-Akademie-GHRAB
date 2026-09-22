@@ -206,8 +206,8 @@ if (!app.includes("candidate.origin !== location.origin")) errors.push('Návrat 
 if (!app.includes("['/AI-Studio-GHRAB/', '/ai-studio/'].includes(normalizedPath)")) errors.push('Akademie nepovoluje jen známé cesty AI Studia.');
 if (!app.includes('function syncStudioReturnLink()') || !app.includes("existing?.remove()")) errors.push('Adminský návrat do Studia nemá bezpečnou synchronizaci bez překreslení celé Akademie.');
 if (!app.includes('studioAdminBridge.visible ?')) errors.push('Tlačítko AI Studio není podmíněno ověřenou admin rolí.');
-if (!app.includes("target=\"_blank\" rel=\"noopener noreferrer\" data-action=\"return-to-studio\"") || !app.includes("link.target = '_blank'") || !app.includes("link.rel = 'noopener noreferrer'")) errors.push('Návrat do AI Studia není PWA-safe a oddělený do nového kontextu.');
-if (!app.includes("function launchedFromStudio()") || !app.includes("window.close();") || !app.includes("openStudioInNewContext(studioAdminBridge.studioUrl)")) errors.push('Akademie neumí bezpečně vrátit uživatele do již otevřeného Studia.');
+if (app.includes("target=\"_blank\" rel=\"noopener noreferrer\" data-action=\"return-to-studio\"") || app.includes("link.target = '_blank'")) errors.push('Návrat do AI Studia nesmí otevírat nový kontext.');
+if (!app.includes("location.assign(studioAdminBridge.studioUrl)")) errors.push('Akademie neumí bezpečně vrátit uživatele do AI Studia ve stejném kontextu.');
 if (/searchParams\.set\(["'](?:token|permit|access)/i.test(app)) errors.push('Akademie nesmí přijímat ani předávat přístupový token v URL.');
 const consoleHtml = await fs.readFile(path.join(root, 'console.html'), 'utf8');
 const consoleJs = await fs.readFile(path.join(root, 'assets/js/console.js'), 'utf8');
