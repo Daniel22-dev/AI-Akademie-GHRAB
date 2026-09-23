@@ -1,8 +1,18 @@
-export const APP_VERSION = '1.4.11';
+export const APP_VERSION = '1.4.12';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.4.12',
+    date: '23. 9. 2026',
+    title: 'GARP 2.7 FOUNDATION a architecture integrity',
+    changes: [
+      'GARP 2.5.1/N5/Safe Promotion zůstává zachován a GARP 2.7 přidává samostatnou FOUNDATION/admission vrstvu bez falešného LIVE PASS.',
+      'Nová architecture-integrity brána kontroluje importní graf, dynamický import do Studia, capability drift, obsah skutečného dist-pages artefaktu a zapojení CI.',
+      'Mutation testy G27-AR01 až AR05 ověřují blokaci cyklu, testovacího bypassu v artefaktu, nového egressu, vynechání gate a konkurenčního legacy enginu.'
+    ]
+  },
   {
     version: '1.4.11',
     date: '22. 9. 2026',

@@ -4,10 +4,11 @@ GARP APPLICATION CARD — AI AKADEMIE GHRAB
 appId: ai-akademie
 Název: AI Akademie GHRAB
 Repozitář: AI-Akademie-GHRAB
-Aktuální verze: 1.4.10
-Verze standardu: GARP 2.5.1 GHRAB / A12 R12 cumulative + N5 + Safe Promotion
-SHA-256 kanonického A12 ZIPu: e9ddf9715a6335d5921f69e887e1339321d9448bbe41493eb773b64711e9dcf1
-Stav tohoto kola: 1.4.10 doplňuje N5 a Safe Promotion. Historický AUTO-PATCH-PREP profil zůstává v GARP toolingu, ale AI Akademie není enrolled do současného centrálního AI Studio auto-patche. TECHNICAL LIVE GREEN je empiricky ověřen na chráněném mainu, required checks, verified Pages deployi a live version checku pro commit 2eade9a189b59257a5099dac8f45a5439cf04f07. GH-12 rights provenance je CLOSED pro aktuální deployed media inventory. School-server production release: NE. School-server production release: NE.
+Aktuální verze: 1.4.12
+Verze standardu: GARP 2.7 consolidation r1 / legacy GARP 2.5.1 GHRAB + N5 + Safe Promotion retained
+SHA-256 vstupního aplikačního ZIPu pro toto kolo: c4d12a439fdcf680500449f92abd10e64e3d7ce34e229ecc5aa05f40f7815a32
+SHA-256 vstupního GARP 2.7 ZIPu: f54e5b5c271ff05c5a4d4cf85882ba972b9a78945724bb60a369432e984803d4
+Stav tohoto kola: 1.4.12 je zdrojový kandidát s GARP 2.7 FOUNDATION/architecture-integrity adaptérem. GARP 2.5.1/N5/Safe Promotion zůstává aktivní baseline. Lokální reference/architecture/mutation kontroly jsou určeny k CI admission; SCHOOL/LIVE se bez cílového serveru neprohlašuje. Trusted-admission workflow je připraven pro běh z chráněného mainu, ale jeho aktivace jako povinného GitHub checku musí být po bootstrapu externě ověřena. Centrální AI Studio auto-patch: NOT ENROLLED. School-server production release: NE / DEFERRED_BY_OWNER_DECISION.
 
 2. TRVALÁ KLASIFIKACE
 Třída dat: D0
@@ -32,6 +33,7 @@ DL-01 | MEDIUM | school-server route authorization není v PREP prostředí vynu
 DL-02 | LOW | hlavní CSP obsahuje style-src 'unsafe-inline' kvůli stávajícím dynamickým prezentačním stylům | script-src zůstává self-only; žádné eval/new Function | před SCHOOL GREEN | odstranit inline style potřebu nebo schválit přesně ohraničenou výjimku
 DL-03 | MEDIUM PROCESS | formální GH-10 nezávislost zatím chybí, protože stejný ChatGPT systém provedl implementaci i auditní kola | zachovat reprodukovatelné důkazy pro jiný model/osobu | před finálním uzavřením | nezávislá reprodukce
 DL-04 | CLOSED 2026-09-22 | GH-12 právní původ/licence 24 image/SVG assetů doložen v security/BINARY-RIGHTS-INVENTORY.txt | AI/project-generated assets = OWN WORK / AI-GENERATED FOR THIS PROJECT; school-logo.png = SCHOOL-OWNED-AUTHORIZED | re-open při přidání/nahrazení media assetu
+DL-05 | MEDIUM GOVERNANCE | G27-AR04 má lokální anti-bypass testy a připravený trusted-admission workflow, ale v tomto zdrojovém balíku nelze ověřit, že GitHub ruleset tento check po bootstrapu skutečně vyžaduje | neprezentovat jako plně nezávislou admission autoritu | repo-side governance | aktivovat workflow z protected main a přidat `garp27-trusted-admission` mezi required checks
 
 5. NOT TESTED
 SHIELD-LIVE / RI-LIVE | školní server zatím není součástí tohoto kola | reálný serverový deployment
@@ -70,3 +72,16 @@ AUTO-PATCH-PREP: canonical policy binding enabled; final signed gate result is r
 - Centrální AI Studio auto-patch: NOT ENROLLED / NOT APPLICABLE pro aktuální architekturu AI Akademie.
 - Historické GREEN/PREP reporty 1.4.9 jsou audit trail, nikoli důkaz pro 1.4.10.
 - TECHNICAL GREEN ověřen 2026-09-22 nad commitem 2eade9a189b59257a5099dac8f45a5439cf04f07: main P5 35700115299 GREEN; verified Pages deploy + live verification 35700235351 GREEN; main ruleset Active bez bypass actorů. GH-12 CLOSED 2026-09-22; current public Pages technical/media-rights closure GREEN. School-server LIVE remains a separate future phase.
+
+
+11. MIGRACE GARP 2.7 / 1.4.12
+2026-09-23 | consolidation r1 application adapter | GARP 2.5.1/N5/Safe Promotion zachovány; nový runtime engine nevznikl.
+- Referenční kontrakt 2.7 je připnut v security/garp27/reference a kontrolován proti UPSTREAM-PIN.json.
+- A-01 až A-07: referenční master selftest/validátory ověřeny; app policy 2.7 prochází.
+- G27-AR01: runtime import graph + cycle/unresolved/forbidden import gate + disposable cycle mutation.
+- G27-AR02: skutečný dist-pages inventář, zákaz security/test/bypass payloadu + artifact mutation.
+- G27-AR03: capability inventory, same-origin egress/dynamic import/file/storage hranice + undeclared-egress mutation.
+- G27-AR04: lokální workflow omission mutation PASS; trusted-admission design/selftest blokuje scope weakening, změnu gate, redefinici npm gate, změnu Safe Promotion i legacy GARP 2.5 control-plane. P5 na PR je vázán na přesný head SHA a trusted workflow ověřuje předaný `dist-pages`, source SHA, runtime digest, SBOM a P5 evidence. Repo-side required-check aktivace zůstává externím předpokladem.
+- G27-AR05: legacy GARP je povolen pouze jako verification/release baseline; import security engine do runtime je blokován a mutation testem doložen.
+- Assurance: server-dependent AG-10 až AG-12 = NOT_TESTED/DEFERRED. Žádný SCHOOL/LIVE PASS.
+- CI: P5 i verified deploy spouštějí `npm run qa:garp27:ci`; P5 SBOM upload již není připnut na historickou verzi 1.4.10 a P5 evidence bundle obsahuje i skutečný `dist-pages` pro trusted re-inspekci.

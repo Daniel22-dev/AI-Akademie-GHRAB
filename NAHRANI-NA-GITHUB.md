@@ -1,11 +1,11 @@
-# AI Akademie GHRAB — aktuální release postup od 1.4.10
+# AI Akademie GHRAB — aktuální release postup od 1.4.12
 
 ## Zásadní pravidlo
 Novou verzi **nikdy nenahrávej přímo do `main`**. Trvalá vstupní větev je `candidate`.
 
 Aktuální cesta je:
 
-`candidate → P5/GARP/N5 → PR → protected main → main P5 → verified GitHub Pages deploy → live verification`
+`candidate → P5/GARP/N5/GARP2.7 → PR → trusted admission → protected main → main P5 → verified GitHub Pages deploy → live verification`
 
 ## 1. Kam nahrávat změny
 Změny patří do větve:
@@ -18,6 +18,7 @@ Po pushi musí doběhnout workflow **AI Akademie P5 release gate**.
 Před merge do `main` musí být GREEN:
 - `p5-release-gate`
 - `candidate-to-main`
+- `garp27-trusted-admission` *(po bootstrapu 1.4.12 a jeho aktivaci v rulesetu)*
 
 `main` je chráněn rulesetem **Protect main - Safe Promotion**. Přímý push, smazání a non-fast-forward změny jsou blokované.
 
@@ -44,6 +45,8 @@ V kořeni projektu můžeš spustit:
 npm ci
 npm test
 npm run qa:garp25:static
+npm run qa:current-evidence
+npm run qa:garp27:ci
 ```
 
 ## 6. Obsahové změny kurzů
@@ -68,3 +71,11 @@ Při přetrvávající staré verzi zavři všechny karty Akademie a znovu ji ot
 - Historické auditní soubory nemaž; tvoří audit trail.
 - AI Akademie není enrolled do současného centrálního AI Studio auto-patche.
 - Před bezpodmínečným PUBLIC/SCHOOL uzavřením musí být doložen GH-12 původ/licence všech položek v `security/BINARY-RIGHTS-INVENTORY.txt`.
+
+
+## 9. GARP 2.7 trusted admission
+Od 1.4.12 je v repozitáři připraven workflow `GARP 2.7 trusted admission`. Spouští se až po dokončení P5 přes `workflow_run`; kontrolní kód a trust policy bere z chráněného `main` a kandidáta načítá pouze jako nedůvěryhodná data podle přesného SHA z ověřeného P5 běhu. P5 navíc předává skutečný `dist-pages`, current-release evidence a SBOM; trusted workflow znovu kontroluje source SHA, digest runtime artefaktu a vazbu evidence před vlastní architektonickou kontrolou.
+
+Po prvním bootstrap merge 1.4.12 je nutné v GitHub rulesetu ověřit/přidat check `garp27-trusted-admission` mezi povinné kontroly. Dokud to není potvrzené na GitHubu, lokální report správně uvádí governance gap a nesmí tvrdit plně nezávislý G27-AR04 PASS.
+
+Běžný aplikační PR nesmí měnit trusted GARP 2.7 tooling/policy, zachovaný GARP 2.5 control-plane, P5/Safe Promotion/deploy workflow ani dependency graph a současně si tuto změnu sám schválit. Taková změna vyžaduje samostatný řízený bootstrap/policy update.

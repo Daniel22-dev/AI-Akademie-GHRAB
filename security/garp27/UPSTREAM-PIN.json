@@ -1,0 +1,50 @@
+{
+  "schema": "garp27-upstream-pin-v1",
+  "garpVersion": "2.7",
+  "consolidationRevision": "2026-09-23-r1",
+  "sourcePackage": "GARP-2.7-KONSOLIDOVANY-FINAL(2).zip",
+  "sourcePackageSha256": "f54e5b5c271ff05c5a4d4cf85882ba972b9a78945724bb60a369432e984803d4",
+  "purpose": "Pinned verification contract snapshot only; not a runtime security engine.",
+  "files": [
+    {
+      "path": "security/garp27/reference/CONTRACTS/garp27-core.json",
+      "sha256": "21c36d5d3511eb8f3c7df405bfa1334437fa184cfde79135eba9b23f61756ab6"
+    },
+    {
+      "path": "security/garp27/reference/TOOLS/contract-selftest.mjs",
+      "sha256": "fb2ca8bd78eabb07147eb07e20b321b78d61d07eae4ead16db433b5e90b61c8d"
+    },
+    {
+      "path": "security/garp27/reference/TOOLS/lib.mjs",
+      "sha256": "843644cc7de71274d54277104079960364ba69d6ae2b5e46abb826fb38e3338a"
+    },
+    {
+      "path": "security/garp27/reference/TOOLS/package-selftest.mjs",
+      "sha256": "6c200aea12f1681a5cea8ea175419815fdfdf7d118d1efed73c568f926ebd367"
+    },
+    {
+      "path": "security/garp27/reference/TOOLS/validate-assurance.mjs",
+      "sha256": "20fdd4685c0a265b1cf782bd2ffa983f8e0135660abeed85681813d57858531c"
+    },
+    {
+      "path": "security/garp27/reference/TOOLS/validate-auto-patch-transition.mjs",
+      "sha256": "07c566c62880ff6017714b7eeafd9279d24509f535a3d13a8e07947c5364520e"
+    },
+    {
+      "path": "security/garp27/reference/TOOLS/validate-auto-patch.mjs",
+      "sha256": "a99e350e6bd65dcf9e929c35424d50507132b80ca2d70d808b2b1c02fca705e0"
+    },
+    {
+      "path": "security/garp27/reference/TOOLS/validate-live-status.mjs",
+      "sha256": "1edde403ba6ba6b38aeba22871795101cc0d839d07fe2c8cee1c57db37e1ca7f"
+    },
+    {
+      "path": "security/garp27/reference/TOOLS/validate-policy.mjs",
+      "sha256": "d3a22c14956013f15e8e92984d130d96841773f600761593d1cb8b667b182d41"
+    },
+    {
+      "path": "security/garp27/reference/TOOLS/validate-runtime-test-request.mjs",
+      "sha256": "f1154a33703db4f05c36983680c22141fe6a70668f6c4b2a16c98156d5fadd28"
+    }
+  ]
+}

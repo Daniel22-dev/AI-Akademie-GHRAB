@@ -1,0 +1,37 @@
+{
+  "schema": "ai-akademie-garp27-capability-inventory-v1",
+  "garpVersion": "2.7",
+  "appId": "ai-akademie",
+  "appVersion": "1.4.12",
+  "deploymentProfile": "public-pages-static-prep",
+  "dataClass": "D0",
+  "agentic": false,
+  "backend": false,
+  "aiApiRuntime": false,
+  "userFileProcessing": false,
+  "applicationCrossOriginEgress": false,
+  "browserStorage": ["localStorage: quiz/checklist/UI state"],
+  "runtimeEntryFiles": ["index.html", "console.html", "404.html", "manifest.webmanifest", "sw.js"],
+  "runtimeDirectories": ["assets", "courses", "exports"],
+  "artifactTopLevel": [".nojekyll", "404.html", "assets", "console.html", "courses", "exports", "index.html", "manifest.webmanifest", "sw.js"],
+  "moduleRoots": ["assets/js", "courses"],
+  "approvedDynamicImports": [
+    {
+      "file": "assets/js/app.js",
+      "expression": "accessRuntimeUrl.href",
+      "destination": "same-origin /AI-Studio-GHRAB/ or /ai-studio/ + access/access-control.js",
+      "requiredGuards": [
+        "candidate.origin !== location.origin",
+        "['/AI-Studio-GHRAB/', '/ai-studio/'].includes(normalizedPath)",
+        "new URL('access/access-control.js', studioUrl)"
+      ]
+    }
+  ],
+  "networkCapabilities": [
+    {"kind":"service-worker-fetch","file":"sw.js","constraint":"same-origin within SW scope; network-only/no-store"},
+    {"kind":"esm-dynamic-import","file":"assets/js/app.js","constraint":"same-origin allowlisted AI Studio access runtime only"}
+  ],
+  "forbiddenArtifactPathSegments": ["security", "scripts", ".github", "qa-results", "node_modules"],
+  "forbiddenArtifactSuffixes": [".map"],
+  "serverDependentCapabilities": ["route authorization", "server identity/session revocation", "network egress enforcement", "server audit/monitoring", "server recovery"]
+}
