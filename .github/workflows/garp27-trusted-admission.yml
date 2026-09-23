@@ -1,0 +1,117 @@
+name: GARP 2.7 trusted admission
+
+on:
+  workflow_run:
+    workflows: ["AI Akademie P5 release gate"]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+  statuses: write
+
+concurrency:
+  group: garp27-trusted-${{ github.event.workflow_run.head_sha }}
+  cancel-in-progress: false
+
+jobs:
+  garp27-trusted-admission:
+    name: garp27-trusted-admission
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout trusted main
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+          path: trusted
+          persist-credentials: false
+      - name: Checkout candidate as untrusted data
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          path: candidate
+          persist-credentials: false
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22.22.2
+      - name: Mark trusted admission pending
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          CANDIDATE_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          gh api --method POST "repos/${REPOSITORY}/statuses/${CANDIDATE_SHA}" \
+            -f state='pending' \
+            -f context='garp27-trusted-admission' \
+            -f description='GARP 2.7 trusted admission is running' >/dev/null
+      - name: Download exact P5 bundle as untrusted data
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          CANDIDATE_SHA: ${{ github.event.workflow_run.head_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          artifact_name="ai-akademie-p5-${CANDIDATE_SHA}"
+          artifacts_json="$(gh api "repos/${REPOSITORY}/actions/runs/${RUN_ID}/artifacts?per_page=100")"
+          count="$(jq --arg n "$artifact_name" '[.artifacts[] | select(.name == $n and .expired == false)] | length' <<<"$artifacts_json")"
+          [ "$count" = '1' ] || { echo "::error::Expected exactly one non-expired ${artifact_name} artifact, found ${count}."; exit 1; }
+          artifact_id="$(jq -r --arg n "$artifact_name" '.artifacts[] | select(.name == $n and .expired == false) | .id' <<<"$artifacts_json")"
+          gh api -H 'Accept: application/vnd.github+json' "repos/${REPOSITORY}/actions/artifacts/${artifact_id}/zip" > p5-bundle.zip
+          unzip -Z1 p5-bundle.zip > p5-bundle.entries
+          if grep -Eq '(^/|(^|/)\.\.(/|$)|\\)' p5-bundle.entries; then
+            echo '::error::Unsafe path in P5 artifact archive.'
+            exit 1
+          fi
+          mkdir p5-bundle
+          unzip -q p5-bundle.zip -d p5-bundle
+          if find p5-bundle -type l -print -quit | grep -q .; then
+            echo '::error::Symlink in P5 artifact bundle.'
+            exit 1
+          fi
+          test -d p5-bundle/dist-pages
+          test -d p5-bundle/qa-results/garp27
+          test -f p5-bundle/qa-results/release-current/current-release-evidence.json
+          rm -rf candidate/dist-pages candidate/qa-results
+          cp -a p5-bundle/dist-pages candidate/dist-pages
+          cp -a p5-bundle/qa-results candidate/qa-results
+      - name: Inspect P5 bundle and candidate with trusted control-plane
+        id: admission
+        env:
+          CANDIDATE_SHA: ${{ github.event.workflow_run.head_sha }}
+        shell: bash
+        run: |
+          code=0
+          node trusted/scripts/qa-garp27-verify-p5-bundle.mjs p5-bundle candidate "$CANDIDATE_SHA" > trusted-bundle-verification.json 2>&1 || code=$?
+          if [ "$code" = '0' ]; then
+            node trusted/scripts/qa-garp27-trusted-admission.mjs candidate trusted > trusted-admission.json 2>&1 || code=$?
+          fi
+          cat trusted-bundle-verification.json
+          if [ -f trusted-admission.json ]; then cat trusted-admission.json; fi
+          echo "code=${code}" >> "$GITHUB_OUTPUT"
+      - name: Publish trusted admission status
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          CANDIDATE_SHA: ${{ github.event.workflow_run.head_sha }}
+          ADMISSION_CODE: ${{ steps.admission.outputs.code }}
+        shell: bash
+        run: |
+          state='failure'
+          description='GARP 2.7 trusted admission failed'
+          if [ "$ADMISSION_CODE" = '0' ]; then
+            state='success'
+            description='GARP 2.7 trusted admission passed'
+          fi
+          gh api --method POST "repos/${REPOSITORY}/statuses/${CANDIDATE_SHA}" \
+            -f state="$state" \
+            -f context='garp27-trusted-admission' \
+            -f description="$description" >/dev/null
+          test "$state" = 'success'

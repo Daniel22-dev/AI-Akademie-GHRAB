@@ -15,8 +15,11 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
-      - name: Checkout
+      - name: Checkout exact candidate source
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
       - name: Setup Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
@@ -49,16 +52,28 @@ jobs:
         run: npm run qa:safe-promotion
       - name: Build current release evidence
         env:
-          GHRAB_SOURCE_COMMIT: ${{ github.sha }}
+          GHRAB_SOURCE_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
           GHRAB_BUILD_ID: p5-${{ github.run_id }}-${{ github.run_attempt }}
           GHRAB_ENVIRONMENT: PREP-PUBLIC-PAGES
         run: npm run qa:current-evidence
+      - name: Run GARP 2.7 FOUNDATION/architecture integrity
+        env:
+          GHRAB_SOURCE_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
+          GHRAB_BUILD_ID: p5-${{ github.run_id }}-${{ github.run_attempt }}
+          GHRAB_ENVIRONMENT: PREP-PUBLIC-PAGES
+        run: npm run qa:garp27:ci
+      - name: Export app version for evidence paths
+        id: app-version
+        shell: bash
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
       - name: Upload current P5 evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: ai-akademie-p5-${{ github.sha }}
+          name: ai-akademie-p5-${{ github.event.pull_request.head.sha || github.sha }}
           path: |
+            dist-pages/**
             qa-results/release-current/**
-            security/sbom/ai-akademie-1.4.10.cdx.json
+            qa-results/garp27/**
+            security/sbom/ai-akademie-${{ steps.app-version.outputs.version }}.cdx.json
           if-no-files-found: ignore

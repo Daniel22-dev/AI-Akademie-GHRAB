@@ -1,0 +1,54 @@
+{
+  "schema": "garp27-policy-v1",
+  "garpVersion": "2.7",
+  "appId": "ai-akademie",
+  "appVersion": "1.4.12",
+  "identity": {
+    "mode": "static-app-with-delegated-same-origin-admin-bridge",
+    "authority": "AI Studio access runtime, never AI Akademie",
+    "adminReturn": "full-admin only; fail-closed hidden on verification failure",
+    "tokenTransfer": "forbidden"
+  },
+  "requestApiAi": {
+    "mode": "no-ai-api-runtime",
+    "runtimeInputs": ["hash route", "allowlisted same-origin studio URL", "local quiz/checklist UI state"],
+    "dynamicImport": "same-origin AI Studio access/access-control.js only",
+    "aiProviderCalls": "none"
+  },
+  "egress": {
+    "mode": "same-origin-only-runtime",
+    "allowed": ["same-origin static runtime", "same-origin AI Studio access runtime"],
+    "crossOriginApplicationEgress": "forbidden"
+  },
+  "files": {
+    "mode": "no-user-file-processing-runtime",
+    "capability": "not-applicable-and-code-verified"
+  },
+  "dataLifecycle": {
+    "mode": "D0-browser-local-minimal",
+    "storage": "localStorage for quiz/checklist/UI state only",
+    "studentPersonalData": "not-required",
+    "serviceWorker": "no precache; network-only/no-store"
+  },
+  "release": {
+    "mode": "candidate-p5-protected-main-verified-pages",
+    "legacyControls": "GARP 2.5.1 + N5 + Safe Promotion retained",
+    "garp27": "FOUNDATION and architecture-integrity admission added"
+  },
+  "inventory": {
+    "mode": "explicit-static-capability-inventory",
+    "source": "security/garp27/capability-inventory.json"
+  },
+  "securityHealth": {
+    "mode": "derived-local-ci-assurance",
+    "schoolRuntime": "NOT_TESTED until server phase is approved"
+  },
+  "incident": {
+    "mode": "fail-closed-local-and-ci",
+    "runbook": "security/garp27/INCIDENT-RUNBOOK.md"
+  },
+  "recovery": {
+    "mode": "verified-clean-candidate-only",
+    "schoolServerRecovery": "DEFERRED_BY_OWNER_DECISION"
+  }
+}

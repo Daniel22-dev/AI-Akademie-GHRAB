@@ -76,7 +76,7 @@ jobs:
       github.event.workflow_run.conclusion == 'success' &&
       github.event.workflow_run.event == 'pull_request'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Merge only verified candidate to protected main
         shell: bash
@@ -100,13 +100,23 @@ jobs:
           for required_type in pull_request required_status_checks deletion non_fast_forward; do
             jq -e --arg t "$required_type" '[.[] | select(.type == $t)] | length > 0' <<<"$rules_json" >/dev/null || { echo "::error::main Ruleset missing ${required_type}."; exit 1; }
           done
-          for required_check in candidate-to-main p5-release-gate; do
+          for required_check in candidate-to-main p5-release-gate garp27-trusted-admission; do
             jq -e --arg c "$required_check" '[.[] | select(.type == "required_status_checks") | .parameters.required_status_checks[]? | select(.context == $c)] | length > 0' <<<"$rules_json" >/dev/null || { echo "::error::main Ruleset does not require ${required_check}."; exit 1; }
           done
           checks_json="$(gh api -H 'Accept: application/vnd.github+json' "repos/${REPOSITORY}/commits/${CHECKED_SHA}/check-runs")"
           for required_check in candidate-to-main p5-release-gate; do
             jq -e --arg c "$required_check" '[.check_runs[] | select(.name == $c and .conclusion == "success")] | length > 0' <<<"$checks_json" >/dev/null || { echo "::error::Required ${required_check} is not GREEN."; exit 1; }
           done
+          trusted_state=''
+          for attempt in {1..60}; do
+            trusted_state="$(gh api "repos/${REPOSITORY}/commits/${CHECKED_SHA}/statuses" --jq '[.[] | select(.context == "garp27-trusted-admission")][0].state // empty')"
+            if [ "$trusted_state" = 'success' ]; then break; fi
+            if [ "$trusted_state" = 'failure' ] || [ "$trusted_state" = 'error' ]; then
+              echo "::error::GARP 2.7 trusted admission is ${trusted_state}."; exit 1
+            fi
+            sleep 10
+          done
+          [ "$trusted_state" = 'success' ] || { echo "::error::GARP 2.7 trusted admission did not reach success."; exit 1; }
           result="$(gh api --method PUT "repos/${REPOSITORY}/pulls/${pr_number}/merge" -f sha="$CHECKED_SHA" -f merge_method='merge')"
           [ "$(jq -r '.merged' <<<"$result")" = "true" ] || { echo "::error::GitHub refused merge."; exit 1; }
           merge_sha="$(jq -r '.sha' <<<"$result")"

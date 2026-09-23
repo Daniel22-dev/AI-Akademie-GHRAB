@@ -1,37 +1,40 @@
 # AI Akademie — CURRENT RELEASE STATUS
 
-**Version:** 1.4.10  
-**Date:** 2026-09-22  
-**Technical release status:** GREEN — GitHub E2E verified  
-**Overall public release status:** GREEN — GH-12 media rights provenance CLOSED
+**Version:** 1.4.12  
+**Date:** 2026-09-23  
+**Candidate status:** LOCAL/CI FOUNDATION candidate — verification required on exact Git commit  
+**Public LIVE claim for 1.4.12:** NOT MADE  
+**School-server LIVE:** NOT_TESTED / DEFERRED_BY_OWNER_DECISION
 
-This file supersedes historical GREEN/PREP reports as the human-readable pointer to the current release state. Historical evidence remains audit trail only.
+Tento soubor popisuje zdrojový kandidát 1.4.12. Historické GREEN reporty starších verzí zůstávají audit trail; nejsou automaticky důkazem pro 1.4.12.
 
-## Architecture decision
-AI Akademie is not present in the current AI Studio `release-wave.json` or `release-promotion-policy.json`. Therefore the removed historical central auto-patch workflow is not restored. The local historical `auto-patch-prep` GARP profile remains an internal tooling concept and must not be presented as central Studio auto-patch enrollment.
+## Security architecture
+- GARP 2.5.1/N5/Safe Promotion zůstává funkční baseline.
+- GARP 2.7 consolidation r1 je aktivní jako FOUNDATION/admission kontrakt a architecture-integrity vrstva.
+- P5 evidence je navržena jako vazba na přesný candidate head SHA a zahrnuje skutečný runtime `dist-pages`; trusted admission jej znovu ověřuje kontrolním kódem z chráněného `main`.
+- Nevzniká druhý runtime security engine.
+- AI Akademie nemá vlastní AI/API runtime, backend ani upload souborů.
+- School-server implementace, Fortinet integrace, serverové identity/revokace, runtime monitoring a recovery nejsou součástí tohoto kola.
 
-## Verified release chain
-`candidate → P5/GARP/N5/build → PR → protected main → main P5 → verified GitHub Pages deploy → live version verification`
+## Required release chain
+`candidate -> P5/GARP2.5/N5 -> build+artifact checks -> GARP2.7 FOUNDATION/architecture -> PR -> trusted admission from protected main -> protected main -> main P5 -> verified Pages deploy -> live version verification`
 
-Verified on 2026-09-22 for commit:
-`2eade9a189b59257a5099dac8f45a5439cf04f07`
+## Current local evidence contract
+Po sestavení musí projít:
+- `npm test`
+- `npm run qa:garp25:tooling`
+- `npm run qa:garp25:pinned`
+- `npm run qa:secrets`
+- `npm run qa:safe-promotion`
+- `npm run build:pages`
+- `npm run qa:garp25:deployment`
+- `npm run qa:garp25:sw-pages`
+- `npm run qa:garp25:vendored`
+- `npm run qa:garp25:sbom`
+- `npm run qa:current-evidence`
+- `npm run qa:garp27:ci`
 
-Relevant successful runs:
-- main P5: `35700115299`
-- verified Pages deploy + live verification: `35700235351`
-- candidate PR P5: `35625575613`
-- candidate-to-main Safe Promotion: `35625575764`
+## GARP 2.7 truth boundary
+Lokální/CI adapter může odvodit `FOUNDATION_PASS_LIVE_NOT_TESTED`, pokud projdou všechny lokální kontroly a evidence. G27-AR04 však vyžaduje nezávislou repo-side autoritu, kterou kandidát nemůže změkčit ve stejné změně. Pro 1.4.12 je připraven trusted-admission přes `workflow_run` z chráněného `main`; dokud ale není tato verze bootstrapnuta a context `garp27-trusted-admission` skutečně nastaven jako required check v GitHub rulesetu, report ji označuje jako `PARTIAL_LOCAL_ENFORCEMENT` / governance gap.
 
-## Current assurance
-- GARP/N5: GREEN on current release commit/run.
-- Safe Promotion: GREEN with active `main` ruleset, required PR, required checks, no bypass actors, deletion blocked and non-fast-forward blocked.
-- GitHub Pages: Source = GitHub Actions; verified deployment and live version check GREEN.
-- Release evidence: `TRANSITIONAL` CI evidence bound to source SHA + exact `dist-pages` digest + SBOM.
-- Production cryptographic signing: not claimed.
-- School-server LIVE controls: not claimed; separate future phase.
-- GH-12 binary/media rights: CLOSED; see `security/BINARY-RIGHTS-INVENTORY.txt`.
-
-## Remaining process note
-GH-12 is CLOSED for the current deployed media inventory. Re-open it if a new image/SVG/media asset is added.
-
-The separate GH-10 independence note remains a process/audit-independence item because implementation and this audit were performed by the same ChatGPT system; it is not a technical defect in the deployed application.
+Žádný lokální selftest, validní JSON ani úspěšný mutation pack není sám o sobě důkazem školního LIVE provozu.

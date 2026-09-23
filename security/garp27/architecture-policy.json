@@ -1,0 +1,49 @@
+{
+  "schema": "ai-akademie-garp27-architecture-policy-v1",
+  "garpVersion": "2.7",
+  "appId": "ai-akademie",
+  "appVersion": "1.4.12",
+  "runtimeSourceRoots": [
+    "assets/js",
+    "courses"
+  ],
+  "runtimeStandaloneModules": [
+    "sw.js"
+  ],
+  "forbiddenRuntimeImportPrefixes": [
+    "security/",
+    "scripts/",
+    ".github/",
+    "qa-results/",
+    "node_modules/"
+  ],
+  "workflowRequirements": {
+    ".github/workflows/p5-release-gate.yml": [
+      "npm run qa:garp27:ci",
+      "github.event.pull_request.head.sha || github.sha",
+      "dist-pages/**"
+    ],
+    ".github/workflows/deploy.yml": [
+      "npm run qa:garp27:ci"
+    ],
+    ".github/workflows/garp27-trusted-admission.yml": [
+      "qa-garp27-verify-p5-bundle.mjs p5-bundle candidate",
+      "qa-garp27-trusted-admission.mjs candidate trusted",
+      "workflow_run.head_sha"
+    ]
+  },
+  "requiredPackageScripts": [
+    "qa:garp27:reference",
+    "qa:garp27:architecture",
+    "qa:garp27:mutations",
+    "qa:garp27:assurance",
+    "qa:garp27:ci",
+    "qa:garp27:trusted-selftest",
+    "qa:garp27:local"
+  ],
+  "legacyAuthoritiesAllowed": [
+    "security/garp25"
+  ],
+  "activeAuthority": "security/garp27",
+  "serverPhase": "DEFERRED_BY_OWNER_DECISION"
+}
