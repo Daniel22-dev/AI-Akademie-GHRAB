@@ -4,11 +4,11 @@ GARP APPLICATION CARD — AI AKADEMIE GHRAB
 appId: ai-akademie
 Název: AI Akademie GHRAB
 Repozitář: AI-Akademie-GHRAB
-Aktuální verze: 1.4.12
+Aktuální verze: 1.4.13
 Verze standardu: GARP 2.7 consolidation r1 / legacy GARP 2.5.1 GHRAB + N5 + Safe Promotion retained
 SHA-256 vstupního aplikačního ZIPu pro toto kolo: c4d12a439fdcf680500449f92abd10e64e3d7ce34e229ecc5aa05f40f7815a32
 SHA-256 vstupního GARP 2.7 ZIPu: f54e5b5c271ff05c5a4d4cf85882ba972b9a78945724bb60a369432e984803d4
-Stav tohoto kola: 1.4.12 je zdrojový kandidát s GARP 2.7 FOUNDATION/architecture-integrity adaptérem. GARP 2.5.1/N5/Safe Promotion zůstává aktivní baseline. Lokální reference/architecture/mutation kontroly jsou určeny k CI admission; SCHOOL/LIVE se bez cílového serveru neprohlašuje. Trusted-admission workflow je připraven pro běh z chráněného mainu, ale jeho aktivace jako povinného GitHub checku musí být po bootstrapu externě ověřena. Centrální AI Studio auto-patch: NOT ENROLLED. School-server production release: NE / DEFERRED_BY_OWNER_DECISION.
+Stav tohoto kola: 1.4.13 je zdrojový kandidát s GARP 2.7 FOUNDATION/architecture-integrity adaptérem. GARP 2.5.1/N5/Safe Promotion zůstává aktivní baseline. Lokální reference/architecture/mutation kontroly jsou určeny k CI admission; SCHOOL/LIVE se bez cílového serveru neprohlašuje. Trusted-admission workflow je připraven pro běh z chráněného mainu, ale jeho aktivace jako povinného GitHub checku musí být po bootstrapu externě ověřena. Centrální AI Studio auto-patch: NOT ENROLLED. School-server production release: NE / DEFERRED_BY_OWNER_DECISION.
 
 2. TRVALÁ KLASIFIKACE
 Třída dat: D0
@@ -85,3 +85,7 @@ AUTO-PATCH-PREP: canonical policy binding enabled; final signed gate result is r
 - G27-AR05: legacy GARP je povolen pouze jako verification/release baseline; import security engine do runtime je blokován a mutation testem doložen.
 - Assurance: server-dependent AG-10 až AG-12 = NOT_TESTED/DEFERRED. Žádný SCHOOL/LIVE PASS.
 - CI: P5 i verified deploy spouštějí `npm run qa:garp27:ci`; P5 SBOM upload již není připnut na historickou verzi 1.4.10 a P5 evidence bundle obsahuje i skutečný `dist-pages` pro trusted re-inspekci.
+
+
+12. UI AKTUALIZACE / 1.4.13
+2026-09-26 | O aplikaci | Přidána informační karta podle vzoru AI Studia; samostatný changelog modal byl přesunut do sbaleného katalogu změn uvnitř této karty. Bez změny security capabilities nebo runtime egressu.
