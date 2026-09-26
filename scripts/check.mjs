@@ -198,7 +198,7 @@ if (app.includes("searchParams.set('session'") || app.includes('ghrab-presenter-
 if (app.includes('renderLessonCompletion') || app.includes('completedLessons') || app.includes('overallProgress') || app.includes('courseProgress')) errors.push('Hlavní aplikace stále obsahuje osobní postup účastníka.');
 if (!app.includes('renderPresentationEnd')) errors.push('Hlavní aplikace nemá závěrečnou prezentační obrazovku.');
 if (!app.includes('exitPresenter')) errors.push('Hlavní aplikace nemá bezpečný návrat z prezentačního režimu.');
-if (!app.includes('open-changelog') || !app.includes('CHANGELOG')) errors.push('Hlavní aplikace nemá dostupný changelog.');
+if (!app.includes("page: 'about'") || !app.includes('renderAboutChangelog') || !app.includes('CHANGELOG')) errors.push('Hlavní aplikace nemá dostupnou kartu O aplikaci s changelogem.');
 if (!app.includes('course.minimumLessons')) errors.push('Hlavní aplikace nerozlišuje základní a rozšiřující cestu.');
 if (!app.includes('function initialiseStudioAdminBridge()')) errors.push('Akademie nemá ověření správcovského návratu do AI Studia.');
 if (!app.includes('accessRuntime.isAdmin() === true')) errors.push('Návrat do AI Studia není omezen na plného správce.');
