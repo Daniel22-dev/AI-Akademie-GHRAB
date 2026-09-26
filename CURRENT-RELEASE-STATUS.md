@@ -1,12 +1,12 @@
 # AI Akademie — CURRENT RELEASE STATUS
 
-**Version:** 1.4.12  
-**Date:** 2026-09-23  
+**Version:** 1.4.13  
+**Date:** 2026-09-26  
 **Candidate status:** LOCAL/CI FOUNDATION candidate — verification required on exact Git commit  
-**Public LIVE claim for 1.4.12:** NOT MADE  
+**Public LIVE claim for 1.4.13:** NOT MADE  
 **School-server LIVE:** NOT_TESTED / DEFERRED_BY_OWNER_DECISION
 
-Tento soubor popisuje zdrojový kandidát 1.4.12. Historické GREEN reporty starších verzí zůstávají audit trail; nejsou automaticky důkazem pro 1.4.12.
+Tento soubor popisuje zdrojový kandidát 1.4.13. Historické GREEN reporty starších verzí zůstávají audit trail; nejsou automaticky důkazem pro 1.4.13.
 
 ## Security architecture
 - GARP 2.5.1/N5/Safe Promotion zůstává funkční baseline.
@@ -35,6 +35,6 @@ Po sestavení musí projít:
 - `npm run qa:garp27:ci`
 
 ## GARP 2.7 truth boundary
-Lokální/CI adapter může odvodit `FOUNDATION_PASS_LIVE_NOT_TESTED`, pokud projdou všechny lokální kontroly a evidence. G27-AR04 však vyžaduje nezávislou repo-side autoritu, kterou kandidát nemůže změkčit ve stejné změně. Pro 1.4.12 je připraven trusted-admission přes `workflow_run` z chráněného `main`; dokud ale není tato verze bootstrapnuta a context `garp27-trusted-admission` skutečně nastaven jako required check v GitHub rulesetu, report ji označuje jako `PARTIAL_LOCAL_ENFORCEMENT` / governance gap.
+Lokální/CI adapter může odvodit `FOUNDATION_PASS_LIVE_NOT_TESTED`, pokud projdou všechny lokální kontroly a evidence. G27-AR04 však vyžaduje nezávislou repo-side autoritu, kterou kandidát nemůže změkčit ve stejné změně. Pro 1.4.13 je připraven trusted-admission přes `workflow_run` z chráněného `main`; dokud ale není tato verze bootstrapnuta a context `garp27-trusted-admission` skutečně nastaven jako required check v GitHub rulesetu, report ji označuje jako `PARTIAL_LOCAL_ENFORCEMENT` / governance gap.
 
 Žádný lokální selftest, validní JSON ani úspěšný mutation pack není sám o sobě důkazem školního LIVE provozu.
