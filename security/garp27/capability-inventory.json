@@ -2,7 +2,7 @@
   "schema": "ai-akademie-garp27-capability-inventory-v1",
   "garpVersion": "2.7",
   "appId": "ai-akademie",
-  "appVersion": "1.4.12",
+  "appVersion": "1.4.13",
   "deploymentProfile": "public-pages-static-prep",
   "dataClass": "D0",
   "agentic": false,

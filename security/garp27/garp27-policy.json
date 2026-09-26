@@ -2,7 +2,7 @@
   "schema": "garp27-policy-v1",
   "garpVersion": "2.7",
   "appId": "ai-akademie",
-  "appVersion": "1.4.12",
+  "appVersion": "1.4.13",
   "identity": {
     "mode": "static-app-with-delegated-same-origin-admin-bridge",
     "authority": "AI Studio access runtime, never AI Akademie",
