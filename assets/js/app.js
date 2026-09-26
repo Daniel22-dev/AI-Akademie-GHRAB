@@ -15,7 +15,6 @@ let deferredInstallPrompt = null;
 let presenterConsoleWindow = null;
 let pendingUpdateWorker = null;
 let updateReloadRequested = false;
-let changelogReturnFocus = null;
 let studioAdminBridge = { verified: false, visible: false, studioUrl: '' };
 
 // Konzole školitele komunikuje pouze s oknem, které Akademie sama otevřela.
@@ -35,6 +34,7 @@ const icons = {
   download: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>',
   console: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9l2 2 3-3M14 12h3"/></svg>',
   history: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/></svg>',
+  info: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>',
   close: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
   replay: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>',
   studio: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/><path d="M9 22h6M12 19v3"/></svg>'
@@ -402,6 +402,7 @@ function route() {
   const clean = location.hash.replace(/^#\/?/, '');
   if (!clean) return { page: 'home' };
   const parts = clean.split('/').filter(Boolean);
+  if (parts[0] === 'about') return { page: 'about' };
   if (parts[0] === 'course' && parts[1]) {
     return { page: 'course', courseId: parts[1], lessonId: parts[2] || null };
   }
@@ -413,47 +414,6 @@ function navigate(path) {
   const target = `#${normalized}`;
   if (location.hash === target) render();
   else location.hash = normalized;
-}
-
-function openChangelog() {
-  const overlay = document.querySelector('.changelog-overlay');
-  if (!overlay) return;
-  changelogReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-  overlay.hidden = false;
-  document.body.classList.add('modal-open');
-  requestAnimationFrame(() => overlay.classList.add('open'));
-  overlay.querySelector('.changelog-close')?.focus();
-}
-
-function closeChangelog() {
-  const overlay = document.querySelector('.changelog-overlay');
-  if (!overlay || overlay.hidden) return;
-  overlay.classList.remove('open');
-  document.body.classList.remove('modal-open');
-  setTimeout(() => {
-    overlay.hidden = true;
-    changelogReturnFocus?.focus?.();
-    changelogReturnFocus = null;
-  }, 180);
-}
-
-function trapChangelogFocus(event) {
-  if (event.key !== 'Tab') return false;
-  const overlay = document.querySelector('.changelog-overlay');
-  if (!overlay || overlay.hidden) return false;
-  const focusable = [...overlay.querySelectorAll('button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])')]
-    .filter(element => !element.disabled && !element.hidden);
-  if (!focusable.length) return true;
-  const first = focusable[0];
-  const last = focusable.at(-1);
-  if (event.shiftKey && document.activeElement === first) {
-    event.preventDefault();
-    last.focus();
-  } else if (!event.shiftKey && document.activeElement === last) {
-    event.preventDefault();
-    first.focus();
-  }
-  return true;
 }
 
 async function exitPresenter(goHome = false) {
@@ -474,20 +434,104 @@ async function exitPresenter(goHome = false) {
 }
 
 
-function renderChangelogModal() {
-  return `
-    <div class="changelog-overlay" data-changelog-overlay hidden>
-      <section class="changelog-dialog panel-glass" role="dialog" aria-modal="true" aria-labelledby="changelog-title">
-        <header>
-          <div><p class="eyebrow">HISTORIE VÝVOJE</p><h2 id="changelog-title">Posledních 10 změn</h2><p>Nová položka se vkládá nahoru a automaticky vytlačí nejstarší záznam.</p></div>
-          <button type="button" class="changelog-close" data-action="close-changelog" aria-label="Zavřít changelog">${icons.close}</button>
-        </header>
-        <div class="changelog-list">
-          ${CHANGELOG.map((item, index) => `<article class="changelog-item ${index === 0 ? 'latest' : ''}"><div><span>v${escapeHtml(item.version)}</span><time>${escapeHtml(item.date)}</time></div><section><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.detail)}</p></section></article>`).join('')}
+function renderAboutChangelog() {
+  return CHANGELOG.map((item, index) => {
+    const detail = Array.isArray(item.changes) && item.changes.length
+      ? `<ul>${item.changes.map(change => `<li>${escapeHtml(change)}</li>`).join('')}</ul>`
+      : `<p>${escapeHtml(item.detail || '')}</p>`;
+    return `<article class="about-change-card ${index === 0 ? 'latest' : ''}">
+      <div class="about-change-meta"><span>v${escapeHtml(item.version)}</span>${item.date ? `<time>${escapeHtml(item.date)}</time>` : ''}</div>
+      <section><h3>${escapeHtml(item.title)}</h3>${detail}</section>
+    </article>`;
+  }).join('');
+}
+
+function renderAbout() {
+  if (presenterMode && document.fullscreenElement) document.exitFullscreen().catch(() => undefined);
+  document.title = 'O aplikaci · AI Akademie GHRAB';
+  document.body.classList.remove('presenter-mode');
+  presenterMode = false;
+  presentationCover = false;
+  presentationEnd = false;
+
+  const content = `
+    <section class="about-hero shell-wide">
+      <p class="eyebrow">IDENTITA A PROJEKT</p>
+      <h1>O aplikaci</h1>
+      <p>Karta AI Akademie GHRAB: k čemu slouží, kdo za ni odpovídá, jaké má provozní zásady a co se v ní mění.</p>
+    </section>
+
+    <section class="about-overview-section shell-wide" aria-labelledby="about-identity-title">
+      <div class="about-overview-grid">
+        <article class="panel-glass about-identity-card">
+          <div class="about-brand-mark" aria-hidden="true"><img src="./assets/brand/icon-192.png" alt="" width="132" height="132"></div>
+          <p class="about-wordmark" aria-hidden="true">AI AKADEMIE</p>
+          <h2 id="about-identity-title">GHRAB</h2>
+          <p class="about-identity-lead">Prezentační a metodické centrum školitele</p>
+          <p>Příprava výkladu, scénáře řečníka, čistá projekce a samostatné HTML materiály pro účastníky v rámci projektu AI Studio GHRAB.</p>
+        </article>
+
+        <div class="about-facts-grid">
+          <article class="panel-glass about-fact-card">
+            <p class="eyebrow">AUTOR A VÝVOJOVÝ GARANT</p>
+            <h2>Daniel Baláž</h2>
+            <p>Koncepce, struktura školení, scénáře, metodické vedení a vývoj AI Akademie.</p>
+          </article>
+          <article class="panel-glass about-fact-card">
+            <p class="eyebrow">ŠKOLNÍ PROJEKT</p>
+            <h2>Gymnázium, Ostrava-Hrabůvka</h2>
+            <p>Interní vzdělávací část ekosystému AI Studio GHRAB určená pro přípravu a vedení školení.</p>
+          </article>
+          <article class="panel-glass about-fact-card">
+            <p class="eyebrow">PŘÍSTUP A URČENÍ</p>
+            <h2>Pro školitele a správu školení</h2>
+            <p>Akademie je prezentační a metodické centrum. Není samoobslužným kurzem pro evidenci studijního postupu účastníků.</p>
+          </article>
+          <article class="panel-glass about-fact-card">
+            <p class="eyebrow">TECHNICKÝ STAV</p>
+            <h2>v${APP_VERSION} · PWA</h2>
+            <p>Verze Akademie se mění spolu s ověřenými aktualizacemi školení. Stav serverového nasazení a interní QA se evidují odděleně.</p>
+          </article>
         </div>
-        <footer><span>Zobrazeno ${CHANGELOG.length} nejnovějších změn</span><strong>AI Akademie GHRAB v${APP_VERSION}</strong></footer>
-      </section>
-    </div>`;
+      </div>
+    </section>
+
+    <section class="about-principles-section shell-wide" aria-labelledby="about-principles-title">
+      <div class="section-heading compact">
+        <div><p class="eyebrow">PROVOZNÍ ZÁSADY</p><h2 id="about-principles-title">Co je dobré vědět</h2></div>
+      </div>
+      <div class="about-principles-grid">
+        <article class="panel-glass about-principle-card">
+          <span aria-hidden="true">01</span>
+          <h3>Prezentace, ne evidence postupu</h3>
+          <p>Akademie slouží školiteli k přípravě a vedení výkladu. Kvízy a checklisty podporují práci při školení, ale nevytvářejí profil ani procento absolvování účastníka.</p>
+        </article>
+        <article class="panel-glass about-principle-card">
+          <span aria-hidden="true">02</span>
+          <h3>Bezpečná projekce</h3>
+          <p>Při prezentaci používejte rozšířenou plochu. Čistý slide patří na projektor, zatímco poznámky a metodická opora zůstávají v konzoli školitele na notebooku.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-changelog-section shell-wide" aria-labelledby="changelog-summary-title">
+      <details id="changelog" class="panel-glass about-changelog">
+        <summary>
+          <span>
+            <span class="eyebrow">HISTORIE VYDÁNÍ</span>
+            <strong id="changelog-summary-title">Katalog změn</strong>
+            <small>Rozbalte posledních deset uživatelsky důležitých změn AI Akademie.</small>
+          </span>
+          <span class="about-changelog-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="about-changelog-body">
+          <p class="about-changelog-intro">Zobrazené jsou hlavní uživatelsky důležité změny. Podrobné technické poznámky a interní QA evidence zůstávají ve vývojové dokumentaci.</p>
+          <div class="about-changelog-list">${renderAboutChangelog()}</div>
+        </div>
+      </details>
+    </section>`;
+
+  app.innerHTML = shell(content, 'about');
 }
 
 function shell(content, currentPage = 'home') {
@@ -501,7 +545,7 @@ function shell(content, currentPage = 'home') {
       <nav class="top-nav" aria-label="Hlavní navigace a prezentační ovládání">
         <a href="#/" class="${currentPage === 'home' ? 'active' : ''}" title="Zpět na rozcestník">${icons.home}<span>Rozcestník</span></a>
         ${currentPage === 'course' ? `<button type="button" data-action="toggle-trainer" class="${state.trainerMode ? 'active' : ''}" aria-pressed="${state.trainerMode}" title="Zobrazit nebo skrýt poznámky řečníka">${icons.notes}<span>Poznámky</span></button>` : ''}
-        ${!presenterMode ? `<button type="button" data-action="open-changelog" title="Zobrazit posledních deset změn">${icons.history}<span>Změny</span></button>` : ''}
+        ${!presenterMode ? `<a href="#/about" class="${currentPage === 'about' ? 'active' : ''}" title="Informace o AI Akademii">${icons.info}<span>O aplikaci</span></a>` : ''}
         ${presenterMode ? `<button type="button" class="presenter-exit-button" data-action="exit-presenter" title="Ukončit prezentační režim a vrátit se do Akademie">${icons.close}<span>Ukončit prezentaci</span></button>` : ''}
         <button type="button" data-action="fullscreen" title="Přepnout celou obrazovku">${icons.expand}<span>Celá obrazovka</span></button>
       </nav>
@@ -509,7 +553,6 @@ function shell(content, currentPage = 'home') {
     </header>
     <main class="main ${presenterMode ? 'presenter-main' : ''}">${content}</main>
     ${presenterMode ? '' : footer()}
-    ${renderChangelogModal()}
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
   `;
 }
@@ -522,7 +565,7 @@ function footer() {
         <span><strong>AI Akademie GHRAB</strong><small>Soukromý rozcestník interaktivních prezentací · verze ${APP_VERSION}</small></span>
       </div>
       <div class="footer-actions">
-        <button type="button" data-action="open-changelog" class="text-button">${icons.history} Changelog · v${APP_VERSION}</button>
+        <a href="#/about" class="text-button">${icons.info} O aplikaci · v${APP_VERSION}</a>
         <button type="button" data-action="install" class="text-button" ${deferredInstallPrompt ? '' : 'hidden'}>Nainstalovat rozcestník</button>
       </div>
     </footer>
@@ -1051,14 +1094,6 @@ function handleClick(event) {
       exitPresenter(true);
       return;
     }
-    if (action === 'open-changelog') {
-      openChangelog();
-      return;
-    }
-    if (action === 'close-changelog') {
-      closeChangelog();
-      return;
-    }
     if (action === 'toggle-outline') {
       document.querySelector('.course-workspace')?.classList.toggle('outline-open');
       return;
@@ -1095,11 +1130,6 @@ function handleClick(event) {
       });
       return;
     }
-  }
-
-  if (event.target.matches('[data-changelog-overlay]')) {
-    closeChangelog();
-    return;
   }
 
   const categoryButton = event.target.closest('[data-category]');
@@ -1143,11 +1173,6 @@ function handleChange(event) {
 }
 
 function handleKeyboard(event) {
-  if (trapChangelogFocus(event)) return;
-  if (event.key === 'Escape' && !document.querySelector('.changelog-overlay')?.hidden) {
-    closeChangelog();
-    return;
-  }
   if (event.key === 'Escape' && presenterMode) {
     exitPresenter();
     return;
@@ -1287,6 +1312,7 @@ function toast(message, options = {}) {
 function render() {
   const current = route();
   if (current.page === 'course') renderCourse(current.courseId, current.lessonId);
+  else if (current.page === 'about') renderAbout();
   else renderHome();
   queueMicrotask(sendPresenterState);
   queueMicrotask(showPendingUpdateToast);
