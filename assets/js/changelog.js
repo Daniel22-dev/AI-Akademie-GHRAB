@@ -1,8 +1,18 @@
-export const APP_VERSION = '1.4.12';
+export const APP_VERSION = '1.4.13';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.4.13',
+    date: '26. 9. 2026',
+    title: 'Nová záložka O aplikaci',
+    changes: [
+      'Přidána samostatná karta O aplikaci podle stejného vzoru jako v AI Studiu: identita, autor a vývojový garant, školní projekt, určení, technický stav a provozní zásady.',
+      'Samostatné tlačítko Změny a changelogový modal byly odstraněny; katalog změn je nyní sbalený přímo uvnitř karty O aplikaci.',
+      'Zobrazení changelogu správně podporuje jak stručné záznamy, tak vícepoložkové změny.'
+    ]
+  },
   {
     version: '1.4.12',
     date: '23. 9. 2026',
@@ -41,6 +51,7 @@ export const CHANGELOG = [
   },
   {
     version: '1.4.8',
+    date: '15. 9. 2026',
     title: 'GARP provenance a fail-closed PWA hardening',
     changes: [
       'Přesná build provenance je nově vázána na konkrétní BUILD-INPUT-SOURCE snapshot a podepsaný artifactDigest.',
