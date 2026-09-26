@@ -1,8 +1,14 @@
-# AI Akademie GHRAB 1.4.12
+# AI Akademie GHRAB 1.4.13
 
 Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
 Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
+
+## Novinky ve verzi 1.4.13
+
+- Přidána hlavní záložka **O aplikaci** podle vzoru AI Studia: identita aplikace, autor a vývojový garant, školní projekt, určení, technický stav a provozní zásady.
+- Samostatné tlačítko **Změny** i changelogový modal byly odstraněny; **Katalog změn** je nyní sbalený přímo uvnitř záložky O aplikaci.
+- Changelog korektně zobrazuje jednoduché i vícepoložkové záznamy.
 
 ## Novinky ve verzi 1.4.12
 
@@ -87,10 +93,7 @@ Při režimu **Duplikovat** nelze před účastníky skrýt obsah notebooku.
 
 ## Changelog
 
-Changelog se otevírá:
-
-- tlačítkem **Změny** v horní navigaci;
-- tlačítkem **Changelog** v patičce.
+Changelog je součástí záložky **O aplikaci**. V horní navigaci ani v patičce už nemá samostatné dialogové tlačítko.
 
 Zdroj záznamů je v souboru:
 
