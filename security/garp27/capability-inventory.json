@@ -1,8 +1,8 @@
 {
   "schema": "ai-akademie-garp27-capability-inventory-v1",
   "garpVersion": "2.7",
-  "appId": "ai-akademie",
-  "appVersion": "1.4.13",
+  "appId": "ai-academy",
+  "appVersion": "1.4.14",
   "deploymentProfile": "public-pages-static-prep",
   "dataClass": "D0",
   "agentic": false,
@@ -10,11 +10,36 @@
   "aiApiRuntime": false,
   "userFileProcessing": false,
   "applicationCrossOriginEgress": false,
-  "browserStorage": ["localStorage: quiz/checklist/UI state"],
-  "runtimeEntryFiles": ["index.html", "console.html", "404.html", "manifest.webmanifest", "sw.js"],
-  "runtimeDirectories": ["assets", "courses", "exports"],
-  "artifactTopLevel": [".nojekyll", "404.html", "assets", "console.html", "courses", "exports", "index.html", "manifest.webmanifest", "sw.js"],
-  "moduleRoots": ["assets/js", "courses"],
+  "browserStorage": [
+    "localStorage: quiz/checklist/UI state"
+  ],
+  "runtimeEntryFiles": [
+    "index.html",
+    "console.html",
+    "404.html",
+    "manifest.webmanifest",
+    "sw.js"
+  ],
+  "runtimeDirectories": [
+    "assets",
+    "courses",
+    "exports"
+  ],
+  "artifactTopLevel": [
+    ".nojekyll",
+    "404.html",
+    "assets",
+    "console.html",
+    "courses",
+    "exports",
+    "index.html",
+    "manifest.webmanifest",
+    "sw.js"
+  ],
+  "moduleRoots": [
+    "assets/js",
+    "courses"
+  ],
   "approvedDynamicImports": [
     {
       "file": "assets/js/app.js",
@@ -28,10 +53,34 @@
     }
   ],
   "networkCapabilities": [
-    {"kind":"service-worker-fetch","file":"sw.js","constraint":"same-origin within SW scope; network-only/no-store"},
-    {"kind":"esm-dynamic-import","file":"assets/js/app.js","constraint":"same-origin allowlisted AI Studio access runtime only"}
+    {
+      "kind": "service-worker-fetch",
+      "file": "sw.js",
+      "constraint": "same-origin within SW scope; network-only/no-store"
+    },
+    {
+      "kind": "esm-dynamic-import",
+      "file": "assets/js/app.js",
+      "constraint": "same-origin allowlisted AI Studio access runtime only"
+    }
   ],
-  "forbiddenArtifactPathSegments": ["security", "scripts", ".github", "qa-results", "node_modules"],
-  "forbiddenArtifactSuffixes": [".map"],
-  "serverDependentCapabilities": ["route authorization", "server identity/session revocation", "network egress enforcement", "server audit/monitoring", "server recovery"]
+  "forbiddenArtifactPathSegments": [
+    "security",
+    "scripts",
+    ".github",
+    "qa-results",
+    "node_modules"
+  ],
+  "forbiddenArtifactSuffixes": [
+    ".map"
+  ],
+  "serverDependentCapabilities": [
+    "route authorization",
+    "server identity/session revocation",
+    "network egress enforcement",
+    "server audit/monitoring",
+    "server recovery"
+  ],
+  "canonicalInventoryId": "ai-academy",
+  "legacyReleaseAppId": "ai-akademie"
 }
