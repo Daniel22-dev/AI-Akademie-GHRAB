@@ -1,18 +1,28 @@
 {
   "schema": "garp27-upstream-pin-v1",
   "garpVersion": "2.7",
-  "consolidationRevision": "2026-09-23-r1",
-  "sourcePackage": "GARP-2.7-KONSOLIDOVANY-FINAL(2).zip",
-  "sourcePackageSha256": "f54e5b5c271ff05c5a4d4cf85882ba972b9a78945724bb60a369432e984803d4",
-  "purpose": "Pinned verification contract snapshot only; not a runtime security engine.",
+  "consolidationRevision": "2026-09-23-r2",
+  "sourcePackage": "GARP-2.7-KONSOLIDOVANY-FINAL-r2-G02-FIX(7).zip",
+  "sourcePackageSha256": "0c278aefa0581b3ba13dd5725da9d3fc624976c255602ec16b054fc81da6f7c8",
+  "purpose": "Pinned GARP 2.7 r2 verification-contract snapshot only; not a runtime security engine.",
+  "canonicalInventoryAppId": "ai-academy",
+  "legacyReleaseAppId": "ai-akademie",
   "files": [
     {
       "path": "security/garp27/reference/CONTRACTS/garp27-core.json",
-      "sha256": "21c36d5d3511eb8f3c7df405bfa1334437fa184cfde79135eba9b23f61756ab6"
+      "sha256": "c0728c4b231767f3c62932511a3b2b09c5c9f682b2765def55064fd3cf3d3fb1"
+    },
+    {
+      "path": "security/garp27/reference/INVENTORY/ecosystem-apps.json",
+      "sha256": "b5a738f20745283159bfc7563900cf555406c62e3121fb56abb4fd11639a86bf"
+    },
+    {
+      "path": "security/garp27/reference/TEMPLATES/garp-policy.template.json",
+      "sha256": "c1a2f84127b104a3fa12133e531d1289a38ef3a38a507ae41d81b328f9531d5b"
     },
     {
       "path": "security/garp27/reference/TOOLS/contract-selftest.mjs",
-      "sha256": "fb2ca8bd78eabb07147eb07e20b321b78d61d07eae4ead16db433b5e90b61c8d"
+      "sha256": "473dc1f6d574b7c490d0b76ee102a2d5c88acc180a8000db97d2be60f3dc2d47"
     },
     {
       "path": "security/garp27/reference/TOOLS/lib.mjs",
@@ -20,7 +30,7 @@
     },
     {
       "path": "security/garp27/reference/TOOLS/package-selftest.mjs",
-      "sha256": "6c200aea12f1681a5cea8ea175419815fdfdf7d118d1efed73c568f926ebd367"
+      "sha256": "ab1aaf825835dc2d05191866b6791216c9d87f7228245ed389df94d4cd9ac256"
     },
     {
       "path": "security/garp27/reference/TOOLS/validate-assurance.mjs",
@@ -40,7 +50,7 @@
     },
     {
       "path": "security/garp27/reference/TOOLS/validate-policy.mjs",
-      "sha256": "d3a22c14956013f15e8e92984d130d96841773f600761593d1cb8b667b182d41"
+      "sha256": "25fdc4ec953097e0492fb4824c9ff08e91dadda2f50eb963a146a75a9f3befa7"
     },
     {
       "path": "security/garp27/reference/TOOLS/validate-runtime-test-request.mjs",
