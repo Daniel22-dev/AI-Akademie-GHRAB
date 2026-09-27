@@ -1,54 +1,70 @@
 {
   "schema": "garp27-policy-v1",
   "garpVersion": "2.7",
-  "appId": "ai-akademie",
-  "appVersion": "1.4.13",
+  "appId": "ai-academy",
+  "appVersion": "1.4.14",
   "identity": {
     "mode": "static-app-with-delegated-same-origin-admin-bridge",
-    "authority": "AI Studio access runtime, never AI Akademie",
-    "adminReturn": "full-admin only; fail-closed hidden on verification failure",
-    "tokenTransfer": "forbidden"
+    "authorization": "AI Studio access runtime remains authoritative for the optional full-admin return control; verification failure hides the control.",
+    "session": "AI Akademie does not transfer access tokens, permits or session capabilities between applications.",
+    "legacyAppId": "ai-akademie"
   },
   "requestApiAi": {
     "mode": "no-ai-api-runtime",
-    "runtimeInputs": ["hash route", "allowlisted same-origin studio URL", "local quiz/checklist UI state"],
-    "dynamicImport": "same-origin AI Studio access/access-control.js only",
-    "aiProviderCalls": "none"
+    "operations": [
+      "hash navigation",
+      "local quiz and checklist interactions",
+      "same-origin dynamic import of AI Studio access control"
+    ],
+    "aiPolicy": "No LLM, model provider or external AI API is called by the AI Akademie runtime.",
+    "maxCallsPerOperation": 0
   },
   "egress": {
     "mode": "same-origin-only-runtime",
-    "allowed": ["same-origin static runtime", "same-origin AI Studio access runtime"],
-    "crossOriginApplicationEgress": "forbidden"
+    "allowedDestinations": [
+      "same-origin static runtime",
+      "same-origin AI Studio access/access-control.js"
+    ],
+    "defaultDeny": "Cross-origin application egress is not declared; the architecture gate rejects undeclared network capability."
   },
   "files": {
     "mode": "no-user-file-processing-runtime",
-    "capability": "not-applicable-and-code-verified"
+    "currentBoundary": "Runtime exposes no user-file upload, import, parsing or transformation path.",
+    "uploads": "disabled",
+    "imports": "disabled"
   },
   "dataLifecycle": {
     "mode": "D0-browser-local-minimal",
-    "storage": "localStorage for quiz/checklist/UI state only",
-    "studentPersonalData": "not-required",
-    "serviceWorker": "no precache; network-only/no-store"
+    "classification": "D0",
+    "storage": "localStorage is limited to quiz, checklist and UI state; the service worker uses network-only/no-store for application runtime.",
+    "retention": "No server-side application data store is present in the current static deployment profile."
   },
   "release": {
     "mode": "candidate-p5-protected-main-verified-pages",
-    "legacyControls": "GARP 2.5.1 + N5 + Safe Promotion retained",
-    "garp27": "FOUNDATION and architecture-integrity admission added"
+    "activeAuthority": "GARP 2.7 consolidation r2",
+    "promotion": "candidate -> P5/GARP/N5 -> trusted admission -> protected main -> verified Pages deploy",
+    "rollback": "GARP 2.5.1, N5 and Safe Promotion remain retained regression controls; no second runtime security engine is introduced."
   },
   "inventory": {
     "mode": "explicit-static-capability-inventory",
-    "source": "security/garp27/capability-inventory.json"
+    "source": "security/garp27/capability-inventory.json",
+    "architecturePolicy": "security/garp27/architecture-policy.json",
+    "changeRule": "Capability or runtime-source changes require architecture-integrity revalidation."
   },
   "securityHealth": {
     "mode": "derived-local-ci-assurance",
-    "schoolRuntime": "NOT_TESTED until server phase is approved"
+    "localCi": "Reference integrity, policy admission, architecture integrity, mutation tests and trusted-admission selftests are required.",
+    "live": "NOT_TESTED while the school-server phase remains deferred.",
+    "failureMode": "Admission fails closed when required local or CI evidence is missing or fails."
   },
   "incident": {
     "mode": "fail-closed-local-and-ci",
-    "runbook": "security/garp27/INCIDENT-RUNBOOK.md"
+    "current": "security/garp27/INCIDENT-RUNBOOK.md",
+    "response": "Block promotion on failed security gates, preserve evidence and require a clean candidate before retry."
   },
   "recovery": {
     "mode": "verified-clean-candidate-only",
-    "schoolServerRecovery": "DEFERRED_BY_OWNER_DECISION"
+    "current": "Return to a previously verified clean candidate or produce a new candidate that passes the complete release chain.",
+    "future": "School-server recovery controls remain DEFERRED_BY_OWNER_DECISION until that phase is approved."
   }
 }
