@@ -1,8 +1,15 @@
-# AI Akademie GHRAB 1.4.13
+# AI Akademie GHRAB 1.4.14
 
 Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
 Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
+
+## Novinky ve verzi 1.4.14
+
+- GARP 2.7 referenční kontrakt byl aktualizován z consolidation r1 na **consolidation r2 / G-02 fix**.
+- Nový policy admission fail-closed ověřuje kanonický appId z důvěryhodného inventáře, SemVer a skutečný sémantický obsah všech deseti povinných policy sekcí.
+- GARP 2.7 používá kanonický inventářový identifikátor `ai-academy`; historický release/GARP 2.5 identifikátor `ai-akademie` zůstává zachován jako legacy alias mimo r2 policy admission.
+- GARP 2.5.1/N5/Safe Promotion zůstává regresní baseline. School-server a LIVE zůstávají `NOT_TESTED` / `DEFERRED_BY_OWNER_DECISION`.
 
 ## Novinky ve verzi 1.4.13
 
@@ -12,7 +19,7 @@ Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobra
 
 ## Novinky ve verzi 1.4.12
 
-- GARP 2.7 consolidation r1 je zapojen jako FOUNDATION/admission a architecture-integrity vrstva nad zachovaným GARP 2.5.1/N5/Safe Promotion.
+- GARP 2.7 consolidation r2 je zapojen jako FOUNDATION/admission a architecture-integrity vrstva nad zachovaným GARP 2.5.1/N5/Safe Promotion.
 - CI kontroluje importní graf, capability drift, skutečný `dist-pages` artefakt a G27-AR01 až AR05 mutation scénáře.
 - Serverová fáze zůstává odložená a LIVE je `NOT_TESTED`; lokální výsledky se nesmějí vydávat za školní produkční ověření.
 - Připraven je trusted-admission workflow z protected main; jeho required-check aktivace se ověřuje až na GitHubu po bootstrapu.
