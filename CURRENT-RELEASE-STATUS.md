@@ -1,25 +1,30 @@
 # AI Akademie — CURRENT RELEASE STATUS
 
-**Version:** 1.4.13  
-**Date:** 2026-09-26  
+**Version:** 1.4.14  
+**Date:** 2026-09-27  
 **Candidate status:** LOCAL/CI FOUNDATION candidate — verification required on exact Git commit  
-**Public LIVE claim for 1.4.13:** NOT MADE  
+**Public LIVE claim for 1.4.14:** NOT MADE  
 **School-server LIVE:** NOT_TESTED / DEFERRED_BY_OWNER_DECISION
 
-Tento soubor popisuje zdrojový kandidát 1.4.13. Historické GREEN reporty starších verzí zůstávají audit trail; nejsou automaticky důkazem pro 1.4.13.
+Tento soubor popisuje zdrojový kandidát 1.4.14. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.4.14.
 
 ## Security architecture
-- GARP 2.5.1/N5/Safe Promotion zůstává funkční baseline.
-- GARP 2.7 consolidation r1 je aktivní jako FOUNDATION/admission kontrakt a architecture-integrity vrstva.
-- P5 evidence je navržena jako vazba na přesný candidate head SHA a zahrnuje skutečný runtime `dist-pages`; trusted admission jej znovu ověřuje kontrolním kódem z chráněného `main`.
+
+- Aktivní kontrakt je GARP 2.7 **consolidation r2 / G-02 fix**.
+- GARP 2.5.1/N5/Safe Promotion zůstává funkční regresní a release baseline.
+- r2 reference snapshot je připnut na SHA-256 dodaného master ZIPu a zahrnuje core contract, trusted app inventory, policy template a referenční validátory.
+- Policy admission nově kontroluje kanonický `appId`, SemVer, zakázané placeholdery a sémantický obsah všech deseti povinných policy sekcí.
+- Kanonický r2 inventory appId je `ai-academy`; historický release/GARP 2.5 identifikátor `ai-akademie` zůstává zachován pro kompatibilitu starší release vrstvy.
 - Nevzniká druhý runtime security engine.
 - AI Akademie nemá vlastní AI/API runtime, backend ani upload souborů.
-- School-server implementace, Fortinet integrace, serverové identity/revokace, runtime monitoring a recovery nejsou součástí tohoto kola.
+- School-server implementace, serverové identity/revokace, runtime monitoring a recovery nejsou součástí tohoto kola.
 
 ## Required release chain
-`candidate -> P5/GARP2.5/N5 -> build+artifact checks -> GARP2.7 FOUNDATION/architecture -> PR -> trusted admission from protected main -> protected main -> main P5 -> verified Pages deploy -> live version verification`
+
+`candidate -> P5/GARP2.5/N5 -> build+artifact checks -> GARP2.7 r2 FOUNDATION/architecture -> PR -> trusted admission from protected main -> protected main -> main P5 -> verified Pages deploy -> live version verification`
 
 ## Current local evidence contract
+
 Po sestavení musí projít:
 - `npm test`
 - `npm run qa:garp25:tooling`
@@ -35,6 +40,7 @@ Po sestavení musí projít:
 - `npm run qa:garp27:ci`
 
 ## GARP 2.7 truth boundary
-Lokální/CI adapter může odvodit `FOUNDATION_PASS_LIVE_NOT_TESTED`, pokud projdou všechny lokální kontroly a evidence. G27-AR04 však vyžaduje nezávislou repo-side autoritu, kterou kandidát nemůže změkčit ve stejné změně. Pro 1.4.13 je připraven trusted-admission přes `workflow_run` z chráněného `main`; dokud ale není tato verze bootstrapnuta a context `garp27-trusted-admission` skutečně nastaven jako required check v GitHub rulesetu, report ji označuje jako `PARTIAL_LOCAL_ENFORCEMENT` / governance gap.
 
-Žádný lokální selftest, validní JSON ani úspěšný mutation pack není sám o sobě důkazem školního LIVE provozu.
+Lokální/CI adapter může odvodit `FOUNDATION_PASS_LIVE_NOT_TESTED`, pokud projdou lokální kontroly a evidence. G27-AR04 ale vyžaduje nezávislou repo-side autoritu, kterou kandidát nesmí změkčit ve stejné změně. Přechod r1 -> r2 mění trust-critical reference/policy baseline, proto musí být na GitHubu proveden jako řízený bootstrap/policy update z protected main. Dokud není tato verze bootstrapnuta a context `garp27-trusted-admission` ověřen jako required check, stav zůstává `PARTIAL_LOCAL_ENFORCEMENT` / governance gap.
+
+Žádný lokální selftest, validní JSON ani mutation pack není důkazem školního LIVE provozu.
