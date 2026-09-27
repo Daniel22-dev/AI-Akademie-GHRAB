@@ -117,7 +117,7 @@ try {
 }
 
 const versions = { package: pkg.version, policy: policy.appVersion, inventory: inventory.appVersion, architecture: arch.appVersion, profile: profile.appVersion };
-check('identity:app-id', policy.appId === 'ai-akademie' && inventory.appId === 'ai-akademie' && arch.appId === 'ai-akademie' && profile.appId === 'ai-akademie', { policy: policy.appId, inventory: inventory.appId, architecture: arch.appId, profile: profile.appId });
+check('identity:app-id', policy.appId === 'ai-academy' && inventory.appId === 'ai-academy' && arch.appId === 'ai-academy' && profile.appId === 'ai-academy', { policy: policy.appId, inventory: inventory.appId, architecture: arch.appId, profile: profile.appId });
 check('identity:garp-version', [policy, inventory, arch, profile].every(x => x.garpVersion === '2.7'), 'all application contracts must be GARP 2.7');
 check('identity:version-coherence', Object.values(versions).every(v => v === pkg.version), versions);
 const swPath = path.join(root, 'sw.js');
@@ -264,7 +264,7 @@ const result = {
   testPack: 'AI-AKADEMIE-GARP27-ARCHITECTURE-INTEGRITY-v1',
   garpVersion: '2.7',
   status: failed.length ? 'FAIL' : 'PASS',
-  appId: 'ai-akademie',
+  appId: 'ai-academy',
   appVersion: pkg.version,
   scope: {
     runtimeSourceRoots: arch.runtimeSourceRoots,

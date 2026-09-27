@@ -66,7 +66,7 @@ try {
   const generatedProfile = {
     ...baseProfile,
     appVersion: pkg.version,
-    releaseIdentity: { appId: 'ai-akademie', appVersion: pkg.version, sourceCommit: commit.value },
+    releaseIdentity: { appId: 'ai-academy', appVersion: pkg.version, sourceCommit: commit.value },
     trustedEvidence: {
       'garp27-policy': evidence.policy,
       'garp27-reference': evidence.reference,

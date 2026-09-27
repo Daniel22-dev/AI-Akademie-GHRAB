@@ -1,0 +1,15 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:2abc399c-d26a-5b83-b97e-765038c7a950",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-27T11:31:12.770Z",
+    "component": {
+      "type": "application",
+      "name": "ai-akademie-ghrab",
+      "version": "1.4.14"
+    }
+  },
+  "components": []
+}

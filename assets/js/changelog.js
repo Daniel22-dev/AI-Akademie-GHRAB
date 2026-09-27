@@ -1,8 +1,18 @@
-export const APP_VERSION = '1.4.13';
+export const APP_VERSION = '1.4.14';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.4.14',
+    date: '27. 9. 2026',
+    title: 'GARP 2.7 r2 / G-02 hardening',
+    changes: [
+      'Referenční GARP 2.7 kontrakt byl aktualizován na consolidation r2 s opravou G-02 a připnutým ekosystémovým inventářem.',
+      'Policy admission nyní fail-closed ověřuje kanonický appId, sémantický obsah všech deseti povinných sekcí, SemVer a zástupné hodnoty.',
+      'GARP 2.5.1/N5/Safe Promotion zůstává regresní baseline; školní server a LIVE jsou nadále NOT_TESTED.'
+    ]
+  },
   {
     version: '1.4.13',
     date: '26. 9. 2026',
