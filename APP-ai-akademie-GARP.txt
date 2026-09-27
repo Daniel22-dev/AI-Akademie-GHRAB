@@ -1,14 +1,15 @@
 GARP APPLICATION CARD — AI AKADEMIE GHRAB
 
 1. IDENTITA
-appId: ai-akademie
+appId GARP 2.7 r2: ai-academy
+Legacy release/GARP 2.5 appId: ai-akademie
 Název: AI Akademie GHRAB
 Repozitář: AI-Akademie-GHRAB
-Aktuální verze: 1.4.13
-Verze standardu: GARP 2.7 consolidation r1 / legacy GARP 2.5.1 GHRAB + N5 + Safe Promotion retained
-SHA-256 vstupního aplikačního ZIPu pro toto kolo: c4d12a439fdcf680500449f92abd10e64e3d7ce34e229ecc5aa05f40f7815a32
-SHA-256 vstupního GARP 2.7 ZIPu: f54e5b5c271ff05c5a4d4cf85882ba972b9a78945724bb60a369432e984803d4
-Stav tohoto kola: 1.4.13 je zdrojový kandidát s GARP 2.7 FOUNDATION/architecture-integrity adaptérem. GARP 2.5.1/N5/Safe Promotion zůstává aktivní baseline. Lokální reference/architecture/mutation kontroly jsou určeny k CI admission; SCHOOL/LIVE se bez cílového serveru neprohlašuje. Trusted-admission workflow je připraven pro běh z chráněného mainu, ale jeho aktivace jako povinného GitHub checku musí být po bootstrapu externě ověřena. Centrální AI Studio auto-patch: NOT ENROLLED. School-server production release: NE / DEFERRED_BY_OWNER_DECISION.
+Aktuální verze: 1.4.14
+Verze standardu: GARP 2.7 consolidation r2 / G-02 fix / legacy GARP 2.5.1 GHRAB + N5 + Safe Promotion retained
+SHA-256 vstupního aplikačního ZIPu pro toto kolo: dd61af2dec6449765b790116606ad39ea27f8b5a6528d66b80ff5a0485d7f195
+SHA-256 vstupního GARP 2.7 ZIPu: 0c278aefa0581b3ba13dd5725da9d3fc624976c255602ec16b054fc81da6f7c8
+Stav tohoto kola: 1.4.14 je zdrojový kandidát s GARP 2.7 consolidation r2 / G-02 FOUNDATION/architecture-integrity adaptérem. GARP 2.5.1/N5/Safe Promotion zůstává aktivní baseline. Lokální reference/architecture/mutation kontroly jsou určeny k CI admission; SCHOOL/LIVE se bez cílového serveru neprohlašuje. Trusted-admission workflow je připraven pro běh z chráněného mainu, ale jeho aktivace jako povinného GitHub checku musí být po bootstrapu externě ověřena. Centrální AI Studio auto-patch: NOT ENROLLED. School-server production release: NE / DEFERRED_BY_OWNER_DECISION.
 
 2. TRVALÁ KLASIFIKACE
 Třída dat: D0
@@ -89,3 +90,14 @@ AUTO-PATCH-PREP: canonical policy binding enabled; final signed gate result is r
 
 12. UI AKTUALIZACE / 1.4.13
 2026-09-26 | O aplikaci | Přidána informační karta podle vzoru AI Studia; samostatný changelog modal byl přesunut do sbaleného katalogu změn uvnitř této karty. Bez změny security capabilities nebo runtime egressu.
+
+
+13. GARP 2.7 CONSOLIDATION r2 / G-02 / 1.4.14
+2026-09-27 | r1 -> r2 trust-baseline migration | bez změny pedagogického runtime.
+- Připnutý reference snapshot aktualizován na dodaný GARP-2.7-KONSOLIDOVANY-FINAL-r2-G02-FIX; source ZIP SHA-256 0c278aefa0581b3ba13dd5725da9d3fc624976c255602ec16b054fc81da6f7c8.
+- Reference obsahuje r2 core contract, trusted ecosystem inventory, policy template a referenční validátory; UPSTREAM-PIN váže jejich přesné bajty.
+- G-02 policy admission je fail-closed: kanonický inventory appId, SemVer, placeholder scan a sémantický obsah všech 10 povinných sekcí.
+- Kanonický r2 appId je `ai-academy`; historický `ai-akademie` zůstává pouze ve starší release/GARP 2.5 vrstvě, URL cestách a názvech artefaktů.
+- Architecture a assurance vrstva byla přepnuta na kanonickou r2 identitu; GARP 2.5.1/N5/Safe Promotion nebyl přepisován.
+- Přechod reference/policy baseline je trust-critical bootstrap změna; ordinary PR ji podle trusted-admission designu nesmí self-approve.
+- SCHOOL/LIVE: NOT_TESTED / DEFERRED_BY_OWNER_DECISION.
