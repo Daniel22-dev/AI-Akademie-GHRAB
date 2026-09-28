@@ -2,7 +2,7 @@
   "schema": "ai-akademie-garp27-architecture-policy-v1",
   "garpVersion": "2.7",
   "appId": "ai-academy",
-  "appVersion": "1.4.14",
+  "appVersion": "1.4.15",
   "runtimeSourceRoots": [
     "assets/js",
     "courses"

@@ -1,8 +1,14 @@
-# AI Akademie GHRAB 1.4.14
+# AI Akademie GHRAB 1.4.15
 
 Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
 Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
+
+## Novinky ve verzi 1.4.15
+
+- Ikony kurzů a aplikace jsou bezeztrátově překomprimované (pixelově shodné). Rozcestník při každém otevření stahuje o 173 kB (14,5 %) méně, samostatné HTML prezentace jsou o 17 % menší.
+- Šablona samostatných prezentací je rozdělená do čitelných souborů `scripts/export-template/export.css` a `scripts/export-template/export-runtime.js`. Sestavení hlídá bezpečné zalomení řádků a syntaxi běhového skriptu.
+- Bez změny chování, obsahu, service workeru, úložiště a síťových schopností aplikace.
 
 ## Novinky ve verzi 1.4.14
 
@@ -129,6 +135,7 @@ Obsah kurzů je ve složce `courses/`. Doplňující prezentační vrstvy jsou o
 - `courses/presentation-enhancements.js` — základní cesty, vizuální bloky a kompozice;
 - `courses/speaker-notes.js` — upravitelný scénář všech 68 částí;
 - `scripts/build-speaker-notes.mjs` — znovu sestaví ručně kurátorované mluvené opory a podpůrné body;
+- `scripts/export-template/` — vzhled a běhový skript samostatných HTML prezentací; pravidla zápisu jsou v hlavičce `scripts/build-exports.mjs`;
 - `assets/js/changelog.js` — deset nejnovějších změn aplikace.
 
 Trvalé změny mluvených formulací zapisujte do map v `scripts/build-speaker-notes.mjs` a potom spusťte `npm run build:notes`. Tím se změna bezpečně promítne do všech poznámek.

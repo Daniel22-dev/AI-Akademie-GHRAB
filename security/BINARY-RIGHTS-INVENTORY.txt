@@ -42,3 +42,5 @@ assets/course-icons/workflow.png | OWN WORK / AI-GENERATED FOR THIS PROJECT
 
 Closure:
 GH-12 is CLOSED for the current deployed image/SVG inventory. Re-open GH-12 if any new binary/media asset is added or an existing asset is replaced with a third-party source.
+
+Poznámka 1.4.15 (2026-09-27): 15 používaných PNG (assets/course-icons/*.png, icon-192, icon-512, icon-512-maskable, apple-touch-icon, icon-32) bylo bezeztrátově překomprimováno. Obraz je pixelově shodný a doplňkové části PNG jsou zachovány, klasifikace ani původ se nemění. Potvrzení uzavření GH-12 pro tuto verzi náleží vlastníkovi projektu.

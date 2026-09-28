@@ -1,8 +1,18 @@
-export const APP_VERSION = '1.4.14';
+export const APP_VERSION = '1.4.15';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.4.15',
+    date: '27. 9. 2026',
+    title: 'Rychlejší načítání a přehlednější šablona exportu',
+    changes: [
+      'Ikony kurzů a aplikace byly bezeztrátově překomprimovány. Obraz zůstává pixelově shodný, rozcestník při každém otevření stahuje o 173 kB (14,5 %) méně a samostatné HTML prezentace jsou o 17 % menší.',
+      'Šablona samostatných prezentací je rozdělena do čitelných souborů ve složce scripts/export-template/. Před kompresí obrázků byly vygenerované exporty bajtově shodné s předchozí verzí.',
+      'Sestavení exportů nově hlídá bezpečné zalomení řádků šablony a syntaxi běhového skriptu.'
+    ]
+  },
   {
     version: '1.4.14',
     date: '27. 9. 2026',
