@@ -1,0 +1,60 @@
+name: Temporary reproduce PNG 1.4.15
+on:
+  push:
+    branches: [candidate-1.4.15]
+    paths: ['.github/workflows/reproduce-png-1.4.15.yml']
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Install optimizers
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq optipng pngcrush
+          python -m pip install --quiet pillow
+          if sudo apt-get install -y -qq oxipng; then echo "oxipng from apt"; else cargo install oxipng --locked; fi
+      - name: Probe reproducible PNG encoding
+        shell: bash
+        run: |
+          set -euo pipefail
+          src="assets/brand/icon-32.png"
+          target="373eed36e4db607f3b1c46b9caa09294ba3665ee"
+          check() {
+            local label="$1" f="$2" got
+            got="$(git hash-object "$f")"
+            printf '%-32s %s\n' "$label" "$got"
+            if [ "$got" = "$target" ]; then echo "MATCH=$label"; fi
+          }
+          mkdir -p /tmp/probe
+          for n in 1 2 3 4 5 6 7; do
+            cp "$src" /tmp/probe/a.png
+            optipng -quiet -o"$n" /tmp/probe/a.png || true
+            check "optipng-o$n" /tmp/probe/a.png
+          done
+          if command -v oxipng >/dev/null; then
+            for n in 0 1 2 3 4 5 6; do
+              cp "$src" /tmp/probe/a.png
+              oxipng -q -o "$n" /tmp/probe/a.png || true
+              check "oxipng-o$n" /tmp/probe/a.png
+            done
+          fi
+          pngcrush -q -brute "$src" /tmp/probe/crush.png || true
+          check "pngcrush-brute" /tmp/probe/crush.png
+          python - <<'PY'
+          from PIL import Image, PngImagePlugin
+          import subprocess
+          src='assets/brand/icon-32.png'
+          target='373eed36e4db607f3b1c46b9caa09294ba3665ee'
+          for level in range(10):
+              im=Image.open(src)
+              kwargs={'optimize': True, 'compress_level': level}
+              if 'icc_profile' in im.info: kwargs['icc_profile']=im.info['icc_profile']
+              if 'dpi' in im.info: kwargs['dpi']=im.info['dpi']
+              out=f'/tmp/probe/pillow-{level}.png'
+              im.save(out, **kwargs)
+              got=subprocess.check_output(['git','hash-object',out],text=True).strip()
+              print(f'pillow-opt-{level:<18} {got}' + (' MATCH' if got==target else ''))
+          PY
