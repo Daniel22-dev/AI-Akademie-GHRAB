@@ -1,0 +1,46 @@
+name: Probe PNG mismatch settings
+on:
+  push:
+    branches: [candidate-1.4.15]
+    paths: ['.github/workflows/probe-png-mismatches.yml']
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: candidate-1.4.15
+      - name: Install oxipng
+        run: cargo install oxipng --version 10.2.1 --locked
+      - name: Probe levels
+        shell: bash
+        run: |
+          set -euo pipefail
+          probe() {
+            local f="$1" target="$2"
+            echo "FILE $f TARGET $target SIZE_ORIG=$(stat -c%s "$f")"
+            for n in 0 1 2 3 4 5 6; do
+              cp "$f" /tmp/a.png
+              oxipng -q -o "$n" /tmp/a.png
+              got="$(git hash-object /tmp/a.png)"
+              size="$(stat -c%s /tmp/a.png)"
+              echo "level=$n sha=$got size=$size"
+              if [ "$got" = "$target" ]; then echo "MATCH $f level=$n"; fi
+            done
+            for n in 4 5 6; do
+              cp "$f" /tmp/a.png
+              oxipng -q -o "$n" -z /tmp/a.png
+              got="$(git hash-object /tmp/a.png)"
+              size="$(stat -c%s /tmp/a.png)"
+              echo "zopfli level=$n sha=$got size=$size"
+              if [ "$got" = "$target" ]; then echo "MATCH $f zopfli-level=$n"; fi
+            done
+          }
+          probe assets/brand/apple-touch-icon.png 248589b192bc470804d21622bdda0e92db14e656
+          probe assets/brand/icon-512-maskable.png 0171ae4f7ef6ea34ebf0a4de155472c64e3041ad
+          probe assets/course-icons/ai-literacy.png e6a78f96ae79931de76ebc26231c9704b8fc9655
+          probe assets/course-icons/generator.png b582c188161033f455edc698f1ecf3d46fe00c4f
+          probe assets/course-icons/workflow.png ee2421db24e40218641b21503a644c179a9c3e68
