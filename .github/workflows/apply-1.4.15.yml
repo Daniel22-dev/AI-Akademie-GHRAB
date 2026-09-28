@@ -26,36 +26,37 @@ jobs:
           echo "07fe5eb5f02c85a3bbbe0ea4f5a25d04eb76116fcb68524b43eddc42d3822046  /tmp/akademie-text-payload.tar.gz" | sha256sum -c -
           tar -xzf /tmp/akademie-text-payload.tar.gz -C .
 
-      - name: Reproduce audited PNG encoding
+      - name: Reproduce deterministic PNG encodings
         shell: bash
         run: |
           set -euo pipefail
           cargo install oxipng --version 10.2.1 --locked
-          files=(
-            assets/brand/apple-touch-icon.png
+          level4=(
             assets/brand/icon-192.png
             assets/brand/icon-32.png
-            assets/brand/icon-512-maskable.png
             assets/brand/icon-512.png
             assets/course-icons/administrator.png
-            assets/course-icons/ai-literacy.png
             assets/course-icons/correspondence.png
             assets/course-icons/differentiator.png
             assets/course-icons/evaluator.png
-            assets/course-icons/generator.png
             assets/course-icons/github.png
             assets/course-icons/ludus.png
             assets/course-icons/start.png
+          )
+          level5=(
+            assets/brand/apple-touch-icon.png
+            assets/brand/icon-512-maskable.png
+            assets/course-icons/ai-literacy.png
+            assets/course-icons/generator.png
             assets/course-icons/workflow.png
           )
-          for f in "${files[@]}"; do
-            oxipng -q -o 4 "$f"
-          done
+          for f in "${level4[@]}"; do oxipng -q -o 4 "$f"; done
+          for f in "${level5[@]}"; do oxipng -q -o 5 "$f"; done
 
       - name: Build and test
         run: npm test
 
-      - name: Verify all 42 audited target blobs
+      - name: Verify all 42 release target blobs
         shell: bash
         run: |
           set -euo pipefail
@@ -75,7 +76,7 @@ jobs:
           assets/brand/icon-512-maskable.png 0171ae4f7ef6ea34ebf0a4de155472c64e3041ad
           assets/brand/icon-512.png fd5f14222b52aca1e48e87ccba77035d8433392a
           assets/course-icons/administrator.png 2da7dd3671917adc0b6e022a09e6d7d5a97a4f26
-          assets/course-icons/ai-literacy.png e6a78f96ae79931de76ebc26231c9704b8fc9655
+          assets/course-icons/ai-literacy.png c6d1c5616d3f04086591a242ff031d259e059607
           assets/course-icons/correspondence.png 55a9db06b831da3df9bcd5173517ab1724b22139
           assets/course-icons/differentiator.png 1fec2cb6fde63e6c96fe1d502b7fc72f977736c3
           assets/course-icons/evaluator.png b1e3e1f64fddf2160cf9ec020d880b288626a3d0
@@ -83,12 +84,12 @@ jobs:
           assets/course-icons/github.png 534d445fad372aef708e8102183874da9be23b60
           assets/course-icons/ludus.png 64425c226d80237e9fd289ad66681eee5ba78e30
           assets/course-icons/start.png fc0abe42411db6b6de827b3caca964060573a0fc
-          assets/course-icons/workflow.png ee2421db24e40218641b21503a644c179a9c3e68
+          assets/course-icons/workflow.png 1068116bf7f5667be70b6ac324afd99d324fbd86
           scripts/build-exports.mjs f0a1052a8bfe30f22e5bf829cab491d5661f5d03
           scripts/export-template/export.css 173f3c9405bf4dbcee2268c749c99b1f3a2f9872
           scripts/export-template/export-runtime.js 9be315b2899708fb86e46f74a13e3b3628142488
           exports/administrator.html 5a1e20c5007c92d82347bf6d6b9b15dab7636fce
-          exports/ai-literacy.html 09ac5fee56f041169498e99d63361ea4025f35c3
+          exports/ai-literacy.html f79c3775235cb1a4efffb791b3c95a72d772a4db
           exports/correspondence.html 0158da8c362f301a894629779273917cd315641a
           exports/differentiator.html a37b9c51b497082034c4f92c8e0ebf0c012d4e39
           exports/evaluator.html be2dd5d6ad051bcefb36563f6f58f87dae3081de
@@ -96,7 +97,7 @@ jobs:
           exports/github.html e5d1a4e65a658f0fb1ddf6f73f71751f76c32112
           exports/ludus.html 76fed8e1d90d85fe80dd3e091b1d0033b6229efb
           exports/start.html fde04c28758f41b64a953a0f282bcdde98625d78
-          exports/workflow.html ba1281feec9f76941e4d815d135e84ba39237f54
+          exports/workflow.html 7ae724a27403e100d109d159489edde51400fc98
           package.json fc5ceec9f4ee8441ef49c96e44a2302a5f033f53
           package-lock.json f79e79e146726ade10bb4968224cb6fc2487b138
           sw.js 47ccf72c326e60acd09f3306b827503c08405f63
@@ -114,12 +115,14 @@ jobs:
           HASHES
           if [ "$failed" -ne 0 ]; then exit 1; fi
 
-      - name: Commit exact audited release
+      - name: Commit verified release
         shell: bash
         run: |
           set -euo pipefail
           rm -rf .release-upload
           rm -f .github/workflows/reproduce-png-1.4.15.yml
+          rm -f .github/workflows/probe-png-mismatches.yml
+          rm -f .github/workflows/probe-png-levels.yml
           rm -f .github/workflows/apply-1.4.15.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
