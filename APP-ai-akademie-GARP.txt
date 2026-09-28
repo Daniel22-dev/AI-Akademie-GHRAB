@@ -5,11 +5,11 @@ appId GARP 2.7 r2: ai-academy
 Legacy release/GARP 2.5 appId: ai-akademie
 Název: AI Akademie GHRAB
 Repozitář: AI-Akademie-GHRAB
-Aktuální verze: 1.4.14
+Aktuální verze: 1.4.15
 Verze standardu: GARP 2.7 consolidation r2 / G-02 fix / legacy GARP 2.5.1 GHRAB + N5 + Safe Promotion retained
-SHA-256 vstupního aplikačního ZIPu pro toto kolo: dd61af2dec6449765b790116606ad39ea27f8b5a6528d66b80ff5a0485d7f195
+SHA-256 vstupního aplikačního ZIPu pro toto kolo: e440b8d931408a1b9995eeab3b5ed346b15577219376cf2e64753212bf949061
 SHA-256 vstupního GARP 2.7 ZIPu: 0c278aefa0581b3ba13dd5725da9d3fc624976c255602ec16b054fc81da6f7c8
-Stav tohoto kola: 1.4.14 je zdrojový kandidát s GARP 2.7 consolidation r2 / G-02 FOUNDATION/architecture-integrity adaptérem. GARP 2.5.1/N5/Safe Promotion zůstává aktivní baseline. Lokální reference/architecture/mutation kontroly jsou určeny k CI admission; SCHOOL/LIVE se bez cílového serveru neprohlašuje. Trusted-admission workflow je připraven pro běh z chráněného mainu, ale jeho aktivace jako povinného GitHub checku musí být po bootstrapu externě ověřena. Centrální AI Studio auto-patch: NOT ENROLLED. School-server production release: NE / DEFERRED_BY_OWNER_DECISION.
+Stav tohoto kola: 1.4.15 je zdrojový kandidát s GARP 2.7 consolidation r2 / G-02 FOUNDATION/architecture-integrity adaptérem. GARP 2.5.1/N5/Safe Promotion zůstává aktivní baseline. Lokální reference/architecture/mutation kontroly jsou určeny k CI admission; SCHOOL/LIVE se bez cílového serveru neprohlašuje. Trusted-admission workflow je připraven pro běh z chráněného mainu, ale jeho aktivace jako povinného GitHub checku musí být po bootstrapu externě ověřena. Centrální AI Studio auto-patch: NOT ENROLLED. School-server production release: NE / DEFERRED_BY_OWNER_DECISION.
 
 2. TRVALÁ KLASIFIKACE
 Třída dat: D0
@@ -101,3 +101,14 @@ AUTO-PATCH-PREP: canonical policy binding enabled; final signed gate result is r
 - Architecture a assurance vrstva byla přepnuta na kanonickou r2 identitu; GARP 2.5.1/N5/Safe Promotion nebyl přepisován.
 - Přechod reference/policy baseline je trust-critical bootstrap změna; ordinary PR ji podle trusted-admission designu nesmí self-approve.
 - SCHOOL/LIVE: NOT_TESTED / DEFERRED_BY_OWNER_DECISION.
+
+
+14. VÝKON A ÚKLID / 1.4.15
+2026-09-27 | Claude | výkonová a úklidová PATCH verze bez změny chování | vstup 1.4.14 SHA-256 e440b8d931408a1b9995eeab3b5ed346b15577219376cf2e64753212bf949061
+- Bezeztrátová komprese 15 používaných PNG (10 ikon kurzů, icon-192, icon-512, icon-512-maskable, apple-touch-icon, icon-32): 655 740 -> 476 394 B. Dekódované pixely a všechny doplňkové části PNG ověřeny jako shodné. Nepoužité obrázky (assets/apps/, portal-gateway.png, brand-mark.svg) a school-logo.png nebyly změněny.
+- GH-12: obsah ani původ médií se nemění, jde o nové zakódování téhož obrazu; registr práv doplněn poznámkou. Uzavření GH-12 potvrzuje vlastník.
+- scripts/build-exports.mjs přepsán do čitelné podoby; CSS a běhový skript exportu přesunuty do scripts/export-template/. Před kompresí PNG bylo všech 10 exportů bajtově shodných s 1.4.14; po kompresi se liší jen kódováním vložených ikon (po dekódování shodné).
+- Sestavení exportů nově odmítne nebezpečné zalomení šablony a syntakticky neplatný běhový skript; 6 negativních kontrol doloženo.
+- Beze změny: service worker (kromě verze cache), storage model, egress, capability inventory, KD-01..KD-05, trust-critical control-plane soubory. Revalidační spouštěč z bodu 7 nenastal.
+- SCHOOL/LIVE: NOT_TESTED / DEFERRED_BY_OWNER_DECISION.
+- Otevřená rozhodnutí vlastníka: hvězdné pozadí (canvas je v měření zakrytý, a přesto trvale vytěžuje procesor), service worker no-store -> no-cache (řízená změna capability inventory a KD-04), zmenšení school-logo.png (GH-12), opětovné odstranění nepoužitých obrázků.

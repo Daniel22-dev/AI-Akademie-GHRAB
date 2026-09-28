@@ -1,12 +1,16 @@
 # AI Akademie — CURRENT RELEASE STATUS
 
-**Version:** 1.4.14  
+**Version:** 1.4.15  
 **Date:** 2026-09-27  
 **Candidate status:** LOCAL/CI FOUNDATION candidate — verification required on exact Git commit  
-**Public LIVE claim for 1.4.14:** NOT MADE  
+**Public LIVE claim for 1.4.15:** NOT MADE  
 **School-server LIVE:** NOT_TESTED / DEFERRED_BY_OWNER_DECISION
 
-Tento soubor popisuje zdrojový kandidát 1.4.14. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.4.14.
+Tento soubor popisuje zdrojový kandidát 1.4.15. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.4.15.
+
+## Změna 1.4.15
+
+Výkonová a úklidová PATCH verze bez změny chování: bezeztrátová komprese PNG (pixelově shodné) a čitelná šablona exportu (`scripts/export-template/`). Service worker, storage model, egress, capability inventory ani trust-critical control-plane soubory nebyly změněny.
 
 ## Security architecture
 
