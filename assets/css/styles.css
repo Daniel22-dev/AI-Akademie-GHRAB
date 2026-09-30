@@ -1232,8 +1232,8 @@ kbd {
   .lesson-content-inner.layout-showcase-grid .content-cards.columns-3 { grid-template-columns: 1fr; }
 }
 
-/* Logo školy na tmavém pozadí bez rušivého bílého čtverce */
-.site-footer img { filter: invert(1); mix-blend-mode: screen; background: transparent; }
+/* Školní logo se v zápatí zobrazuje beze změny dodaného artworku. */
+.site-footer img { filter: none; mix-blend-mode: normal; background: transparent; border-radius: 0; }
 
 /* v1.3.2 — školitelský režim bez osobního postupu */
 .course-hero-grid.presenter-course-hero {

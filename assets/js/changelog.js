@@ -1,8 +1,18 @@
-export const APP_VERSION = '1.5.2';
+export const APP_VERSION = '1.5.3';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.5.3',
+    date: '30. 9. 2026',
+    title: 'Logo školy bez vizuální transformace',
+    changes: [
+      'Zápatí zobrazuje dodané školní logo 1:1 bez invertování barev.',
+      'Odstraněn režim mix-blend-mode: screen, který měnil vzhled znaku.',
+      'PDF handouty zůstávají beze změny a používají stejný zdrojový obrázek.'
+    ]
+  },
   {
     version: '1.5.2',
     date: '30. 9. 2026',

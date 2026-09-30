@@ -1,12 +1,16 @@
 # AI Akademie — CURRENT RELEASE STATUS
 
-**Version:** 1.5.2  
+**Version:** 1.5.3  
 **Date:** 2026-09-27  
 **Candidate status:** LOCAL/CI FOUNDATION candidate — verification required on exact Git commit  
 **Public LIVE claim for 1.5.0:** NOT MADE  
 **School-server LIVE:** NOT_TESTED / DEFERRED_BY_OWNER_DECISION
 
-Tento soubor popisuje zdrojový kandidát 1.5.2. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.5.0.
+Tento soubor popisuje zdrojový kandidát 1.5.3. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.5.0.
+
+## Změna 1.5.3
+
+Oprava vykreslení loga v zápatí: odstraněn CSS filtr `invert(1)` a `mix-blend-mode: screen`. Dodaný školní znak se nyní vykresluje bez barevné nebo kompoziční transformace.
 
 ## Změna 1.5.2
 
