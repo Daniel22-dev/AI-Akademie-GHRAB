@@ -1,6 +1,6 @@
 const notes = (title, ask, warning, transition) => ({
   say: [
-    `Tuhle část berte prakticky: ${title}`,
+    `${title} — tady půjdeme rovnou po praktickém použití.`,
     'Nejde o prohlídku všech tlačítek. Potřebujeme pochopit, kdy nástroj použít, jak vypadá pracovní postup a co musí na konci zkontrolovat učitel.'
   ],
   explain: ['Drž se hlavní myšlenky slidu a ukaž konkrétní školní použití.'],
