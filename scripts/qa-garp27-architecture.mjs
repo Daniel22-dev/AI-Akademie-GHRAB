@@ -34,7 +34,7 @@ function listFiles(dir) {
   return out;
 }
 function candidateFiles() {
-  const excludedTop = new Set(['node_modules', 'dist-pages', 'dist-school-server', 'qa-results', '.git']);
+  const excludedTop = new Set(['node_modules', 'dist-pages', 'dist-school-server', 'qa-results', 'exports', '.git']);
   const excludedSecurity = [/^security\/sbom\//, /^security\/post-release\//, /^security\/post-release-auto-patch\//, /^security\/evidence\//];
   return listFiles(root).filter(file => {
     const r = rel(file);
