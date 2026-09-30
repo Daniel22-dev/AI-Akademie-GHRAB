@@ -1,8 +1,18 @@
-export const APP_VERSION = '1.5.1';
+export const APP_VERSION = '1.5.2';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.5.2',
+    date: '30. 9. 2026',
+    title: 'Správné logo školy',
+    changes: [
+      'Zápatí používá logo školy dodané vlastníkem projektu.',
+      'Stejné logo se používá také ve všech generovaných PDF handoutech.',
+      'Odstraněna předchozí záměna s jiným interním GHRAB symbolem.'
+    ]
+  },
   {
     version: '1.5.1',
     date: '30. 9. 2026',

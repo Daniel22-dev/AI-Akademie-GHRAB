@@ -1,12 +1,16 @@
 # AI Akademie — CURRENT RELEASE STATUS
 
-**Version:** 1.5.1  
+**Version:** 1.5.2  
 **Date:** 2026-09-27  
 **Candidate status:** LOCAL/CI FOUNDATION candidate — verification required on exact Git commit  
 **Public LIVE claim for 1.5.0:** NOT MADE  
 **School-server LIVE:** NOT_TESTED / DEFERRED_BY_OWNER_DECISION
 
-Tento soubor popisuje zdrojový kandidát 1.5.1. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.5.0.
+Tento soubor popisuje zdrojový kandidát 1.5.2. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.5.0.
+
+## Změna 1.5.2
+
+Oprava brand assetu: zápatí i PDF handouty používají logo školy dodané vlastníkem projektu. Předchozí interní GHRAB symbol byl odstraněn z této role.
 
 ## Změna 1.5.1
 
