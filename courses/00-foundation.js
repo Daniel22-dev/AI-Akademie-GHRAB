@@ -1,6 +1,6 @@
 const speaker = (say, ask, caution, transition) => ({
   say: Array.isArray(say) ? say : [say],
-  explain: [],
+  explain: ['Vysvětli hlavní myšlenku slidu na konkrétním školním příkladu a drž se praktického dopadu pro učitele.'],
   ask: [ask],
   expected: ['Nech zaznít dvě až tři odpovědi a vrať diskusi k hlavnímu principu slidu.'],
   demo: ['Použij konkrétní příklad přímo ze slidu; technické detaily nech stranou, pokud se na ně nikdo nezeptá.'],
@@ -21,7 +21,7 @@ export default {
   subtitle: 'Promptování, bezpečnost, učitelský úsudek a orientace v AI Studiu',
   category: 'Povinný základ',
   audience: 'Všichni kolegové před prvním používáním aplikací AI Studia',
-  duration: 75,
+  duration: 80,
   reserve: 5,
   level: 'Vstupní',
   required: true,
