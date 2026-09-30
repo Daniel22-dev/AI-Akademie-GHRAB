@@ -100,7 +100,7 @@ export default {
           { number: '03', title: 'Omezení', text: 'Co zachovat, vynechat nebo nepřekročit?' },
           { number: '04', title: 'Výstup', text: 'Jak má výsledek vypadat?' }
         ]},
-        { type: 'activity', title: 'Vylepšete jeden vlastní prompt', text: 'Ve dvojici vezměte běžné zadání a doplňte mu cíl, kontext, omezení a požadovaný výstup.', steps: ['Napište původní krátký prompt.', 'Doplňte čtyři chybějící vrstvy.', 'Porovnejte, co by se díky tomu změnilo.'], footer: 'Cíl: použitelný prompt, ne „dokonalá formule“. ' }
+        { type: 'activity', title: 'Vylepšete jeden vlastní prompt', brief: 'Ve dvojici vezměte běžné zadání a doplňte mu cíl, kontext, omezení a požadovaný výstup.', steps: ['Napište původní krátký prompt.', 'Doplňte čtyři chybějící vrstvy.', 'Porovnejte, co by se díky tomu změnilo.'], output: 'Použitelný prompt, ne „dokonalá formule“.' }
       ]
     },
     {
