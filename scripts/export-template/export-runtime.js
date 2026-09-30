@@ -113,8 +113,19 @@ function fitSlide(){
   const scale=Math.min(1,available/needed);
   inner.style.transform='scale('+scale+')';
   inner.style.width=(100/scale)+'%'}
+function handoutList(title,items){
+  if(!Array.isArray(items)||!items.length)return'';
+  return '<section class="handout-section"><h2>'+esc(title)+'</h2><ul>'+items.map(item=>'<li>'+esc(item)+'</li>').join('')+'</ul></section>'}
 function renderPrint(){
-  document.querySelector('#print-root').innerHTML=cover('print-slide')+course.lessons.map((l,i)=>lesson(l,i,'print-slide')).join('')+ending('print-slide')}
+  const h=course.handout||{};
+  const verification=course.training||{};
+  document.querySelector('#print-root').innerHTML='<article class="handout-page"><header class="handout-header"><p>AI AKADEMIE GHRAB · HANDOUT</p><h1>'
+    +esc(h.title||course.title)+'</h1><p class="handout-purpose">'+esc(h.purpose||course.subtitle)+'</p><div class="handout-meta"><span>Školení v'
+    +esc(verification.trainingVersion||'1.0')+'</span>'+(verification.appVersion?'<span>Ověřeno pro '+esc(verification.target||course.title)+' v'
+    +esc(verification.appVersion)+'</span>':'')+(verification.verifiedAt?'<span>Kontrola '+esc(verification.verifiedAt)+'</span>':'')+'</div></header>'
+    +handoutList('Pracovní postup',h.workflow)+handoutList('Co před použitím zkontrolovat',h.checks)+handoutList('Bezpečnost',h.safety)
+    +handoutList('Role učitele',h.teacherDecision)+'<footer class="handout-footer"><strong>'+esc(h.footer||'AI pomáhá. Učitel kontroluje. Učitel rozhoduje.')
+    +'</strong><span>AI Akademie GHRAB · '+esc(course.title)+'</span></footer></article>'}
 function render(){
   const isCover=index===0;
   const isEnd=index===slideCount-1;
@@ -125,7 +136,7 @@ function render(){
   document.querySelector('#app').innerHTML='<header class="topbar"><div class="brand"><img src="'+brandIcon+'" alt=""><div><strong>AI Akademie GHRAB</strong><small>Interaktivní materiál pro účastníky</small></div></div><div class="top-title"><small>'
       +esc(course.code)+'<span class="duration-chip">'+course.timing.total+' min celkem</span></small><strong>'+(isEnd?'Konec prezentace':active?esc(active.title):esc(course.title))
       +'</strong></div><div class="top-actions"><button class="icon-btn menu-btn" data-action="menu" title="Obsah">'+icons.list
-      +'</button><button class="icon-btn" data-action="print" title="Vytisknout nebo uložit celou prezentaci jako PDF">'
+      +'</button><button class="icon-btn" data-action="print" title="Vygenerovat handout a uložit jako PDF">'
       +icons.print+'</button><button class="icon-btn" data-action="fullscreen" title="Celá obrazovka">'+icons.expand+'</button></div></header><main class="workspace"><aside class="sidebar"><p class="sidebar-label">OBSAH PREZENTACE</p><nav class="nav"><button data-slide="0" class="'
       +(isCover?'active':'')+'"><b>00</b><span><strong>Úvodní obrazovka</strong><small>'+course.timing.total+' min celkem</small></span></button>'
       +course.lessons.map((l,i)=>'<button data-slide="'+(i+1)+'" class="'+(index===i+1?'active':'')+'"><b>'+String(i+1).padStart(2,'0')
@@ -163,7 +174,7 @@ function bind(){
       if(document.fullscreenElement)await document.exitFullscreen()}catch{}});
   document.querySelector('[data-action="fullscreen"]')?.addEventListener('click',async()=>{
     if(!document.fullscreenElement)await document.documentElement.requestFullscreen();else await document.exitFullscreen()});
-  document.querySelector('[data-action="print"]')?.addEventListener('click',()=>window.print());
+  document.querySelector('[data-action="print"]')?.addEventListener('click',()=>{renderPrint();window.print()});
   document.querySelectorAll('[data-check]').forEach(input=>input.addEventListener('change',()=>{
     localState.checks[input.dataset.check]=input.checked;
     input.closest('label')?.classList.toggle('checked',input.checked);
@@ -201,4 +212,4 @@ addEventListener('keydown',e=>{
     render()}
   if(e.key==='End'){
     index=slideCount-1;
-    render()}});addEventListener('resize',()=>requestAnimationFrame(fitSlide));renderPrint();render();
+    render()}});addEventListener('resize',()=>requestAnimationFrame(fitSlide));renderPrint();render();if(new URLSearchParams(location.search).get('handout')==='1')setTimeout(()=>window.print(),80);
