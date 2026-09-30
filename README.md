@@ -1,8 +1,17 @@
-# AI Akademie GHRAB 1.4.15
+# AI Akademie GHRAB 1.5.0
 
 Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
 Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
+
+## Novinky ve verzi 1.5.0
+
+- Akademie má nově **jedno povinné vstupní školení „AI + AI Studio“**. Spojuje praktické promptování, limity AI, bezpečnost dat, roli učitele, smysl vlastních aplikací a orientaci ve Studiu.
+- Hlavní princip napříč školeními je **„AI pomáhá. Učitel kontroluje. Učitel rozhoduje.“** AI připravuje návrhy; konečné pedagogické rozhodnutí zůstává na učiteli.
+- Katalog pokrývá **všech devět aktuálních aplikací AI Studia**: Generátor, Diferenciátor, Hodnotitel, Korespondenční asistent, LUDUS, ACTIVA, SORTIO, Lesson Hub a Maturita Desk.
+- Každé školení má samostatný **handout**. Tisk / uložení do PDF používá jen kurátorovaná data handoutu a nikdy interní poznámky školitele.
+- Aplikační školení zobrazují **verzi aplikace, verzi školení a datum posledního věcného ověření**. Změna aplikace tak může být podnětem k revizi školení.
+- Maturita Desk je v Akademii popsána podle současného stavu jako **syntetické demo**; skutečný důvěrný maturitní obsah do tohoto režimu nepatří.
 
 ## Novinky ve verzi 1.4.15
 
@@ -69,22 +78,30 @@ Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobra
 
 Verze 1.4.2 provedla hloubkovou obsahovou revizi všech 10 prezentací a 68 lekcí. Starší změny jsou popsány v changelogu aplikace.
 
-## Deset školení
+## Třináct školení
 
-1. **AI v práci učitele** — AI gramotnost, ověřování a odpovědnost.
-2. **První bezpečný vstup** — přístup, API klíč a bezpečnost dat.
-3. **Diferenciátor: první materiál** — varianty stejného materiálu pro různé potřeby.
-4. **GitHub bez strachu** — zveřejnění bezpečného interaktivního HTML.
-5. **Generátor interaktivních testů**.
-6. **LUDUS: dílna výukových her**.
-7. **Korespondenční asistent**.
-8. **Hodnotitel maturitních slohů**.
-9. **Propojený pracovní postup aplikací**.
-10. **Mentor a správce školení**.
+**Povinný základ**
+1. **Vstupní školení: AI + AI Studio** — promptování, bezpečnost, učitelský úsudek a orientace ve Studiu.
+
+**Školení všech aktuálních aplikací AI Studia**
+2. **Diferenciátor**
+3. **Generátor interaktivních testů**
+4. **LUDUS**
+5. **Korespondenční asistent**
+6. **Hodnotitel maturitních slohů**
+7. **ACTIVA**
+8. **SORTIO – Výukový panel**
+9. **Lesson Hub**
+10. **Maturita Desk** — aktuálně syntetické demo.
+
+**Podpůrné a pokročilé moduly**
+11. **GitHub bez strachu**
+12. **Propojený pracovní postup aplikací**
+13. **Mentor a správce školení**
 
 ## Logika rozcestníku
 
-Společný základ tvoří AI gramotnost a bezpečný vstup. Potom lze podle cíle školení otevřít některou z větví:
+Společný základ tvoří jedno povinné vstupní školení AI + AI Studio. Potom lze podle cíle otevřít školení konkrétní aplikace nebo podpůrný modul:
 
 - tvorba materiálů: Diferenciátor, Generátor a LUDUS;
 - komunikace: Korespondenční asistent;
@@ -118,14 +135,14 @@ Novou změnu vložte na začátek pole `CHANGELOG`. Aplikace zobrazuje pouze des
 
 ## Samostatné prezentace pro účastníky
 
-Ve složce `exports/` je pro každý kurz jeden samostatný HTML soubor. Obsahuje pouze dané školení a funguje bez připojení k internetu.
+Ve složce `exports/` je pro každý kurz jeden samostatný HTML soubor. Obsahuje pouze dané školení, funguje bez připojení k internetu a umí z oddělených handout dat vytvořit účastnické PDF.
 
 Samostatné prezentace:
 
 - neobsahují scénáře ani poznámky školitele;
 - ukládají kvízy a checklisty pouze v místním prohlížeči;
 - mají mobilní osnovu a dotykové ovládání;
-- lze vytisknout nebo uložit celé jako PDF;
+- mají samostatné tlačítko pro handout; PDF se skládá z kurátorovaného shrnutí, nikoli z presenter notes nebo prostého tisku slidů;
 - obsahují závěrečnou obrazovku s ukončením celé obrazovky a novým spuštěním.
 
 ## Úprava obsahu
