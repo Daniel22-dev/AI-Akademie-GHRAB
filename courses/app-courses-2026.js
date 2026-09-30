@@ -1,7 +1,7 @@
 const notes = (title, ask, warning, transition) => ({
   say: [
     `${title} — tady půjdeme rovnou po praktickém použití.`,
-    'Nejde o prohlídku všech tlačítek. Potřebujeme pochopit, kdy nástroj použít, jak vypadá pracovní postup a co musí na konci zkontrolovat učitel.'
+    `${title}: nejde o prohlídku tlačítek; potřebujeme pochopit pracovní postup a to, co musí na konci zkontrolovat učitel.`
   ],
   explain: ['Drž se hlavní myšlenky slidu a ukaž konkrétní školní použití.'],
   ask: [ask],
@@ -88,7 +88,7 @@ export const lessonHub = {
       {type:'flow',items:[{number:'01',title:'Naplánuj',text:'Cíl, obsah, materiál a poznámka k hodině.'},{number:'02',title:'Oduč',text:'Během hodiny nemusíš aplikaci obsluhovat.'},{number:'03',title:'Zapiš',text:'Co proběhlo, kam jste se dostali a co změnit.'},{number:'04',title:'Navazuj',text:'Další příprava vychází z reálného stavu skupiny.'}]},
       {type:'callout',tone:'info',title:'Krátce je lépe než dokonale',text:'Záznam má pomoci budoucímu já. Nemusí být protokol.'}
     ]},
-    {id:'materials',title:'Materiály, šablony a výukové cykly',kicker:'ZRYCHLENÍ · 10 MIN',duration:10,summary:'Opakované typy hodin, materiály a výukové cykly lze znovu používat místo kopírování z minulých příprav.',trainerNote:'Ukaž jeden znovupoužitelný materiál a jednu šablonu.',speakerNotes:notes('Tady aplikace začne vracet čas: věci, které se opakují, nemusím znovu skládat.','Který typ hodiny nebo materiálu u vás vzniká znovu a znovu?','Při opakovaném použití vždy ověř, že starý materiál stále odpovídá aktuální skupině.','Teď se podíváme na zastupování a praktickou kontinuitu při absenci.'),blocks:[
+    {id:'materials',title:'Materiály, šablony a výukové cykly',kicker:'ZRYCHLENÍ · 10 MIN',duration:10,summary:'Opakované typy hodin, materiály a výukové cykly lze znovu používat místo kopírování z minulých příprav.',trainerNote:'Ukaž jeden znovupoužitelný materiál a jednu šablonu.',speakerNotes:notes('Tady aplikace začne vracet čas: věci, které se opakují, nemusím znovu skládat.','Který typ hodiny nebo materiálu u vás vzniká znovu a znovu?','Při opakovaném použití vždy ověř, že starý materiál stále odpovídá aktuální skupině.','Další krok je praktický: zastupování a kontinuita při absenci.'),blocks:[
       {type:'cards',columns:3,items:[{icon:'M',title:'Materiály',text:'Uložené podklady navázané na výuku.'},{icon:'Š',title:'Šablony',text:'Opakovatelná struktura hodiny.'},{icon:'C',title:'Cykly',text:'Více hodin spojených do delšího postupu.'}]},
       {type:'callout',tone:'warning',title:'Znovupoužití není automatické převzetí',text:'Starý materiál vždy zkontrolujte proti aktuálnímu cíli, skupině a časovým podmínkám.'}
     ]},
