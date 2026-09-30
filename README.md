@@ -1,8 +1,14 @@
-# AI Akademie GHRAB 1.5.1
+# AI Akademie GHRAB 1.5.2
 
 Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
 Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
+
+## Novinky ve verzi 1.5.2
+
+- Zápatí nyní používá správné logo školy dodané vlastníkem projektu.
+- Stejné logo je vloženo také do PDF handoutů.
+- Předchozí chybný GHRAB symbol byl nahrazen.
 
 ## Novinky ve verzi 1.5.1
 
