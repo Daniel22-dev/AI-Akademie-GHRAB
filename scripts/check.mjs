@@ -142,7 +142,8 @@ for (const phrase of bannedSpeakerPhrases) {
   if (hits.length) errors.push(`Do poznámek se vrátila šablonová věta „${phrase}“ (${hits.map(item => item.key).join(', ')}).`);
 }
 for (const [opening, lessons] of spokenOpenings) {
-  if (lessons.length > 1) errors.push(`Mluvené formulace opakují stejný začátek „${opening}“ v: ${lessons.join(', ')}.`);
+  const uniqueLessons = [...new Set(lessons)];
+  if (uniqueLessons.length > 1) errors.push(`Mluvené formulace opakují stejný začátek „${opening}“ v: ${uniqueLessons.join(', ')}.`);
 }
 const formalDirective = /\b(?:Nechte|Ukažte|Použijte|Projděte|Zdůrazněte|Nehodnoťte|Přepracujte|Porovnejte|Ověřte|Připravte|Vysvětlete|Požádejte|Zvolte|Vyberte|Nastavte)\b/;
 const formalHits = noteText.filter(item => ['say', 'ask', 'expected', 'demo', 'facilitation', 'fallback'].includes(item.field) && formalDirective.test(item.line));
