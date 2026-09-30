@@ -1,8 +1,16 @@
-# AI Akademie GHRAB 1.5.0
+# AI Akademie GHRAB 1.5.1
 
 Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
 Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
+
+## Novinky ve verzi 1.5.1
+
+- Handout se po kliknutí stáhne přímo jako hotové PDF; nepoužívá tiskový dialog.
+- PDF obsahuje oficiální školní logo a základní metadata školení.
+- Akademie používá stejný školní logo asset jako platforma AI Studia.
+- P5/trusted-admission artifact zachovává `.nojekyll`, takže evidence a kontrolovaný runtime mají shodný digest i počet souborů.
+- Safe Promotion před merge stále čeká na GREEN `garp27-trusted-admission`; chybějící required-check v Rulesetu je dočasně pouze warning.
 
 ## Novinky ve verzi 1.5.0
 
