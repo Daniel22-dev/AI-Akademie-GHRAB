@@ -77,3 +77,4 @@ jobs:
             qa-results/garp27/**
             security/sbom/ai-akademie-${{ steps.app-version.outputs.version }}.cdx.json
           if-no-files-found: ignore
+          include-hidden-files: true
