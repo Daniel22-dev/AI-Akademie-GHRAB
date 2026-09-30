@@ -40,8 +40,6 @@ jobs:
         run: npm run qa:secrets
       - name: Build clean Pages artifact
         run: npm run build:pages
-      - name: Run Chromium browser smoke test
-        run: npm run qa:browser
       - name: Scan deployment artifact
         run: npm run qa:garp25:deployment
       - name: Verify service-worker security freeze
@@ -77,7 +75,6 @@ jobs:
             dist-pages/**
             qa-results/release-current/**
             qa-results/garp27/**
-            qa-results/browser-smoke/**
             security/sbom/ai-akademie-${{ steps.app-version.outputs.version }}.cdx.json
           if-no-files-found: ignore
           include-hidden-files: true

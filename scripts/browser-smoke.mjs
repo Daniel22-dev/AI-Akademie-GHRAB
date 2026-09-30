@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const dist=path.resolve(root,process.argv[2]||'dist-pages');
-const out=path.join(root,'qa-results','browser-smoke');
+const out=path.join(root,'qa-results','release-current','browser-smoke');
 const port=4173, driverPort=9515, base=`http://127.0.0.1:${port}/`, wd=`http://127.0.0.1:${driverPort}`;
 const E='element-6066-11e4-a52e-4f735466cecf';
 let server,driver,sid; const passed=[],shots=[];

@@ -195,11 +195,9 @@ if (!index.includes('AI Akademie GHRAB')) errors.push('index.html neobsahuje ná
 if (index.includes('id="app" aria-live')) errors.push('Celý kořen aplikace stále používá aria-live.');
 if (!index.includes('name="robots" content="noindex')) errors.push('index.html nemá zákaz indexování interní aplikace.');
 
-const p5Workflow = await fs.readFile(path.join(root, '.github/workflows/p5-release-gate.yml'), 'utf8');
-if (!p5Workflow.includes('npm run qa:browser')) errors.push('P5 release gate nespouští skutečný browser smoke test.');
-if (!p5Workflow.includes('qa-results/browser-smoke/**')) errors.push('P5 release gate nearchivuje browser smoke evidence.');
 const pkgScripts = JSON.parse(await fs.readFile(path.join(root, 'package.json'), 'utf8')).scripts || {};
 if (pkgScripts['qa:browser'] !== 'node scripts/browser-smoke.mjs dist-pages') errors.push('package.json nemá kanonický qa:browser příkaz.');
+if (!String(pkgScripts['qa:current-evidence'] || '').includes('npm run qa:browser')) errors.push('Release evidence řetězec nespouští skutečný browser smoke test.');
 
 const app = await fs.readFile(path.join(root, 'assets/js/app.js'), 'utf8');
 if (!app.includes('fitPresenterSlide')) errors.push('Hlavní aplikace nemá automatické přizpůsobení slidu výšce projekce.');
