@@ -1,8 +1,19 @@
-export const APP_VERSION = '1.5.0';
+export const APP_VERSION = '1.5.1';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.5.1',
+    date: '30. 9. 2026',
+    title: 'Přímé PDF handouty a sjednocené školní logo',
+    changes: [
+      'Handout se po kliknutí stáhne přímo jako hotové PDF bez tiskového dialogu.',
+      'PDF handout obsahuje školní logo a Akademie používá stejný školní logo asset jako AI Studio.',
+      'P5 artifact bundle nově zahrnuje také .nojekyll, takže trusted admission porovnává shodný runtime digest a počet souborů.',
+      'Safe Promotion stále vyžaduje GREEN trusted admission před merge; chybějící required-check v Rulesetu je dočasně warning, nikoli samostatný FAIL.'
+    ]
+  },
   {
     version: '1.5.0',
     date: '30. 9. 2026',

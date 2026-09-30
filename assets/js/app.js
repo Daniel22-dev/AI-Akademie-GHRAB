@@ -2,6 +2,7 @@ import { courses, courseMap } from '../../courses/index.js';
 import { loadState, saveState, checklistKey, quizKey } from './storage.js';
 import { APP_VERSION, CHANGELOG } from './changelog.js';
 import { startStarfield } from './starfield.js';
+import { downloadHandoutPdf } from './handout-pdf.js';
 
 const app = document.querySelector('#app');
 let state = loadState();
@@ -642,7 +643,7 @@ function renderHome() {
     <section class="presenter-dashboard shell-wide" aria-label="Možnosti rozcestníku">
       <article class="presenter-feature panel-glass"><span>${icons.present}</span><div><p class="eyebrow">PREZENTOVAT</p><h2>Spusťte školení přímo z rozcestníku</h2><p>Každá část funguje jako samostatná obrazovka. Šipky mění části, klávesa F zapíná celou obrazovku a P prezentační režim.</p></div></article>
       <article class="presenter-feature panel-glass"><span>${icons.notes}</span><div><p class="eyebrow">PŘIPRAVIT SE</p><h2>Poznámky řečníka zůstávají jen vám</h2><p>V rozcestníku můžete zobrazit metodické poznámky, doporučené ukázky a upozornění. Export pro účastníky je neobsahuje.</p></div></article>
-      <article class="presenter-feature panel-glass"><span>${icons.download}</span><div><p class="eyebrow">PŘEDAT PO ŠKOLENÍ</p><h2>Vygenerujte stručný handout do PDF</h2><p>Handout shrnuje workflow, kontroly a bezpečnostní zásady. Poznámky školitele ani interní scénář se do něj nikdy nepřenášejí.</p></div></article>
+      <article class="presenter-feature panel-glass"><span>${icons.download}</span><div><p class="eyebrow">PŘEDAT PO ŠKOLENÍ</p><h2>Vygenerujte stručný handout do PDF</h2><p>Handout se po kliknutí stáhne přímo jako hotové PDF. Obsahuje školní logo, workflow, kontroly a bezpečnostní zásady; interní poznámky školitele se do něj nepřenášejí.</p></div></article>
     </section>
 
     ${renderLearningMap()}
@@ -722,7 +723,7 @@ function renderCourseCard(course) {
       ${course.training?.verifiedAt ? `<p class="prerequisite-note training-verification">✓ ${escapeHtml(trainingVerificationLabel(course))} · školení v${escapeHtml(course.training.trainingVersion || '1.0')}</p>` : ''}
       <div class="course-card-actions">
         <a class="course-open" href="#/course/${course.id}/${course.lessons[0].id}">Otevřít školení ${icons.arrowRight}</a>
-        <a class="course-download" href="./exports/${course.id}.html?handout=1" target="_blank" rel="noopener">${icons.download} Handout PDF</a>
+        <a class="course-download" href="#" data-action="download-handout" data-course-id="${course.id}">${icons.download} Handout PDF</a>
       </div>
     </article>
   `;
@@ -850,7 +851,7 @@ function renderCourse(courseId, lessonId) {
         </div>
         <div class="course-hero-actions">
           <button type="button" class="button secondary" data-action="open-console">${icons.console} Konzole školitele</button>
-          <a class="button secondary download-presentation" href="./exports/${course.id}.html?handout=1" target="_blank" rel="noopener">${icons.download} Handout PDF</a>
+          <a class="button secondary download-presentation" href="#" data-action="download-handout" data-course-id="${course.id}">${icons.download} Handout PDF</a>
           <button type="button" class="button primary" data-action="toggle-presenter">${icons.present} Spustit od úvodu</button>
         </div>
       </div>
@@ -891,7 +892,7 @@ function renderCourse(courseId, lessonId) {
           </nav>
         </div>
         <div class="sidebar-panel outcomes panel-glass"><p class="eyebrow">CÍLE ŠKOLENÍ</p><ul>${course.outcomes.map(outcome => `<li>${icons.check}${escapeHtml(outcome)}</li>`).join('')}</ul></div>
-        <div class="sidebar-panel share-panel panel-glass"><p class="eyebrow">PO ŠKOLENÍ</p><p>Handout shrnuje hlavní workflow, kontroly a bezpečnostní zásady. Interní poznámky školitele neobsahuje.</p><a href="./exports/${course.id}.html?handout=1" target="_blank" rel="noopener">${icons.download} Vygenerovat handout PDF</a></div>
+        <div class="sidebar-panel share-panel panel-glass"><p class="eyebrow">PO ŠKOLENÍ</p><p>Handout shrnuje hlavní workflow, kontroly a bezpečnostní zásady. Interní poznámky školitele neobsahuje.</p><a href="#" data-action="download-handout" data-course-id="${course.id}">${icons.download} Stáhnout handout PDF</a></div>
       </aside>
 
       <article class="lesson-stage panel-glass ${presenterMode && presentationCover ? 'is-cover' : ''} ${presenterMode && presentationEnd ? 'is-end' : ''}" data-course="${course.id}" data-lesson="${presentationCover ? 'cover' : presentationEnd ? 'end' : lesson.id}">
@@ -993,7 +994,7 @@ function currentCourseContext() {
   return { course, lesson: course.lessons[lessonIndex], lessonIndex };
 }
 
-function handleClick(event) {
+async function handleClick(event) {
   const actionElement = event.target.closest('[data-action]');
   if (actionElement) {
     const action = actionElement.dataset.action;
@@ -1021,6 +1022,22 @@ function handleClick(event) {
       }
       event.preventDefault();
       location.assign(studioAdminBridge.studioUrl);
+      return;
+    }
+    if (action === 'download-handout') {
+      event.preventDefault();
+      const handoutCourse = courseMap.get(actionElement.dataset.courseId) || context?.course;
+      if (!handoutCourse) return;
+      actionElement.setAttribute('aria-busy', 'true');
+      try {
+        await downloadHandoutPdf(handoutCourse, './assets/brand/school-logo.png');
+        toast('Handout PDF byl stažen.');
+      } catch (error) {
+        console.error('AI Akademie: PDF handoutu se nepodařilo vytvořit.', error);
+        toast('PDF se nepodařilo vytvořit. Zkuste to znovu.');
+      } finally {
+        actionElement.removeAttribute('aria-busy');
+      }
       return;
     }
     if (action === 'fullscreen') {
