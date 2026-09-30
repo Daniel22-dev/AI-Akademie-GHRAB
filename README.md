@@ -1,8 +1,14 @@
-# AI Akademie GHRAB 1.5.4
+# AI Akademie GHRAB 1.5.5
 
 Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
 Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
+
+## Novinky ve verzi 1.5.5
+
+- Opraveno vyhledávání v katalogu: výsledky se vykreslují do katalogu kurzů, nikoli do mapy vzdělávací cesty.
+- P5 release gate nově obsahuje skutečný Chromium browser smoke test.
+- Smoke test prochází desktop i mobilní workflow, všechny kurzy a části, interaktivní prvky a Presenter konzoli; screenshoty a report se ukládají jako CI evidence.
 
 ## Novinky ve verzi 1.5.4
 

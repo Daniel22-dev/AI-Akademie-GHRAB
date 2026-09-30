@@ -1,6 +1,6 @@
 {
   "name": "ai-akademie-ghrab",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "private": true,
   "type": "module",
   "description": "Soukromý prezentační rozcestník AI Akademie GHRAB",
@@ -22,7 +22,8 @@
     "qa:garp25:deployment": "node security/garp25/tools/scan-deployment-leaks.mjs dist-pages",
     "qa:garp25:sw-pages": "node security/garp25/tools/check-sw-security-freeze.mjs dist-pages/sw.js dist-pages security/security-critical-assets.json",
     "qa:safe-promotion": "node scripts/qa-safe-promotion.mjs",
-    "qa:current-evidence": "node scripts/create-current-release-evidence.mjs dist-pages",
+    "qa:browser": "node scripts/browser-smoke.mjs dist-pages",
+    "qa:current-evidence": "node scripts/create-current-release-evidence.mjs dist-pages && npm run qa:browser",
     "qa:garp27:reference": "node scripts/qa-garp27-reference.mjs",
     "qa:garp27:architecture": "node scripts/qa-garp27-architecture.mjs",
     "qa:garp27:mutations": "node scripts/qa-garp27-mutations.mjs",

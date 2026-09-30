@@ -1193,7 +1193,7 @@ async function handleClick(event) {
 function handleInput(event) {
   if (event.target.id === 'course-search') {
     searchTerm = event.target.value;
-    const grid = document.querySelector('.course-grid');
+    const grid = document.querySelector('#courses .course-grid');
     if (grid) grid.innerHTML = renderCourseResults();
   }
 }
