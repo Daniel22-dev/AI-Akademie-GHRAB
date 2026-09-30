@@ -1,8 +1,19 @@
-export const APP_VERSION = '1.5.3';
+export const APP_VERSION = '1.5.4';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.5.4',
+    date: '30. 9. 2026',
+    title: 'Živý náhled slidu v konzoli školitele',
+    changes: [
+      'Konzole školitele nyní obsahuje skutečný náhled právě promítaného slidu vedle poznámek.',
+      'Náhled vzniká ze stejného DOMu lesson-stage jako projekce a synchronizuje se při změně obsahu nebo rozměru.',
+      'Konzole se otevírá v širším dvousloupcovém režimu a na menší obrazovce se náhled přesune nad poznámky.',
+      'QA nově hlídá, že živý projekční náhled z Presenter enginu nezmizí.'
+    ]
+  },
   {
     version: '1.5.3',
     date: '30. 9. 2026',

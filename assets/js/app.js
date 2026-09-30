@@ -14,6 +14,9 @@ let presentationEnd = false;
 let routePresentationTarget = null;
 let deferredInstallPrompt = null;
 let presenterConsoleWindow = null;
+let presenterStageObserver = null;
+let presenterObservedStage = null;
+let presenterSyncScheduled = false;
 let pendingUpdateWorker = null;
 let updateReloadRequested = false;
 let studioAdminBridge = { verified: false, visible: false, studioUrl: '' };
@@ -166,11 +169,53 @@ function renderSpeakerGuide(course, lesson, lessonIndex) {
     </aside>`;
 }
 
+
+function presenterPreviewSnapshot() {
+  const stage = document.querySelector('.lesson-stage');
+  if (!stage) return null;
+  const clone = stage.cloneNode(true);
+  clone.querySelectorAll('a, button, input, select, textarea, [contenteditable]').forEach(element => {
+    element.removeAttribute('href');
+    element.removeAttribute('data-action');
+    element.setAttribute('tabindex', '-1');
+  });
+  const width = presenterMode ? Math.max(1, Math.round(window.innerWidth)) : 1600;
+  const height = presenterMode ? Math.max(1, Math.round(window.innerHeight)) : 900;
+  return { html: clone.outerHTML, width, height };
+}
+
+function disconnectPresenterStageObserver() {
+  presenterStageObserver?.disconnect();
+  presenterStageObserver = null;
+  presenterObservedStage = null;
+}
+
+function watchPresenterStage() {
+  if (!presenterConsoleWindow || presenterConsoleWindow.closed) {
+    disconnectPresenterStageObserver();
+    return;
+  }
+  const stage = document.querySelector('.lesson-stage');
+  if (!stage || stage === presenterObservedStage) return;
+  disconnectPresenterStageObserver();
+  presenterObservedStage = stage;
+  presenterStageObserver = new MutationObserver(() => {
+    if (presenterSyncScheduled) return;
+    presenterSyncScheduled = true;
+    requestAnimationFrame(() => {
+      presenterSyncScheduled = false;
+      sendPresenterState();
+    });
+  });
+  presenterStageObserver.observe(stage, { subtree: true, childList: true, attributes: true, characterData: true });
+}
+
 function presenterPayload() {
   const context = currentCourseContext();
   if (!context) return null;
   const { course, lesson, lessonIndex } = context;
   const timing = courseTiming(course);
+  const preview = presenterPreviewSnapshot();
   if (presenterMode && presentationCover) {
     return {
       course: { id: course.id, title: course.title, code: course.code, duration: timing.total, totalLessons: course.lessons.length },
@@ -179,6 +224,7 @@ function presenterPayload() {
       isCover: true,
       isEnd: false,
       presenterMode,
+      preview,
       previous: null,
       next: { id: course.lessons[0].id, title: course.lessons[0].title },
       guide: {
@@ -205,6 +251,7 @@ function presenterPayload() {
       isCover: false,
       isEnd: true,
       presenterMode,
+      preview,
       previous: { id: course.lessons.at(-1).id, title: course.lessons.at(-1).title },
       next: null,
       guide: {
@@ -230,6 +277,7 @@ function presenterPayload() {
     isCover: false,
     isEnd: false,
     presenterMode,
+    preview,
     previous: lessonIndex > 0 ? { id: course.lessons[lessonIndex - 1].id, title: course.lessons[lessonIndex - 1].title } : presenterMode ? { id: 'cover', title: 'Úvodní obrazovka' } : null,
     next: lessonIndex < course.lessons.length - 1 ? { id: course.lessons[lessonIndex + 1].id, title: course.lessons[lessonIndex + 1].title } : presenterMode ? { id: 'end', title: 'Konec prezentace' } : null,
     guide: buildSpeakerGuide(course, lesson, lessonIndex)
@@ -241,9 +289,14 @@ function sendPresenterState() {
   if (!payload) return;
   try {
     if (presenterConsoleWindow && !presenterConsoleWindow.closed && typeof presenterConsoleWindow.renderPresenterState === 'function') {
+      watchPresenterStage();
       presenterConsoleWindow.renderPresenterState(payload);
+    } else if (presenterConsoleWindow?.closed) {
+      disconnectPresenterStageObserver();
     }
-  } catch {}
+  } catch {
+    disconnectPresenterStageObserver();
+  }
 }
 
 function handlePresenterCommand(message = {}) {
@@ -312,7 +365,11 @@ function openPresenterConsole() {
   const context = currentCourseContext();
   if (!context) return;
   const consoleUrl = new URL('./console.html', location.href);
-  const popup = window.open(consoleUrl.href, 'ghrab-presenter-console', 'popup=yes,width=590,height=900,resizable=yes,scrollbars=yes');
+  const availableWidth = Math.max(720, Number(screen?.availWidth) || 1280);
+  const availableHeight = Math.max(720, Number(screen?.availHeight) || 900);
+  const popupWidth = Math.min(1280, Math.max(680, Math.floor(availableWidth * 0.74)));
+  const popupHeight = Math.min(940, Math.max(700, Math.floor(availableHeight * 0.9)));
+  const popup = window.open(consoleUrl.href, 'ghrab-presenter-console', `popup=yes,width=${popupWidth},height=${popupHeight},resizable=yes,scrollbars=yes`);
   if (!popup) {
     toast('Prohlížeč zablokoval okno konzole. Povolte vyskakovací okna pro tuto stránku.');
     return;

@@ -1,12 +1,16 @@
 # AI Akademie — CURRENT RELEASE STATUS
 
-**Version:** 1.5.3  
+**Version:** 1.5.4  
 **Date:** 2026-09-27  
 **Candidate status:** LOCAL/CI FOUNDATION candidate — verification required on exact Git commit  
-**Public LIVE claim for 1.5.0:** NOT MADE  
+**Public LIVE claim for 1.5.4:** NOT MADE  
 **School-server LIVE:** NOT_TESTED / DEFERRED_BY_OWNER_DECISION
 
-Tento soubor popisuje zdrojový kandidát 1.5.3. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.5.0.
+Tento soubor popisuje zdrojový kandidát 1.5.4. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.5.0.
+
+## Změna 1.5.4
+
+Presenter konzole znovu odpovídá master standardu: vedle poznámek zobrazuje živý náhled stejného `.lesson-stage`, který běží na projektoru. Synchronizace zůstává same-origin přes opener vazbu bez BroadcastChannelu nebo capability v URL.
 
 ## Změna 1.5.3
 
