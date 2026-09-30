@@ -42,7 +42,7 @@ async function run(){
 
   await nav(base);await wait('return !!document.querySelector(".academy-hero")','home');ok((await js('return document.querySelector(".academy-hero h1")?.innerText||""')).includes('Všechna školení'),'home Czech heading');await noX('desktop home');await shot('home-desktop');
   const courses=await js('return [...document.querySelectorAll(".course-open")].map(a=>a.getAttribute("href"))');ok(courses.length>=10,'course catalog links');
-  await type('#course-search','GitHub');await wait('return document.querySelectorAll(".course-grid .course-card").length>0','search');ok((await js('return [...document.querySelectorAll(".course-grid .course-card")].every(x=>x.innerText.toLowerCase().includes("github"))')),'search filters cards');
+  await type('#course-search','GitHub');await wait('const c=[...document.querySelectorAll(".course-grid .course-card")];return c.length>0&&c.every(x=>x.innerText.toLowerCase().includes("github"))','search');ok(true,'search filters cards');
   await nav(base+'#/about');await wait('return !!document.querySelector(".about-hero")','about');ok((await js('return document.body.innerText.includes("v1.5.4")')),'about shows 1.5.4');
 
   const lessons=new Set();
