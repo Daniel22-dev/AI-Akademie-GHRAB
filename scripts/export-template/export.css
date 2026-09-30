@@ -222,7 +222,7 @@
   .end-hint{display:block;margin-top:18px;color:var(--muted);font-size:.68rem}
   .nav button.end-nav b{color:var(--green)}
 @media print{
-    @page{size:A4 landscape;margin:9mm}
+    @page{size:A4 portrait;margin:14mm}
     :root{color-scheme:light}
     html,body{background:white!important;color:#111!important;overflow:visible!important}
     .stars,.app{display:none!important}
@@ -241,4 +241,18 @@
     .print-slide .cover h1{font-size:40pt}
     .print-slide h2{font-size:30pt}
     .print-slide .content{font-size:9pt}
+    .handout-page{display:block;max-width:180mm;margin:0 auto;color:#111;font:11pt/1.45 "Segoe UI",system-ui,sans-serif}
+    .handout-header{padding-bottom:8mm;border-bottom:2px solid #222}
+    .handout-header>p:first-child{margin:0 0 3mm;color:#176b79!important;font-size:8pt;font-weight:800;letter-spacing:.12em}
+    .handout-header h1{margin:0;font-size:24pt;line-height:1.08;color:#111}
+    .handout-purpose{margin:4mm 0 0;font-size:11pt;color:#333!important}
+    .handout-meta{display:flex;flex-wrap:wrap;gap:2mm;margin-top:5mm}
+    .handout-meta span{padding:1.5mm 2.5mm;border:1px solid #aaa;border-radius:999px;color:#333!important;font-size:8pt}
+    .handout-section{break-inside:avoid;margin-top:7mm}
+    .handout-section h2{margin:0 0 3mm;font-size:14pt;color:#111}
+    .handout-section ul{margin:0;padding-left:6mm}
+    .handout-section li{margin:0 0 2mm;color:#222!important}
+    .handout-footer{display:grid;gap:2mm;margin-top:8mm;padding-top:5mm;border-top:2px solid #222}
+    .handout-footer strong{font-size:12pt;color:#111}
+    .handout-footer span{font-size:8pt;color:#555!important}
   }

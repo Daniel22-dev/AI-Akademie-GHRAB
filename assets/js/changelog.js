@@ -1,8 +1,20 @@
-export const APP_VERSION = '1.4.15';
+export const APP_VERSION = '1.5.0';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.5.0',
+    date: '30. 9. 2026',
+    title: 'AI Akademie jako jednotné školicí centrum',
+    changes: [
+      'Původní dvojice vstupních kurzů byla sjednocena do jednoho povinného školení AI + AI Studio: promptování, bezpečnost, práce s daty, význam vlastních aplikací a orientace ve Studiu.',
+      'Napříč Akademií je explicitní princip „AI pomáhá. Učitel kontroluje. Učitel rozhoduje.“; konečné pedagogické rozhodnutí se nepřenáší na AI.',
+      'Katalog nyní pokrývá všech devět aktuálních aplikací AI Studia, nově včetně ACTIVA, SORTIO, Lesson Hubu a Maturita Desk.',
+      'Každé školení má oddělená data pro handout. Tisk generuje čisté A4 PDF shrnutí bez interních poznámek školitele.',
+      'Aplikační školení zobrazují verzi, pro kterou byl obsah ověřen, datum kontroly a verzi samotného školení.'
+    ]
+  },
   {
     version: '1.4.15',
     date: '27. 9. 2026',

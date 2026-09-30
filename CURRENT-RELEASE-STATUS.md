@@ -1,16 +1,20 @@
 # AI Akademie — CURRENT RELEASE STATUS
 
-**Version:** 1.4.15  
+**Version:** 1.5.0  
 **Date:** 2026-09-27  
 **Candidate status:** LOCAL/CI FOUNDATION candidate — verification required on exact Git commit  
-**Public LIVE claim for 1.4.15:** NOT MADE  
+**Public LIVE claim for 1.5.0:** NOT MADE  
 **School-server LIVE:** NOT_TESTED / DEFERRED_BY_OWNER_DECISION
 
-Tento soubor popisuje zdrojový kandidát 1.4.15. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.4.15.
+Tento soubor popisuje zdrojový kandidát 1.5.0. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.5.0.
 
-## Změna 1.4.15
+## Změna 1.5.0
 
 Výkonová a úklidová PATCH verze bez změny chování: bezeztrátová komprese PNG (pixelově shodné) a čitelná šablona exportu (`scripts/export-template/`). Service worker, storage model, egress, capability inventory ani trust-critical control-plane soubory nebyly změněny.
+
+## Změna 1.5.0
+
+Funkční MINOR verze Akademie: jedno povinné vstupní školení AI + AI Studio, kompletní katalog devíti aktuálních aplikací, samostatná handout data/PDF a metadata aktuálnosti školení. Prezentační, GARP 2.7 a legacy GARP 2.5.1/N5 hranice zůstávají zachovány. SCHOOL/LIVE se tímto zdrojovým releasem neprohlašuje.
 
 ## Security architecture
 

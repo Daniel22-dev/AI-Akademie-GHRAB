@@ -40,6 +40,13 @@ for (const course of courses) {
   if (!course.code || codes.has(course.code)) errors.push(`Neplatný nebo duplicitní kód kurzu: ${course.code}`);
   codes.add(course.code);
   if (!Array.isArray(course.lessons) || course.lessons.length === 0) errors.push(`Kurz ${course.id} nemá lekce.`);
+  if (!course.handout || !Array.isArray(course.handout.workflow) || !course.handout.workflow.length || !Array.isArray(course.handout.checks) || !course.handout.checks.length) {
+    errors.push(`Kurz ${course.id} nemá úplná samostatná data pro handout.`);
+  }
+  if (!Array.isArray(course.handout?.teacherDecision) || !course.handout.teacherDecision.some(item => String(item).includes('Učitel'))) {
+    errors.push(`Handout ${course.id} neobsahuje explicitní roli učitele v konečném rozhodnutí.`);
+  }
+  if (!course.training?.trainingVersion || !course.training?.verifiedAt) errors.push(`Kurz ${course.id} nemá metadata verze/ověření školení.`);
   if (!Number.isInteger(course.minimumLessons) || course.minimumLessons < 1 || course.minimumLessons > course.lessons.length) {
     errors.push(`Kurz ${course.id} nemá platně určenou základní cestu.`);
   }
@@ -104,7 +111,9 @@ for (const course of courses) {
     const exported = await fs.readFile(exportPath, 'utf8');
     if (!exported.includes('Interaktivní materiál pro účastníky')) errors.push(`Export ${course.id}.html nemá označení pro účastníky.`);
     if (!exported.includes('min celkem')) errors.push(`Export ${course.id}.html nezobrazuje celkový čas prezentace.`);
-    if (!exported.includes('id="print-root"')) errors.push(`Export ${course.id}.html nemá režim tisku celé prezentace.`);
+    if (!exported.includes('id="print-root"')) errors.push(`Export ${course.id}.html nemá tiskovou vrstvu pro handout.`);
+    if (!exported.includes('AI AKADEMIE GHRAB · HANDOUT') || !exported.includes('Role učitele')) errors.push(`Export ${course.id}.html nemá samostatný handout.`);
+    if (!exported.includes('AI pomáhá. Učitel kontroluje. Učitel rozhoduje.')) errors.push(`Export ${course.id}.html nemá hlavní princip lidského rozhodování.`);
     if (!exported.includes('data-reset-quiz')) errors.push(`Export ${course.id}.html nemá možnost opakovat kvíz.`);
     if (!exported.includes('localStorage')) errors.push(`Export ${course.id}.html neukládá stav aktivit.`);
     if (!exported.includes('min-height:44px')) errors.push(`Export ${course.id}.html nemá minimální dotykovou výšku.`);
@@ -133,7 +142,8 @@ for (const phrase of bannedSpeakerPhrases) {
   if (hits.length) errors.push(`Do poznámek se vrátila šablonová věta „${phrase}“ (${hits.map(item => item.key).join(', ')}).`);
 }
 for (const [opening, lessons] of spokenOpenings) {
-  if (lessons.length > 1) errors.push(`Mluvené formulace opakují stejný začátek „${opening}“ v: ${lessons.join(', ')}.`);
+  const uniqueLessons = [...new Set(lessons)];
+  if (uniqueLessons.length > 1) errors.push(`Mluvené formulace opakují stejný začátek „${opening}“ v: ${uniqueLessons.join(', ')}.`);
 }
 const formalDirective = /\b(?:Nechte|Ukažte|Použijte|Projděte|Zdůrazněte|Nehodnoťte|Přepracujte|Porovnejte|Ověřte|Připravte|Vysvětlete|Požádejte|Zvolte|Vyberte|Nastavte)\b/;
 const formalHits = noteText.filter(item => ['say', 'ask', 'expected', 'demo', 'facilitation', 'fallback'].includes(item.field) && formalDirective.test(item.line));
@@ -200,6 +210,11 @@ if (!app.includes('renderPresentationEnd')) errors.push('Hlavní aplikace nemá 
 if (!app.includes('exitPresenter')) errors.push('Hlavní aplikace nemá bezpečný návrat z prezentačního režimu.');
 if (!app.includes("page: 'about'") || !app.includes('renderAboutChangelog') || !app.includes('CHANGELOG')) errors.push('Hlavní aplikace nemá dostupnou kartu O aplikaci s changelogem.');
 if (!app.includes('course.minimumLessons')) errors.push('Hlavní aplikace nerozlišuje základní a rozšiřující cestu.');
+if (!app.includes('Handout PDF') || !app.includes('trainingVerificationLabel')) errors.push('Hlavní aplikace nezobrazuje handout nebo metadata aktuálnosti školení.');
+if (courses.filter(course => course.required).length !== 1 || courses.find(course => course.required)?.id !== 'ai-literacy') errors.push('Akademie musí mít právě jeden povinný vstupní kurz AI + AI Studio.');
+for (const requiredApp of ['differentiator','generator','ludus','correspondence','evaluator','activa','sortio','lesson-hub','maturita-desk']) {
+  if (!courses.some(course => course.id === requiredApp)) errors.push(`V katalogu chybí školení aktuální aplikace AI Studia: ${requiredApp}.`);
+}
 if (!app.includes('function initialiseStudioAdminBridge()')) errors.push('Akademie nemá ověření správcovského návratu do AI Studia.');
 if (!app.includes('accessRuntime.isAdmin() === true')) errors.push('Návrat do AI Studia není omezen na plného správce.');
 if (!app.includes("candidate.origin !== location.origin")) errors.push('Návrat do AI Studia nehlídá stejný origin.');
