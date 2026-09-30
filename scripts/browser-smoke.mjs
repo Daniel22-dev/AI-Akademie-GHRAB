@@ -30,7 +30,7 @@ const js=(script,args=[])=>call('POST',ep('/execute/sync'),{script,args});
 const nav=url=>call('POST',ep('/url'),{url});
 async function wait(script,label){for(let i=0;i<100;i++){try{if(await js(script))return}catch{}await sleep(100)}throw new Error('Timeout '+label)}
 async function element(sel){for(let i=0;i<100;i++){try{const v=await call('POST',ep('/element'),{using:'css selector',value:sel});if(v?.[E])return v[E]}catch{}await sleep(100)}throw new Error('Missing '+sel)}
-async function click(sel){const id=await element(sel);await call('POST',ep(`/element/${id}/click`),{})}
+async function click(sel){const id=await element(sel);await js('arguments[0].scrollIntoView({block:"center",inline:"nearest"});',[{[E]:id}]);await sleep(80);await call('POST',ep(`/element/${id}/click`),{})}
 async function type(sel,text){const id=await element(sel);await call('POST',ep(`/element/${id}/clear`),{});await call('POST',ep(`/element/${id}/value`),{text,value:[...text]})}
 async function shot(name){const b=await call('GET',ep('/screenshot'));const p=path.join(out,name+'.png');await fs.writeFile(p,Buffer.from(b,'base64'));shots.push(path.relative(root,p).replaceAll(path.sep,'/'))}
 async function noX(label){const v=await js('return {w:innerWidth,s:Math.max(document.body.scrollWidth,document.documentElement.scrollWidth)}');ok(v.s<=v.w+2,label+' no horizontal overflow')}
