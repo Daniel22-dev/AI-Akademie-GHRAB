@@ -48,7 +48,7 @@ function applyPresentationEnhancements(course) {
   }
 
   const finalLesson = course.lessons.at(-1);
-  if (enhancement.finalMission && finalLesson && !finalLesson.blocks.some(block => block.type === 'mission' && block.label === enhancement.finalMission.label)) {
+  if (enhancement.finalMission && finalLesson && !finalLesson.blocks.some(block => block.type === 'mission')) {
     finalLesson.blocks.push(enhancement.finalMission);
   }
 
