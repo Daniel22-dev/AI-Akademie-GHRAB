@@ -1,476 +1,130 @@
+const note=(say,ask,demo,caution,transition)=>({
+  say:[say],explain:[say],ask:[ask],expected:['Vrať odpovědi k praktickému rozhodnutí učitele a nepřidávej technické detaily, které skupina nepotřebuje.'],
+  demo:[demo],facilitation:['Nech kolegy krátce reagovat a vždy převáděj princip do konkrétní školní situace.'],
+  caution:[caution],transition:[transition],fallback:['Když nefunguje živá ukázka, použij modelovou situaci přímo na slidu.'],
+  shortcut:['Ponech hlavní myšlenku, jednu otázku a jeden praktický příklad.'],timing:'Krátký výklad → otázka → praktická ukázka → přechod.'
+});
 export default {
-  "id": "ai-literacy",
-  "order": 0,
-  "code": "OSVĚTA-01",
-  "title": "AI v práci učitele",
-  "shortTitle": "AI gramotnost",
-  "subtitle": "Příležitosti, limity, kritické myšlení a odpovědné zpracování materiálů",
-  "category": "AI gramotnost",
-  "audience": "Všichni učitelé bez ohledu na předmět",
-  "duration": 75,
-  "reserve": 0,
-  "level": "Úvodní až mírně pokročilý",
-  "required": true,
-  "status": "Připraveno",
-  "accent": "#a877ff",
-  "icon": "./assets/course-icons/ai-literacy.png",
-  "prerequisites": [],
-  "outcomes": [
-    "Vysvětlíte, co generativní AI umí a kde jsou její zásadní limity.",
-    "Použijete jednoduchý postup pro kvalitní zadání a tvorbu materiálu.",
-    "Ověříte fakta, zdroje, přiměřenost a didaktickou kvalitu výstupu.",
-    "Rozlišíte rozumnou pomoc AI od nebezpečného přenechání úsudku stroji.",
-    "Promyslíte, jak AI mění úkoly, hodnocení a kritické myšlení žáků."
+  id:'ai-literacy',order:0,code:'START-00',
+  title:'Vstupní školení: AI, bezpečnost a AI Studio',
+  shortTitle:'Povinný vstup',
+  subtitle:'Jak používat AI smysluplně, bezpečně a s učitelem jako konečným rozhodovacím článkem',
+  category:'Povinný základ',audience:'Všichni kolegové před prvním zpřístupněním aplikace AI Studia',
+  duration:70,reserve:5,level:'Vstupní',required:true,status:'Povinné vstupní školení',
+  accent:'#a877ff',icon:'./assets/course-icons/ai-literacy.png',prerequisites:[],
+  trainingMeta:{kind:'foundation',verifiedAgainst:'AI Studio 0.21.133',verifiedAt:'30. 9. 2026',teacherDecision:true,
+    teacherChecks:['Je výstup věcně správný?','Odpovídá konkrétní třídě a cíli?','Neobsahuje nevhodná nebo citlivá data?','Podepsal(a) bych se pod finální výsledek?']},
+  outcomes:[
+    'Rozlišíte slabý a kvalitní prompt a dokážete zadání zpřesnit.',
+    'Poznáte situace, kdy je nutné data anonymizovat nebo AI vůbec nepoužít.',
+    'Vysvětlíte, proč AI výstup není automaticky hotové pedagogické rozhodnutí.',
+    'Zorientujete se v AI Studiu a pochopíte smysl jeho vlastních aplikací.',
+    'Budete používat jednoduchý postup: AI navrhne → učitel posoudí → učitel upraví → učitel rozhodne.'
   ],
-  "lessons": [
-    {
-      "id": "why-now",
-      "title": "Proč se o AI bavit teď",
-      "kicker": "KONTEXT · 8 MIN",
-      "duration": 8,
-      "summary": "AI už je běžný pracovní nástroj. Ve škole potřebujeme vědět, kdy pomáhá, kdy škodí a kdo nese odpovědnost.",
-      "trainerNote": "Začněte krátkou anketou: Kdo AI používá alespoň jednou týdně? K čemu? Nehodnoťte odpovědi. Cílem je ukázat šíři zkušeností ve sboru.",
-      "blocks": [
-        {
-          "type": "statement",
-          "label": "HLAVNÍ MYŠLENKA",
-          "text": "AI nenahrazuje učitele. Urychluje návrhy, třídění a úpravy — rozhodnutí zůstává na člověku.",
-          "detail": "Hodnotu má až jasný cíl, dobrý podklad, kontrola a učitelský úsudek."
-        },
-        {
-          "type": "lead",
-          "text": "Neřešíme, jestli AI do školy patří. Řešíme, jak ji používat bezpečně, účelně a bez slepé důvěry."
-        },
-        {
-          "type": "cards",
-          "columns": 2,
-          "items": [
-            {
-              "icon": "1",
-              "title": "Příprava",
-              "text": "Návrhy aktivit, pracovní listy, otázky a varianty hodin."
-            },
-            {
-              "icon": "2",
-              "title": "Komunikace",
-              "text": "E-maily, shrnutí, úprava tónu a zpřehlednění textu."
-            },
-            {
-              "icon": "3",
-              "title": "Analýza",
-              "text": "Hledání slabých míst, porovnání verzí a třídění podkladů."
-            },
-            {
-              "icon": "4",
-              "title": "Učení",
-              "text": "Více cest k jednomu cíli, zpětná vazba a individualizace."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "tone": "warning",
-          "title": "Dvě stejně nebezpečné krajnosti",
-          "text": "„AI všechno vyřeší“ i „AI do školy nepatří“ obcházejí skutečný úkol: naučit se technologii používat účelně, bezpečně a kriticky."
-        }
-      ]
-    },
-    {
-      "id": "what-it-is",
-      "title": "Co generativní AI je — a co není",
-      "kicker": "MENTÁLNÍ MODEL · 9 MIN",
-      "duration": 9,
-      "summary": "Model vytváří pravděpodobnou odpověď. Neznamená to, že rozumí situaci, zná pravdu nebo automaticky cituje správné zdroje.",
-      "trainerNote": "Použijte jednoduchý kontrast: velmi přesvědčivý jazyk není důkaz správnosti. Nezabíhejte do technických detailů neuronových sítí.",
-      "blocks": [
-        {
-          "type": "comparison",
-          "left": {
-            "title": "Co AI umí dobře",
-            "items": [
-              "navrhne více variant",
-              "zlepší strukturu a styl",
-              "shrne nebo přeformuluje text",
-              "pracuje s dodaným kontextem"
-            ]
-          },
-          "right": {
-            "title": "Co z odpovědi neplyne",
-            "items": [
-              "že fakta sedí",
-              "že zdroj opravdu existuje",
-              "že výstup splní váš záměr",
-              "že ho lze použít bez kontroly"
-            ]
-          }
-        },
-        {
-          "type": "quote",
-          "text": "Plynulost není totéž co pravdivost. Sebejistý tón není totéž co důkaz."
-        },
-        {
-          "type": "quiz",
-          "question": "Které tvrzení vystihuje nejbezpečnější přístup?",
-          "options": [
-            "Když odpověď zní odborně, lze jí věřit.",
-            "AI je vhodná hlavně pro fakta, protože se nemýlí.",
-            "AI navrhuje výstup; člověk ověřuje a rozhoduje.",
-            "AI je jen vyhledávač s hezčím rozhraním."
-          ],
-          "answer": 2,
-          "explanation": "Generativní model je nástroj pro návrh a zpracování, nikoli automatická autorita."
-        }
-      ]
-    },
-    {
-      "id": "good-task",
-      "title": "Jak zadávat práci, aby výstup dával smysl",
-      "kicker": "PRAKTICKÝ RÁMEC · 10 MIN",
-      "duration": 10,
-      "summary": "Kvalitní výsledek nevzniká kouzelnou formulí. Vzniká z jasného cíle, dostatečného kontextu, požadovaného formátu a kritérií kontroly.",
-      "trainerNote": "Nechte kolegy přepracovat vágní zadání „udělej pracovní list“. Poté společně porovnejte, co přineslo doplnění cíle a omezení.",
-      "blocks": [
-        {
-          "type": "flow",
-          "items": [
-            {
-              "number": "CÍL",
-              "title": "Co potřebuji",
-              "text": "Jedna jasná věta: co má výstup umožnit učiteli nebo žákovi."
-            },
-            {
-              "number": "KONTEXT",
-              "title": "Pro koho a z čeho",
-              "text": "Předmět, ročník, úroveň, čas, zdrojový materiál a situace."
-            },
-            {
-              "number": "VÝSTUP",
-              "title": "Jak má vypadat",
-              "text": "Struktura, rozsah, jazyk, počet variant nebo konkrétní formát."
-            },
-            {
-              "number": "KRITÉRIA",
-              "title": "Co musí splnit",
-              "text": "Správnost, věková přiměřenost, návaznost na cíl, co se nesmí změnit."
-            }
-          ]
-        },
-        {
-          "type": "code",
-          "label": "Použitelná šablona zadání",
-          "code": "Cíl: ...\nKontext: předmět, ročník, úroveň, délka hodiny...\nPodklad: ...\nVytvoř: ...\nZachovej: ...\nVyvaruj se: ...\nNa konci proveď kontrolu podle těchto kritérií: ..."
-        },
-        {
-          "type": "activity",
-          "title": "Z vágního zadání na profesionální",
-          "brief": "Přepracujte zadání „Vytvoř mi aktivitu o klimatu“ tak, aby kolega podle výsledku mohl skutečně učit.",
-          "steps": [
-            "Určete jeden konkrétní výukový cíl.",
-            "Doplňte věkovou skupinu a předmět.",
-            "Stanovte čas a podobu výstupu.",
-            "Napište dvě věci, které se nesmí stát.",
-            "Přidejte způsob ověření výsledku."
-          ],
-          "output": "Jedno zadání, které lze rovnou vložit do AI nástroje."
-        }
-      ]
-    },
-    {
-      "id": "material-workflow",
-      "title": "Bezpečný postup práce s materiálem",
-      "kicker": "WORKFLOW UČITELE · 12 MIN",
-      "duration": 12,
-      "summary": "Kvalita obvykle nevznikne jedním kliknutím. Vzniká z podkladu, jasného cíle a několika krátkých kontrol.",
-      "trainerNote": "Ukažte jeden reálný anonymizovaný materiál a projděte pracovní postup živě. Zdůrazněte, že jeden dlouhý prompt není vždy lepší než postupná práce.",
-      "blocks": [
-        {
-          "type": "steps",
-          "items": [
-            {
-              "title": "Vezmu důvěryhodný podklad",
-              "text": "Vlastní text, učebnici, rubriku nebo ověřený zdroj."
-            },
-            {
-              "title": "Odstraním citlivé údaje",
-              "text": "Jména, kontakty a jedinečné osobní detaily do nástroje nepatří."
-            },
-            {
-              "title": "Upřesním cíl a formát",
-              "text": "Pro koho výstup je, co má vzniknout a co se nesmí změnit."
-            },
-            {
-              "title": "Nechám vytvořit návrh",
-              "text": "AI připraví první verzi, ne finální materiál."
-            },
-            {
-              "title": "Zkontroluji a opravím konkrétní slabiny",
-              "text": "Fakta, obtížnost, instrukce, řešení a vazbu na cíl ověřuje učitel."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "tone": "success",
-          "title": "AI je nejsilnější v iteraci",
-          "text": "Dobrá práce s AI má rytmus: návrh → kontrola → cílená oprava → poslední ověření."
-        },
-        {
-          "type": "comparison",
-          "left": {
-            "title": "Slabý postup",
-            "items": [
-              "generovat bez podkladu",
-              "přijmout první výsledek",
-              "upravit jen vzhled",
-              "ověřit až ve třídě"
-            ]
-          },
-          "right": {
-            "title": "Profesionální postup",
-            "items": [
-              "pracovat s důvěryhodným zdrojem",
-              "stanovit neměnná kritéria",
-              "ověřit obsah i didaktiku",
-              "udělat malý test před použitím"
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "id": "verification",
-      "title": "Co musím ověřit před použitím",
-      "kicker": "KONTROLA KVALITY · 10 MIN",
-      "duration": 10,
-      "summary": "Sebejistý tón není důkaz. Před použitím ve výuce kontrolujeme fakta, zdroje, logiku, jazyk i didaktický smysl.",
-      "trainerNote": "Přineste dvě krátké odpovědi: jednu správnou a jednu s nenápadnou smyšlenou citací. Nechte kolegy hledat signály, ne hádat podle stylu.",
-      "blocks": [
-        {
-          "type": "cards",
-          "columns": 2,
-          "items": [
-            {
-              "icon": "F",
-              "title": "Fakta",
-              "text": "Sedí klíčová tvrzení i řešení?"
-            },
-            {
-              "icon": "Z",
-              "title": "Zdroje",
-              "text": "Existují citace, autoři a odkazy?"
-            },
-            {
-              "icon": "L",
-              "title": "Logika",
-              "text": "Navazuje závěr na důkazy?"
-            },
-            {
-              "icon": "D",
-              "title": "Didaktika",
-              "text": "Pomůže úkol skutečnému cíli výuky?"
-            }
-          ]
-        },
-        {
-          "type": "checklist",
-          "title": "Před použitím materiálu zkontroluji",
-          "items": [
-            "Ověřil jsem klíčová fakta mimo odpověď AI.",
-            "Zkontroloval jsem zadání, řešení a bodování.",
-            "Obtížnost odpovídá cílové skupině.",
-            "Instrukce jsou jednoznačné.",
-            "Materiál neobsahuje citlivá data ani nevhodné generalizace."
-          ]
-        },
-        {
-          "type": "callout",
-          "tone": "warning",
-          "title": "Požádat AI o kontrolu nestačí",
-          "text": "Model může zopakovat vlastní chybu nebo vytvořit přesvědčivé vysvětlení nesprávného tvrzení. Nezávislý zdroj a odborný úsudek nelze obejít."
-        }
-      ]
-    },
-    {
-      "id": "students",
-      "title": "AI a zadávání úkolů žákům",
-      "kicker": "VÝUKA A HODNOCENÍ · 10 MIN",
-      "duration": 10,
-      "summary": "Smyslem není hon na AI texty. Smyslem je navrhovat úkoly, ve kterých je vidět proces, zdroje a vlastní rozhodnutí žáka.",
-      "trainerNote": "Zeptejte se: Který běžný domácí úkol dnes AI zvládne bez učení? Poté společně úkol přepracujte.",
-      "blocks": [
-        {
-          "type": "comparison",
-          "left": {
-            "title": "Úkol snadno nahraditelný AI",
-            "items": [
-              "obecný referát bez práce se zdroji",
-              "shrnutí známého tématu",
-              "stejný esejový úkol pro všechny",
-              "výsledek bez zachycení procesu"
-            ]
-          },
-          "right": {
-            "title": "Úkol podporující skutečné učení",
-            "items": [
-              "práce s konkrétním podkladem",
-              "obhajoba voleb a změn",
-              "srovnání zdrojů",
-              "průběžné verze a reflexe",
-              "ústní navázání nebo aplikace"
-            ]
-          }
-        },
-        {
-          "type": "steps",
-          "items": [
-            {
-              "title": "Stanovte pravidla použití",
-              "text": "Co je dovoleno, co se má přiznat a co už je nahrazení vlastní práce."
-            },
-            {
-              "title": "Hodnoťte proces",
-              "text": "Návrh, zdroje, revize, rozhodnutí a reflexe jsou často cennější než hladký finální text."
-            },
-            {
-              "title": "Vyžadujte dohledatelnost",
-              "text": "Žák vysvětlí, jak AI použil, co odmítl, co ověřil a co upravil."
-            },
-            {
-              "title": "Učte práci s chybou",
-              "text": "AI výstup může být předmětem kritiky, opravování a argumentace."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "tone": "danger",
-          "title": "Detektor AI není důkaz",
-          "text": "Detektory AI mohou chybovat. Samy o sobě nejsou spravedlivým důkazem podvodu."
-        }
-      ]
-    },
-    {
-      "id": "responsibility",
-      "title": "Data, autorství a transparentnost",
-      "kicker": "PRAVIDLA PRAXE · 8 MIN",
-      "duration": 8,
-      "summary": "Učitel musí vědět, co do nástroje vložil, co převzal, co ověřil a kdy je fér použití AI přiznat.",
-      "trainerNote": "Nevytvářejte právní přednášku. Držte se praktických rozhodnutí: data, zdroje, kontrola, transparentnost a odpovědnost.",
-      "blocks": [
-        {
-          "type": "cards",
-          "columns": 3,
-          "items": [
-            {
-              "icon": "D",
-              "title": "Data",
-              "text": "Používám jen nezbytné a anonymizované vstupy."
-            },
-            {
-              "icon": "A",
-              "title": "Autorství",
-              "text": "Výběr, úpravy i odpovědnost nesu já."
-            },
-            {
-              "icon": "T",
-              "title": "Transparentnost",
-              "text": "Umím popsat, jakou roli AI hrála."
-            }
-          ]
-        },
-        {
-          "type": "table",
-          "headers": [
-            "Situace",
-            "Rozumný postup"
-          ],
-          "rows": [
-            [
-              "Příprava běžného pracovního listu",
-              "AI lze použít jako pomocníka; učitel ověří obsah, řešení a přiměřenost."
-            ],
-            [
-              "Hodnocení konkrétního žáka",
-              "Anonymizovat, držet se rubriky, výsledek přezkoumat a rozhodnutí nepřenést na AI."
-            ],
-            [
-              "Citace nebo odborné tvrzení",
-              "Dohledat primární či důvěryhodný zdroj a ověřit přesné znění."
-            ],
-            [
-              "Materiál převzatý z publikace",
-              "Respektovat licenci a autorská práva; AI není způsob, jak je obejít."
-            ],
-            [
-              "AI výstup sdílený s kolegy",
-              "Popsat účel, míru kontroly a případná omezení materiálu."
-            ]
-          ]
-        },
-        {
-          "type": "quote",
-          "text": "Odpovědné používání AI není jen otázka nástroje. Je to otázka profesního úsudku."
-        }
-      ]
-    },
-    {
-      "id": "takeaway",
-      "title": "Pět návyků pro běžnou práci",
-      "kicker": "ZÁVĚR · 8 MIN",
-      "duration": 8,
-      "summary": "Na konci stačí jednoduchý rámec: cíl, bezpečný vstup, konkrétní zadání, kontrola a vlastní odpovědnost.",
-      "trainerNote": "Závěr nechte praktický. Každý účastník si vybere jeden reálný úkol, na kterém v příštím týdnu bezpečný postup vyzkouší.",
-      "blocks": [
-        {
-          "type": "flow",
-          "items": [
-            {
-              "number": "1",
-              "title": "Mám cíl",
-              "text": "Vím, proč AI používám a co má výsledkem vzniknout."
-            },
-            {
-              "number": "2",
-              "title": "Dávám kontext",
-              "text": "Dodám kvalitní podklad, publikum, omezení a kritéria."
-            },
-            {
-              "number": "3",
-              "title": "Chráním data",
-              "text": "Nevkládám zbytečné osobní ani citlivé údaje."
-            },
-            {
-              "number": "4",
-              "title": "Ověřuji",
-              "text": "Kontroluji fakta, zdroje, logiku, didaktiku i spravedlnost."
-            },
-            {
-              "number": "5",
-              "title": "Rozhoduji já",
-              "text": "Konečný výstup je moje profesní odpovědnost."
-            }
-          ]
-        },
-        {
-          "type": "activity",
-          "title": "Osobní mini-plán",
-          "brief": "Vyberte jednu opakující se činnost, u které může AI ušetřit čas, aniž by převzala vaše rozhodování.",
-          "steps": [
-            "Pojmenujte konkrétní úkol.",
-            "Určete, kterou část může dělat AI.",
-            "Určete, co musí zůstat na člověku.",
-            "Napište způsob kontroly výsledku.",
-            "Stanovte, jak ochráníte data."
-          ],
-          "output": "Jedna bezpečná a realistická situace k vyzkoušení během příštího týdne."
-        },
-        {
-          "type": "callout",
-          "tone": "success",
-          "title": "Varianty podle zkušenosti skupiny",
-          "text": "Pro méně zkušené: více živých ukázek a jeden společný úkol. Pro pokročilé: srovnání modelů, práce s delším podkladem, redesign hodnocení a společná tvorba pravidel předmětové komise."
-        }
-      ]
-    }
+  handout:{
+    title:'AI, bezpečnost a AI Studio — rychlá opora po školení',
+    intro:'AI je pracovní nástroj. Může výrazně urychlit přípravu, formulaci a analýzu, ale konečné pedagogické rozhodnutí zůstává na učiteli.',
+    keyPoints:[
+      'Dobrý prompt obsahuje kontext, cíl, cílovou skupinu, omezení a požadovaný výstup.',
+      'Přesvědčivě napsaná odpověď není důkaz správnosti.',
+      'Citlivé nebo identifikující údaje nevkládáme bez jasného právního a provozního důvodu; v běžné práci je anonymizujeme.',
+      'AI Studio nabízí připravené pracovní postupy pro konkrétní školní úkoly, ale nenahrazuje učitelský úsudek.',
+      'Před použitím výstupu ve výuce nebo komunikaci vždy proběhne lidská kontrola.'
+    ],
+    workflow:['Ujasni si cíl.','Odstraň zbytečná osobní data.','Zadej kontext a požadovaný výstup.','Zkontroluj fakta a pedagogickou vhodnost.','Uprav.','Teprve potom použij.'],
+    warnings:['Nevkládej hesla, API klíče ani přístupové údaje.','U citlivých situací, hodnocení a komunikace nikdy nepřebírej výstup bez kontroly.'],
+    quickReference:'AI pomáhá. Učitel kontroluje. Učitel rozhoduje.'
+  },
+  lessons:[
+    {id:'teacher-role',title:'AI nepřebírá roli učitele',kicker:'HLAVNÍ PRINCIP',duration:7,
+      summary:'AI může připravit návrh, ale odpovědnost za pedagogické rozhodnutí zůstává na člověku.',
+      trainerNote:'Začni touto myšlenkou dřív než funkcemi nástrojů.',
+      speakerNotes:note('Nejdůležitější věta dneška je jednoduchá: AI není náhradní učitel. Je to velmi rychlý pomocník, kterému ale chybí znalost naší konkrétní třídy.','Co víte o své třídě, co žádný obecný model vědět nemůže?','Ukaž řetězec AI navrhne → učitel posoudí → učitel upraví → učitel rozhodne.','Nevytvářej dojem, že AI přenáší odpovědnost za hodnocení nebo výuku.','Teď si ukážeme, jak tomu pomůže kvalitní zadání.'),
+      blocks:[
+        {type:'statement',label:'ZÁKLAD AKADEMIE',text:'AI pomáhá. Učitel kontroluje. Učitel rozhoduje.',detail:'AI může urychlit návrh a analýzu. Konečné pedagogické rozhodnutí, odpovědnost a znalost třídy zůstávají na učiteli.'},
+        {type:'flow',items:[
+          {number:'01',title:'AI navrhne',text:'Připraví variantu, otázky, strukturu nebo analýzu.'},
+          {number:'02',title:'Učitel posoudí',text:'Zkontroluje správnost, cíl, úroveň a kontext třídy.'},
+          {number:'03',title:'Učitel upraví',text:'Opraví chyby a přizpůsobí výstup reálné situaci.'},
+          {number:'04',title:'Učitel rozhodne',text:'Teprve člověk určí, zda a jak se výstup použije.'}
+        ]},
+        {type:'callout',tone:'success',title:'Co AI skutečně šetří',text:'Rutinu a čas na první návrh — ne profesionální úsudek učitele.'}
+      ]},
+    {id:'prompting',title:'Špatný prompt vs. dobrý prompt',kicker:'PROMPTOVÁNÍ',duration:10,
+      summary:'Kvalita výstupu výrazně roste, když AI dostane jasný cíl, kontext, omezení a požadovaný formát.',
+      trainerNote:'Použij jeden reálný učitelský příklad a prompt postupně vylepšuj.',
+      speakerNotes:note('Když zadám jen „udělej mi test“, dostanu obecný test. AI nemůže uhodnout ročník, cíl ani to, co už jsme probrali.','Co byste doplnili do promptu, aby byl použitelný pro vaši konkrétní hodinu?','Porovnej „Udělej test“ s promptem, který obsahuje předmět, ročník, cíl, rozsah a formát.','Nedělej z promptování soutěž o nejdelší prompt. Důležitá je přesnost.','Kvalitní zadání ale stále neznamená automaticky správný výsledek.'),
+      blocks:[
+        {type:'showcase',label:'PŘED A PO',title:'Stejný požadavek, jiná kvalita zadání',before:{label:'SLABÉ',title:'„Udělej mi test.“',items:['bez ročníku','bez cíle','bez rozsahu','bez formátu']},after:{label:'LEPŠÍ',title:'Kontext + cíl + omezení + formát',items:['pro koho','co ověřit','co nepoužívat','jak má výstup vypadat']},caption:'Prompt není kouzelná formule. Je to přesné pracovní zadání.'},
+        {type:'cards',columns:4,items:[
+          {icon:'1',title:'Kontext',text:'Kdo, kde a k čemu výstup použije.'},
+          {icon:'2',title:'Cíl',text:'Co má výstup nebo žák skutečně zvládnout.'},
+          {icon:'3',title:'Omezení',text:'Rozsah, zdroje, úroveň, zakázané prvky.'},
+          {icon:'4',title:'Formát',text:'Test, tabulka, body, e-mail, pracovní list…'}
+        ]}
+      ]},
+    {id:'verification',title:'AI může znít jistě a přitom se mýlit',kicker:'KRITICKÁ KONTROLA',duration:8,
+      summary:'Plynulý text není záruka pravdy, správného řešení ani vhodnosti pro konkrétní třídu.',
+      trainerNote:'Nech kolegy pojmenovat, co by kontrolovali u materiálu ve svém předmětu.',
+      speakerNotes:note('Nejzrádnější není AI, která napíše očividný nesmysl. Nejzrádnější je chyba napsaná velmi přesvědčivě.','Co je u vašich materiálů nejrizikovější převzít bez kontroly?','Ukaž krátký příklad, kde je formulace pěkná, ale jedna skutečnost nebo klíč odpovědi je špatně.','Kontrola stejnou AI není nezávislé ověření.','Vedle správnosti musíme řešit ještě bezpečnost dat.'),
+      blocks:[
+        {type:'comparison',left:{title:'AI umí',items:['rychle navrhovat','přeformulovat','třídit a strukturovat','nabídnout více variant']},right:{title:'Učitel musí',items:['ověřit fakta','zkontrolovat řešení','posoudit úroveň','rozhodnout o použití']}},
+        {type:'callout',tone:'warning',title:'Kontrolní otázka',text:'Podepsal(a) bych se pod tento výstup před žáky, rodiči nebo kolegy?'}
+      ]},
+    {id:'safety',title:'Bezpečnost: co do AI neposílat',kicker:'DATA A SOUKROMÍ',duration:10,
+      summary:'Do běžného AI workflow patří jen data, která skutečně potřebujeme a která smíme zpracovat.',
+      trainerNote:'Pracuj s modelovými situacemi ANO / NE / ZÁLEŽÍ.',
+      speakerNotes:note('Bezpečnost není technická disciplína pro správce. Je to návyk každého z nás při práci s textem a soubory.','Které údaje byste z modelového e-mailu odstranili před použitím AI?','Nech skupinu rozhodovat ANO / NE / ZÁLEŽÍ u jména žáka, diagnózy, anonymního pracovního listu a veřejného textu.','Neříkej, že AI Studio dělá jakákoli data automaticky bezpečná.','Právě tady dává smysl vysvětlit, proč máme vlastní aplikace.'),
+      blocks:[
+        {type:'decision',label:'RYCHLÉ ROZHODNUTÍ',question:'Potřebuji pro tento úkol skutečně identitu konkrétního člověka?',options:[
+          {title:'Ne',text:'Odstraň jméno, kontakt, třídu a jedinečné okolnosti. Pracuj s anonymním obsahem.'},
+          {title:'Ano / nejsem si jistý',text:'Neodesílej data automaticky. Nejprve ověř, zda je takové zpracování vůbec vhodné a povolené.'}
+        ]},
+        {type:'callout',tone:'danger',title:'Nikdy',text:'Hesla, API klíče, přístupové tokeny a jiné autentizační údaje do promptu nepatří.'}
+      ]},
+    {id:'studio-why',title:'Proč máme AI Studio a vlastní aplikace',kicker:'SMYSL SYSTÉMU',duration:8,
+      summary:'Místo prázdného chatbotu dostává učitel připravený pracovní postup pro konkrétní školní úkol.',
+      trainerNote:'Vysvětluj přínos, ne architekturu. Žádné API, GARP ani interní názvy.',
+      speakerNotes:note('Smyslem Studia není přidat další ikonky. Smyslem je zkrátit cestu od potřeby učitele k použitelnému výsledku a přitom držet jasný pracovní postup.','Kdy vás u běžného chatbotu nejvíc zdržuje vysvětlování toho, co vlastně chcete?','Porovnej prázdné chatovací okno s aplikací, která už zná účel a vede uživatele krok za krokem.','Vlastní aplikace nejsou důvod přestat kontrolovat výstupy nebo pravidla práce s daty.','Teď si ukážeme samotné Studio jako rozcestník.'),
+      blocks:[
+        {type:'showcase',label:'DVA ZPŮSOBY PRÁCE',title:'Od prázdného okna k připravenému workflow',before:{label:'OBECNÝ CHATBOT',title:'Začínám pokaždé od nuly',items:['musím vysvětlit úkol','musím hlídat strukturu','výstup může být pokaždé jiný']},after:{label:'AI STUDIO',title:'Aplikace zná pracovní postup',items:['vede vstup krok za krokem','má připravená pravidla konkrétní úlohy','výsledek je strukturovanější']},caption:'Aplikace usnadňuje postup. Odbornou odpovědnost nepřebírá.'}
+      ]},
+    {id:'studio-tour',title:'AI Studio: základní orientace',kicker:'PRAKTICKÁ UKÁZKA',duration:8,
+      summary:'Studio je vstupní rozcestník. Jednotlivé aplikace mají rozdílný účel a přístup se váže na absolvované školení.',
+      trainerNote:'Ukaž reálný portál a jen několik hlavních karet. Neprocházej každé tlačítko.',
+      speakerNotes:note('Studio berte jako vstupní halu. Odtud se dostanete k nástrojům podle toho, co právě potřebujete dělat.','Která z dostupných aplikací by vám dnes ušetřila nejvíc rutinní práce?','Na reálném Studiu ukaž domovskou obrazovku, kartu aplikace, otevření aplikace a návrat zpět.','Nezabíhej do administrace a verzí. Vstupní školení má dát jistotu v orientaci.','Jednu věc si ale musíme zopakovat před koncem.'),
+      blocks:[
+        {type:'flow',items:[
+          {number:'01',title:'Otevřu Studio',text:'Jeden vstupní bod pro školní nástroje.'},
+          {number:'02',title:'Vyberu účel',text:'Test, diferenciace, komunikace, organizace třídy…'},
+          {number:'03',title:'Pracuji v aplikaci',text:'Aplikace mě vede konkrétním workflow.'},
+          {number:'04',title:'Zkontroluji výsledek',text:'Před použitím vždy proběhne lidská revize.'}
+        ]}
+      ]},
+    {id:'final-check',title:'Před použitím: čtyři otázky učitele',kicker:'KONEČNÉ ROZHODNUTÍ',duration:6,
+      summary:'Žádný výstup AI Studia se nepoužívá jen proto, že jej vytvořila aplikace.',
+      trainerNote:'Nech každého vybrat kontrolu, kterou potřebuje ve své práci hlídat nejvíc.',
+      speakerNotes:note('Když si z dneška odnesete jen jeden návyk, ať je to tato krátká kontrola před použitím.','Která z těchto čtyř otázek je pro vaši práci nejdůležitější?','Projeď čtyři otázky na modelovém pracovním listu nebo e-mailu.','Neuzavírej školení tvrzením, že technologie je bezpečná sama od sebe. Bezpečný je až celý způsob práce.','Po tomto vstupu už dává smysl školit konkrétní aplikaci.'),
+      blocks:[
+        {type:'checklist',title:'Před finálním použitím',items:[
+          'Je výstup věcně správný?',
+          'Odpovídá cíli, třídě a situaci?',
+          'Jsou data a způsob použití bezpečné?',
+          'Jsem ochoten/ochotna za toto finální rozhodnutí převzít odpovědnost?'
+        ]},
+        {type:'statement',label:'ZAPAMATUJ SI',text:'AI navrhne. Učitel posoudí. Učitel upraví. Učitel rozhodne.'}
+      ]},
+    {id:'next-step',title:'Co následuje po vstupním školení',kicker:'DALŠÍ CESTA',duration:8,
+      summary:'Po společném základu následuje praktické školení konkrétní aplikace podle potřeby učitele.',
+      trainerNote:'Ukaž katalog Akademie a nech kolegy zvolit aplikaci podle jejich práce.',
+      speakerNotes:note('Teď už máme společný základ. Další školení už nebude obecně o AI, ale vždy o jednom konkrétním pracovním nástroji.','Který konkrétní pracovní úkol byste chtěli zrychlit jako první?','Ukaž katalog jednotlivých aplikací v AI Akademii.','Neslibuj, že každý potřebuje všechny aplikace. Smyslem je školit jen to, co kolega využije.','Ukonči vstup a pokračuj samostatným školením zvolené aplikace.'),
+      blocks:[
+        {type:'cards',columns:3,items:[
+          {icon:'A',title:'Vyberu problém',text:'Co konkrétně potřebuji ve své práci dělat lépe nebo rychleji.'},
+          {icon:'B',title:'Absolvuji aplikaci',text:'Krátké praktické školení konkrétního nástroje.'},
+          {icon:'C',title:'Použiji s kontrolou',text:'Aplikace pomáhá, konečný výsledek schvaluje učitel.'}
+        ]},
+        {type:'mission',label:'ZÁVĚREČNÝ KROK',title:'Vyberte první konkrétní aplikaci',brief:'Pojmenujte jednu činnost, kterou chcete pomocí AI Studia zjednodušit.',time:'2 MIN',output:'Jedna konkrétní potřeba a jedna navazující aplikace.'}
+      ]}
   ]
 };
