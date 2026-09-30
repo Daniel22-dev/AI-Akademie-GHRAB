@@ -1,12 +1,16 @@
 # AI Akademie — CURRENT RELEASE STATUS
 
-**Version:** 1.5.4  
+**Version:** 1.5.5  
 **Date:** 2026-09-30  
 **Candidate status:** LOCAL/CI FOUNDATION candidate — verification required on exact Git commit  
-**Public LIVE claim for 1.5.4:** NOT MADE  
+**Public LIVE claim for 1.5.5:** NOT MADE  
 **School-server LIVE:** NOT_TESTED / DEFERRED_BY_OWNER_DECISION
 
-Tento soubor popisuje zdrojový kandidát 1.5.4. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.5.4.
+Tento soubor popisuje zdrojový kandidát 1.5.5. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.5.5.
+
+## Změna 1.5.5
+
+Oprava vyhledávání v katalogu: handler nyní cíleně aktualizuje `#courses .course-grid`, nikoli první obecnou `.course-grid` na stránce. Release gate současně získává Chromium browser smoke test s desktop/mobile kontrolou, průchodem všech kurzů a částí, interakcemi kvízu/checklistu a ověřením Presenter konzole včetně screenshot evidence.
 
 ## Změna 1.5.4
 

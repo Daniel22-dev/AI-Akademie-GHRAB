@@ -1,8 +1,18 @@
-export const APP_VERSION = '1.5.4';
+export const APP_VERSION = '1.5.5';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.5.5',
+    date: '30. 9. 2026',
+    title: 'Opravené vyhledávání a browser QA',
+    changes: [
+      'Vyhledávání v katalogu nyní aktualizuje správnou mřížku kurzů místo vizuální mapy vzdělávací cesty.',
+      'P5 release gate nově spouští skutečný Chromium smoke test nad sestavenou aplikací.',
+      'Browser QA prochází katalog, všechny části školení, kvíz, checklist, Presenter konzoli i mobilní navigaci a ukládá screenshoty jako auditní evidenci.'
+    ]
+  },
   {
     version: '1.5.4',
     date: '30. 9. 2026',

@@ -1,5 +1,5 @@
-const APP_VERSION = '1.5.4';
-const CACHE_NAME = 'ghrab-ai-akademie-v1.5.4';
+const APP_VERSION = '1.5.5';
+const CACHE_NAME = 'ghrab-ai-akademie-v1.5.5';
 const CACHE_PREFIX = 'ghrab-ai-akademie-v';
 const LEGACY_CACHE_PREFIX = 'ghrab-academy-v';
 
