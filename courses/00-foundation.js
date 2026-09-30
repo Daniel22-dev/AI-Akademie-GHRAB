@@ -164,7 +164,7 @@ export default {
         'Právě tady dává smysl vysvětlit, proč máme vlastní specializované aplikace.'
       ),
       blocks: [
-        { type: 'quiz', question: 'Co je bezpečnější výchozí postup?', options: ['Vložit celý dokument a potom citlivá místa smazat z odpovědi.', 'Před odesláním odstranit zbytečné identifikátory a použít jen nezbytný obsah.', 'Citlivé údaje nevadí, když jde o školní účel.'], correct: 1, feedback: 'Citlivé a identifikující údaje odstraňujeme ještě před odesláním vstupu.' },
+        { type: 'quiz', question: 'Co je bezpečnější výchozí postup?', options: ['Vložit celý dokument a potom citlivá místa smazat z odpovědi.', 'Před odesláním odstranit zbytečné identifikátory a použít jen nezbytný obsah.', 'Citlivé údaje nevadí, když jde o školní účel.'], answer: 1, explanation: 'Citlivé a identifikující údaje odstraňujeme ještě před odesláním vstupu.' },
         { type: 'cards', columns: 2, items: [
           { icon: '✓', title: 'Modelový příklad', text: 'Fiktivní jména, obecná situace, žádné jedinečné okolnosti.' },
           { icon: '!', title: 'Rizikový vstup', text: 'Jméno + třída + diagnóza + konkrétní rodinná nebo kázeňská situace.' }
