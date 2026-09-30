@@ -9,7 +9,7 @@
     "build:exports": "node scripts/build-exports.mjs",
     "build": "npm run build:notes && npm run build:exports",
     "check": "node scripts/check.mjs",
-    "test": "npm run build:exports && node scripts/check.mjs",
+    "test": "npm run build && node scripts/check.mjs",
     "build:school-server": "npm run build && node scripts/build-school-server.mjs",
     "qa:secrets": "node scripts/qa-security-secrets.mjs",
     "qa:garp25:tooling": "node security/garp25/tools/selftest-garp251.mjs",
