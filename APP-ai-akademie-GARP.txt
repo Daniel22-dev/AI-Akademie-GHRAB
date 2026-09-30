@@ -5,11 +5,11 @@ appId GARP 2.7 r2: ai-academy
 Legacy release/GARP 2.5 appId: ai-akademie
 Název: AI Akademie GHRAB
 Repozitář: AI-Akademie-GHRAB
-Aktuální verze: 1.5.0
+Aktuální verze: 1.5.4
 Verze standardu: GARP 2.7 consolidation r2 / G-02 fix / legacy GARP 2.5.1 GHRAB + N5 + Safe Promotion retained
 SHA-256 vstupního aplikačního ZIPu pro toto kolo: e440b8d931408a1b9995eeab3b5ed346b15577219376cf2e64753212bf949061
 SHA-256 vstupního GARP 2.7 ZIPu: 0c278aefa0581b3ba13dd5725da9d3fc624976c255602ec16b054fc81da6f7c8
-Stav tohoto kola: 1.5.0 je funkční MINOR zdrojový kandidát s GARP 2.7 consolidation r2 / G-02 FOUNDATION/architecture-integrity adaptérem. GARP 2.5.1/N5/Safe Promotion zůstává aktivní baseline. Lokální reference/architecture/mutation kontroly jsou určeny k CI admission; SCHOOL/LIVE se bez cílového serveru neprohlašuje. Trusted-admission workflow je připraven pro běh z chráněného mainu, ale jeho aktivace jako povinného GitHub checku musí být po bootstrapu externě ověřena. Centrální AI Studio auto-patch: NOT ENROLLED. School-server production release: NE / DEFERRED_BY_OWNER_DECISION.
+Stav tohoto kola: 1.5.4 je funkční MINOR zdrojový kandidát s GARP 2.7 consolidation r2 / G-02 FOUNDATION/architecture-integrity adaptérem. GARP 2.5.1/N5/Safe Promotion zůstává aktivní baseline. Lokální reference/architecture/mutation kontroly jsou určeny k CI admission; SCHOOL/LIVE se bez cílového serveru neprohlašuje. Trusted-admission workflow je připraven pro běh z chráněného mainu, ale jeho aktivace jako povinného GitHub checku musí být po bootstrapu externě ověřena. Centrální AI Studio auto-patch: NOT ENROLLED. School-server production release: NE / DEFERRED_BY_OWNER_DECISION.
 
 2. TRVALÁ KLASIFIKACE
 Třída dat: D0

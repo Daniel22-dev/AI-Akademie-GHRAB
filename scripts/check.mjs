@@ -232,6 +232,10 @@ if (!consoleJs.includes('addEventListener')) errors.push('console.js nepoužív�
 if (consoleJs.includes('location.search') || consoleJs.includes('BroadcastChannel')) errors.push('console.js stále čte capability z URL nebo používá globální BroadcastChannel.');
 if (!consoleJs.includes('window.opener.location.origin === location.origin')) errors.push('console.js neověřuje same-origin opener.');
 if (!consoleHtml.includes('name="robots" content="noindex')) errors.push('console.html nemá zákaz indexování.');
+if (!consoleHtml.includes('presenter-workspace') || !consoleHtml.includes('live-slide-preview')) errors.push('Konzole školitele nemá dvousloupcový layout se skutečným náhledem projekce.');
+if (!consoleJs.includes('data-live-slide-preview') || !consoleJs.includes('attachShadow') || !consoleJs.includes('preview.html')) errors.push('console.js nesynchronizuje živý náhled aktuálního slidu.');
+if (!app.includes('presenterPreviewSnapshot') || !app.includes('MutationObserver')) errors.push('Hlavní aplikace neposílá živý DOM slidu do konzole školitele.');
+if (app.includes('width=590,height=900')) errors.push('Konzole školitele se stále otevírá v úzkém původním rozměru bez prostoru pro náhled.');
 const manifest = JSON.parse(await fs.readFile(path.join(root, 'manifest.webmanifest'), 'utf8'));
 if (!manifest.id) errors.push('Manifest PWA nemá stabilní id.');
 if (manifest.icons?.some(icon => String(icon.purpose).includes('any maskable'))) errors.push('Manifest stále kombinuje any a maskable v jedné ikoně.');
