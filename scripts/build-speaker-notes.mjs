@@ -536,9 +536,11 @@ function timingFor(lesson) {
 const entries = {};
 for (const course of courses) {
   course.lessons.forEach((lesson, index) => {
+    const embedded = lesson.speakerNotes || {};
+    const embeddedFields = ['say', 'explain', 'ask', 'expected', 'demo', 'facilitation', 'caution', 'transition', 'fallback'];
+    if (embeddedFields.every(field => Array.isArray(embedded[field]) && embedded[field].length)) return;
     const key = `${course.id}/${lesson.id}`;
     const points = mainPoints(lesson);
-    const embedded = lesson.speakerNotes || {};
     const say = embedded.say?.length ? embedded.say : spokenOverrides[key];
     if (!say) throw new Error(`Chybí ručně napsaná mluvená opora pro ${key}`);
     const ask = embedded.ask?.length ? embedded.ask : (questionOverrides[key] ? [questionOverrides[key]] : null);
