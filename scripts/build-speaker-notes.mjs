@@ -1,7 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import aiLiteracy from '../courses/00-ai-literacy.js';
-import start from '../courses/00-start.js';
+import foundation from '../courses/00-foundation.js';
 import differentiator from '../courses/01-differentiator.js';
 import github from '../courses/02-github.js';
 import generator from '../courses/03-generator.js';
@@ -10,8 +9,9 @@ import correspondence from '../courses/05-correspondence.js';
 import evaluator from '../courses/06-evaluator.js';
 import workflow from '../courses/07-workflow.js';
 import administrator from '../courses/08-administrator.js';
+import { activa, sortio, lessonHub, maturitaDesk } from '../courses/app-courses-2026.js';
 
-const courses = [aiLiteracy, start, differentiator, github, generator, ludus, correspondence, evaluator, workflow, administrator];
+const courses = [foundation, differentiator, github, generator, ludus, correspondence, evaluator, workflow, administrator, activa, sortio, lessonHub, maturitaDesk];
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
 const sentence = value => {
   const text = clean(value);
@@ -538,27 +538,28 @@ for (const course of courses) {
   course.lessons.forEach((lesson, index) => {
     const key = `${course.id}/${lesson.id}`;
     const points = mainPoints(lesson);
-    const say = spokenOverrides[key];
+    const embedded = lesson.speakerNotes || {};
+    const say = embedded.say?.length ? embedded.say : spokenOverrides[key];
     if (!say) throw new Error(`Chybí ručně napsaná mluvená opora pro ${key}`);
-    const ask = questionOverrides[key];
+    const ask = embedded.ask?.length ? embedded.ask : (questionOverrides[key] ? [questionOverrides[key]] : null);
     if (!ask) throw new Error(`Chybí ručně napsaná otázka pro ${key}`);
     entries[key] = {
       say,
-      explain: points.length ? points.map(sentence) : [sentence(lesson.summary)],
-      ask: [ask],
-      expected: [expectedFor(lesson)],
-      demo: [demoFor(lesson)],
-      facilitation: [toInternalVoice(lesson.trainerNote || 'Po hlavním bodu si ověř, že skupina dokáže postup převést do vlastní praxe.')],
-      caution: [sentence(cautionFor(lesson))],
-      transition: [transitionFor(course, index)],
-      fallback: [fallbackFor(lesson)],
-      shortcut: [shortcutFor(lesson)],
-      timing: timingFor(lesson)
+      explain: embedded.explain?.length ? embedded.explain : (points.length ? points.map(sentence) : [sentence(lesson.summary)]),
+      ask,
+      expected: embedded.expected?.length ? embedded.expected : [expectedFor(lesson)],
+      demo: embedded.demo?.length ? embedded.demo : [demoFor(lesson)],
+      facilitation: embedded.facilitation?.length ? embedded.facilitation : [toInternalVoice(lesson.trainerNote || 'Po hlavním bodu si ověř, že skupina dokáže postup převést do vlastní praxe.')],
+      caution: embedded.caution?.length ? embedded.caution : [sentence(cautionFor(lesson))],
+      transition: embedded.transition?.length ? embedded.transition : [transitionFor(course, index)],
+      fallback: embedded.fallback?.length ? embedded.fallback : [fallbackFor(lesson)],
+      shortcut: embedded.shortcut?.length ? embedded.shortcut : [shortcutFor(lesson)],
+      timing: embedded.timing || timingFor(lesson)
     };
   });
 }
 
-const output = `// Ručně psaná mluvená opora pro všech 68 částí.\n// Není určená k doslovnému čtení. Znovu vytvořit: npm run build:notes\nexport default ${JSON.stringify(entries, null, 2)};\n`;
+const output = `// Ručně psaná mluvená opora pro ${Object.keys(entries).length} částí.\n// Není určená k doslovnému čtení. Znovu vytvořit: npm run build:notes\nexport default ${JSON.stringify(entries, null, 2)};\n`;
 const outputFlagIndex = process.argv.indexOf('--output');
 const outputPath = outputFlagIndex >= 0 && process.argv[outputFlagIndex + 1]
   ? path.resolve(process.argv[outputFlagIndex + 1])
