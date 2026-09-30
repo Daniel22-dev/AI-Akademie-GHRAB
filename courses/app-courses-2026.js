@@ -16,7 +16,7 @@ const notes = (title, ask, warning, transition) => ({
 });
 
 export const activa = {
-  id: 'activa', order: 9, code: 'ACT-01', title: 'ACTIVA', shortTitle: 'ACTIVA',
+  id: 'activa', order: 10, code: 'ACT-01', title: 'ACTIVA', shortTitle: 'ACTIVA',
   subtitle: 'Pracovní listy, výukové aktivity a projekční režim bez zbytečného skládání od nuly',
   category: 'Aplikace', audience: 'Učitelé všech předmětů', duration: 60, reserve: 5, level: 'Základní',
   required: false, status: 'Připraveno', accent: '#3157FF', icon: './assets/course-icons/activa.svg', prerequisites: ['ai-literacy'],
@@ -45,7 +45,7 @@ export const activa = {
 };
 
 export const sortio = {
-  id:'sortio', order:10, code:'SOR-01', title:'SORTIO – Výukový panel', shortTitle:'SORTIO',
+  id:'sortio', order:11, code:'SOR-01', title:'SORTIO – Výukový panel', shortTitle:'SORTIO',
   subtitle:'Skupiny, role, zasedací pořádek, časovače a nástroje pro živou organizaci hodiny',
   category:'Aplikace', audience:'Učitelé všech předmětů', duration:55, reserve:5, level:'Základní', required:false, status:'Připraveno',
   accent:'#5EE7FF', icon:'./assets/course-icons/sortio.svg', prerequisites:['ai-literacy'],
@@ -74,7 +74,7 @@ export const sortio = {
 };
 
 export const lessonHub = {
-  id:'lesson-hub', order:11, code:'LH-01', title:'Lesson Hub', shortTitle:'Lesson Hub',
+  id:'lesson-hub', order:12, code:'LH-01', title:'Lesson Hub', shortTitle:'Lesson Hub',
   subtitle:'Osobní pracovní prostor učitele pro kontinuitu výuky, přípravy, záznamy a zastupování',
   category:'Aplikace', audience:'Učitelé všech předmětů', duration:60, reserve:5, level:'Základní', required:false, status:'Připraveno',
   accent:'#167F79', icon:'./assets/course-icons/lesson-hub.svg', prerequisites:['ai-literacy'],
@@ -103,7 +103,7 @@ export const lessonHub = {
 };
 
 export const maturitaDesk = {
-  id:'maturita-desk', order:12, code:'MAT-01', title:'Maturita Desk', shortTitle:'Maturita Desk',
+  id:'maturita-desk', order:13, code:'MAT-01', title:'Maturita Desk', shortTitle:'Maturita Desk',
   subtitle:'Příprava a vedení ústní maturitní zkoušky z angličtiny — v současnosti pouze demo se syntetickými daty',
   category:'Specializovaná aplikace', audience:'Vyučující anglického jazyka a maturitní komise', duration:50, reserve:5, level:'Základní', required:false, status:'Demo / řízený pilot',
   accent:'#4b263d', icon:'./assets/course-icons/maturita-desk.svg', prerequisites:['ai-literacy'],
