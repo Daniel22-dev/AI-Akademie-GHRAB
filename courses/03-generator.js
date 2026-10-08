@@ -20,7 +20,8 @@ export default {
     "Rozlišíte procvičování, běžný test a bezpečný offline test.",
     "Vytvoříte test z vlastního textu nebo tématu.",
     "Nastavíte varianty, pořadí, bodování a zpětnou vazbu.",
-    "Vyexportujete, ověříte a bezpečně zveřejníte HTML."
+    "Vyexportujete, ověříte a bezpečně zveřejníte HTML.",
+    "Při známkovaném testu odešlete skutečné START/END značky do Forms a provedete kontrolu ve Verifieru."
   ],
   "lessons": [
     {
@@ -115,8 +116,8 @@ export default {
     {
       "id": "input",
       "title": "Malý zdroj, jasný cíl",
-      "kicker": "KVALITNÍ ZADÁNÍ · 15 MIN",
-      "duration": 15,
+      "kicker": "KVALITNÍ ZADÁNÍ · 13 MIN",
+      "duration": 13,
       "summary": "U prvního testu je lepší kratší podklad a méně úloh. Snáz odhalíte chyby a doladíte zadání.",
       "trainerNote": "Pro první školení doporučte krátký text nebo jedno gramatické téma. Velký rozsah zvyšuje čas kontroly a počet možných chyb.",
       "blocks": [
@@ -161,8 +162,8 @@ export default {
     {
       "id": "tasks",
       "title": "Typ úlohy podle cíle",
-      "kicker": "DIDAKTIKA · 15 MIN",
-      "duration": 15,
+      "kicker": "DIDAKTIKA · 13 MIN",
+      "duration": 13,
       "summary": "Do jednoho testu nepatří všechny typy úloh. Každý typ má ověřovat konkrétní dovednost.",
       "trainerNote": "Vyberte maximálně čtyři typy úloh pro první ukázku. Příliš mnoho mechanik odvádí pozornost od kvality obsahu.",
       "blocks": [
@@ -228,8 +229,8 @@ export default {
     {
       "id": "differentiation",
       "title": "Varianty a diferenciace",
-      "kicker": "SKUPINY · 15 MIN",
-      "duration": 15,
+      "kicker": "SKUPINY · 13 MIN",
+      "duration": 13,
       "summary": "Generátor umí rozdělit test do variant a přiřazovat je pomocí jednorázových kódů. Kódy jsou bezpečnější než běžná jména.",
       "trainerNote": "Pracujte s fiktivními kódy. Vysvětlete, že skutečná jména se nemají objevovat v promptu ani veřejném HTML.",
       "blocks": [
@@ -324,8 +325,8 @@ export default {
     {
       "id": "export",
       "title": "Export a zveřejnění",
-      "kicker": "DISTRIBUCE · 12 MIN",
-      "duration": 12,
+      "kicker": "DISTRIBUCE · 11 MIN",
+      "duration": 11,
       "summary": "Výstupem je samostatný HTML soubor nebo bezpečný offline balík. Způsob distribuce musí odpovídat zvolenému režimu.",
       "trainerNote": "U bezpečného offline režimu důsledně rozlišujte studentský soubor a teacher_verifier.html. Nezveřejňujte učitelský ověřovač společně se studentským testem.",
       "blocks": [
@@ -386,10 +387,103 @@ export default {
       ]
     },
     {
+      "id": "secure-classroom",
+      "title": "Bezpečný test v hodině: START → odevzdání → END",
+      "kicker": "AKTUÁLNÍ GIT 7.1.99 · 10 MIN",
+      "duration": 10,
+      "summary": "Zkontrolujte osobní kódy, původní Forms značky a finální vyhodnocení. Večer před testem proveďte zkušební průchod na vlastním účtu.",
+      "trainerNote": "Promítněte jen syntetický studentský pokus. Otevření předvyplněného Google Formuláře není odeslání. Nezaměňujte Teacher/Admin tajemství s Recovery kódem konkrétního testu.",
+      "speakerNotes": {
+        "say": [
+          "Při klasifikovaném testu nestačí, že HTML ukáže závěrečnou obrazovku. Musím umět doložit skutečné odevzdání do školních Forms.",
+          "Nejkritičtější okamžik je START. Nejprve jej odešlu do Forms a teprve potom rozdám startovací kód."
+        ],
+        "explain": [
+          "Jednorázové kódy připravím celé skupině už v Generátoru, ale v Sheets je rozešlu pouze přítomným. CSV pro Sheets stahuji až po vygenerování testu a kontrole Test ID.",
+          "Google Forms jsou sběrné médium, nikoliv systém pro stanovení známek. Teacher Verifier kontroluje importovaný původní CSV export, identity a jednotlivé body.",
+          "Kódy nejsou totéž: osobní studentský kód, startovací kód, Recovery kód testu a privilegovaný Teacher/Admin kód mají rozdílné role."
+        ],
+        "ask": [
+          "Co přesně se musí stát mezi kliknutím na START ve Verifieru a začátkem studentského testu?"
+        ],
+        "expected": [
+          "Učitel musí pod školním účtem ve skutečném Google Formuláři stisknout Odeslat; teprve pak oznámí studentům startovací kód."
+        ],
+        "demo": [
+          "Na fiktivním testu ukaž ve Verifieru Zahájit příjem, dokonči odeslání START ve Forms a následně předveď vyplnění otázky a odeslání bloku SECURE-ANSWERS-V1.",
+          "Po posledním odevzdání odešli END přes Forms a načti neupravené původní CSV do soukromého Verifieru. Výsledek pedagogicky zkontroluj."
+        ],
+        "facilitation": [
+          "Přehraj modelovou chybu: předvyplněné Forms se otevře, ale uživatel neklikne Odeslat. Požádej kolegy, ať chybu sami identifikují."
+        ],
+        "caution": [
+          "Učitel nesmí sdílet teacher_verifier.html, seznam jmen ani tajné kódy se studenty. Při zapomenutém START nepodvrhuje zpětný čas; používá přiznanou ruční korekci."
+        ],
+        "transition": [
+          "Kdo chce vyzkoušet celý postup sám, provede se svým školním e-mailem syntetický test; podrobné aktuální kroky zůstávají v Manuálech AI Studia."
+        ],
+        "fallback": [
+          "Pokud není školní Forms nebo připojení dostupné, předveď předem připravený bezpečný fiktivní CSV a jasně řekni, že ostrý průchod nebyl ověřen."
+        ],
+        "shortcut": [
+          "Zvýrazni pouze START/Odeslat → studenti/Odeslat → END/Odeslat → import originálního CSV a kontrola. Ostatní nastavení nech do samostatné dílny."
+        ],
+        "timing": "2 min souvislosti · 3 min ukázka START · 2 min odevzdání a END · 3 min kontrola"
+      },
+      "blocks": [
+        {
+          "type": "flow",
+          "items": [
+            {
+              "number": "01",
+              "title": "Před hodinou",
+              "text": "Připrav formulář, osobní kódy celé skupině a zkontroluj generovaný studentský HTML i odpovědní klíč. CSV pro Sheets stáhni až po vytvoření testu."
+            },
+            {
+              "number": "02",
+              "title": "Ve Sheets",
+              "text": "Naimportuj CSV do nového listu, ověř Test ID a HTTPS odkaz. Zaškrtni pouze přítomné; proveď Náhled a odeslat ZAŠKRTNUTÝM."
+            },
+            {
+              "number": "03",
+              "title": "V hodině",
+              "text": "V soukromém Verifieru klikni Zahájit příjem; ve školních Forms skutečně klikni Odeslat (START). Až potom dej studentům startovací kód. Student musí odeslat celý SECURE-ANSWERS-V1."
+            },
+            {
+              "number": "04",
+              "title": "Po hodině",
+              "text": "Po posledním legitimním odevzdání skutečně odešli END přes Forms. Stáhni originální CSV a ve Verifieru zkontroluj identity, časové značky, body a přijatelné textové odpovědi."
+            }
+          ]
+        },
+        {
+          "type": "decision",
+          "label": "KRITICKÝ MOMENT",
+          "question": "Otevřel se mi předvyplněný Google Formulář START. Mohu už pustit studenty?",
+          "options": [
+            {
+              "title": "Ne, nejdřív ho musím odeslat.",
+              "text": "Pouhé otevření odkazu nevytváří START značku."
+            },
+            {
+              "title": "Ano, protože Verifier už spustil příjem.",
+              "text": "Ne. Verifier a skutečný záznam ve Forms jsou dvě oddělené akce."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warning",
+          "title": "Bezpečnost a důkazní limity",
+          "text": "Nezveřejňujte učitelský Verifier ani privilegovaný Teacher/Admin kód. Shoda hashe HTML či dešifrování sama neprokazuje autentický průběh studentského testu. Bezpečnostní upozornění je podnět k přezkumu, nikoli automaticky důkaz podvádění."
+        }
+      ]
+    },
+    {
       "id": "practice",
       "title": "Výstup ze školení",
-      "kicker": "SAMOSTATNÁ DÍLNA · 13 MIN",
-      "duration": 13,
+      "kicker": "SAMOSTATNÁ DÍLNA · 10 MIN",
+      "duration": 10,
       "summary": "Účastník dokončí jeden krátký materiál, který odpovídá jeho předmětu a reálné výuce.",
       "trainerNote": "Trvejte na krátkém dokončeném výsledku místo rozsáhlého rozpracovaného testu.",
       "blocks": [
