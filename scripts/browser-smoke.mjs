@@ -7,6 +7,7 @@ import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const appVersion=JSON.parse(await fs.readFile(path.join(root,'package.json'),'utf8')).version;
 const dist=path.resolve(root,process.argv[2]||'dist-pages');
 const out=path.join(root,'qa-results','release-current','browser-smoke');
 const port=4173, driverPort=9515, base=`http://127.0.0.1:${port}/`, wd=`http://127.0.0.1:${driverPort}`;
@@ -43,7 +44,7 @@ async function run(){
   await nav(base);await wait('return !!document.querySelector(".academy-hero")','home');ok((await js('return document.querySelector(".academy-hero h1")?.innerText||""')).includes('Všechna školení'),'home Czech heading');await noX('desktop home');await shot('home-desktop');
   const courses=await js('return [...document.querySelectorAll(".course-open")].map(a=>a.getAttribute("href"))');ok(courses.length>=10,'course catalog links');
   await type('#course-search','GitHub');await wait('const c=[...document.querySelectorAll(".course-grid .course-card")];return c.length>0&&c.every(x=>x.innerText.toLowerCase().includes("github"))','search');ok(true,'search filters cards');
-  await nav(base+'#/about');await wait('return !!document.querySelector(".about-hero")','about');ok((await js('return document.body.innerText.includes("v1.5.5")')),'about shows 1.5.5');
+  await nav(base+'#/about');await wait('return !!document.querySelector(".about-hero")','about');ok((await js('return document.body.innerText.includes(arguments[0])',['v'+appVersion])),'about shows current app version');
 
   const lessons=new Set();
   for(const href of courses){await nav(base+href);await wait('return !!document.querySelector(".lesson-stage")','course');const v=await js('return {hrefs:[...document.querySelectorAll(".lesson-nav a")].map(a=>a.getAttribute("href")),w:Math.max(document.body.scrollWidth,document.documentElement.scrollWidth),i:innerWidth}');ok(v.w<=v.i+2,'course desktop layout');for(const h of v.hrefs)lessons.add(h)}

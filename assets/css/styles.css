@@ -1725,3 +1725,21 @@ kbd {
   .speaker-guide-support .speaker-card.timing { grid-column: auto; }
   .speaker-support-heading { align-items: flex-start; flex-direction: column; gap: 4px; }
 }
+
+
+/* Etapa C — concise, accessible starter deck switcher */
+.academy-start-paths{padding-block:26px 38px}
+.academy-start-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.academy-start-card{display:flex;flex-direction:column;gap:13px;min-width:0;padding:26px;border-radius:23px;position:relative;overflow:hidden}
+.academy-start-card::before{content:"";position:absolute;left:26px;top:0;width:74px;height:3px;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:0 0 3px 3px}
+.academy-start-card-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--cyan);font-size:.77rem;font-weight:850;letter-spacing:.09em}
+.academy-start-card-top>span:first-child{font-size:1.22rem;color:var(--text)}
+.academy-start-length{margin-left:auto;color:var(--gold);font-size:.72rem;white-space:nowrap}
+.academy-start-card h3{margin:4px 0 0;font-size:clamp(1.14rem,1.8vw,1.5rem);line-height:1.2}
+.academy-start-card>p{margin:0;color:var(--soft);font-size:.96rem}
+.academy-start-card .academy-start-outcome{font-size:.85rem;color:var(--muted);flex:1}
+.academy-start-card .button{margin-top:auto;align-self:flex-start;max-width:100%;white-space:normal;text-align:center}
+.academy-start-guidance{margin:15px 0 0;color:var(--muted);font-size:.87rem}
+.academy-start-guidance strong{color:var(--soft)}
+@media(max-width:1050px){.academy-start-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.academy-start-paths{padding-block:20px 28px}.academy-start-grid{grid-template-columns:1fr}.academy-start-card{padding:20px}.academy-start-card .button{width:100%}}

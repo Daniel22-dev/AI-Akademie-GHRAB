@@ -635,6 +635,7 @@ function trainingVerificationLabel(course) {
   const training = course.training || {};
   if (!training.verifiedAt) return '';
   const version = training.appVersion ? ` v${training.appVersion}` : '';
+  if (training.reviewStatus === 'pilot') return `Pilotní podklady pro ${training.target || course.title}${version} · ${training.verifiedAt} · provozní ověření čeká`;
   return `Ověřeno pro ${training.target || course.title}${version} · ${training.verifiedAt}`;
 }
 
@@ -654,6 +655,35 @@ function renderCourseResults(items = filteredCourses()) {
   return items.length
     ? items.map(renderCourseCard).join('')
     : '<div class="empty-state"><h3>Žádná prezentace neodpovídá filtru.</h3><p>Zkuste jiný výraz nebo zrušte filtr kategorií.</p></div>';
+}
+
+function renderStartPaths() {
+  const paths = [
+    { id: 'quick-studio', number: '01', label: 'STUDIO POPRVÉ', goal: 'Oprávnění · Manuály · první výstup', after: 'Samostatný přístup k aktuálním Manuálům ve Studiu' },
+    { id: 'quick-api', number: '02', label: 'PŘIPOJENÍ AI', goal: 'Rozdíl mezi přístupem a API klíčem', after: 'Bezpečná kontrola AI připojení bez ukazování tajných údajů' },
+    { id: 'quick-git', number: '03', label: 'PRVNÍ TEST', goal: 'Procvičování · kódy · START/END · Verifier', after: 'Modelový výsledek a návaznost na podrobný manuál GIT' }
+  ];
+  return `
+    <section class="academy-start-paths shell-wide" aria-labelledby="academy-start-heading">
+      <div class="section-heading compact">
+        <div><p class="eyebrow">ETAPA C · RYCHLÝ START ŠKOLITELE</p><h2 id="academy-start-heading">Tři krátké prezentace. Vyberte, co právě potřebujete ukázat.</h2></div>
+        <p>Samostatné prezentace navazují na povinný základ AI + AI Studio; nenahrazují ho. Pro kolegy po školení slouží Manuály přímo ve Studiu.</p>
+      </div>
+      <div class="academy-start-grid">
+        ${paths.map(path => {
+          const course = courseMap.get(path.id);
+          if (!course) return '';
+          return `<article class="academy-start-card panel-glass">
+            <div class="academy-start-card-top"><span>${escapeHtml(path.number)}</span><small>${escapeHtml(path.label)}</small><span class="academy-start-length">${course.duration} MIN</span></div>
+            <h3>${escapeHtml(course.title)}</h3>
+            <p>${escapeHtml(path.goal)}</p>
+            <p class="academy-start-outcome">${escapeHtml(path.after)}</p>
+            <a class="button primary" href="#/course/${encodeURIComponent(course.id)}/${encodeURIComponent(course.lessons[0].id)}" aria-label="Otevřít prezentaci: ${escapeHtml(course.title)}">Spustit prezentaci →</a>
+          </article>`;
+        }).join('')}
+      </div>
+      <p class="academy-start-guidance"><strong>Promítání:</strong> Ve Windows použijte Win + P → Rozšířit. Konzoli školitele nechte na notebooku, prezentační okno přesuňte na projektor. Podrobné pokyny jsou uvnitř každé prezentace.</p>
+    </section>`;
 }
 
 function renderHome() {
@@ -702,6 +732,8 @@ function renderHome() {
       <article class="presenter-feature panel-glass"><span>${icons.notes}</span><div><p class="eyebrow">PŘIPRAVIT SE</p><h2>Poznámky řečníka zůstávají jen vám</h2><p>V rozcestníku můžete zobrazit metodické poznámky, doporučené ukázky a upozornění. Export pro účastníky je neobsahuje.</p></div></article>
       <article class="presenter-feature panel-glass"><span>${icons.download}</span><div><p class="eyebrow">PŘEDAT PO ŠKOLENÍ</p><h2>Vygenerujte stručný handout do PDF</h2><p>Handout se po kliknutí stáhne přímo jako hotové PDF. Obsahuje školní logo, workflow, kontroly a bezpečnostní zásady; interní poznámky školitele se do něj nepřenášejí.</p></div></article>
     </section>
+
+    ${renderStartPaths()}
 
     ${renderLearningMap()}
 
@@ -777,7 +809,7 @@ function renderCourseCard(course) {
         <span>${escapeHtml(course.audience)}</span>
       </div>
       ${prerequisites.length ? `<p class="prerequisite-note">${course.required ? 'Povinný základ' : 'Předpoklad'}: ${escapeHtml(prerequisites.join(', '))}</p>` : (course.required ? '<p class="prerequisite-note">Povinné před školením jednotlivých aplikací.</p>' : '')}
-      ${course.training?.verifiedAt ? `<p class="prerequisite-note training-verification">✓ ${escapeHtml(trainingVerificationLabel(course))} · školení v${escapeHtml(course.training.trainingVersion || '1.0')}</p>` : ''}
+      ${course.training?.verifiedAt ? `<p class="prerequisite-note training-verification">${course.training.reviewStatus === "pilot" ? "◌" : "✓"} ${escapeHtml(trainingVerificationLabel(course))} · školení v${escapeHtml(course.training.trainingVersion || '1.0')}</p>` : ''}
       <div class="course-card-actions">
         <a class="course-open" href="#/course/${course.id}/${course.lessons[0].id}">Otevřít školení ${icons.arrowRight}</a>
         <a class="course-download" href="#" data-action="download-handout" data-course-id="${course.id}">${icons.download} Handout PDF</a>

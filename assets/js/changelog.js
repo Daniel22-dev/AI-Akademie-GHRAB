@@ -1,8 +1,19 @@
-export const APP_VERSION = '1.5.5';
+export const APP_VERSION = '1.5.6';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.5.6',
+    date: '8. 10. 2026',
+    title: 'Etapa C: tři krátké startovní prezentace',
+    changes: [
+      'Na úvodní obrazovce Akademie lze jedním kliknutím spustit tři samostatné startovní prezentace: Studio poprvé, bezpečné AI připojení a první GIT test.',
+      'Nové moduly mají mluvené poznámky lektora, scénáře pro rozšířený monitor, praktické úkoly a samostatné účastnické PDF handouty.',
+      'Školení GIT rozlišuje procvičování a kompletní klasifikovaný workflow včetně Google Forms, Apps Scriptu, START/END a Verifieru.',
+      'Přístup k manuálům zůstává ve Studiu, AI Akademie je i nadále prezentačním prostředím školitele.'
+    ]
+  },
   {
     version: '1.5.5',
     date: '30. 9. 2026',
