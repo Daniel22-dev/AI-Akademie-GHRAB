@@ -2,7 +2,7 @@
   "schema": "garp27-application-migration-profile-v1",
   "garpVersion": "2.7",
   "appId": "ai-academy",
-  "appVersion": "1.5.5",
+  "appVersion": "1.5.6",
   "serverApproval": "DEFERRED_BY_OWNER_DECISION",
   "requiredComponents": [
     {
@@ -70,7 +70,7 @@
   "maxEvidenceAgeHours": 168,
   "releaseIdentity": {
     "appId": "ai-academy",
-    "appVersion": "1.5.5",
+    "appVersion": "1.5.6",
     "sourceCommit": "0000000000000000000000000000000000000000"
   },
   "trustBoundaryNote": "Local profile defines required scope. Independent policy authority outside candidate control remains a repository-governance requirement for full G27-AR04 closure.",
