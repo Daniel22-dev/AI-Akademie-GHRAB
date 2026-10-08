@@ -62,6 +62,6 @@ export function attachTrainingData(course) {
     required: course.id === 'ai-literacy',
     prerequisites: (course.prerequisites || []).map(id => id === 'start' ? 'ai-literacy' : id),
     training: meta,
-    handout: handouts[course.id] || handout(course.title, course.subtitle, course.lessons.map(item => item.summary), course.outcomes)
+    handout: course.handout || handouts[course.id] || handout(course.title, course.subtitle, course.lessons.map(item => item.summary), course.outcomes)
   };
 }
