@@ -1,12 +1,16 @@
 # AI Akademie — CURRENT RELEASE STATUS
 
-**Version:** 1.5.6  
+**Version:** 1.5.7  
 **Date:** 2026-10-08  
 **Candidate status:** SOURCE PREPARED — exact-SHA P5 / GARP 2.7 verification required before protected promotion  
-**Public LIVE claim for 1.5.6:** NOT MADE  
+**Public LIVE claim for 1.5.7:** NOT MADE  
 **School-server LIVE:** NOT_TESTED / DEFERRED_BY_OWNER_DECISION
 
-Tento soubor popisuje zdrojový kandidát 1.5.6. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.5.6.
+Tento soubor popisuje zdrojový kandidát 1.5.7. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.5.7.
+
+## Změna 1.5.7
+
+Etapa D: aktualizace velkého školení GIT podle 7.1.99, nové lekce Forms/Sheets, START/END a kontrola CSV ve Verifieru. Metadata jiných kurzů transparentně upozorňují na starší obsahově ověřené verze. Kód soukromé konzole školitele a obsah existujících aplikací se nemění. Tento obsah zatím nebyl ověřen v živé školní projekci a **není** certifikován jako školní LIVE.
 
 ## Změna 1.5.6
 

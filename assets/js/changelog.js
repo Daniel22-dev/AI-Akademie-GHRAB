@@ -1,8 +1,19 @@
-export const APP_VERSION = '1.5.6';
+export const APP_VERSION = '1.5.7';
 
 // Zobrazuje se pouze deset nejnovějších položek. Novou změnu vložte nahoru;
 // jedenáctá položka se automaticky přestane zobrazovat.
 export const CHANGELOG = [
+  {
+    version: '1.5.7',
+    date: '8. 10. 2026',
+    title: 'Etapa D: aktuální GIT 7.1.99 a pravdivý stav školení',
+    changes: [
+      'Rozsáhlé školení GIT rozšířeno o bezpečný sběr výsledků přes Google Forms, Apps Script a individuální kódy.',
+      'Průběh hodiny se skutečným odesláním START/END a transparentní opravou výsledků ve Verifieru.',
+      'Aktualizovaný účastnický handout GIT a upozornění Revize nutná u starších obsahově neověřených kurzů.',
+      'Systém konzole školitele a samostatné projekce zůstává nezměněný; nové části čekají na živé školní ověření.'
+    ]
+  },
   {
     version: '1.5.6',
     date: '8. 10. 2026',
