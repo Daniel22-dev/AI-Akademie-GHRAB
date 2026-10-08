@@ -635,7 +635,7 @@ export default {
       "Drž se jedné myšlenky a jednoho příkladu. Další detaily nech na dotazy."
     ],
     "transition": [
-      "Uzavři poslední myšlenku a pokračuj rovnou částí „Výstup ze školení“. Není potřeba vyrábět zvláštní spojovací větu."
+      "Uzavři poslední myšlenku a pokračuj rovnou částí „Před prvním známkovaným testem: Forms, Sheets a osobní kódy“. Není potřeba vyrábět zvláštní spojovací větu."
     ],
     "fallback": [
       "Když nefunguje internet nebo aplikace, pracuj přímo s blokem „seznam kroků“ na slidu. Nech kolegy popsat správný postup vlastními slovy."
