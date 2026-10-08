@@ -1,4 +1,4 @@
-# AI Akademie GHRAB 1.5.6
+# AI Akademie GHRAB 1.5.7
 
 Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
