@@ -818,6 +818,7 @@ export const quickstartCourses = [
         "blocks": [
           {
             "type": "checklist",
+            "title": "Kontrola výsledků před klasifikací",
             "items": [
               "Původní CSV z Forms je nezměněné a z odpovídajícího testu.",
               "START i END byly zaznamenané a časové okno souhlasí.",
