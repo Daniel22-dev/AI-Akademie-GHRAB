@@ -1,8 +1,16 @@
-# AI Akademie GHRAB 1.5.5
+# AI Akademie GHRAB 1.5.6
 
 Soukromé prezentační centrum a interaktivní databáze školení projektu AI Studio GHRAB. Akademie je určena především školiteli: slouží k přípravě výkladu, správě scénářů řečníka, spuštění čisté projekce a vytvoření samostatných HTML materiálů pro účastníky.
 
 Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobrazuje procenta absolvování ani neoznačuje dokončené lekce. Místní úložiště používá pouze pro praktické interaktivní prvky, například kvízy, checklisty a poslední otevřenou část.
+
+## Novinky ve verzi 1.5.6 (Etapa C)
+
+- Na rozcestníku jsou tři krátké školící prezentace: **První kroky v AI Studiu** (18 min), **Jak bezpečně připojit AI** (17 min) a **První test v GIT** (30 min).
+- Každá má samostatné slidy, praktické rozhodovací úlohy, konzoli školitele s živým náhledem a PDF handout bez soukromých poznámek.
+- Startovní prezentace nenahrazují jediný povinný základ AI + AI Studio; Manuály jsou samostatnou podporou kolegům uvnitř AI Studia.
+- Bezpečný provoz GIT je popsán podle 7.1.99 včetně odeslání značek START/END v Forms a kontroly ve Verifieru.
+- Nové prezentační cesty procházejí existujícím build/QA procesem. Pro školní nasazení zůstává požadován přesný P5 GREEN a Safe Promotion.
 
 ## Novinky ve verzi 1.5.5
 
@@ -110,7 +118,12 @@ Akademie **není samoobslužný kurz pro evidenci studijního postupu**. Nezobra
 
 Verze 1.4.2 provedla hloubkovou obsahovou revizi všech 10 prezentací a 68 lekcí. Starší změny jsou popsány v changelogu aplikace.
 
-## Třináct školení
+## Třináct hlavních školení a tři startovní prezentace
+
+**Krátké startovní prezentace školitele**
+- První kroky v AI Studiu (18 min)
+- Jak bezpečně připojit AI (17 min)
+- První test v GIT (30 min)
 
 **Povinný základ**
 1. **Vstupní školení: AI + AI Studio** — promptování, bezpečnost, učitelský úsudek a orientace ve Studiu.

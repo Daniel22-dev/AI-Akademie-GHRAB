@@ -1,6 +1,6 @@
 {
   "name": "ai-akademie-ghrab",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "private": true,
   "type": "module",
   "description": "Soukromý prezentační rozcestník AI Akademie GHRAB",
@@ -9,7 +9,7 @@
     "build:exports": "node scripts/build-exports.mjs",
     "build": "npm run build:notes && npm run build:exports",
     "check": "node scripts/check.mjs",
-    "test": "npm run build && node scripts/check.mjs",
+    "test": "npm run build && node scripts/check.mjs && npm run test:quickstarts",
     "build:school-server": "npm run build && node scripts/build-school-server.mjs",
     "qa:secrets": "node scripts/qa-security-secrets.mjs",
     "qa:garp25:tooling": "node security/garp25/tools/selftest-garp251.mjs",
@@ -30,7 +30,8 @@
     "qa:garp27:assurance": "node scripts/qa-garp27-assurance.mjs",
     "qa:garp27:ci": "npm run qa:garp27:reference && npm run qa:garp27:architecture && npm run qa:garp27:mutations && npm run qa:garp27:trusted-selftest && npm run qa:garp27:assurance",
     "qa:garp27:local": "npm run build:pages && npm run qa:garp25:sbom && npm run qa:current-evidence && npm run qa:garp27:ci",
-    "qa:garp27:trusted-selftest": "node scripts/qa-garp27-trusted-selftest.mjs"
+    "qa:garp27:trusted-selftest": "node scripts/qa-garp27-trusted-selftest.mjs",
+    "test:quickstarts": "node scripts/check-quickstart-courses.mjs"
   },
   "engines": {
     "node": ">=18"
