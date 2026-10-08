@@ -1,7 +1,7 @@
 export const verification = {
-  'quick-studio': { trainingVersion: '1.0-pilot', target: 'AI Studio – první přístup', appVersion: '0.21.196', verifiedAt: '8. 10. 2026', sourceRepo: 'Daniel22-dev/AI-Studio-GHRAB' },
-  'quick-api': { trainingVersion: '1.0-pilot', target: 'AI Studio – AI připojení', appVersion: '0.21.196', verifiedAt: '8. 10. 2026', sourceRepo: 'Daniel22-dev/AI-Studio-GHRAB' },
-  'quick-git': { trainingVersion: '1.0-pilot', target: 'GIT – první test', appVersion: '7.1.99', verifiedAt: '8. 10. 2026', sourceRepo: 'Daniel22-dev/generator-testu' },
+  'quick-studio': { trainingVersion: '1.0-pilot', reviewStatus: 'pilot', target: 'AI Studio – první přístup', appVersion: '0.21.196', verifiedAt: '8. 10. 2026', sourceRepo: 'Daniel22-dev/AI-Studio-GHRAB' },
+  'quick-api': { trainingVersion: '1.0-pilot', reviewStatus: 'pilot', target: 'AI Studio – AI připojení', appVersion: '0.21.196', verifiedAt: '8. 10. 2026', sourceRepo: 'Daniel22-dev/AI-Studio-GHRAB' },
+  'quick-git': { trainingVersion: '1.0-pilot', reviewStatus: 'pilot', target: 'GIT – první test', appVersion: '7.1.99', verifiedAt: '8. 10. 2026', sourceRepo: 'Daniel22-dev/generator-testu' },
   'ai-literacy': { trainingVersion: '2.0', target: 'AI Studio', appVersion: '0.21.133', verifiedAt: '30. 9. 2026', sourceRepo: 'Daniel22-dev/AI-Studio-GHRAB' },
   differentiator: { trainingVersion: '2.0', target: 'Diferenciátor', appVersion: '1.3.50', verifiedAt: '30. 9. 2026', sourceRepo: 'Daniel22-dev/diferenciator' },
   generator: { trainingVersion: '2.0', target: 'Generátor interaktivních testů', appVersion: '7.1.59', verifiedAt: '30. 9. 2026', sourceRepo: 'Daniel22-dev/generator-testu' },

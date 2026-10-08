@@ -635,6 +635,7 @@ function trainingVerificationLabel(course) {
   const training = course.training || {};
   if (!training.verifiedAt) return '';
   const version = training.appVersion ? ` v${training.appVersion}` : '';
+  if (training.reviewStatus === 'pilot') return `Pilotní podklady pro ${training.target || course.title}${version} · ${training.verifiedAt} · provozní ověření čeká`;
   return `Ověřeno pro ${training.target || course.title}${version} · ${training.verifiedAt}`;
 }
 
@@ -808,7 +809,7 @@ function renderCourseCard(course) {
         <span>${escapeHtml(course.audience)}</span>
       </div>
       ${prerequisites.length ? `<p class="prerequisite-note">${course.required ? 'Povinný základ' : 'Předpoklad'}: ${escapeHtml(prerequisites.join(', '))}</p>` : (course.required ? '<p class="prerequisite-note">Povinné před školením jednotlivých aplikací.</p>' : '')}
-      ${course.training?.verifiedAt ? `<p class="prerequisite-note training-verification">✓ ${escapeHtml(trainingVerificationLabel(course))} · školení v${escapeHtml(course.training.trainingVersion || '1.0')}</p>` : ''}
+      ${course.training?.verifiedAt ? `<p class="prerequisite-note training-verification">${course.training.reviewStatus === "pilot" ? "◌" : "✓"} ${escapeHtml(trainingVerificationLabel(course))} · školení v${escapeHtml(course.training.trainingVersion || '1.0')}</p>` : ''}
       <div class="course-card-actions">
         <a class="course-open" href="#/course/${course.id}/${course.lessons[0].id}">Otevřít školení ${icons.arrowRight}</a>
         <a class="course-download" href="#" data-action="download-handout" data-course-id="${course.id}">${icons.download} Handout PDF</a>
