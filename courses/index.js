@@ -9,11 +9,13 @@ import workflow from './07-workflow.js';
 import administrator from './08-administrator.js';
 import { activa, sortio, lessonHub, maturitaDesk } from './app-courses-2026.js';
 import speakerNotes from './speaker-notes.js';
+import { quickstartCourses } from './quickstart-courses.js';
 import { courseEnhancements } from './presentation-enhancements.js';
 import { attachTrainingData } from './training-data.js';
 
 const rawCourses = [
   foundation,
+  ...quickstartCourses,
   differentiator,
   github,
   generator,
