@@ -4,10 +4,10 @@ export default {
   "code": "GEN-01",
   "title": "Generátor interaktivních testů",
   "shortTitle": "Generátor",
-  "subtitle": "Od vlastního podkladu k procvičování nebo bezpečnému testu",
+  "subtitle": "GIT 7.1.99: od procvičování po START/END, odevzdání do Forms a pedagogicky ověřené výsledky",
   "category": "Aplikace",
   "audience": "AJ, ŠJ, NJ a ČJ",
-  "duration": 100,
+  "duration": 136,
   "reserve": 5,
   "level": "Základní",
   "required": false,
@@ -20,7 +20,9 @@ export default {
     "Rozlišíte procvičování, běžný test a bezpečný offline test.",
     "Vytvoříte test z vlastního textu nebo tématu.",
     "Nastavíte varianty, pořadí, bodování a zpětnou vazbu.",
-    "Vyexportujete, ověříte a bezpečně zveřejníte HTML."
+    "Vyexportujete, ověříte a bezpečně zveřejníte HTML.",
+    "Nastavíte bezpečný sběr do školních Forms, osobní kódy a START/END.",
+    "Načtete výsledky do soukromého Verifieru a zdokumentujete případné opravy."
   ],
   "lessons": [
     {
@@ -382,6 +384,259 @@ export default {
           ],
           "answer": 1,
           "explanation": "Učitelský ověřovač slouží ke kontrole odevzdaných odpovědí a nemá být distribuován žákům."
+        }
+      ]
+    },
+    {
+      "id": "forms-and-roster",
+      "title": "Před prvním známkovaným testem: Forms, Sheets a osobní kódy",
+      "kicker": "JEDNORÁZOVÉ NASTAVENÍ · 12 MIN",
+      "duration": 12,
+      "summary": "Google Forms a předvyplněná metadata připravíte jednou; pro každý test z GIT vytvoříte nový roster a CSV se správným Test ID.",
+      "trainerNote": "Pracuj s vlastní testovací adresou, ne se skutečnými studentskými e-maily. Zkontroluj rozdíl mezi jednorázovou konfigurací a činnostmi při každém testu.",
+      "speakerNotes": {
+        "say": [
+          "Nechci po učitelích, aby před každou hodinou všechno nastavovali znovu."
+        ],
+        "explain": [
+          "Forms je sběrné místo, Apps Script rozesílá kódy, Verifier je soukromý. Každý má přesný účel."
+        ],
+        "demo": [
+          "Na syntetické třídě předveď vytvoření testu, stažení CSV až po generování a import do nového listu Sheets."
+        ],
+        "ask": [
+          "Kdy smím stáhnout finální CSV kódů?"
+        ],
+        "expected": [
+          "Až po vytvoření testu; musíme mít správné Test ID."
+        ],
+        "facilitation": [
+          "Účastník musí provést konkrétní krok sám a ukázat jeho výsledek; kód ani studentské údaje nepromítat."
+        ],
+        "caution": [
+          "Neukazuj osobní API klíč, soukromý roster ani teacher_verifier.html na veřejném odkazu."
+        ],
+        "transition": [
+          "Nyní už můžeme ve třídě spustit kontrolovaný sběr odpovědí."
+        ],
+        "fallback": [
+          "Není-li dostupné živé připojení, použij syntetický příklad a jasně označ neprovedené kroky."
+        ],
+        "shortcut": [
+          "V časové tísni zachovej hlavně kritický krok a jeho bezpečnostní kontrolu."
+        ],
+        "timing": "12 minut: názorná ukázka, účastník opakuje, krátká kontrolní otázka"
+      },
+      "blocks": [
+        {
+          "type": "flow",
+          "items": [
+            {
+              "number": "1",
+              "title": "Jednou: Forms",
+              "text": "Školní e-mail, povinný odstavec pro celý SECURE-ANSWERS-V1, předvyplněná metadata TESTID, NAZEV, TRIDA, KOD; vypnout limit jedné odpovědi."
+            },
+            {
+              "number": "2",
+              "title": "Jednou: Apps Script",
+              "text": "Školní Sheets s aktuálním menu GIT – kódy; ověřené oprávnění a testovací odeslání sobě."
+            },
+            {
+              "number": "3",
+              "title": "Na každý nový test: roster",
+              "text": "Připrav individuální kódy celé skupiny, nech vygenerovat test a zkontroluj otázky i bodování."
+            },
+            {
+              "number": "4",
+              "title": "Teprve po generování: CSV",
+              "text": "Stáhni CSV s novým Test ID, importuj jej jako nový list, nastav studentský HTTPS odkaz."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warning",
+          "title": "Nezaměňuj testy",
+          "text": "Příjemce kódů určíš až v hodině zaškrtávátkem v Sheets. Starý list nesmí být přepsán a učitelský Verifier nikdy nesmí na veřejný odkaz."
+        },
+        {
+          "type": "activity",
+          "title": "Vyzkoušej nastavení bez žáků",
+          "brief": "Na vlastním testovacím školním e-mailu zkontroluj Forms, menu GIT – kódy a správné Test ID.",
+          "steps": [
+            "Vytvoř krátký syntetický test.",
+            "Stáhni studentský HTML, soukromý Verifier a CSV až po generování.",
+            "CSV vlož jako nový list, zkontroluj Test ID i HTTPS odkaz.",
+            "Připrav náhled e-mailu jen pro sebe."
+          ],
+          "output": "Připravený nový test bez vystavení soukromých údajů."
+        }
+      ]
+    },
+    {
+      "id": "start-end",
+      "title": "Průběh hodiny: START → studenti → END",
+      "kicker": "KRITICKÁ ČASOVÁ OKNA · 12 MIN",
+      "duration": 12,
+      "summary": "Značky START/END opravdu odešlete do školních Forms. Student odevzdá celý blok šifrovaných odpovědí; pouhé kliknutí na odkaz nestačí.",
+      "trainerNote": "V živé ukázce zdůrazni reálné odeslání START/END a nebezpečí zpětného předstírání času. Neposílej přístupové údaje studentů.",
+      "speakerNotes": {
+        "say": [
+          "Zde je nejdůležitější chyba, kterou musíme ve školení předcházet: otevření Forms není odeslání značky."
+        ],
+        "explain": [
+          "START musí být odeslaný před spuštěním studentských pokusů; END až po posledním legitimním odevzdání."
+        ],
+        "demo": [
+          "Na vlastním syntetickém testu proveď ▶ Zahájit příjem → Odeslat v Forms → zkušební student → ■ Ukončit příjem → Odeslat."
+        ],
+        "ask": [
+          "Má učitel START, když formulář pouze otevřel?"
+        ],
+        "expected": [
+          "Ne. Musí jej přes školní Forms opravdu odeslat."
+        ],
+        "facilitation": [
+          "Účastník musí provést konkrétní krok sám a ukázat jeho výsledek; kód ani studentské údaje nepromítat."
+        ],
+        "caution": [
+          "Pokud byl START zapomenut, nevyrobíme falešnou zpětnou značku; ve Verifieru použijeme transparentní korekci skutečného času."
+        ],
+        "transition": [
+          "Záznamy se potom importují do soukromého Verifieru."
+        ],
+        "fallback": [
+          "Není-li dostupné živé připojení, použij syntetický příklad a jasně označ neprovedené kroky."
+        ],
+        "shortcut": [
+          "V časové tísni zachovej hlavně kritický krok a jeho bezpečnostní kontrolu."
+        ],
+        "timing": "12 minut: názorná ukázka, účastník opakuje, krátká kontrolní otázka"
+      },
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            {
+              "title": "Jen přítomní dostanou kód",
+              "text": "V Sheets zaškrtni přítomné → GIT – kódy → 2. Náhled a odeslat ZAŠKRTNUTÝM. Ověř odkaz i příjemce."
+            },
+            {
+              "title": "START skutečně odešli",
+              "text": "Ve Verifieru ▶ Zahájit příjem a v otevřeném školním Forms stiskni Odeslat. Teprve potom ukaž studentům startovací kód."
+            },
+            {
+              "title": "Odevzdání studenta",
+              "text": "Student dokončí skutečné otázky a odešle kompletní blok SECURE-ANSWERS-V1 přes povinné pole Forms."
+            },
+            {
+              "title": "END skutečně odešli",
+              "text": "Až po posledním legitimním výsledku odešli ve Forms také značku END z Verifieru."
+            }
+          ]
+        },
+        {
+          "type": "quiz",
+          "question": "Značka START se ve Forms otevřela s předvyplněnými poli, ale učitel nestiskl Odeslat. Co se zaznamenalo?",
+          "options": [
+            "START je uložen automaticky.",
+            "Zatím nic; musí skutečně odeslat Forms.",
+            "Stačí studentům sdělit osobní kód."
+          ],
+          "answer": 1,
+          "explanation": "Předvyplnění Forms není odeslání. Bez START mohou výsledky narazit na kontrolu časového okna."
+        },
+        {
+          "type": "callout",
+          "tone": "danger",
+          "title": "Důležitá výjimka GIT 7.1.99",
+          "text": "Když prohlížeč zablokuje novou kartu Forms, může se otevřít v původní kartě testu. Před přechodem vždy bezpečně zkopíruj celý SECURE-ANSWERS-V1 a měj nouzový způsob odevzdání."
+        }
+      ]
+    },
+    {
+      "id": "import-review",
+      "title": "Po hodině: originální CSV, Verifier a pedagogická revize",
+      "kicker": "KONTROLA VÝSLEDKŮ · 12 MIN",
+      "duration": 12,
+      "summary": "Záznamy START/END a výsledky se importují z neupraveného CSV z Forms do soukromého Verifieru, kde je nutná pedagogická kontrola bodování.",
+      "trainerNote": "Ukaž syntetickou správnou alternativní formulaci, kterou automatické hodnocení původně neuznalo. Ukázku jasně označ jako modelovou.",
+      "speakerNotes": {
+        "say": [
+          "Poslední rozhodnutí o bodech dělá učitel, ne automatické upozornění."
+        ],
+        "explain": [
+          "Forms výsledky pouze sbírá. Verifier zkontroluje identitu, časové okno a body; textové odpovědi i podezřelé signály potřebují kontext."
+        ],
+        "demo": [
+          "Na umělém CSV předveď import, kontroly, jeden sporný automatický výsledek a zdokumentovanou opravu."
+        ],
+        "ask": [
+          "Znamená upozornění o časové neshodě automaticky podvádění?"
+        ],
+        "expected": [
+          "Ne. Je to signál k ručnímu přezkumu."
+        ],
+        "facilitation": [
+          "Účastník musí provést konkrétní krok sám a ukázat jeho výsledek; kód ani studentské údaje nepromítat."
+        ],
+        "caution": [
+          "Zobrazené identifikátory musí být syntetické; nepublikuj studentům originální CSV ani tajemství Verifieru."
+        ],
+        "transition": [
+          "Po školení najdou učitelé detailní návod v Manuálech AI Studia."
+        ],
+        "fallback": [
+          "Není-li dostupné živé připojení, použij syntetický příklad a jasně označ neprovedené kroky."
+        ],
+        "shortcut": [
+          "V časové tísni zachovej hlavně kritický krok a jeho bezpečnostní kontrolu."
+        ],
+        "timing": "12 minut: názorná ukázka, účastník opakuje, krátká kontrolní otázka"
+      },
+      "blocks": [
+        {
+          "type": "checklist",
+          "title": "Před klasifikací ověřím",
+          "items": [
+            "Stáhl jsem původní, nezměněný CSV export stejného Google Formuláře.",
+            "Ve Verifieru mám zaznamenané START/END a správné Test ID.",
+            "Přiřazení identity, duplicity a případná časová upozornění jsem přezkoumal.",
+            "Odpovědní klíč, přijatelné textové varianty a body jsem zkontroloval.",
+            "Ruční pedagogické zásahy jsou transparentně zdokumentované."
+          ]
+        },
+        {
+          "type": "comparison",
+          "left": {
+            "title": "Co ověřuje Verifier",
+            "items": [
+              "Původ a struktura odpovědí.",
+              "Časové a identitní kontroly.",
+              "Předběžné bodování."
+            ]
+          },
+          "right": {
+            "title": "Za co odpovídá učitel",
+            "items": [
+              "Správnost klíče.",
+              "Uznání smysluplných variant.",
+              "Konečný výsledek a řešení námitek."
+            ]
+          }
+        },
+        {
+          "type": "activity",
+          "title": "Dokonči modelový průchod",
+          "brief": "Na vlastních syntetických datech stáhni CSV z Forms a importuj jej do Verifieru.",
+          "steps": [
+            "Importuj původní CSV.",
+            "Zkontroluj přítomnost START a END.",
+            "Prohlédni každou odpověď a bodové rozhodnutí.",
+            "Zdokumentuj případnou opravu.",
+            "Ulož výsledky na neveřejném místě."
+          ],
+          "output": "Prokazatelně zkontrolovaný modelový test."
         }
       ]
     },
