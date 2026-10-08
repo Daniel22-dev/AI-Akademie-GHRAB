@@ -2,7 +2,7 @@
   "schema": "garp27-policy-v1",
   "garpVersion": "2.7",
   "appId": "ai-academy",
-  "appVersion": "1.5.5",
+  "appVersion": "1.5.6",
   "identity": {
     "mode": "static-app-with-delegated-same-origin-admin-bridge",
     "authorization": "AI Studio access runtime remains authoritative for the optional full-admin return control; verification failure hides the control.",
