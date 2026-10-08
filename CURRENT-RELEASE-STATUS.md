@@ -1,12 +1,16 @@
 # AI Akademie — CURRENT RELEASE STATUS
 
-**Version:** 1.5.5  
-**Date:** 2026-09-30  
-**Candidate status:** LOCAL/CI FOUNDATION candidate — verification required on exact Git commit  
-**Public LIVE claim for 1.5.5:** NOT MADE  
+**Version:** 1.5.6  
+**Date:** 2026-10-08  
+**Candidate status:** SOURCE PREPARED — exact-SHA P5 / GARP 2.7 verification required before protected promotion  
+**Public LIVE claim for 1.5.6:** NOT MADE  
 **School-server LIVE:** NOT_TESTED / DEFERRED_BY_OWNER_DECISION
 
-Tento soubor popisuje zdrojový kandidát 1.5.5. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.5.5.
+Tento soubor popisuje zdrojový kandidát 1.5.6. Historické GREEN reporty starších verzí jsou audit trail; nejsou automaticky důkazem pro 1.5.6.
+
+## Změna 1.5.6
+
+Etapa C: tři volitelné krátké startovní prezentace školitele (první kroky v AI Studiu, bezpečné připojení AI, první test v GIT 7.1.99). Obsahují soukromé poznámky prezentujícího a účastnické handouty. Změna je pilotní; není prokázán LIVE školní provoz ani fyzické ověření rozšířené obrazovky. Oprava verzové koherence GARP 2.7 a dokumentační stopy před P5 gate je součástí tohoto kandidáta.
 
 ## Změna 1.5.5
 
