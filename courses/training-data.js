@@ -7,14 +7,14 @@ export const verification = {
   generator: { trainingVersion: '2.1-pilot', reviewStatus: 'pilot', target: 'Generátor interaktivních testů', appVersion: '7.1.99', verifiedAt: '8. 10. 2026', sourceRepo: 'Daniel22-dev/generator-testu' },
   ludus: { trainingVersion: '2.0', reviewStatus: 'review-required', target: 'LUDUS', appVersion: '1.16.30', verifiedAt: '30. 9. 2026', sourceRepo: 'Daniel22-dev/Ludus' },
   correspondence: { trainingVersion: '2.0', reviewStatus: 'review-required', target: 'Korespondenční asistent', appVersion: '5.10.32', verifiedAt: '30. 9. 2026', sourceRepo: 'Daniel22-dev/korespondencni-asistent' },
-  evaluator: { trainingVersion: '2.0', target: 'Hodnotitel maturitních slohů', appVersion: '1.5.30', verifiedAt: '30. 9. 2026', sourceRepo: 'Daniel22-dev/Hodnotitel-maturitnich-slohu' },
-  activa: { trainingVersion: '1.0', target: 'ACTIVA', appVersion: '0.5.30', verifiedAt: '30. 9. 2026', sourceRepo: 'Daniel22-dev/ACTIVA' },
+  evaluator: { trainingVersion: '2.0', reviewStatus: 'review-required', target: 'Hodnotitel maturitních slohů', appVersion: '1.5.30', verifiedAt: '30. 9. 2026', sourceRepo: 'Daniel22-dev/Hodnotitel-maturitnich-slohu' },
+  activa: { trainingVersion: '1.0', reviewStatus: 'review-required', target: 'ACTIVA', appVersion: '0.5.30', verifiedAt: '30. 9. 2026', sourceRepo: 'Daniel22-dev/ACTIVA' },
   sortio: { trainingVersion: '1.0', reviewStatus: 'review-required', target: 'SORTIO', appVersion: '1.1.22', verifiedAt: '30. 9. 2026', sourceRepo: 'Daniel22-dev/SORTIO' },
-  'lesson-hub': { trainingVersion: '1.0', target: 'Lesson Hub', appVersion: '1.2.26', verifiedAt: '30. 9. 2026', sourceRepo: 'Daniel22-dev/lesson-hub' },
-  'maturita-desk': { trainingVersion: '1.0', target: 'Maturita Desk', appVersion: '1.0.6', verifiedAt: '30. 9. 2026', sourceRepo: 'Daniel22-dev/maturita-desk' },
-  github: { trainingVersion: '2.0', target: 'GitHub Pages', appVersion: null, verifiedAt: '30. 9. 2026', sourceRepo: null },
-  workflow: { trainingVersion: '2.0', target: 'Propojený workflow', appVersion: null, verifiedAt: '30. 9. 2026', sourceRepo: null },
-  administrator: { trainingVersion: '2.0', target: 'Správa školení', appVersion: null, verifiedAt: '30. 9. 2026', sourceRepo: null }
+  'lesson-hub': { trainingVersion: '1.0', reviewStatus: 'review-required', target: 'Lesson Hub', appVersion: '1.2.26', verifiedAt: '30. 9. 2026', sourceRepo: 'Daniel22-dev/lesson-hub' },
+  'maturita-desk': { trainingVersion: '1.0', reviewStatus: 'review-required', target: 'Maturita Desk', appVersion: '1.0.6', verifiedAt: '30. 9. 2026', sourceRepo: 'Daniel22-dev/maturita-desk' },
+  github: { trainingVersion: '2.0', reviewStatus: 'review-required', target: 'GitHub Pages', appVersion: null, verifiedAt: '30. 9. 2026', sourceRepo: null },
+  workflow: { trainingVersion: '2.0', reviewStatus: 'review-required', target: 'Propojený workflow', appVersion: null, verifiedAt: '30. 9. 2026', sourceRepo: null },
+  administrator: { trainingVersion: '2.0', reviewStatus: 'review-required', target: 'Správa školení', appVersion: null, verifiedAt: '30. 9. 2026', sourceRepo: null }
 };
 
 const commonTeacherDecision = [
@@ -56,7 +56,7 @@ export const handouts = {
 };
 
 export function attachTrainingData(course) {
-  const meta = verification[course.id] || { trainingVersion: '1.0', appVersion: null, verifiedAt: null, sourceRepo: null };
+  const meta = verification[course.id] || { trainingVersion: '1.0', reviewStatus: 'review-required', appVersion: null, verifiedAt: null, sourceRepo: null };
   return {
     ...course,
     required: course.id === 'ai-literacy',
